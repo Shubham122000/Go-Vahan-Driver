@@ -43,7 +43,7 @@ interface ApiService {
       ): Response<RegisterResponseModel>
 
        @Multipart
-       @POST("add_loader_vehicle")
+       @POST("add_vehicle")
        suspend fun addloadervehical(
         @Header("Authorization") authorization: String,
         @Part("driver_id") driver_id: RequestBody,
@@ -74,11 +74,11 @@ interface ApiService {
         @Part("exp_date_4") exp_date_4: RequestBody,
         @Part("exp_date_5") exp_date_5: RequestBody,
         @Part("other_exp_date") other_exp_date: RequestBody,
-        @Part("doc_name_1") doc_name_1: RequestBody,
-        @Part("doc_name_2") doc_name_2: RequestBody,
-        @Part("doc_name_3") doc_name_3: RequestBody,
-        @Part("doc_name_4") doc_name_4: RequestBody,
-        @Part("doc_name_5") doc_name_5: RequestBody,
+//        @Part("doc_name_1") doc_name_1: RequestBody,
+//        @Part("doc_name_2") doc_name_2: RequestBody,
+//        @Part("doc_name_3") doc_name_3: RequestBody,
+//        @Part("doc_name_4") doc_name_4: RequestBody,
+//        @Part("doc_name_5") doc_name_5: RequestBody,
         @Part("other_doc_name") other_doc_name: RequestBody,
     ): Response<AddloaderResponse>
 
@@ -447,19 +447,20 @@ interface ApiService {
     ): Response<CreateBusinesscard>
 
     @Multipart
-    @POST("add_driver_register")
+    @POST("add_vendor_driver")
     suspend fun adddriver(
         @Header("Authorization") authorization: String,
         @Part("name") name: RequestBody,
         @Part("driving_exp") driving_exp: RequestBody,
         @Part("driving_lic") driving_lic: RequestBody,
+        @Field("country_code") countryCode: RequestBody,
         @Part("mobile") mobile: RequestBody,
         @Part("email") email: RequestBody,
         @Part("password") password: RequestBody,
         @Part profile_image: MultipartBody.Part,
         @Part id_proof: MultipartBody.Part,
         @Part("vendor_id") vendor_id: RequestBody,
-        @Part("service_id") service_id: RequestBody,
+//        @Part("service_id") service_id: RequestBody,
         ): Response<AddDriverResponse>
 
     @Multipart
@@ -1057,7 +1058,7 @@ interface ApiService {
         @Header("Authorization") authorization: String,
     ): Response<TripListResponse>
 
-    @GET("self_driver_trip")
+    @POST("self_driver_trip")
     suspend fun self_driver_trip(
         @Header("Authorization") authorization: String,
     ): Response<AddTripDriverMOdelClass>
@@ -1179,10 +1180,10 @@ interface ApiService {
         @Field("load_caring") load_caring: String,
         @Field("from_trip") from_trip: String,
         @Field("to_trip") to_trip: String,
-        @Field("vehicle_type") vehicle_type: String,
-        @Field("vehicle_numbers") vehicle_numbers: String,
-        @Field("no_tyers") no_tyers: String,
-        @Field("body_type") body_type: String,
+//        @Field("vehicle_type") vehicle_type: String,
+//        @Field("vehicle_numbers") vehicle_numbers: String,
+//        @Field("no_tyers") no_tyers: String,
+//        @Field("body_type") body_type: String,
         @Field("assign_driver") assign_driver: String,
         @Field("total_distance") total_distance: String,
         @Field("freight_amount") freight_amount: String,

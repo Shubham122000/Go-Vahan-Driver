@@ -34,23 +34,25 @@ class AddDriverViewModel @Inject constructor(private val mainRepository: MainRep
         company:String,
         name:String,
         role:String,
+        countryCode: String,
         mobile:String,
         email:String,
         address:String,
         Image: MultipartBody.Part?,
         pdfFile: MultipartBody.Part?,
         vendorid: String,
-        serviceid: String
+//        serviceid: String
 
     ) {
         val company: RequestBody = company.toRequestBody("text/plain".toMediaTypeOrNull())
         val name: RequestBody = name.toRequestBody("text/plain".toMediaTypeOrNull())
         val role: RequestBody = role.toRequestBody("text/plain".toMediaTypeOrNull())
+        val countryCode: RequestBody = countryCode.toRequestBody("text/plain".toMediaTypeOrNull())
         val mobile: RequestBody = mobile.toRequestBody("text/plain".toMediaTypeOrNull())
         val email: RequestBody = email.toRequestBody("text/plain".toMediaTypeOrNull())
         val address: RequestBody = address.toRequestBody("text/plain".toMediaTypeOrNull())
         val vendorid: RequestBody = vendorid.toRequestBody("text/plain".toMediaTypeOrNull())
-        val serviceid: RequestBody = serviceid.toRequestBody("text/plain".toMediaTypeOrNull())
+//        val serviceid: RequestBody = serviceid.toRequestBody("text/plain".toMediaTypeOrNull())
         progressBarStatus.value = true
         viewModelScope.launch {
 
@@ -59,13 +61,14 @@ class AddDriverViewModel @Inject constructor(private val mainRepository: MainRep
                 company,
                 name,
                 role,
+                countryCode,
                 mobile,
                 email,
                 address,
                 Image!!,
                 pdfFile!!,
                 vendorid,
-                serviceid,
+//                serviceid,
 
             )
             if (response.isSuccessful) {

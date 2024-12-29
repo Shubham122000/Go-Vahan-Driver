@@ -105,27 +105,27 @@ class AddTripPassengerDriver : BaseActivity() {
         binding.etTo.setOnClickListener {
             placesAPiCall(AUTOCOMPLETE_TO_REQUEST_CODE)
         }
-        viewModel.self_driver_passenger_trip(
-            "Bearer "+userPref.getToken().toString(),
-        ).observe(this) {
-
-            if (it!!.status == 1) {
-                try {
-                    binding.driverassign.text = it.name.driver_name
-                    binding.spinnerLoadcarring.text = "${it.data.load_caring} Ton"
-                    binding.spinnerVehiclename.text = it.data.vehicle_name
-                    binding.spinnerVehicletype.text = it.data.vehicle_type
-                    binding.spinnerVehiclenumber.text = it.data.vehicle_number
-                    binding.spinnerNooftyres.text = it.data.no_of_tyers
-                    vehicletype=it.data.vehicle_type_id.toString()
-                    vehicle_number= it.data.vehicle_number_id.toString()
-//                    loadcarry=it.data.load_caring
-                    driver=it.name.driver_id
-                }catch (e:Exception){
-                    e.printStackTrace()
-                }
-            }
-        }
+//        viewModel.self_driver_passenger_trip(
+//            "Bearer "+userPref.getToken().toString(),
+//        ).observe(this) {
+//
+//            if (it!!.status == 1) {
+//                try {
+//                    binding.driverassign.text = it.name.driver_name
+//                    binding.spinnerLoadcarring.text = "${it.data.load_caring} Ton"
+//                    binding.spinnerVehiclename.text = it.data.vehicle_name
+//                    binding.spinnerVehicletype.text = it.data.vehicle_type
+//                    binding.spinnerVehiclenumber.text = it.data.vehicle_number
+//                    binding.spinnerNooftyres.text = it.data.no_of_tyers
+//                    vehicletype=it.data.vehicle_type_id.toString()
+//                    vehicle_number= it.data.vehicle_number_id.toString()
+////                    loadcarry=it.data.load_caring
+//                    driver=it.name.driver_id
+//                }catch (e:Exception){
+//                    e.printStackTrace()
+//                }
+//            }
+//        }
 
         binding.btnAddthistrip.setOnClickListener {
 

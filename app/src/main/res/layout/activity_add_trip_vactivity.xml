@@ -350,35 +350,35 @@
                         android:layout_marginEnd="@dimen/_10sdp"
                         />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_10sdp"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/roboto_regular"
-                        android:text="@string/vehiclename"
-                        android:textColor="@color/gray"
-                        android:textSize="@dimen/_11sdp" />
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="@dimen/_10sdp"-->
+<!--                        android:layout_marginTop="@dimen/_10sdp"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:fontFamily="@font/roboto_regular"-->
+<!--                        android:text="@string/vehiclename"-->
+<!--                        android:textColor="@color/gray"-->
+<!--                        android:textSize="@dimen/_11sdp" />-->
 
-                    <TextView
-                        android:id="@+id/spinner_vehiclename"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_35sdp"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="@dimen/_10sdp"
-                        android:layout_marginEnd="@dimen/_10sdp"
-                        android:fontFamily="@font/roboto_regular"
-                        android:gravity="center_vertical"
-                        android:textColor="@color/black"/>
+<!--                    <TextView-->
+<!--                        android:id="@+id/spinner_vehiclename"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="@dimen/_35sdp"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:layout_marginStart="@dimen/_10sdp"-->
+<!--                        android:layout_marginEnd="@dimen/_10sdp"-->
+<!--                        android:fontFamily="@font/roboto_regular"-->
+<!--                        android:gravity="center_vertical"-->
+<!--                        android:textColor="@color/black"/>-->
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_1sdp"
-                        android:background="@color/lightgray"
-                        android:layout_marginStart="@dimen/_10sdp"
-                        android:layout_marginEnd="@dimen/_10sdp"
-                        />
+<!--                    <View-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="@dimen/_1sdp"-->
+<!--                        android:background="@color/lightgray"-->
+<!--                        android:layout_marginStart="@dimen/_10sdp"-->
+<!--                        android:layout_marginEnd="@dimen/_10sdp"-->
+<!--                        />-->
 
 
 
@@ -407,57 +407,57 @@
 
 
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_10sdp"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/roboto_regular"
-                        android:text="No. of Tyres"
-                        android:textColor="@color/gray"
-                        android:textSize="@dimen/_11sdp" />
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="@dimen/_10sdp"-->
+<!--                        android:layout_marginTop="@dimen/_10sdp"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:fontFamily="@font/roboto_regular"-->
+<!--                        android:text="No. of Tyres"-->
+<!--                        android:textColor="@color/gray"-->
+<!--                        android:textSize="@dimen/_11sdp" />-->
 
-                    <TextView
-                        android:id="@+id/spinner_nooftyres"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_35sdp"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="@dimen/_10sdp"
-                        android:layout_marginEnd="@dimen/_10sdp"                        android:fontFamily="@font/roboto_regular"
+<!--                    <TextView-->
+<!--                        android:id="@+id/spinner_nooftyres"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="@dimen/_35sdp"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:layout_marginStart="@dimen/_10sdp"-->
+<!--                        android:layout_marginEnd="@dimen/_10sdp"                        android:fontFamily="@font/roboto_regular"-->
 
-                        android:gravity="center_vertical"
-                        android:textColor="@color/black" />
+<!--                        android:gravity="center_vertical"-->
+<!--                        android:textColor="@color/black" />-->
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_1sdp"
-                        android:background="@color/lightgray"
-                        android:layout_marginStart="@dimen/_10sdp"
-                        android:layout_marginEnd="@dimen/_10sdp"
-                        />
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_10sdp"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/roboto_regular"
-                        android:text="Body Type"
-                        android:textColor="@color/gray"
-                        android:textSize="@dimen/_11sdp" />
+<!--                    <View-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="@dimen/_1sdp"-->
+<!--                        android:background="@color/lightgray"-->
+<!--                        android:layout_marginStart="@dimen/_10sdp"-->
+<!--                        android:layout_marginEnd="@dimen/_10sdp"-->
+<!--                        />-->
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginStart="@dimen/_10sdp"-->
+<!--                        android:layout_marginTop="@dimen/_10sdp"-->
+<!--                        android:layout_weight="1"-->
+<!--                        android:fontFamily="@font/roboto_regular"-->
+<!--                        android:text="Body Type"-->
+<!--                        android:textColor="@color/gray"-->
+<!--                        android:textSize="@dimen/_11sdp" />-->
 
-                    <TextView
-                        android:id="@+id/spinner_bodytype"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_35sdp"
-                        android:layout_gravity="center"
-                        android:layout_marginStart="@dimen/_10sdp"
-                        android:layout_marginEnd="@dimen/_10sdp"
-                        android:fontFamily="@font/roboto_regular"
+<!--                    <TextView-->
+<!--                        android:id="@+id/spinner_bodytype"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="@dimen/_35sdp"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:layout_marginStart="@dimen/_10sdp"-->
+<!--                        android:layout_marginEnd="@dimen/_10sdp"-->
+<!--                        android:fontFamily="@font/roboto_regular"-->
 
-                        android:gravity="center_vertical"
-                        android:textColor="@color/black"/>
+<!--                        android:gravity="center_vertical"-->
+<!--                        android:textColor="@color/black"/>-->
 
                     <!--<EditText
                         android:id="@+id/et_assigndriver"
@@ -535,13 +535,13 @@
                         app:hintEnabled="false" />-->
 
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_1sdp"
-                        android:background="@color/lightgray"
-                        android:layout_marginStart="@dimen/_10sdp"
-                        android:layout_marginEnd="@dimen/_10sdp"
-                        />
+<!--                    <View-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="@dimen/_1sdp"-->
+<!--                        android:background="@color/lightgray"-->
+<!--                        android:layout_marginStart="@dimen/_10sdp"-->
+<!--                        android:layout_marginEnd="@dimen/_10sdp"-->
+<!--                        />-->
 
 
                     <TextView

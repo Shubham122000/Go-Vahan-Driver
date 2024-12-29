@@ -555,11 +555,11 @@ class AddPassengerVehicleActivity : BaseActivity() {
                         "Others",
                     )
                     viewModel.AddloaderResponse.observe(this) {
-                        if (it?.status == 1) {
+                        if (it?.error == false) {
                             Toast.makeText(this, "Vehical added Successfully...", Toast.LENGTH_LONG)
                                 .show()
                             finish()
-                            vehicleid = it.id.toString()
+                            vehicleid = it.result?.id.toString()
                         } else {
                             snackbar(it?.message!!)
                         }
@@ -605,11 +605,11 @@ class AddPassengerVehicleActivity : BaseActivity() {
                         "Others",
                     )
                     viewModel.AddloaderResponse.observe(this) {
-                        if (it?.status == 1) {
+                        if (it?.error == false) {
                             Toast.makeText(this, "Vehical added Successfully...", Toast.LENGTH_LONG)
                                 .show()
                             finish()
-                            vehicleid = it.id.toString()
+                            vehicleid = it.result?.id.toString()
                         } else {
                             snackbar(it?.message!!)
                         }
@@ -811,7 +811,7 @@ class AddPassengerVehicleActivity : BaseActivity() {
         }
 
         viewModel.AddloaderResponse.observe(this) {
-            if (it.status == 1) {
+            if (it.error == false) {
                 finish()
                 toast(it.message)
             } else {

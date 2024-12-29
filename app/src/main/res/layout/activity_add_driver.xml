@@ -134,7 +134,7 @@
                             android:gravity="center_vertical"
                             android:hint="Ramesh"
                             android:imeOptions="actionNext"
-                            android:inputType="textPersonName"
+                            android:inputType="textCapCharacters"
                             android:singleLine="true"
                             android:textSize="@dimen/_12sdp"
                             app:hintAnimationEnabled="false"
@@ -175,6 +175,7 @@
                             android:layout_margin="@dimen/_8sdp"
                             android:background="@color/grey_lite" />-->
 
+
                         <EditText
                             android:id="@+id/edt_drivingexp"
                             android:layout_width="0dp"
@@ -188,6 +189,7 @@
                             android:gravity="center_vertical"
                             android:hint="@string/years5"
                             android:imeOptions="actionNext"
+                            android:inputType="textCapCharacters"
                             android:singleLine="true"
                             android:textSize="@dimen/_12sdp"
                             app:hintAnimationEnabled="false"
@@ -238,6 +240,7 @@
                             android:fontFamily="@font/roboto_medium"
                             android:gravity="center_vertical"
                             android:hint="@string/licensenumber"
+                            android:inputType="textCapCharacters"
                             android:imeOptions="actionNext"
                             android:singleLine="true"
                             android:textSize="@dimen/_12sdp"
@@ -276,6 +279,14 @@
                             android:gravity="center"
                             android:orientation="horizontal">
 
+                            <com.hbb20.CountryCodePicker
+                                android:id="@+id/ccp"
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                android:layout_gravity="center"
+                                app:ccp_showFlag="true"
+                                app:ccp_showPhoneCode="true"
+                                app:ccp_textSize="14sp" />
 
                             <EditText
                                 android:id="@+id/edt_mobile"
@@ -346,6 +357,7 @@
                             android:background="@android:color/transparent"
                             android:fontFamily="@font/roboto_medium"
                             android:gravity="center_vertical"
+                            android:inputType="textCapCharacters"
                             android:hint="@string/rameshemail"
                             android:imeOptions="actionNext"
                             android:singleLine="true"

@@ -15,7 +15,7 @@ data class hightResponseResult(
 
 data class hightResponseData(
     @SerializedName("id"     ) var id     : Int? = null,
-    @SerializedName("height" ) var height : Int? = null
+    @SerializedName("height" ) var height : String? = null
 ){
     override fun toString(): String {
         return height.toString()

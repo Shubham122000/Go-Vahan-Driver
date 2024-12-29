@@ -4,7 +4,6 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.DatePickerDialog
-import android.content.ContentValues
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.database.Cursor
@@ -16,11 +15,16 @@ import android.os.Environment
 import android.provider.MediaStore
 import android.provider.OpenableColumns
 import android.provider.Settings
+import android.text.Editable
+import android.text.InputFilter
+import android.text.Spanned
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
@@ -34,7 +38,6 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.govahanpartner.com.R
 import com.govahanpartner.com.base.BaseActivity
@@ -43,7 +46,6 @@ import com.govahanpartner.com.model.*
 import com.govahanpartner.com.permission.RequestPermission
 import com.govahanpartner.com.utils.toast
 import com.govahanpartner.com.viewmodel.TypeOfTruckViewModel
-import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -53,9 +55,9 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 import java.io.OutputStream
+import java.lang.Integer.min
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
 
 
 @AndroidEntryPoint
@@ -123,6 +125,7 @@ class AddTruckDocumentsActivity : BaseActivity() {
     private val GALLERY_LICENSE_BACK = 7
     private var CAMERA_LICENSE_BACK: Int = 8
     var selectedTruckTypeId = ""
+    var selectedTruckTypeName = ""
     var selectedBodyId = ""
     var selectedHightId = ""
     var selectedWheelsId = ""
@@ -153,12 +156,6 @@ class AddTruckDocumentsActivity : BaseActivity() {
     private var mUri: Uri? = null
     private var requestCodeForLegacy: Int? = null
     private lateinit var pickSingleMediaLauncher: ActivityResultLauncher<Intent>
-    val imageParts = ArrayList<MultipartBody.Part>()
-    val docParts = ArrayList<MultipartBody.Part>()
-    val docNames = ArrayList<String>()
-    val docexpiry = ArrayList<String>()
-
-//    private lateinit var pickMedia : ActivityResultLauncher<PickVisualMediaRequest>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -191,7 +188,6 @@ class AddTruckDocumentsActivity : BaseActivity() {
                             file!!.name,
                             file!!.asRequestBody("image/*".toMediaTypeOrNull())
                         )
-                        imageParts.add(imagetruck1!!)
                     }else if (requestCodeForLegacy == GALLERY_ID_BACK){
                         Glide.with(this).load(file).into(binding.ivTruck2)
                         imagetruck2 = MultipartBody.Part.createFormData(
@@ -199,7 +195,6 @@ class AddTruckDocumentsActivity : BaseActivity() {
                             file!!.name,
                             file!!.asRequestBody("image/*".toMediaTypeOrNull())
                         )
-                        imageParts.add(imagetruck2!!)
                     }else if (requestCodeForLegacy == GALLERY_LICENSE_FRONT){
                         Glide.with(this).load(file).into(binding.ivTruck3)
                         imagetruck3 = MultipartBody.Part.createFormData(
@@ -207,7 +202,6 @@ class AddTruckDocumentsActivity : BaseActivity() {
                             file!!.name,
                             file!!.asRequestBody("image/*".toMediaTypeOrNull())
                         )
-                        imageParts.add(imagetruck3!!)
                     }else if (requestCodeForLegacy == GALLERY_LICENSE_BACK){
                         Glide.with(this).load(file).into(binding.ivTruck4)
                         imagetruck4 = MultipartBody.Part.createFormData(
@@ -215,7 +209,6 @@ class AddTruckDocumentsActivity : BaseActivity() {
                             file!!.name,
                             file!!.asRequestBody("image/*".toMediaTypeOrNull())
                         )
-                        imageParts.add(imagetruck4!!)
                     }
 
                 }
@@ -273,11 +266,12 @@ class AddTruckDocumentsActivity : BaseActivity() {
             if (it!!.error == false) {
                 truckdata.clear()
                 nametype.clear()
+                truckdata.add(TypeofTruckResponseData(id = -1, vType = "SELECT")) // Add Select at the first position
                 it.result?.data?.let { it1 -> truckdata.addAll(it1) }
                 viewModel.truckTypeData.value = it.result?.data
-                for (i in 0 until it.result?.data?.size!!) {
-                    nametype.add(it.result?.data?.get(i)?.vType.toString())
-                    nametype_id.add(it.result?.data?.get(i)?.id.toString())
+                for (i in 0 until truckdata.size) {
+                    nametype.add(truckdata.get(i).vType.toString())
+                    nametype_id.add(truckdata.get(i).id.toString())
                 }
                 val spinnerArrayAdapter: ArrayAdapter<String> = ArrayAdapter<String>(
                     this,
@@ -293,11 +287,12 @@ class AddTruckDocumentsActivity : BaseActivity() {
                     if (it.error == false) {
                         Bodydata.clear()
                         Bodytype.clear()
+                        Bodydata.add(BodyTypeData(id = -1, name = "SELECT")) // Add Select at the first position
                         it.result?.data?.let { it1 -> Bodydata.addAll(it1) }
                         viewModel.BodyTypeData.value = it.result?.data
-                        for (i in 0 until it.result?.data?.size!!) {
-                            Bodytype.add(it.result?.data?.get(i)?.name.toString())
-                            id_body.add(it.result?.data?.get(i)?.id.toString())
+                        for (i in 0 until Bodydata.size) {
+                            Bodytype.add(Bodydata.get(i).name.toString())
+                            id_body.add(Bodydata.get(i).id.toString())
                         }
                         val spinnerArrayAdapter2: ArrayAdapter<String> = ArrayAdapter<String>(
                             this,
@@ -313,11 +308,12 @@ class AddTruckDocumentsActivity : BaseActivity() {
                             if (it.error == false) {
                                 Hightdata.clear()
                                 Highttype.clear()
+                                Hightdata.add(hightResponseData(id = -1, height = "SELECT")) // Add Select at the first position
                                 it.result?.data?.let { it1 -> Hightdata.addAll(it1) }
                                 viewModel.HeightTypeData.value = it.result?.data
-                                for (i in 0 until it.result?.data?.size!!) {
-                                    Highttype.add(it.result?.data?.get(i)?.height.toString())
-                                    id_hight.add(it.result?.data?.get(i)?.id.toString())
+                                for (i in 0 until Hightdata.size) {
+                                    Highttype.add(Hightdata.get(i).height.toString())
+                                    id_hight.add(Hightdata.get(i).id.toString())
                                 }
                                 val spinnerArrayAdapter3: ArrayAdapter<String> =
                                     ArrayAdapter<String>(
@@ -334,11 +330,12 @@ class AddTruckDocumentsActivity : BaseActivity() {
                                     if (it.error == false) {
                                         wheels.clear()
                                         vehicalwheel.clear()
+                                        wheels.add(vehicalwheelsResponseData(id = -1, wheel = "SELECT"))
                                         it.result?.data?.let { it1 -> wheels.addAll(it1) }
                                         viewModel.VehicalwheelsData.value = it.result?.data
-                                        for (i in 0 until it.result?.data?.size!!) {
-                                            vehicalwheel.add(it.result?.data?.get(i)?.wheel.toString())
-                                            id_wheels.add(it.result?.data?.get(i)?.id.toString())
+                                        for (i in 0 until wheels.size) {
+                                            vehicalwheel.add(wheels.get(i).wheel.toString())
+                                            id_wheels.add(wheels.get(i).id.toString())
                                         }
                                         val spinnerArrayAdapter4: ArrayAdapter<String> =
                                             ArrayAdapter<String>(
@@ -355,11 +352,12 @@ class AddTruckDocumentsActivity : BaseActivity() {
                                             if (it.error == false) {
                                                 yeardata.clear()
                                                 year.clear()
+                                                yeardata.add(YearResponseData(id = -1, year = "SELECT"))
                                                 it.result?.data?.let { it1 -> yeardata.addAll(it1) }
                                                 viewModel.Yearresponsedata.value = it.result?.data
                                                 for (i in 0 until it.result?.data?.size!!) {
-                                                    year.add(it.result?.data?.get(i)?.year.toString())
-                                                    id_year.add(it.result?.data?.get(i)?.id.toString())
+                                                    year.add(yeardata.get(i).year.toString())
+                                                    id_year.add(yeardata.get(i).id.toString())
                                                 }
                                                 val spinnerArrayAdapter6: ArrayAdapter<String> =
                                                     ArrayAdapter<String>(
@@ -406,10 +404,10 @@ class AddTruckDocumentsActivity : BaseActivity() {
 //        }
 
         viewModel.AddloaderResponse.observe(this) {
-            if (it?.status == 1) {
+            if (it?.error == false) {
                 Toast.makeText(this, "Vehicle added Successfully...", Toast.LENGTH_LONG).show()
                 finish()
-                vehicleid = it.id.toString()
+                vehicleid = it.result?.id.toString()
             } else {
                 //toast(it.message)
                 snackbar(it?.message!!)
@@ -418,6 +416,7 @@ class AddTruckDocumentsActivity : BaseActivity() {
         binding.spinnerTrucktype.onItemSelectedListener = object : OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                 selectedTruckTypeId = nametype_id[p2]
+                selectedTruckTypeName = nametype[p2]
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -652,64 +651,104 @@ class AddTruckDocumentsActivity : BaseActivity() {
         }
 
         binding.btnSubmit.setOnClickListener {
-            if (userPref.getRole().equals("2")) {
+//            if (userPref.getRole().equals("2")) {
+//                if (binding.etTruckownername.text.isNullOrEmpty()) {
+//                    toast("Please enter Username.")
+//                } else if (binding.etVehivalnumber.text.toString().isNullOrEmpty()) {
+//                    toast("Please enter Vehical Number")
+//                } else {
+//                    viewModel.indi_add_loader_vehicle(
+//                        "Bearer " + userPref.getToken().toString(),
+//                        binding.etTruckownername.text.toString(),
+//                        selectedTruckTypeId,
+//                        selectedYearId,
+//                        binding.etVehivalnumber.text.toString(),
+//                        selectedTruckTypeId,
+//                        binding.etCapacity.text.toString(),
+//                        selectedHightId,
+//                        selectedWheelsId,
+//                        selectedBodyId,
+//                        imagetruck1!!,
+//                        imagetruck2!!,
+//                        imagetruck3!!,
+//                        imagetruck4!!,
+//                        pdfFile!!,pdfFile1!!,pdfFile2!!,pdfFile3!!,pdfFile4!!,pdfFile5!!,
+//                        binding.tvDate.text.toString(),
+//                        binding.date1.text.toString(),
+//                        binding.date2.text.toString(),
+//                        binding.date3.text.toString(),
+//                        binding.date4.text.toString(),
+//                        binding.date5.text.toString(),
+//                        "Rc-book",
+//                                "Pollution-Document",
+//                                "Fitness-Papers",
+//                                "Insurance-Document",
+//                                "RTO Documents",
+//                                "Others",
+//                    )
+//                }
+//            } else {
                 if (binding.etTruckownername.text.isNullOrEmpty()) {
-                    toast("Please enter Username.")
-                } else if (binding.etVehivalnumber.text.toString().isNullOrEmpty()) {
-                    toast("Please enter Vehical Number")
-                } else {
-                    docNames.add("Rc-book")
-                    docNames.add("Pollution-Document")
-                    docNames.add("Fitness-Papers")
-                    docNames.add("Insurance-Document")
-                    docNames.add("RTO Documents")
-                    docNames.add("Others")
-                    viewModel.indi_add_loader_vehicle(
-                        "Bearer " + userPref.getToken().toString(),
-                        binding.etTruckownername.text.toString(),
-                        binding.spinnerTrucktype.selectedItem.toString(),
-                        binding.spinnerYearofmodel.selectedItem.toString(),
-                        binding.etVehivalnumber.text.toString(),
-                        selectedTruckTypeId,
-                        binding.etCapacity.text.toString(),
-                        binding.spinnerHeight.selectedItem.toString(),
-                        selectedWheelsId,
-                        selectedBodyId,
-                        imagetruck1!!,
-                        imagetruck2!!,
-                        imagetruck3!!,
-                        imagetruck4!!,
-                        pdfFile!!,pdfFile1!!,pdfFile2!!,pdfFile3!!,pdfFile4!!,pdfFile5!!,
-                        binding.tvDate.text.toString(),
-                        binding.date1.text.toString(),
-                        binding.date2.text.toString(),
-                        binding.date3.text.toString(),
-                        binding.date4.text.toString(),
-                        binding.date5.text.toString(),
-                        "Rc-book",
-                                "Pollution-Document",
-                                "Fitness-Papers",
-                                "Insurance-Document",
-                                "RTO Documents",
-                                "Others",
-                    )
-                }
-            } else {
-                if (binding.etTruckownername.text.isNullOrEmpty()) {
-                    toast("Please enter Username.")
-                } else if (binding.etVehivalnumber.text.toString().isNullOrEmpty()) {
-                    toast("Please enter Vehical Number")
+                    toast("Please enter username.")
+                }else if (selectedTruckTypeId == "-1") {
+                    toast("Please select vehical name.")
+                } else if (binding.etVehicalNumber.text.toString().isNullOrEmpty()) {
+                    toast("Please enter vehical number.")
+                }else if (selectedYearId == "-1") {
+                    toast("Please select year.")
+                } else if (binding.etCapacity.text.toString().isNullOrEmpty()) {
+                    toast("Please enter capacity.")
+                }else if (selectedHightId == "-1") {
+                    toast("Please select height.")
+                }else if (selectedWheelsId == "-1") {
+                    toast("Please select no. of tyres.")
+                }else if (selectedBodyId == "-1") {
+                    toast("Please select body type.")
+                }else if (selectedBodyId == "-1") {
+                    toast("Please select body type.")
+                }else if (imagetruck1 == null){
+                    toast("Please select first image.")
+                }else if (imagetruck2 == null){
+                    toast("Please select second image.")
+                }else if (imagetruck3 == null){
+                    toast("Please select third image.")
+                }else if (imagetruck4 == null){
+                    toast("Please select fourth image.")
+                }else if (pdfFile == null){
+                    toast("Please select rc-document.")
+                }else if (binding.tvDate.text.toString().isNullOrEmpty()) {
+                    toast("Please select expiry date of rc-book document.")
+                }else if (pdfFile1 == null){
+                    toast("Please select insurance document.")
+                }else if (binding.date1.text.toString().isNullOrEmpty()) {
+                    toast("Please select expiry date of insurance document.")
+                }else if (pdfFile2 == null){
+                    toast("Please select pollution document.")
+                }else if (binding.date2.text.toString().isNullOrEmpty()) {
+                    toast("Please select expiry date of pollution document.")
+                }else if (pdfFile3 == null){
+                    toast("Please select fitness document.")
+                }else if (binding.date3.text.toString().isNullOrEmpty()) {
+                    toast("Please select expiry date of fitness document.")
+                }else if (pdfFile4 == null){
+                    toast("Please select rto document.")
+                }else if (binding.date4.text.toString().isNullOrEmpty()) {
+                    toast("Please select expiry date of RTO document.")
+                }else if (pdfFile5 == null){
+                    toast("Please select other document.")
+                }else if (binding.date5.text.toString().isNullOrEmpty()) {
+                    toast("Please select expiry date of other document.")
                 } else {
                     viewModel.Addloadervehical(
                         "Bearer " + userPref.getToken().toString(),
                         userPref.getid().toString(),
                         binding.etTruckownername.text.toString(),
-                        binding.spinnerTrucktype.selectedItem.toString(),
-                        binding.spinnerYearofmodel.selectedItem.toString(),
-                        binding.etVehivalnumber.text.toString(),
+                        selectedTruckTypeName,
+                        selectedYearId,
+                        binding.etVehicalNumber.text.toString(),
                         selectedTruckTypeId,
                         binding.etCapacity.text.toString(),
-                        binding.spinnerHeight.selectedItem.toString(),
+                        selectedHightId,
                         "white",
                         selectedWheelsId,
                         selectedBodyId,
@@ -724,16 +763,18 @@ class AddTruckDocumentsActivity : BaseActivity() {
                         binding.date3.text.toString(),
                         binding.date4.text.toString(),
                         binding.date5.text.toString(),
-                        "Rc-book",
+                       /* "Rc-book",
                         "Pollution-Document",
                         "Fitness-Papers",
                         "Insurance-Document",
-                        "RTO Documents",
+                        "RTO Documents",*/
                         "Others",
                     )
                 }
-            }
+//            }
         }
+
+
 
         viewModel.AddVehicalfinalResponse.observe(this) {
             if (it!!.status == 1) {
@@ -848,26 +889,52 @@ class AddTruckDocumentsActivity : BaseActivity() {
                 selectPdf()
             }
         }
-//        binding.btnFinalsubmit.setOnClickListener {
-//            if (binding.tvRcbook.text.equals("")) {
-//                toast("Please select Rc-book.")
-//            } else if (binding.tvInsurancedoc.text.equals("")) {
-//                toast("Please select Insurance-Document.")
-//            } else if (binding.tvPollutiondoc.text.equals("")) {
-//                toast("Please select Pollution-Document.")
-//            } else if (binding.tvFitnessdoc.text.equals("")) {
-//                toast("Please select fitness-document")
-//            } else if (binding.tvRtodoc.text.equals("")) {
-//                toast("Please select Rto-document.")
-//            } else {
-//                viewModel.AddVehicalfinalApi(
-//                    "Bearer " + userPref.getToken().toString(),
-//                    vehicleid
-//                )
-//            }
-//        }
+        setupStrictVehicleNumberWatcher(binding.etVehicalNumber)
     }
 
+
+    fun setupStrictVehicleNumberWatcher(editText: EditText) {
+        editText.addTextChangedListener(object : TextWatcher {
+            private var isEditing = false // To prevent recursion
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                // No action needed before text changes
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                // No action needed during text change
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                if (isEditing) return
+
+                val input = s.toString()
+                val formatted = formatVehicleNumber(input)
+
+                if (input != formatted) {
+                    isEditing = true
+                    editText.setText(formatted)
+                    editText.setSelection(formatted.length) // Move cursor to the end
+                    isEditing = false
+                }
+            }
+
+            private fun formatVehicleNumber(input: String): String {
+                // Remove unwanted characters (keep only letters and digits)
+                val cleanInput = input.replace("[^A-Za-z0-9]".toRegex(), "").uppercase()
+
+                return when {
+                    cleanInput.length <= 2 -> cleanInput // First two letters (state code)
+                    cleanInput.length <= 4 -> "${cleanInput.substring(0, 2)} ${cleanInput.substring(2)}" // Add space after state
+                    cleanInput.length <= 5 -> "${cleanInput.substring(0, 2)} ${cleanInput.substring(2, 4)} ${cleanInput.substring(4)}" // Add space after district
+                    cleanInput.length <= 8 -> "${cleanInput.substring(0, 2)} ${cleanInput.substring(2, 4)} ${cleanInput.substring(4, 5)} ${cleanInput.substring(5)}" // 9-digit format
+                    cleanInput.length == 9 -> "${cleanInput.substring(0, 2)} ${cleanInput.substring(2, 4)} ${cleanInput.substring(4, 5)} ${cleanInput.substring(5)}" // 9 digits
+                    cleanInput.length == 10 -> "${cleanInput.substring(0, 2)} ${cleanInput.substring(2, 4)} ${cleanInput.substring(4, 6)} ${cleanInput.substring(6)}" // 10 digits
+                    else -> "${cleanInput.substring(0, 2)} ${cleanInput.substring(2, 4)} ${cleanInput.substring(4, 6)} ${cleanInput.substring(6, 10)}" // Truncate extra
+                }.trim()
+            }
+        })
+    }
 
     private fun selectPdf() {
         val pdfIntent = Intent(Intent.ACTION_GET_CONTENT)
@@ -1100,7 +1167,6 @@ class AddTruckDocumentsActivity : BaseActivity() {
                         imageFile?.name,
                         requestFile
                     )
-                    imageParts.add(imagetruck1!!)
                 }
 //                viewModel.LoaderimageAPI(
 //                    "Bearer " + userPref.getToken().toString(),
@@ -1123,7 +1189,6 @@ class AddTruckDocumentsActivity : BaseActivity() {
                     file!!.name,
                     requestFile
                 )
-            imageParts.add(imagetruck1!!)
 //            viewModel.LoaderimageAPI(
 //                "Bearer " + userPref.getToken().toString(),
 //                vehicleid,
@@ -1150,7 +1215,6 @@ class AddTruckDocumentsActivity : BaseActivity() {
                             imageFile?.name,
                             requestGalleryImageFile
                         )
-                    imageParts.add(imagetruck2!!)
 //                    viewModel.LoaderimageAPI(
 //                        "Bearer " + userPref.getToken().toString(),
 //                        vehicleid,
@@ -1176,7 +1240,6 @@ class AddTruckDocumentsActivity : BaseActivity() {
                     file!!.name,
                     requestFile
                 )
-            imageParts.add(imagetruck2!!)
 //            viewModel.LoaderimageAPI(
 //                "Bearer " + userPref.getToken().toString(),
 //                vehicleid,
@@ -1202,7 +1265,6 @@ class AddTruckDocumentsActivity : BaseActivity() {
                             imageFile!!.name,
                             requestGalleryImageFile
                         )
-                    imageParts.add(imagetruck3!!)
 //                    if (vehicleid.isNullOrEmpty()) {
 //                        toast("Please ")
 //                    }
@@ -1230,7 +1292,6 @@ class AddTruckDocumentsActivity : BaseActivity() {
                     file!!.name,
                     requestFile
                 )
-            imageParts.add(imagetruck3!!)
 //            viewModel.LoaderimageAPI(
 //                "Bearer " + userPref.getToken().toString(),
 //                vehicleid,
@@ -1258,7 +1319,6 @@ class AddTruckDocumentsActivity : BaseActivity() {
                             imageFile?.name,
                             requestGalleryImageFile
                         )
-                    imageParts.add(imagetruck4!!)
 //                    viewModel.LoaderimageAPI(
 //                        "Bearer " + userPref.getToken().toString(),
 //                        vehicleid,
@@ -1283,7 +1343,6 @@ class AddTruckDocumentsActivity : BaseActivity() {
                     file!!.name,
                     requestFile
                 )
-            imageParts.add(imagetruck4!!)
 //            viewModel.LoaderimageAPI(
 //                "Bearer " + userPref.getToken().toString(),
 //                vehicleid,
@@ -1319,7 +1378,6 @@ class AddTruckDocumentsActivity : BaseActivity() {
                                 fileSelected?.name,
                                 requestGalleryImageFile
                             )
-                        docParts.add(pdfFile!!)
 
 //                        binding.tvRcbook.text = imageFile?.name
 
@@ -1334,8 +1392,6 @@ class AddTruckDocumentsActivity : BaseActivity() {
                             fileSelected?.name,
                             requestGalleryImageFile
                         )
-                        docParts.add(pdfFile!!)
-
                     }
                 }
 
@@ -1381,7 +1437,6 @@ class AddTruckDocumentsActivity : BaseActivity() {
                             fileSelected?.name,
                             requestGalleryImageFile
                         )
-                        docParts.add(pdfFile1!!)
                     } else {
                         /*       image = data.data!!
                                val path = getPathFromURI(image)*/
@@ -1395,7 +1450,6 @@ class AddTruckDocumentsActivity : BaseActivity() {
                             fileSelected?.name,
                             requestGalleryImageFile
                         )
-                        docParts.add(pdfFile1!!)
                     }
                 }
 
@@ -1426,7 +1480,6 @@ class AddTruckDocumentsActivity : BaseActivity() {
                             fileSelected?.name,
                             requestGalleryImageFile
                         )
-                        docParts.add(pdfFile3!!)
                     } else {
                  /*       image = data.data!!
                         val path = getPathFromURI(image)*/
@@ -1442,9 +1495,6 @@ class AddTruckDocumentsActivity : BaseActivity() {
                                 fileSelected?.name,
                                 requestGalleryImageFile
                             )
-
-                        docParts.add(pdfFile3!!)
-
                     }
                 }
             }
@@ -1484,7 +1534,6 @@ class AddTruckDocumentsActivity : BaseActivity() {
                             fileSelected?.name,
                             requestGalleryImageFile
                         )
-                        docParts.add(pdfFile4!!)
                     } else {
                         /*       image = data.data!!
                                val path = getPathFromURI(image)*/
@@ -1499,7 +1548,6 @@ class AddTruckDocumentsActivity : BaseActivity() {
                                 fileSelected?.name,
                                 requestGalleryImageFile
                             )
-                        docParts.add(pdfFile4!!)
                     }
                 }
             }
@@ -1535,7 +1583,6 @@ class AddTruckDocumentsActivity : BaseActivity() {
                             fileSelected?.name,
                             requestGalleryImageFile
                         )
-                        docParts.add(pdfFile2!!)
                     } else {
                         /*       image = data.data!!
                                val path = getPathFromURI(image)*/
@@ -1550,7 +1597,6 @@ class AddTruckDocumentsActivity : BaseActivity() {
                                 fileSelected?.name,
                                 requestGalleryImageFile
                             )
-                        docParts.add(pdfFile2!!)
                     }
                 }
             }
@@ -1575,7 +1621,6 @@ class AddTruckDocumentsActivity : BaseActivity() {
                             fileSelected?.name,
                             requestGalleryImageFile
                         )
-                        docParts.add(pdfFile5!!)
                     } else {
                         /*       image = data.data!!
                                val path = getPathFromURI(image)*/
@@ -1589,7 +1634,6 @@ class AddTruckDocumentsActivity : BaseActivity() {
                                 fileSelected?.name,
                                 requestGalleryImageFile
                             )
-                        docParts.add(pdfFile5!!)
                     }
                 }
             }
@@ -1668,23 +1712,17 @@ class AddTruckDocumentsActivity : BaseActivity() {
             this, R.style.DatePickerTheme,
             { view, year, month, dayOfMonth -> // adding the selected date in the edittext
                 if (datepickerflag.equals("Rc")) {
-                    binding.tvDate.text = dayOfMonth.toString() + "-" + (month + 1) + "-" + year
-                    docexpiry.add(dayOfMonth.toString() + "-" + (month + 1) + "-" + year)
+                    binding.tvDate.text = year.toString() + "-" + (month + 1) + "-" + dayOfMonth
                 } else if (datepickerflag.equals("Insurance")) {
-                    binding.date1.text = dayOfMonth.toString() + "-" + (month + 1) + "-" + year
-                    docexpiry.add(dayOfMonth.toString() + "-" + (month + 1) + "-" + year)
+                    binding.date1.text = year.toString() + "-" + (month + 1) + "-" + dayOfMonth
                 } else if (datepickerflag.equals("pollution")) {
-                    binding.date2.text = dayOfMonth.toString() + "-" + (month + 1) + "-" + year
-                    docexpiry.add(dayOfMonth.toString() + "-" + (month + 1) + "-" + year)
+                    binding.date2.text = year.toString() + "-" + (month + 1) + "-" + dayOfMonth
                 } else if (datepickerflag.equals("fitness")) {
-                    binding.date3.text = dayOfMonth.toString() + "-" + (month + 1) + "-" + year
-                    docexpiry.add(dayOfMonth.toString() + "-" + (month + 1) + "-" + year)
+                    binding.date3.text = year.toString() + "-" + (month + 1) + "-" + dayOfMonth
                 } else if (datepickerflag.equals("Rto")) {
-                    binding.date4.text = dayOfMonth.toString() + "-" + (month + 1) + "-" + year
-                    docexpiry.add(dayOfMonth.toString() + "-" + (month + 1) + "-" + year)
+                    binding.date4.text = year.toString() + "-" + (month + 1) + "-" + dayOfMonth
                 }else if (datepickerflag.equals("Other")) {
-                    binding.date5.text = dayOfMonth.toString() + "-" + (month + 1) + "-" + year
-                    docexpiry.add(dayOfMonth.toString() + "-" + (month + 1) + "-" + year)
+                    binding.date5.text = year.toString() + "-" + (month + 1) + "-" + dayOfMonth
                 }
             }, year, month, day
         )

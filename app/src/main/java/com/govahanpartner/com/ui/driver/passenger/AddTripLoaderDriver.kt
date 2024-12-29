@@ -114,31 +114,31 @@ class AddTripLoaderDriver : BaseActivity() {
         binding.etTo.setOnClickListener {
             placesAPiCall(AUTOCOMPLETE_TO_REQUEST_CODE)
         }
-        viewModel.TripLoaderDriver(
-            "Bearer " + userPref.getToken().toString(),
-        ).observe(this) {
-
-            if (it!!.status == 1) {
-                try {
-                    binding.driverassign.text = it.name.driver_name
-//                    binding.spinnerLoadcarring.text = "${it.data.load_caring} Ton"
-                    binding.spinnerVehiclename.text = it.data.vehicle_name
-                    binding.spinnerVehiclenumber.text = it.data.vehicle_number
-                    binding.spinnerNooftyres.text = it.data.no_of_tyers
-                    binding.spinnerBodytype.text = it.data.body_name
-                    binding.spinnerLoadcarring.text = it.data.load_caring
-                    vehicletype = it.data.vehicle_type_id.toString()
-                    loadcarry = it.data.load_caring
-                    bodytype = it.data.body_type.toString()
-                    driver = it.name.driver_id
-                    vehicleno = it.data.vehicle_number_id.toString()
-
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
-
-            }
-        }
+//        viewModel.TripLoaderDriver(
+//            "Bearer " + userPref.getToken().toString(),
+//        ).observe(this) {
+//
+//            if (it!!.status == 1) {
+//                try {
+//                    binding.driverassign.text = it.name.driver_name
+////                    binding.spinnerLoadcarring.text = "${it.data.load_caring} Ton"
+//                    binding.spinnerVehiclename.text = it.data.vehicle_name
+//                    binding.spinnerVehiclenumber.text = it.data.vehicle_number
+//                    binding.spinnerNooftyres.text = it.data.no_of_tyers
+//                    binding.spinnerBodytype.text = it.data.body_name
+//                    binding.spinnerLoadcarring.text = it.data.load_caring
+//                    vehicletype = it.data.vehicle_type_id.toString()
+//                    loadcarry = it.data.load_caring
+//                    bodytype = it.data.body_type.toString()
+//                    driver = it.name.driver_id
+//                    vehicleno = it.data.vehicle_number_id.toString()
+//
+//                } catch (e: Exception) {
+//                    e.printStackTrace()
+//                }
+//
+//            }
+//        }
         binding.drivercharge.addTextChangedListener(object : TextWatcher {
 
 
@@ -204,10 +204,10 @@ class AddTripLoaderDriver : BaseActivity() {
                     loadcarry,
                     binding.etFrom.text.toString(),
                     binding.etTo.text.toString(),
-                    vehicletype,
-                    binding.spinnerVehiclenumber.text.toString(),
-                    binding.spinnerNooftyres.text.toString(),
-                    bodytype,
+//                    vehicletype,
+//                    binding.spinnerVehiclenumber.text.toString(),
+//                    binding.spinnerNooftyres.text.toString(),
+//                    bodytype,
                     driver,
                     distanceString.toString(),
                     taxadd.toString(),

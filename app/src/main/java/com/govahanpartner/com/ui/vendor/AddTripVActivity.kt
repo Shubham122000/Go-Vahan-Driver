@@ -48,9 +48,10 @@ class AddTripVActivity : BaseActivity() {
     var VehicleIDtype :ArrayList<String> = ArrayList()
     var vehicle_number: ArrayList<String> = ArrayList()
     var vehicle_id: ArrayList<String> = ArrayList()
+    var Capacity : ArrayList<String> = ArrayList()
     var nametype :ArrayList<String> = ArrayList()
     var vehicalwheel :ArrayList<String> = ArrayList()
-    var Capacity : ArrayList<LoadCarryingData> = ArrayList()
+//    var Capacity : ArrayList<LoadCarryingData> = ArrayList()
     var Capacitytype :ArrayList<String> = ArrayList()
     var id_Capacity :ArrayList<String> = ArrayList()
     var id_type :ArrayList<String> = ArrayList()
@@ -154,16 +155,15 @@ class AddTripVActivity : BaseActivity() {
                 AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                     selectedVehicleNumber = vehicle_id[p2]
-
-                   toast(vehicle_id[p2])
-                    if (binding.spinnerVehiclenumber.selectedItem.equals("Select")) {
-                        toast("Please select vehicle number.")
-                    } else {
-                        viewModel.get_loader_vehicleno_details(
-                            "Bearer " + userPref.getToken().toString(), selectedVehicleNumber
-                        )
-
-                    }
+                    binding.etEnterloadcarring.text= Capacity[p2]
+//                    if (binding.spinnerVehiclenumber.selectedItem.equals("SELECT")) {
+//                        toast("Please select vehicle number.")
+//                    } else {
+//                        viewModel.get_loader_vehicleno_details(
+//                            "Bearer " + userPref.getToken().toString(), selectedVehicleNumber
+//                        )
+//
+//                    }
                 }
                 override fun onNothingSelected(p0: AdapterView<*>?) {
                 }
@@ -177,33 +177,34 @@ class AddTripVActivity : BaseActivity() {
                 }
             }
 
-        viewModel.VehicleDataResponse.observe(this) {
-            if (it!!.status == 1) {
-                binding.spinnerVehiclename.text=it.data[0].vehicle_name
-                binding.spinnerBodytype.text=it.data[0].body_type
-                binding.etEnterloadcarring.text=it.data[0].capacity
-                binding.spinnerNooftyres.text= it.data[0].no_of_tyers.toString()
-                vehicletype=it.data[0].vehicle_type.toString()
-                bodytype=it.data[0].body_type_id.toString()
-                tyre=it.data[0].no_tyres.toString()
-            }else{
-
-            }
-        }
+//        viewModel.VehicleDataResponse.observe(this) {
+//            if (it!!.status == 1) {
+//                binding.spinnerVehiclename.text=it.data[0].vehicle_name
+//                binding.spinnerBodytype.text=it.data[0].body_type
+//                binding.etEnterloadcarring.text=it.data[0].capacity
+//                binding.spinnerNooftyres.text= it.data[0].no_of_tyers.toString()
+//                vehicletype=it.data[0].vehicle_type.toString()
+//                bodytype=it.data[0].body_type_id.toString()
+//                tyre=it.data[0].no_tyres.toString()
+//            }else{
+//
+//            }
+//        }
 
             viewModel.VehicleNumberLIst(
                 "Bearer "+userPref.getToken().toString(),
             ).observe(this) {
 
-                if (it!!.status == 1) {
+                if (it!!.error == false) {
                     vehiclenumber.clear()
                     vehicle_number.clear()
-                    vehiclenumber.addAll(it!!.data)
-                    viewModel.VehiclenumberData.value = it.data
+                    it.result?.data?.let { it1 -> vehiclenumber.addAll(it1) }
+                    viewModel.VehiclenumberData.value = it.result?.data
 
-                    for (i in 0 until it.data.size) {
-                        vehicle_number.add(it.data[i].vehicle_number)
-                        vehicle_id.add(it.data[i].id)
+                    for (i in 0 until it.result?.data!!.size) {
+                        it.result?.data?.get(i)?.vehicleNumber?.let { it1 -> vehicle_number.add(it1) }
+                        vehicle_id.add(it.result?.data?.get(i)?.id.toString())
+                        Capacity.add(it.result?.data?.get(i)?.capacity.toString())
                     }
                     val spinnerArrayAdapter: ArrayAdapter<String> = ArrayAdapter<String>(
                         this,
@@ -212,9 +213,9 @@ class AddTripVActivity : BaseActivity() {
                     )
                     spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
                     binding.spinnerVehiclenumber.adapter = spinnerArrayAdapter
-                    viewModel.get_loader_vehicleno_details(
-                        "Bearer " + userPref.getToken().toString(), selectedVehicleNumber
-                    )
+//                    viewModel.get_loader_vehicleno_details(
+//                        "Bearer " + userPref.getToken().toString(), selectedVehicleNumber
+//                    )
                 }
             }
 
@@ -241,25 +242,25 @@ class AddTripVActivity : BaseActivity() {
                 }
             }
 
-            viewModel.self_driver_trip(
-                "Bearer "+userPref.getToken().toString(),
-            ).observe(this) {
-                if (it!!.status == 1) {
-                    Capacity.clear()
-                    Capacitytype.clear()
-
-                    viewModel.AddTripDriverData.value = it.data
-
-//                    binding.driverassignTv.text=it.name.driver_name
-//                binding.tvLoadcarring.text=it.data.l
-//                    binding.tvVehiclename.text=it.data.vehicle_name
-//                    binding.tvVehicletype.text=it.data.vehicle_type
-//                    binding.tvVehiclenumber.text=it.data.vehicle_number
-//                    binding.tvNooftyres.text=it.data.no_of_tyers
-//                    binding.tvBodytype.text=it.data.body_name
-
-                }
-            }
+//            viewModel.self_driver_trip(
+//                "Bearer "+userPref.getToken().toString(),
+//            ).observe(this) {
+//                if (it!!.status == 1) {
+//                    Capacity.clear()
+//                    Capacitytype.clear()
+//
+//                    viewModel.AddTripDriverData.value = it.data
+//
+////                    binding.driverassignTv.text=it.name.driver_name
+////                binding.tvLoadcarring.text=it.data.l
+////                    binding.tvVehiclename.text=it.data.vehicle_name
+////                    binding.tvVehicletype.text=it.data.vehicle_type
+////                    binding.tvVehiclenumber.text=it.data.vehicle_number
+////                    binding.tvNooftyres.text=it.data.no_of_tyers
+////                    binding.tvBodytype.text=it.data.body_name
+//
+//                }
+//            }
 
         binding.etToll.addTextChangedListener(object : TextWatcher {
 
@@ -388,16 +389,37 @@ class AddTripVActivity : BaseActivity() {
                     driverfee1= binding.drivercharge.text.toString()
 
                 }
-                viewModel.AddTripVendor(
-                    "Bearer "+userPref.getToken().toString(),
+//                viewModel.AddTripVendor(
+//                    "Bearer "+userPref.getToken().toString(),
+//                    binding.etTriptask.text.toString(),
+//                    binding.etEnterloadcarring.text.toString(),
+//                    binding.etFrom.text.toString(),
+//                    binding.etTo.text.toString(),
+//                    vehicletype,
+//                    binding.spinnerVehiclenumber.selectedItem.toString(),
+//                    tyre,
+//                    bodytype,
+//                    assigndriver,
+//                    distanceString.toString(),
+//                    taxadd.toString(),
+//                    pickupLatitude.toString(),
+//                    pickupLongitude.toString(),
+//                    dropLatitude.toString(),
+//                    dropLongitude.toString(),
+//                    selectedVehicleNumber,
+//                    binding.tvDate.text.toString(),
+//                    binding.spinnerTimeslots.selectedItem.toString(),binding.etFuelcharge.text.toString(),binding.etToll.text.toString(),driverfee1,
+//                )
+                viewModel.AddTripApi(
+                    "Bearer " + userPref.getToken().toString(),
                     binding.etTriptask.text.toString(),
                     binding.etEnterloadcarring.text.toString(),
                     binding.etFrom.text.toString(),
                     binding.etTo.text.toString(),
-                    vehicletype,
-                    binding.spinnerVehiclenumber.selectedItem.toString(),
-                    tyre,
-                    bodytype,
+//                    vehicletype,
+//                    binding.spinnerVehiclenumber.text.toString(),
+//                    binding.spinnerNooftyres.text.toString(),
+//                    bodytype,
                     assigndriver,
                     distanceString.toString(),
                     taxadd.toString(),
@@ -407,7 +429,10 @@ class AddTripVActivity : BaseActivity() {
                     dropLongitude.toString(),
                     selectedVehicleNumber,
                     binding.tvDate.text.toString(),
-                    binding.spinnerTimeslots.selectedItem.toString(),binding.etFuelcharge.text.toString(),binding.etToll.text.toString(),driverfee1,
+                    binding.spinnerTimeslots.selectedItem.toString(),
+                    binding.etFuelcharge.text.toString(),
+                    binding.etToll.text.toString(),
+                    binding.drivercharge.text.toString()
                 )
             }
         }
