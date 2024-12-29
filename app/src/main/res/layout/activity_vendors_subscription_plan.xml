@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            android:background="@color/theme_yellow"
+            android:layout_gravity="top"
+            android:orientation="horizontal"
+            android:id="@+id/id_head">
+
+            <ImageView
+                android:id="@+id/ivBack"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:padding="@dimen/_5sdp"
+                android:src="@drawable/backbutton_white" />
+
+            <TextView
+                android:id="@+id/tv_head"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:fontFamily="@font/roboto_regular"
+                android:gravity="center"
+                android:text="Subscription Plan"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14sdp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:background="@color/white"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_70sdp"
+                    android:src="@drawable/subscription_logo" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
+                    android:layout_centerInParent="true"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="VENDORS SUBSCRIPTION PLANS"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="@dimen/_16sdp" />
+
+                <TextView
+                    android:id="@+id/tv_detail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_medium"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="Lipsum as it is sometimes known,is dummy print.... as it is sometimes"
+                    android:textColor="@color/dark_blue"
+                    android:textSize="@dimen/_12sdp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:weightSum="3"
+                android:orientation="horizontal">
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_height="@dimen/_1sdp"
+                    android:background="@color/lightgray"
+                    android:layout_gravity="center_vertical"/>
+                <TextView
+                    android:id="@+id/btnaccept"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto_bold"
+                    android:background="@drawable/edt_round_corner_yellow_circle"
+                    android:backgroundTint="@color/black"
+                    android:text="PLANS"
+                    android:gravity="center"
+                    android:textAllCaps="false"
+                    android:textColor="@color/theme_yellow"
+                    android:textSize="@dimen/_17sdp" />
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_1sdp"
+                    android:layout_weight="1"
+                    android:background="@color/lightgray"
+                    android:layout_gravity="center_vertical"/>
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_5sdp"
+                android:orientation="vertical">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_plans"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:ignore="SpeakableTextPresentCheck"
+                    tools:listitem="@layout/ui_row_individual_subscriptionplan" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</layout>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        tools:context=".ui.VerifyAccountActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_20sdp"
+            android:background="@drawable/edt_round_corner"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:text="@string/approvalwait"
+                android:fontFamily="@font/roboto_bold"
+
+                android:textColor="@color/black"
+                android:textSize="@dimen/_25sdp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:fontFamily="@font/roboto_regular"
+
+                android:gravity="center"
+                android:text="@string/approvalwaittext"
+                android:textStyle="bold" />
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

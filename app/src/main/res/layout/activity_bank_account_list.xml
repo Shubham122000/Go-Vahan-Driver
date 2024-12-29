@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.common.BankAccountList">
+    <RelativeLayout
+        android:id="@+id/id_head"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_35sdp"
+        android:background="@color/theme_yellow">
+
+        <ImageView
+            android:id="@+id/ivBack"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:padding="@dimen/_5sdp"
+            android:src="@drawable/backbutton_white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_toRightOf="@+id/ivBack"
+            android:gravity="center"
+            android:text="Bank Accounts"
+            android:textColor="@color/white"
+            android:textSize="@dimen/_14sdp" />
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/rv_list"
+        android:layout_marginTop="@dimen/_10sdp"
+        tools:listitem="@layout/bank_accounts_list"/>
+<androidx.appcompat.widget.AppCompatButton
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/add_bank_account"
+    android:layout_marginHorizontal="@dimen/_10sdp"
+    android:background="@drawable/edt_round_corner_yellow"
+    android:id="@+id/addbank"/>
+</LinearLayout>
+
+</layout>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="match_parent"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            android:background="@color/theme_yellow"
+            android:layout_gravity="center"
+            android:id="@+id/id_head">
+
+            <ImageView
+                android:id="@+id/ivBack"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:padding="@dimen/_5sdp"
+                android:src="@drawable/backbutton_white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_toRightOf="@+id/ivBack"
+                android:fontFamily="@font/roboto_regular"
+                android:gravity="center"
+                android:text="@string/notification"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14sdp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_gravity="center"
+                android:gravity="end"
+                android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    >
+
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:layout_alignParentRight="true"
+                        android:id="@+id/reload"
+                        android:padding="@dimen/_7sdp"
+                        android:src="@drawable/icon_bell"/>
+
+                    <TextView
+                        android:id="@+id/tv_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/btn_round_corner"
+                        android:gravity="end"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginRight="@dimen/_20sdp"
+                        android:layout_alignParentEnd="true"
+                        android:textColor="@color/white"
+                        android:textSize="13sp"
+                        android:fontFamily="@font/roboto_regular"/>
+                </RelativeLayout>
+
+
+
+
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/id_head"
+            android:id="@+id/ll_rvlist"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:gravity="start"
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/rv_notification"
+                tools:listitem="@layout/row_notification_layout"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</layout>

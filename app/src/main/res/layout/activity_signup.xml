@@ -1,0 +1,684 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="match_parent"
+        android:paddingTop="@dimen/_1sdp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            android:background="@color/white">
+
+            <ImageView
+                android:id="@+id/ivBack"
+                android:layout_width="@dimen/_60sdp"
+                android:layout_height="@dimen/_60sdp"
+                android:layout_centerVertical="true"
+
+                android:padding="@dimen/_7sdp"
+                android:src="@drawable/backbutton" />
+
+
+
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:isScrollContainer="false">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_36sdp"
+                android:layout_marginBottom="@dimen/_16sdp"
+                android:layout_marginLeft="@dimen/_16sdp"
+                android:layout_marginRight="@dimen/_16sdp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="@string/head_name"
+                    android:textColor="@color/black"
+                    android:textSize="25dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@+id/cardView2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_16sdp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="@string/first_name"
+                        android:textColor="@color/black"
+
+                        android:textSize="@dimen/_10sdp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edt_round_corner"
+                        android:gravity="center">
+
+                        <EditText
+                            android:id="@+id/et_fullName2"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:background="@android:color/transparent"
+                            android:fontFamily="@font/roboto_medium"
+                            android:gravity="center_vertical"
+                            android:hint="Rahul"
+                            android:imeOptions="actionNext"
+                            android:inputType="textPersonName"
+                            android:singleLine="true"
+                            android:textSize="@dimen/_12sdp"
+                            app:hintAnimationEnabled="false"
+                            app:hintEnabled="false"
+
+                            />
+
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/tv_Mobile"
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/roboto_medium"
+                        android:imeOptions="actionNext"
+                        android:maxLength="10"
+                        android:singleLine="true"
+                        android:text="@string/mobileno"
+                        android:textColor="@color/black"
+
+                        android:textSize="@dimen/_10sdp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edt_round_corner"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_gravity="center"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+
+                            <EditText
+                                android:id="@+id/edt_mobile"
+                                android:layout_width="0dp"
+                                android:layout_height="@dimen/_40sdp"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="@dimen/_10sdp"
+                                android:layout_marginEnd="@dimen/_10sdp"
+                                android:layout_weight="1"
+                                android:background="@android:color/transparent"
+                                android:fontFamily="@font/roboto_medium"
+                                android:gravity="center_vertical"
+                                android:hint="@string/mobnumber"
+
+                                android:imeOptions="actionNext"
+                                android:inputType="number"
+                                android:maxLength="10"
+                                android:singleLine="true"
+                                android:textSize="@dimen/_12sdp"
+                                app:hintAnimationEnabled="false"
+                                app:hintEnabled="false" />
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/tv_email"
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="@string/email_address"
+                        android:textColor="@color/black"
+
+                        android:textSize="@dimen/_10sdp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edt_round_corner"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <!--<ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginStart="10dp"
+                            android:src="@drawable/ic_email" />-->
+
+                        <!--<View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="@dimen/_8sdp"
+                            android:background="@color/grey_lite" />-->
+
+                        <EditText
+                            android:id="@+id/edtEmail"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:layout_weight="1"
+                            android:background="@android:color/transparent"
+                            android:fontFamily="@font/roboto_medium"
+
+                            android:gravity="center_vertical"
+                            android:hint="@string/examplegmail"
+                            android:imeOptions="actionNext"
+                            android:singleLine="true"
+                            android:textSize="@dimen/_12sdp"
+                            app:hintAnimationEnabled="false"
+                            app:hintEnabled="false" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="@string/gst_no"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edt_round_corner"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <!--<ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginStart="10dp"
+                            android:src="@drawable/ic_call"
+                            app:tint="@color/black" />-->
+
+                        <!--<View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:layout_margin="@dimen/_8sdp"
+                            android:background="@color/grey_lite" />-->
+
+                        <EditText
+                            android:id="@+id/edtaddress"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:layout_weight="1"
+                            android:background="@android:color/transparent"
+                            android:fontFamily="@font/roboto_medium"
+
+                            android:gravity="center_vertical"
+                            android:hint="@string/gstnum"
+                            android:imeOptions="actionNext"
+                            android:singleLine="true"
+                            android:textSize="@dimen/_12sdp"
+                            app:hintAnimationEnabled="false"
+                            app:hintEnabled="false" />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <TextView
+                            android:id="@+id/tv_vehicleno"
+                            android:layout_width="wrap_content"
+                            android:layout_height="25dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/roboto_medium"
+                            android:text="Type of Vehicles"
+                            android:textColor="@color/black"
+
+                            android:textSize="@dimen/_10sdp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/edt_round_corner"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_40sdp"
+                                android:layout_gravity="center"
+                                android:foregroundGravity="right"
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                android:visibility="visible">
+
+                                <Spinner
+                                    android:id="@+id/spinner_vehicle"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="60dp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginLeft="@dimen/_10sdp"
+                                    android:autofillHints="3"
+                                    android:fontFamily="@font/roboto_medium"
+
+                                    android:gravity="center" />
+
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/tv_vehicleregistration"
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="@string/vehicle_registration_no"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_10sdp" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edt_round_corner"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+
+                        <EditText
+                            android:id="@+id/edt_vehicleregistration1"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:layout_weight="1"
+                            android:background="@android:color/transparent"
+                            android:fontFamily="@font/roboto_medium"
+
+                            android:gravity="center_vertical"
+                            android:hint="@string/reg_no"
+                            android:imeOptions="actionNext"
+                            android:singleLine="true"
+                            android:textSize="@dimen/_12sdp"
+                            app:hintAnimationEnabled="false"
+                            app:hintEnabled="false" />
+
+
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/tv_driverlicenseno"
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="@string/driver_license_number"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_10sdp" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edt_round_corner"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+
+                        <EditText
+                            android:id="@+id/edt_driverlicenseno"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:layout_weight="1"
+                            android:background="@android:color/transparent"
+                            android:fontFamily="@font/roboto_medium"
+
+                            android:gravity="center_vertical"
+                            android:hint="License Number"
+                            android:imeOptions="actionNext"
+                            android:singleLine="true"
+                            android:textSize="@dimen/_12sdp"
+                            app:hintAnimationEnabled="false"
+                            app:hintEnabled="false" />
+
+
+                    </LinearLayout>
+
+                    <!--<LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@drawable/edt_round_corner"
+                        android:gravity="center"
+
+                        android:orientation="horizontal">
+
+
+                        <EditText
+                            android:id="@+id/edt_vehicleregistration2"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:layout_weight="1"
+                            android:background="@android:color/transparent"
+                            android:fontFamily="@font/roboto_medium"
+
+                            android:gravity="center_vertical"
+                            android:hint=""
+                            android:imeOptions="actionNext"
+                            android:singleLine="true"
+                            android:textSize="@dimen/_12sdp"
+                            app:hintAnimationEnabled="false"
+                            app:hintEnabled="false" />
+
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@drawable/edt_round_corner"
+
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+
+                        <EditText
+                            android:id="@+id/edt_vehicleregistration3"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:layout_weight="1"
+                            android:background="@android:color/transparent"
+                            android:fontFamily="@font/roboto_medium"
+
+                            android:gravity="center_vertical"
+                            android:hint=""
+                            android:imeOptions="actionNext"
+                            android:singleLine="true"
+                            android:textSize="@dimen/_12sdp"
+                            app:hintAnimationEnabled="false"
+                            app:hintEnabled="false" />
+
+
+                    </LinearLayout>-->
+
+
+                    <!--<LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+
+                        android:gravity="end"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btn_addmore_vehicleregis"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_30sdp"
+                            android:layout_gravity="center"
+                            android:layout_margin="@dimen/_5sdp"
+                            android:background="@drawable/edt_round_corner_red"
+                            android:fontFamily="@font/roboto_medium"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp"
+                            android:text="@string/addmore"
+
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_12sdp" />
+
+                    </LinearLayout>-->
+                    <TextView
+                        android:id="@+id/tv_password"
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="Password"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edt_round_corner"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+
+                        <EditText
+                            android:id="@+id/edt_password"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:layout_weight="1"
+                            android:background="@android:color/transparent"
+                            android:fontFamily="@font/roboto_medium"
+
+                            android:gravity="center_vertical"
+                            android:hint="@string/password"
+                            android:imeOptions="actionNext"
+                            android:singleLine="true"
+                            android:textSize="@dimen/_12sdp"
+                            app:hintAnimationEnabled="false"
+                            app:hintEnabled="false" />
+
+
+                        <LinearLayout
+                            android:id="@+id/lytVisiblePass"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.3"
+                            android:background="@android:color/transparent"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/ivVisiblePass"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginEnd="@dimen/_16sdp"
+                                android:src="@drawable/password_hide" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/tv_confirmpassword"
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="@string/r_confirm_password"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edt_round_corner"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+
+                        <EditText
+                            android:id="@+id/edt_confirmpassword"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:layout_weight="1"
+                            android:background="@android:color/transparent"
+                            android:fontFamily="@font/roboto_medium"
+
+                            android:gravity="center_vertical"
+                            android:hint="@string/password"
+                            android:imeOptions="actionNext"
+                            android:singleLine="true"
+                            android:textSize="@dimen/_12sdp"
+                            app:hintAnimationEnabled="false"
+                            app:hintEnabled="false" />
+
+                        <LinearLayout
+                            android:id="@+id/lytVisibleConfirmPass"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.3"
+                            android:background="@android:color/transparent"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/ivVisibleConfirmPass"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_marginStart="10dp"
+                                android:layout_marginEnd="@dimen/_16sdp"
+                                android:src="@drawable/password_hide" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginBottom="@dimen/_40sdp"
+                        android:background="@drawable/edt_round_corner_yellow"
+                        android:gravity="center"
+
+                        android:orientation="horizontal">
+
+                        <!--<LinearLayout
+                        android:id="@+id/linearLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_24sdp"
+                        android:layout_marginBottom="@dimen/_24sdp"
+                        android:gravity="center"
+
+                       >-->
+
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btn_submit"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_30sdp"
+                            android:layout_gravity="center"
+
+                            android:background="@drawable/edt_round_corner_yellow"
+                            android:fontFamily="@font/roboto_medium"
+                            android:text="@string/submit"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+
+
+                            android:textSize="@dimen/_14sdp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </RelativeLayout>
+
+</layout>

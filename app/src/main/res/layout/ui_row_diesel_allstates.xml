@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_5sdp"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_weight="1"
+
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_28sdp"
+                    android:id="@+id/tv_city"
+                    android:gravity="end|center"                         android:layout_gravity="center"
+                    android:fontFamily="@font/roboto_regular"
+                    android:singleLine="true"
+                    android:text="Ahmadnagar"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_20sdp" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_28sdp"
+                android:id="@+id/tv_state"
+                android:gravity="start|center"                         android:layout_gravity="center"
+                android:fontFamily="@font/roboto_regular"
+                android:singleLine="true"
+                android:text="Maharashtra"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_11sdp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:layout_weight="2"
+            android:orientation="vertical"
+            >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_fueltype"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_28sdp"
+                    android:gravity="end|center"
+                    android:layout_gravity="end"
+                    android:fontFamily="@font/roboto_medium"
+                    android:singleLine="true"
+                    android:paddingStart="@dimen/_2sdp"
+
+                    android:text="Diesel"
+                    android:textColor="@color/theme_yellow"
+                    android:textSize="@dimen/_11sdp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_28sdp"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="center"
+                    android:text="₹ "
+                    android:textColor="@color/theme_yellow"
+                    android:textSize="@dimen/_20sdp" />
+
+                <TextView
+                    android:id="@+id/tv_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="center"
+                    android:text="89.92"
+                    android:textColor="@color/theme_yellow"
+                    android:textSize="@dimen/_20sdp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="bottom"
+                    android:text=" /Ltr."
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:textColor="@color/theme_yellow"
+                    android:textSize="@dimen/_13sdp" />
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_1sdp"
+        android:background="@color/very_light_gray"/>
+
+    </LinearLayout>
+</layout>

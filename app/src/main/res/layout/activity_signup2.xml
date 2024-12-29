@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="match_parent"
+        android:paddingTop="@dimen/_1sdp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            android:background="@color/white">
+
+            <ImageView
+                android:id="@+id/ivBack"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:padding="@dimen/_2sdp"
+                android:src="@drawable/backbutton" />
+
+
+
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fillViewport="true"
+            android:isScrollContainer="false">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_16sdp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="@string/head_name"
+                    android:textColor="@color/black"
+                    android:textSize="25dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toTopOf="@+id/cardView2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/_16sdp"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+
+                        android:orientation="vertical"
+                        android:visibility="visible">
+
+                        <TextView
+                            android:id="@+id/tv_vehicletypes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="25dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/roboto_medium"
+                            android:text="@string/type_of_vehicles"
+                            android:textColor="@color/black"
+
+                            android:textSize="@dimen/_10sdp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/edt_round_corner"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="@dimen/_40sdp"
+                                android:layout_gravity="center"
+                                android:foregroundGravity="right"
+                                android:gravity="center"
+                                android:orientation="horizontal"
+                                android:visibility="visible">
+
+                                <Spinner
+                                    android:id="@+id/spinner_vehicletype1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="60dp"
+                                    android:layout_gravity="center"
+                                    android:layout_marginLeft="@dimen/_10sdp"
+                                    android:fontFamily="@font/roboto_medium"
+
+                                    android:gravity="center" />
+
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+
+
+
+
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/tv_totaldriver"
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="@string/total_driver"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edt_round_corner"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_gravity="center"
+                            android:foregroundGravity="right"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:visibility="visible">
+
+                            <Spinner
+                                android:id="@+id/spinner_totaldriver"
+                                android:layout_width="match_parent"
+                                android:layout_height="60dp"
+                                android:layout_gravity="center"
+                                android:layout_marginLeft="@dimen/_10sdp"
+                                android:fontFamily="@font/roboto_medium"
+
+                                android:gravity="center" />
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/tv_drivername"
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="@string/driver_name"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edt_round_corner"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+
+                        <EditText
+                            android:id="@+id/edt_drivername1"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:layout_weight="1"
+                            android:background="@android:color/transparent"
+                            android:fontFamily="@font/roboto_medium"
+
+                            android:gravity="center_vertical"
+                            android:hint="@string/driver_name"
+                            android:imeOptions="actionNext"
+                            android:singleLine="true"
+                            android:textSize="@dimen/_12sdp"
+                            app:hintAnimationEnabled="false"
+                            app:hintEnabled="false" />
+
+
+                    </LinearLayout>
+
+
+
+                    <TextView
+                        android:id="@+id/tv_driverlicenseno"
+                        android:layout_width="wrap_content"
+                        android:layout_height="25dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="@string/driver_license_number"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/edt_round_corner"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+
+                        <EditText
+                            android:id="@+id/edt_driverlicenseno"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:layout_weight="1"
+                            android:background="@android:color/transparent"
+                            android:fontFamily="@font/roboto_medium"
+
+                            android:gravity="center_vertical"
+                            android:hint="@string/driver_license_number"
+                            android:imeOptions="actionNext"
+                            android:singleLine="true"
+                            android:textSize="@dimen/_12sdp"
+                            app:hintAnimationEnabled="false"
+                            app:hintEnabled="false" />
+
+
+                    </LinearLayout>
+
+
+                    <!--<LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+
+                        android:gravity="end"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btn_addmore_license"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_30sdp"
+                            android:layout_gravity="center"
+                            android:layout_margin="@dimen/_5sdp"
+                            android:background="@drawable/edt_round_corner_red"
+                            android:fontFamily="@font/roboto_medium"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp"
+                            android:text="@string/addmore"
+
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_12sdp" />
+
+                    </LinearLayout>-->
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginBottom="@dimen/_40sdp"
+                        android:background="@drawable/edt_round_corner_yellow"
+                        android:gravity="center"
+
+                        android:orientation="horizontal">
+
+                        <!--<LinearLayout
+                        android:id="@+id/linearLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_24sdp"
+                        android:layout_marginBottom="@dimen/_24sdp"
+                        android:gravity="center"
+
+                       >-->
+
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btn_submit"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_30sdp"
+                            android:layout_gravity="center"
+
+                            android:background="@drawable/edt_round_corner_yellow"
+                            android:fontFamily="@font/roboto_medium"
+                            android:text="@string/submit"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+
+
+                            android:textSize="@dimen/_14sdp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </RelativeLayout>
+
+</layout>

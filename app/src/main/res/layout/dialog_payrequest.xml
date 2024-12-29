@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_10sdp">
+
+        <LinearLayout
+            android:layout_margin="@dimen/_10sdp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/dialog_round_corner_yellow"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_medium"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_40sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:textColor="@color/black"
+                android:text="Available Balance:"
+                android:textSize="@dimen/_16sdp"
+                />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:layout_gravity="center">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_medium"
+                    android:layout_gravity="center_vertical"
+                    android:maxLines="1"
+                    android:gravity="center"
+                    android:text="₹ "
+                    android:textColor="@color/theme_yellow"
+                    android:textSize="25sp"
+                    />
+                <TextView
+                    android:id="@+id/tv_amount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_medium"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="1"
+                    android:maxLines="1"
+                    android:gravity="center"
+                    android:text="20,000"
+                    android:textColor="@color/theme_yellow"
+                    android:textSize="25sp"
+                    />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/etAmount"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_50sdp"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:inputType="number"
+                android:background="@drawable/edt_round_corner_gray"
+                android:backgroundTint="@color/theme_yellow"
+                android:hint="Type your amount"
+                android:fontFamily="@font/roboto_regular"
+                android:paddingStart="@dimen/_10sdp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/lightgray"
+                android:textSize="@dimen/_14sdp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_40sdp"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnSubmit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/_16sdp"
+                    android:layout_marginEnd="@dimen/_16sdp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:background="@drawable/edt_round_corner_yellow"
+                    android:gravity="center"
+                    android:text="Submit Payment Request"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_16sdp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</layout>

@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "549847634409",
+    "project_id": "go-vahan",
+    "storage_bucket": "go-vahan.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:549847634409:android:1e7491ea5e0ad7f7d33b78",
+        "android_client_info": {
+          "package_name": "com.govahan.com"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2MWQwIVWgDTdufxfj1sGfZmspK2bNCyE"
+        },
+        {
+          "current_key": "AIzaSyB8gMYBE08u7mjopfMksTONnpHQ926uV1Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:549847634409:android:49b1acde704aa3bcd33b78",
+        "android_client_info": {
+          "package_name": "com.govahanpartner.com"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2MWQwIVWgDTdufxfj1sGfZmspK2bNCyE"
+        },
+        {
+          "current_key": "AIzaSyB8gMYBE08u7mjopfMksTONnpHQ926uV1Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

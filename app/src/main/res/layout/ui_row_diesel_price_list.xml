@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_margin="@dimen/_5sdp"
+        android:background="@drawable/edt_round_corner"
+        android:orientation="vertical"
+        android:weightSum="1">
+
+
+            <TextView
+                android:id="@+id/tv_state"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/roboto_regular"
+                android:maxLines="1"
+                android:paddingLeft="@dimen/_5sdp"
+                android:paddingRight="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:text="Mumbai, Maharashtra"
+                android:textColor="@color/black"
+                android:layout_gravity="center"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_head"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/roboto_regular"
+                android:maxLines="1"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:paddingLeft="@dimen/_5sdp"
+                android:paddingRight="@dimen/_5sdp"
+                android:text="Diesel"
+                android:textColor="@color/theme_yellow"
+                android:textSize="16sp" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/_1sdp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:weightSum="1">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:gravity="end"
+                android:orientation="horizontal"
+                android:weightSum="3">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="center"
+                    android:text="₹ "
+                    android:textColor="@color/theme_yellow"
+                    android:textSize="@dimen/_20sdp" />
+
+                <TextView
+                    android:id="@+id/tv_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="center"
+                    android:text="89.92"
+                    android:textColor="@color/theme_yellow"
+                    android:textSize="@dimen/_25sdp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="bottom"
+                    android:text=" /Ltr."
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:textColor="@color/theme_yellow"
+                    android:textSize="@dimen/_13sdp" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</layout>

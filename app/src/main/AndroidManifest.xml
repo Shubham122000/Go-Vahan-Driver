@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> <!-- <uses-permission android:name="android.permission.CALL_PHONE" /> -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" /> <!-- <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" -->
+    <!-- tools:ignore="ScopedStorage" /> -->
+    <uses-permission android:name="android.permission.READ_MEDIA_*" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- <uses-permission android:name="android.permission.RECEIVE_SMS" /> -->
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="true" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <queries>
+
+        <!-- Browser -->
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+
+            <data android:scheme="http" />
+        </intent>
+
+        <!-- Camera -->
+        <intent>
+            <action android:name="android.media.action.IMAGE_CAPTURE" />
+        </intent>
+
+        <!-- Gallery -->
+        <intent>
+            <action android:name="android.intent.action.GET_CONTENT" />
+        </intent>
+    </queries>
+
+    <application
+        android:name=".AndroidApp"
+        android:icon="@drawable/latest_logo"
+        android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:requestLegacyExternalStorage="true"
+        android:roundIcon="@drawable/latest_logo"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.TransportationApp"
+        android:usesCleartextTraffic="true">
+<!--        android:allowBackup="true"-->
+
+        <activity
+            android:name=".ui.LoderdriverViewTrip"
+            android:exported="false" />
+        <activity
+            android:name=".ui.CancellationPolicy"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".WebViewActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity> <!-- <meta-data -->
+        <!-- android:name="com.phonepe.android.sdk.Debuggable" -->
+        <!-- android:value="true" /> &lt;!&ndash; Keep it true in UAT environment &ndash;&gt; -->
+        <!-- <meta-data -->
+        <!-- android:name="com.phonepe.android.sdk.isUAT" -->
+        <!-- android:value="true" /> -->
+        <!-- <meta-data -->
+        <!-- android:name="com.phonepe.android.sdk.MerchantId" -->
+        <!-- android:value="GOVAHANONLINE" /> -->
+        <!--
+ For UAT, App Id is not required.
+        Make sure to add the following and you get the APP Id for Production after UAT Sign-off
+        -->
+        <activity
+            android:name=".ui.driver.AddDrivingLicenseActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.common.BankAccountList"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.common.EditTaxiDocumentsActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.driver.passenger.EditTruckDocumentsActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.vendor.passenger.DriverLocationActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.common.AddAccountActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.common.UploadDocumentsRegardingTrip"
+            android:exported="false" />
+        <activity
+            android:name=".ui.common.TaxiRepositoryViewActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.common.TruckRepositoryViewActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.driver.TripLIstPassenger"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.driver.passenger.AddTripLoaderDriver"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.driver.passenger.AddTripPassengerDriver"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.common.PaymentThroughActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.common.TrackingActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.vendor.passenger.DriverProfileUpdate"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.driver.passenger.PassengerTripList"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.vendor.passenger.PassengerTripHistory"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.vendor.Loader_invoice_List"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.driver.TriplistActivity"
+            android:exported="false"
+            tools:ignore="MissingClass">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".MyBusinessCard"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".ui.driver.WalletDriverActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.vendor.passenger.WalletVendorPActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.driver.passenger.DropOffMapActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.vendor.passenger.FareCalculationPActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.vendor.FareCalculationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.driver.passenger.TripDetailsDriverPActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.driver.passenger.PassengerVehicleDActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.driver.ProofOfDeliveryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.common.TermsConditionsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.common.PrivacyPolicyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.common.ReferAndEarnActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.vendor.SettingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.vendor.EditProfileVendorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.vendor.passenger.VehicleRepositoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.vendor.passenger.FareCalculatorPActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.vendor.passenger.TrackMapPActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.vendor.passenger.TripDetailsOfAssignedDriverPActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.vendor.passenger.TripAssignedToDriverPActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.vendor.passenger.TripDetailsAssignPActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.vendor.passenger.TripDetailsPActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.vendor.passenger.UpcomingBookingsPActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.vendor.passenger.PaymentMethodsPActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.vendor.passenger.SubscriptionPlanPActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.vendor.passenger.AddTripPActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.vendor.passenger.AddDriverPActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.vendor.passenger.InvoiceSummaryPActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.vendor.passenger.BookingDetailPActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.vendor.passenger.TripHistoryPActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.vendor.passenger.PassengerDriverDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.vendor.passenger.PassengerDriverListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.vendor.passenger.PreviewPassengerBusinessCardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.vendor.passenger.CreatePassengerBusinessCardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.vendor.FareCalculatorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.vendor.TripDetailOfAssignedDriverActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.vendor.TripAssignToDriverActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.common.TripDetailsPickupActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.vendor.TripDetailsAssignActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.driver.PaymentMethodsDActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.vendor.PaymentMethodsVActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.vendor.AddTripVActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.driver.CreateBusinessCardD2Activity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.vendor.CreateBusinessCardV2Activity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.vendor.VendorLoaderVehicleActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.common.LoginAsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.DriverTripDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.vendor.passenger.AddPassengerVehicleActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.vendor.DriverDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.vendor.passenger.PassengerVehicleActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.driver.RideConfirmationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.common.ChooseYourLanguageActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.driver.DeliveryProofActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.vendor.DieselAllStatesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.vendor.DieselPriceActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.driver.IndividualSubscriptionPlanActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.OTP2Activity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.vendor.SignUpAsVendor"
+            android:exported="false" />
+        <activity
+            android:name=".ui.driver.StartTripOTPActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.vendor.TrackVehicleActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.driver.TrackingInputActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.vendor.TransactionReportActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.vendor.VendorsSubscriptionPlanActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.vendor.TruckRepositoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.TruckDriverRegistration"
+            android:exported="false" />
+        <activity
+            android:name=".ui.vendor.InvoiceSummaryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.vendor.WalletActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.vendor.BookingDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.vendor.RatingReviewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.vendor.TripHistoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.vendor.ChangePasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.vendor.ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.EditProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.common.AboutusActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.common.ContactusActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.vendor.NotificationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.driver.CustomerSignActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.vendor.TrackTruckDriverActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.common.TripDetailsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.common.UpcomingBookings"
+            android:exported="false" />
+        <activity
+            android:name=".ui.common.AddTruckDocumentsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.driver.AddTripActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.vendor.DriverListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.AddDriverActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.CreateBusinessCard2"
+            android:exported="false" />
+        <activity
+            android:name=".ui.vendor.CreateBusinessCard"
+            android:exported="false" />
+        <activity
+            android:name=".ui.driver.ActivityDriverLoaderVehicle"
+            android:exported="false" />
+        <activity
+            android:name=".ui.common.CreatePasswordActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.common.OTPActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SignUp2"
+            android:exported="false" />
+        <activity
+            android:name=".ui.driver.SignupActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.DashboardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.common.AccountVerificationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.common.LoginActivity"
+            android:exported="false" />
+        <!--
+<activity
+            android:name=".Ui.LoginActivity"
+            android:exported="false" />
+        -->
+        <activity
+            android:name=".ui.common.SplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".FirebaseMessagingServices"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <meta-data
+            android:name="com.razorpay.ApiKey"
+            android:value="rzp_test_zKUPSWCfmn95j4" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDQ3IIA_XXoWXl5ZKrxINiuwrkswcPL8LA" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider.unique"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+    </application>
+
+</manifest>

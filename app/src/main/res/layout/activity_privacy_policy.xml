@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+       >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            android:background="@color/theme_yellow"
+            android:paddingBottom="@dimen/_5sdp"
+            android:id="@+id/id_head">
+
+            <ImageView
+                android:id="@+id/ivBack"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:padding="@dimen/_5sdp"
+                android:src="@drawable/backbutton_white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_toRightOf="@+id/ivBack"
+                android:fontFamily="@font/roboto_regular"
+                android:gravity="center"
+                android:text="Privacy Policy"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14sdp" />
+
+        </LinearLayout>
+<androidx.core.widget.NestedScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/id_head"
+            android:gravity="start"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
+                android:orientation="vertical"
+                android:weightSum="1">
+
+                <TextView
+                    android:id="@+id/privacypolicytext"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textColor="@color/black"
+                    android:textSize="15sp"
+                    />
+
+            </LinearLayout>
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_below="@+id/id_head"-->
+<!--                android:id="@+id/ll_rvlist"-->
+<!--                android:layout_marginStart="@dimen/_5sdp"-->
+<!--                android:layout_marginTop="@dimen/_10sdp"-->
+<!--                android:layout_marginEnd="@dimen/_5sdp"-->
+<!--                android:layout_marginBottom="@dimen/_10sdp"-->
+<!--                android:gravity="start"-->
+<!--                android:orientation="vertical">-->
+
+<!--                <androidx.recyclerview.widget.RecyclerView-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:id="@+id/rv_aboutus"-->
+<!--                    tools:listitem="@layout/row_aboutus_layout"/>-->
+
+<!--            </LinearLayout>-->
+
+
+        </LinearLayout>
+</androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+
+</layout>

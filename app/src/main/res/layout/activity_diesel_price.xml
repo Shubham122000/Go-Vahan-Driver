@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:id="@+id/id_head"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_gravity="center"
+            android:background="@color/theme_yellow">
+
+            <ImageView
+                android:id="@+id/ivBack"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:padding="@dimen/_5sdp"
+                android:src="@drawable/backbutton_white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_toRightOf="@+id/ivBack"
+                android:fontFamily="@font/roboto_regular"
+                android:gravity="center"
+                android:text="Petrol/Diesel Price"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14sdp" />
+
+        </RelativeLayout>
+
+
+
+        <Spinner
+            android:id="@+id/selectstatespinner"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_gravity="center"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:fontFamily="@font/roboto_regular"
+            android:gravity="center" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            >
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Petrol"
+                android:textStyle="bold"
+                android:layout_marginHorizontal="@dimen/_20sdp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_15sdp"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_100sdp"
+                android:layout_gravity="center_vertical"
+
+                android:padding="@dimen/_10sdp"
+                android:visibility="visible"
+
+                android:src="@drawable/icon_petrol_pump"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:gravity="center"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="365dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:background="@drawable/edt_round_corner_yellow_circle"
+                    android:gravity="center"
+
+                    android:orientation="horizontal">
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="end"
+                        android:gravity="end"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/roboto_medium"
+                            android:gravity="center"
+                            android:text="₹ "
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_20sdp" />
+
+                        <TextView
+                            android:id="@+id/tv_price_petrol"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/roboto_medium"
+                            android:gravity="center"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_25sdp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/roboto_medium"
+                            android:gravity="bottom"
+                            android:text=" /Ltr."
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_13sdp" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_20sdp"
+
+            >
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Diesel"
+                android:textStyle="bold"
+                android:layout_marginHorizontal="@dimen/_20sdp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_15sdp"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_100sdp"
+                android:layout_gravity="center_vertical"
+
+                android:padding="@dimen/_10sdp"
+                android:visibility="visible"
+
+                android:src="@drawable/icon_petrol_pump"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:gravity="center"
+                android:layout_marginStart="@dimen/_16sdp"
+                android:layout_marginEnd="@dimen/_16sdp"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="365dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:background="@drawable/edt_round_corner_yellow_circle"
+                    android:gravity="center"
+
+                    android:orientation="horizontal">
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="end"
+                        android:gravity="end"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/roboto_medium"
+                            android:gravity="center"
+                            android:text="₹ "
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_20sdp" />
+
+                        <TextView
+                            android:id="@+id/tv_price"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/roboto_medium"
+                            android:gravity="center"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_25sdp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/roboto_medium"
+                            android:gravity="bottom"
+                            android:text=" /Ltr."
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_13sdp" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+        <TextView
+            android:id="@+id/tv_detail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_regular"
+            android:padding="@dimen/_1sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+
+            android:gravity="center_vertical"
+            android:layout_gravity="center"
+            android:maxLines="2"
+            android:text="Noida, Uttar Pradesh"
+            android:drawableLeft="@drawable/icon_location_main"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_11sdp" />
+
+
+
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="@dimen/_16sdp"-->
+<!--            android:layout_marginBottom="@dimen/_16sdp"-->
+<!--            android:layout_marginStart="@dimen/_16sdp"-->
+<!--            android:layout_marginEnd="@dimen/_16sdp"-->
+<!--            android:gravity="start"-->
+<!--            android:layout_weight="1"-->
+
+<!--            android:orientation="vertical">-->
+
+<!--            <androidx.recyclerview.widget.RecyclerView-->
+<!--                android:id="@+id/rv_upcomingbookings"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                tools:listitem="@layout/ui_row_diesel_price_list"/>-->
+
+
+<!--        </LinearLayout>-->
+
+
+    </LinearLayout>
+
+</layout>

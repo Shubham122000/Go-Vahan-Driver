@@ -1,0 +1,604 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            android:background="@color/theme_yellow"
+            android:layout_gravity="top"
+            android:orientation="horizontal"
+            android:id="@+id/id_head">
+
+            <ImageView
+                android:id="@+id/ivBack"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:padding="@dimen/_5sdp"
+                android:src="@drawable/backbutton_white" />
+
+            <TextView
+                android:id="@+id/tv_head"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_toRightOf="@+id/ivBack"
+                android:fontFamily="@font/roboto_regular"
+                android:gravity="center"
+                android:text="Track Truck Driver"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14sdp" />
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:id="@+id/rl_driveritem"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_5sdp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical"
+                android:gravity="center"
+                android:orientation="vertical">
+
+<!--                <ImageView-->
+<!--                    android:id="@+id/iv_truck"-->
+<!--                    android:layout_width="@dimen/_110sdp"-->
+<!--                    android:layout_height="@dimen/_80sdp"-->
+<!--                    android:src="@drawable/logo_3" />-->
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:paddingTop="@dimen/_5sdp"
+                android:paddingBottom="@dimen/_5sdp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:gravity="end"
+                    android:orientation="vertical"
+                    android:paddingStart="@dimen/_5sdp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_number"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/roboto_medium"
+                            android:gravity="start"
+                            android:singleLine="true"
+                            android:text="Container on Ultra 1918. T"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12sdp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_3sdp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/roboto_regular"
+                            android:gravity="end"
+                            android:singleLine="true"
+                            android:text="6 Wheeler"
+                            android:textColor="@color/gray"
+                            android:textSize="@dimen/_10sdp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="21dp"
+                            android:layout_marginTop="@dimen/_3sdp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/roboto_bold"
+                            android:gravity="end"
+                            android:singleLine="true"
+                            android:text="UP 58 BT 4589"
+                            android:textColor="@color/theme_yellow"
+                            android:textSize="@dimen/_13sdp" />
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:background="@color/very_light_gray"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_5sdp">
+
+            <LinearLayout
+                android:id="@+id/ll_user"
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_60sdp"
+                android:layout_centerVertical="true"
+                android:layout_gravity="center_vertical"
+                android:gravity="center">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imgUser"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_60sdp"
+                    android:src="@drawable/profile" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/ll_user"
+                android:paddingTop="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_3sdp"
+                android:paddingBottom="@dimen/_5sdp"
+                android:gravity="center"
+                android:layout_centerInParent="true"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_username"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:singleLine="true"
+                            android:layout_weight="1"
+                            android:text="@string/ramesh"
+                            android:fontFamily="@font/roboto_bold"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_13sdp"
+                            android:layout_gravity="center"
+                            android:gravity="start"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:layout_gravity="center"
+                            android:gravity="end"
+                            android:layout_marginRight="@dimen/_5sdp">
+
+                            <ImageView
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_20sdp"
+                                android:src="@drawable/icon_phone"
+                                android:layout_gravity="center"
+                                android:gravity="start"/>
+                            <TextView
+                                android:id="@+id/tv_phone"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:singleLine="true"
+                                android:paddingStart="@dimen/_5sdp"
+                                android:text="+91 1234567890"
+                                android:fontFamily="@font/roboto_medium"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_10sdp"
+                                android:layout_gravity="center"
+                                android:gravity="start"/>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_type"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:singleLine="true"
+                        android:fontFamily="@font/roboto_regular"
+                        android:text="Truck Driver"
+                        android:textColor="@color/darkgray"
+                        android:textSize="@dimen/_11sdp" />
+
+                </LinearLayout>
+
+
+
+
+            </LinearLayout>
+
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_weight="1"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:layout_gravity="center">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_10sdp">
+                <ImageView
+                    android:layout_width="@dimen/_10sdp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/icon_location_round2"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto_regular"
+                    android:text="@string/from"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/_11sdp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_from"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/roboto_regular"
+                    android:gravity="center_vertical"
+                    android:text="@string/gurugram"
+                    android:singleLine="true"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
+                    android:textSize="@dimen/_12sdp" />
+
+
+                <TextView
+                    android:id="@+id/tv_fromdate"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/roboto_regular"
+                    android:gravity="center|end"
+                    android:text="17 June 2022"
+                    android:singleLine="true"
+                    android:textColor="@color/darkgray"
+                    android:textSize="@dimen/_10sdp" />
+
+            </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:background="@color/very_light_gray"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_10sdp">
+                <ImageView
+                    android:layout_width="@dimen/_10sdp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/icon_location_round1"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto_regular"
+                    android:imeOptions="actionNext"
+                    android:singleLine="true"
+                    android:text="Drop"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/_11sdp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_to"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/roboto_regular"
+                    android:gravity="center_vertical"
+                    android:text="@string/noida"
+                    android:singleLine="true"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp"
+                    />
+
+
+                <TextView
+                    android:id="@+id/tv_todate"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:fontFamily="@font/roboto_regular"
+                    android:gravity="center|end"
+                    android:text="17 June 2022"
+                    android:singleLine="true"
+                    android:textColor="@color/darkgray"
+                    android:textSize="@dimen/_10sdp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/roboto_bold"
+            android:gravity="center_vertical"
+            android:text="17 June 2022"
+            android:singleLine="true"
+            android:textColor="@color/theme_yellow"
+            android:textSize="@dimen/_14sdp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1"
+
+            android:layout_gravity="center">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_10sdp">
+                <ImageView
+                    android:layout_width="@dimen/_10sdp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/icon_tracking_dot1"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="Reached Place Status"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11sdp" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="@dimen/_1sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:background="@color/theme_yellow"
+                android:layout_marginStart="@dimen/_15sdp"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="@dimen/_10sdp">
+                <ImageView
+                    android:layout_width="@dimen/_10sdp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/icon_tracking_dot1"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="Reached Place Status"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11sdp" />
+
+            </LinearLayout>
+            <View
+                android:layout_width="@dimen/_1sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:background="@color/theme_yellow"
+                android:layout_marginStart="@dimen/_15sdp"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginStart="@dimen/_10sdp">
+                <ImageView
+                    android:layout_width="@dimen/_10sdp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/icon_tracking_dot1"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="Reached Place Status"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11sdp" />
+
+            </LinearLayout>
+            <View
+                android:layout_width="@dimen/_1sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:background="@color/icon_dot_gray"
+                android:layout_marginStart="@dimen/_15sdp"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_marginStart="@dimen/_10sdp"
+              >
+                <ImageView
+                    android:layout_width="@dimen/_10sdp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/icon_tracking_dot_2"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:layout_gravity="start|center"
+                    android:gravity="center"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="Noida"
+                    android:textColor="@color/icon_dot_gray"
+                    android:textSize="@dimen/_11sdp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edt_round_corner_gray"
+            android:gravity="center"
+            android:id="@+id/llTrack"
+            android:layout_margin="@dimen/_10sdp"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/tv_trackvehicle"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Track Vehicle"
+                android:textColor="@color/black"
+                android:drawableLeft="@drawable/icon_truck"
+                android:drawablePadding="@dimen/_5sdp"
+                android:gravity="center_vertical"
+                android:textSize="@dimen/_12sdp" />
+
+
+            <LinearLayout
+                android:id="@+id/lytVisiblePass"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="0.3"
+                android:background="@android:color/transparent"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/ivVisiblePass"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:padding="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_16sdp"
+                    android:src="@drawable/icon_google_map" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

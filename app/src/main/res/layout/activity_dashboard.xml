@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/drawer_toolbar"
+                layout="@layout/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/theme_yellow" />
+
+            <FrameLayout
+                android:id="@+id/flContent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/drawer_toolbar"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+        </RelativeLayout>
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/nvView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:background="@android:color/white"
+            >
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <include
+                    android:id="@+id/header"
+                    layout="@layout/nav_header_main" />
+
+                <ListView
+                    android:id="@+id/listVideMenu"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/header"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_5sdp" />
+
+            </RelativeLayout>
+
+        </com.google.android.material.navigation.NavigationView>
+
+    </androidx.drawerlayout.widget.DrawerLayout>
+
+</layout>
+
+
+
+
+
+<!--<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/toolbar"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:background="@color/theme_yellow"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_gravity="center"
+                    android:gravity="start|center"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:id="@+id/opendrawer"
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="20dp"
+                        android:padding="@dimen/_5sdp"
+                        android:src="@drawable/menu_button">
+
+
+                    </ImageView>
+
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:id="@+id/logo"
+                        android:layout_marginLeft="15dp"
+                        android:src="@drawable/logo"
+                        app:tint="@color/white">
+
+
+                    </ImageView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginRight="20dp"
+
+
+                    android:layout_height="wrap_content">
+
+                    <androidx.appcompat.widget.LinearLayoutCompat
+                        android:layout_width="@dimen/_32sdp"
+                        android:layout_height="@dimen/_35sdp"
+                        android:orientation="horizontal"
+                        android:id="@+id/ll_cart"
+                        android:gravity="center"
+                        android:layout_gravity="right|center"
+
+                        android:visibility="visible"
+                        >
+
+                        <ImageView
+                            android:layout_width="@dimen/_30sdp"
+                            android:layout_height="@dimen/_35sdp"
+                            android:src="@drawable/profile"
+                            app:tint="@color/white"
+                            android:padding="@dimen/_2sdp"
+
+                            />
+
+                        <ImageView
+                            android:id="@+id/tv_maincount"
+                            android:layout_width="@dimen/_17sdp"
+                            android:layout_height="@dimen/_17sdp"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="-20dp"
+                            android:layout_marginBottom="-12dp"
+                            android:padding="@dimen/_1sdp"
+                            android:src="@drawable/ic_blue_round"
+                            android:gravity="center"
+                            android:visibility="visible">
+                        </ImageView>
+
+                    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+                    <ImageView
+                        android:id="@+id/ivNotifi"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_gravity="right|center"
+                        android:layout_marginLeft="10dp"
+                        android:padding="@dimen/_2sdp"
+                        android:src="@drawable/icon_bell">
+
+
+                    </ImageView>
+
+                    <ImageView
+                        android:id="@+id/profile"
+                        android:layout_width="@dimen/_30sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_gravity="right|center"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/ic_wallet"
+                        android:padding="@dimen/_2sdp"
+
+                        app:tint="@color/white">
+
+
+                    </ImageView>
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <FrameLayout
+                android:layout_alignParentTop="true"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                android:id="@+id/frameContainer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/left_drawer"
+            android:layout_width="240dp"
+            android:orientation="vertical"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:background="#FFFFFF">
+
+            <include
+                android:id="@+id/header"
+
+                layout="@layout/nav_header_main"/>
+
+        </LinearLayout>
+
+    </androidx.drawerlayout.widget.DrawerLayout>
+</layout>-->

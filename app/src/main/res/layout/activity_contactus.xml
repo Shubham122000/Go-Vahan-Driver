@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="match_parent"
+        android:paddingTop="@dimen/_1sdp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            android:background="@color/theme_yellow"
+            android:layout_gravity="center"
+            android:id="@+id/id_head">
+
+            <ImageView
+                android:id="@+id/ivBack"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:padding="@dimen/_5sdp"
+                android:src="@drawable/backbutton_white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_toRightOf="@+id/ivBack"
+                android:fontFamily="@font/roboto_regular"
+                android:gravity="center"
+                android:text="Contact Us"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14sdp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/id_head"
+            android:gravity="start"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/rl_driver"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                    <ImageView
+                        android:id="@+id/iv_driver"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_170sdp"
+                        android:scaleType="fitXY" />
+                </RelativeLayout>
+
+
+
+
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="Head Office"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:textColor="@color/theme_yellow"
+                        android:textSize="@dimen/_16sdp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/dummytext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:textSize="@dimen/_14sdp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:layout_marginLeft="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:layout_marginRight="@dimen/_20sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:background="@color/very_light_gray" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/icon_phone2" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="CALL US"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:textColor="@color/theme_yellow"
+                        android:textSize="@dimen/_14sdp" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:textSize="@dimen/_14sdp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:layout_marginLeft="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_20sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:background="@color/very_light_gray" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_centerVertical="true"
+
+                        android:src="@drawable/icon_mail" />
+
+
+                    <TextView
+                        android:id="@+id/tv_fullname"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/roboto_bold"
+                        android:text="EMAIL US"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:textColor="@color/theme_yellow"
+                        android:textSize="@dimen/_14sdp" />
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textColor="@color/black"
+                    android:layout_marginTop="@dimen/_5sdp"
+
+                    android:textSize="@dimen/_14sdp" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</layout>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_color"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/roboto_bold"
+            android:text="Enter Amount "
+            android:textSize="@dimen/_18sdp" />
+
+        <EditText
+            android:id="@+id/edtText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_marginRight="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:padding="@dimen/_10sdp"
+            android:inputType="number"
+            android:background="@color/white"
+            android:textColor="@color/gray"
+            android:fontFamily="@font/roboto_regular"
+            android:hint="₹ 2000"
+            android:textSize="@dimen/_13sdp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:id="@+id/btnCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_40sdp"
+                android:minHeight="@dimen/_40sdp"
+                android:minWidth="@dimen/_120sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sdp"
+                android:textAllCaps="false"
+                android:fontFamily="@font/roboto_medium"
+                android:background="@drawable/edt_round_corner"
+                android:text="Cancel" />
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:id="@+id/btnLogout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_40sdp"
+                android:minHeight="@dimen/_40sdp"
+                android:minWidth="@dimen/_120sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14sdp"
+                android:fontFamily="@font/roboto_medium"
+                android:background="@drawable/edt_round_corner_yellow"
+                android:textAllCaps="false"
+                android:text="Done" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

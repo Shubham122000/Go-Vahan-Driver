@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="@dimen/_8sdp">
+
+
+        <LinearLayout
+            android:layout_margin="@dimen/_10sdp"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/roboto_bold"
+                android:text="Log Out?"
+                android:textSize="@dimen/_18sdp" />
+
+            <TextView
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/roboto_regular"
+                android:text="Are you sure want to log out?"
+                android:textSize="@dimen/_13sdp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:weightSum="2"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:id="@+id/btnCancel"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:minHeight="@dimen/_40sdp"
+                    android:minWidth="@dimen/_120sdp"
+                    android:layout_weight="1"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_14sdp"
+                    android:textAllCaps="false"
+                    android:fontFamily="@font/roboto_medium"
+                    android:background="@drawable/edt_round_corner"
+                    android:text="Cancel" />
+
+
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:id="@+id/btnLogout"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="@dimen/_40sdp"
+                    android:minHeight="@dimen/_40sdp"
+                    android:minWidth="@dimen/_120sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginBottom="@dimen/_5sdp"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14sdp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:background="@drawable/edt_round_corner_yellow"
+                    android:textAllCaps="false"
+                    android:text="Logout" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</layout>

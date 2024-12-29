@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@color/transparent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:padding="@dimen/_10sdp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Start Trip"
+                android:textColor="@color/black"
+                android:layout_gravity="start"
+                android:textSize="25dp"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginTop="@dimen/_7sdp"
+                android:fontFamily="@font/roboto_regular"
+                android:text="Please enter unique trip code"
+                android:textColor="@color/black"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:textSize="@dimen/_12sdp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginTop="26dp">
+
+                <com.chaos.view.PinView
+                    android:id="@+id/otp_view"
+                    style="@style/PinWidget.PinView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:cursorVisible="true"
+                    android:inputType="number"
+                    app:cursorColor="@color/theme_yellow"
+                    app:hideLineWhenFilled="false"
+                    app:itemCount="4"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textColor="@color/black"
+                    app:itemHeight="60dp"
+                    app:itemRadius="5dp"
+                    app:itemWidth="60dp"
+                    app:itemSpacing="20dp"
+                    app:lineColor="@color/theme_yellow"
+                    app:lineWidth="1dp" />
+                <TextView
+                    android:id="@+id/tvResend"
+                    android:textColor="@color/gray"
+                    android:layout_gravity="left"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="Resend OTP"
+                    android:fontFamily="@font/roboto_medium"
+                    android:textSize="@dimen/_12sdp"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_40sdp"
+                android:background="@drawable/edt_round_corner_yellow"
+                android:gravity="center"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_start"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/edt_round_corner_yellow"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="start trip"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14sdp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</layout>

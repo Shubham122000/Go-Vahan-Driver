@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
+        <RelativeLayout
+            android:id="@+id/id_head"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_gravity="center"
+            android:background="@color/theme_yellow">
+
+            <ImageView
+                android:id="@+id/ivBack"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:padding="@dimen/_5sdp"
+                android:src="@drawable/backbutton_white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_toRightOf="@+id/ivBack"
+                android:fontFamily="@font/roboto_regular"
+                android:gravity="center"
+                android:text="Wallet"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14sdp" />
+
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/id_head"
+                android:gravity="start"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_160sdp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginStart="@dimen/_16sdp"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:layout_marginEnd="@dimen/_16sdp"
+                    android:layout_marginBottom="@dimen/_8sdp"
+                    android:background="@drawable/edt_wallet_bg"
+                    android:orientation="vertical"
+                    app:cardCornerRadius="@dimen/_10sdp"
+                    app:cardElevation="@dimen/_8sdp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:id="@+id/ll_main"
+                        android:orientation="horizontal">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_16sdp"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/roboto_medium"
+                                android:text="Total Balance"
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_14sdp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/roboto_bold"
+                                android:text="₹ 20,000"
+                                android:id="@+id/tv_balance"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_24sdp" />
+
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="@dimen/_70sdp"
+                            android:layout_height="@dimen/_70sdp"
+                            android:layout_marginEnd="@dimen/_16sdp"
+                            android:src="@drawable/wallet" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_marginStart="@dimen/_16sdp"
+                        android:layout_marginEnd="@dimen/_16sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:weightSum="1"
+                        android:orientation="horizontal">
+
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btnAddMoney"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_30sdp"
+                            android:layout_weight="0.5"
+                            android:background="@drawable/edt_round_corner_yellow_circle"
+                            android:backgroundTint="@color/white"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Add Money"
+                            android:textAllCaps="false"
+                            android:textColor="@color/black"
+                            android:layout_marginRight="@dimen/_5sdp"
+                            android:textSize="@dimen/_14sdp" />
+
+
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btnPayRequest"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_30sdp"
+                            android:layout_weight="0.5"
+                            android:background="@drawable/edt_round_corner_yellow_circle"
+                            android:backgroundTint="@color/white"
+                            android:fontFamily="@font/roboto_bold"
+                            android:text="Payout Request"
+                            android:textAllCaps="false"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_14sdp" />
+
+
+
+
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/id_head"
+                android:gravity="center"
+                android:layout_gravity="center_vertical"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_marginStart="@dimen/_16sdp"
+                    android:layout_marginTop="@dimen/_1sdp"
+                    android:layout_marginEnd="@dimen/_16sdp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_weight="0.2"
+                        android:background="@drawable/edt_round_corner_yellow_circle"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_16sdp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_20sdp"
+                                android:id="@+id/iv_previous"
+                                android:layout_gravity="center_vertical"
+
+                                android:visibility="gone"
+                                android:src="@drawable/icon_previousdate"
+                                />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/tv_date"
+                                android:fontFamily="@font/roboto_regular"
+                                android:text="June 2022"
+                                android:layout_gravity="center_vertical"
+
+                                android:layout_marginStart="@dimen/_5sdp"
+                                android:layout_marginEnd="@dimen/_5sdp"
+                                android:textColor="@color/white"
+                                android:textSize="@dimen/_16sdp" />
+                            <ImageView
+                                android:layout_width="@dimen/_20sdp"
+                                android:layout_height="@dimen/_20sdp"
+                                android:id="@+id/iv_next"
+                                android:layout_gravity="center_vertical"
+                                android:visibility="gone"
+
+                                android:src="@drawable/icon_nextdate"
+                                app:tint="@color/white" />
+                        </LinearLayout>
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/_10sdp"
+                            android:id="@+id/iv_calender"
+                            android:src="@drawable/select_date"
+                            app:tint="@color/white" />
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="@dimen/_7sdp"
+                            android:id="@+id/iv_filter"
+                            android:src="@drawable/filter" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:gravity="start"
+            android:layout_weight="1"
+
+            android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_upcomingbookings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/row_wallet_list"/>
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_download"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_gravity="center"
+                android:background="@drawable/edt_round_corner_yellow_circle"
+                android:fontFamily="@font/roboto_medium"
+                android:text="DOWNLOAD"
+                android:textAllCaps="false"
+                android:paddingStart="@dimen/_30sdp"
+                android:paddingEnd="@dimen/_30sdp"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14sdp" />
+
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</layout>

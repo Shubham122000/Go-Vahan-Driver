@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical"
+        tools:context=".Activities.Payment">
+
+        <RelativeLayout
+            android:id="@+id/id_head"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_gravity="center"
+            android:background="@color/theme_yellow">
+
+            <ImageView
+                android:id="@+id/ivBack"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:padding="@dimen/_5sdp"
+                android:src="@drawable/backbutton_white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+
+                android:layout_centerInParent="true"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_toRightOf="@+id/ivBack"
+                android:gravity="center"
+                android:text="Add Bank Account"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14sdp" />
+
+        </RelativeLayout>
+
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
+                android:orientation="vertical">
+
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+
+                    android:text="Bank Name"
+                    android:layout_marginLeft="@dimen/_2sdp"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp" />
+
+                <EditText
+                    android:id="@+id/bank_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_2sdp"
+                    android:layout_marginRight="@dimen/_2sdp"
+                    android:elevation="@dimen/_1sdp"
+                    android:background="@android:color/transparent"
+                    android:singleLine="true"
+                    android:textSize="@dimen/_14sdp"
+                    android:hint="Enter bank name"
+                    android:padding="@dimen/_8sdp" />
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:background="@color/lightgray"/>
+
+  <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+
+                    android:text="Account Holder's Name"
+                    android:layout_marginLeft="@dimen/_2sdp"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_12sdp" />
+
+                <EditText
+                    android:id="@+id/holdername"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_2sdp"
+                    android:layout_marginRight="@dimen/_2sdp"
+                    android:elevation="@dimen/_1sdp"
+                    android:background="@android:color/transparent"
+                    android:singleLine="true"
+                    android:textSize="@dimen/_14sdp"
+                    android:hint="Enter holder's name"
+                    android:padding="@dimen/_8sdp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:background="@color/lightgray"/>
+                <TextView
+                    android:id="@+id/card_number_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/theme_red"
+                    android:layout_marginHorizontal="@dimen/_2sdp"
+                    android:textSize="@dimen/_12sdp"
+                    android:textStyle="bold"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Account Number"
+                        android:layout_marginLeft="@dimen/_2sdp"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <EditText
+                        android:id="@+id/account_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_2sdp"
+                        android:layout_marginRight="@dimen/_2sdp"
+                        android:background="@android:color/transparent"
+                        android:elevation="@dimen/_1sdp"
+                        android:singleLine="true"
+                        android:hint="Enter Account Number"
+                        android:textSize="@dimen/_14sdp"
+                        android:padding="@dimen/_8sdp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:background="@color/lightgray"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Account branch"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginLeft="@dimen/_2sdp"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <EditText
+                        android:id="@+id/account_branch"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:layout_marginLeft="@dimen/_2sdp"
+                        android:layout_marginRight="@dimen/_2sdp"
+                        android:background="@android:color/transparent"
+                        android:elevation="@dimen/_1sdp"
+                        android:singleLine="true"
+                        android:hint="Enter account branch"
+                        android:textSize="@dimen/_14sdp"
+                        android:padding="@dimen/_8sdp" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:background="@color/lightgray"/>
+       <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="IFSC"
+           android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginLeft="@dimen/_2sdp"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <EditText
+                        android:id="@+id/ifsc_code"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:layout_marginLeft="@dimen/_2sdp"
+                        android:layout_marginRight="@dimen/_2sdp"
+                        android:background="@android:color/transparent"
+                        android:elevation="@dimen/_1sdp"
+                        android:singleLine="true"
+                        android:hint="Enter IFSC"
+                        android:textSize="@dimen/_14sdp"
+                        android:padding="@dimen/_8sdp" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:background="@color/lightgray"/>
+
+  <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="UPI Id"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginLeft="@dimen/_2sdp"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <EditText
+                        android:id="@+id/upi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:layout_marginLeft="@dimen/_2sdp"
+                        android:layout_marginRight="@dimen/_2sdp"
+                        android:background="@android:color/transparent"
+                        android:elevation="@dimen/_1sdp"
+                        android:singleLine="true"
+                        android:hint="Enter UPI Id"
+                        android:textSize="@dimen/_14sdp"
+                        android:padding="@dimen/_8sdp" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:background="@color/lightgray"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="QR Code"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:textSize="@dimen/_14sdp"/>
+                    <RelativeLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_200sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        android:background="@color/light_yellow">
+                        <ImageView
+                            android:id="@+id/signature_image"
+                            android:layout_marginHorizontal="@dimen/_2sdp"
+                            android:layout_width="@dimen/_150sdp"
+                            android:layout_marginVertical="@dimen/_2sdp"
+                            android:background="@color/white"
+                            app:civ_border_color="@color/light_yellow"
+                            android:scaleType="centerCrop"
+                            android:layout_height="@dimen/_200sdp"/>
+
+                        <ImageView
+                            android:id="@+id/sign_cam"
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_centerInParent="true"
+                            android:src="@drawable/camera_colorwithborder" />
+                    </RelativeLayout>
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/PaymentButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="18dp"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:layout_marginRight="18dp"
+                        android:background="@drawable/edt_round_corner_yellow"
+                        android:text="Add Bank Account"
+                        android:textAllCaps="false"
+                        android:layout_marginBottom="@dimen/_26sdp"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_12sdp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </LinearLayout>
+</layout>

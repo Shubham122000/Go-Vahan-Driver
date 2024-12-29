@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.driver.AddDrivingLicenseActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:textSize="@dimen/_15sdp"
+        android:text="@string/upload_driving_license"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_200sdp"
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:background="@drawable/edt_round_corner">
+
+            <ImageView
+                android:id="@+id/image1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginVertical="@dimen/_20sdp"
+                android:layout_marginHorizontal="@dimen/_20sdp"
+                android:scaleType="centerCrop" />
+
+            <ImageView
+                android:id="@+id/one"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_centerInParent="true"
+                android:src="@drawable/add_photo"
+                app:tint="@color/black" />
+
+        </RelativeLayout>
+        <LinearLayout
+            android:id="@+id/upload"
+            android:layout_width="@dimen/_220sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:background="@drawable/edt_round_corner_yellow">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnAddMedia"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_gravity="center"
+                android:background="@color/transparent"
+                android:text="Upload"
+                android:fontFamily="@font/roboto_medium"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14sdp" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/alreadyhave_an_account"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_25sdp"
+            android:layout_marginStart="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:fontFamily="@font/roboto_medium"
+                android:text="Go Back to"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_13sdp" />
+            <TextView
+                android:id="@+id/login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:fontFamily="@font/roboto_medium"
+                android:text="@string/login"
+                android:textColor="@color/theme_yellow"
+                android:textSize="@dimen/_13sdp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</LinearLayout>
+</layout>

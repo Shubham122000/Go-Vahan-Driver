@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="match_parent"
+        >
+
+        <RelativeLayout
+            android:id="@+id/id_head"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_gravity="center"
+            android:background="@color/theme_yellow">
+
+            <ImageView
+                android:id="@+id/ivBack"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:padding="@dimen/_5sdp"
+                android:src="@drawable/backbutton_white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_toRightOf="@+id/ivBack"
+                android:fontFamily="@font/roboto_regular"
+                android:gravity="center"
+                android:text="Ratings &amp; Reviews"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14sdp" />
+
+        </RelativeLayout>
+
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/id_head"
+            android:gravity="start"
+            android:background="@color/very_light_gray"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/edt_round_corner_shadow"
+                android:layout_margin="@dimen/_10sdp"
+                android:layout_gravity="top">
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_bold"
+                    android:layout_marginStart="@dimen/_16sdp"
+                    android:layout_marginEnd="@dimen/_16sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:text="4.3"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textColor="@color/theme_yellow"
+                    android:textSize="@dimen/_30sdp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_weight="1"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_marginTop="@dimen/_5sdp">
+
+                        <RatingBar
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:id="@+id/rating"
+                            android:layout_gravity="center"
+                            android:theme="@style/RatingBar"
+                            style="?android:attr/ratingBarStyleSmall" />
+
+                    </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/et_feedback"
+                            android:paddingLeft="@dimen/_5sdp"
+                            android:paddingRight="@dimen/_5sdp"
+                            android:paddingTop="@dimen/_5sdp"
+                            android:paddingBottom="@dimen/_5sdp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:fontFamily="@font/roboto_regular"
+                            android:gravity="center_horizontal"
+                            android:textSize="@dimen/_14sdp"
+                            app:hintAnimationEnabled="false"
+                            android:textColorHint="@color/gray"
+                            android:textColor="@color/black"
+                            app:hintEnabled="false" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_review"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                tools:listitem="@layout/row_ratingreview" />
+
+        </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </RelativeLayout>
+
+</layout>

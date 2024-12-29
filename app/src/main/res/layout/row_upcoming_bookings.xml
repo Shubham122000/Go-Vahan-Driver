@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/_5sdp"
+    android:id="@+id/linearItem"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/ll_user"
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/edt_round_halfcorner_yellow"
+
+            android:gravity="center"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="center"
+                    android:text="@string/hint_date"
+                    android:maxLines="2"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_10sdp" />
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:background="@color/white" />
+
+
+                <TextView
+                    android:id="@+id/tv_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:fontFamily="@font/roboto_medium"
+                    android:gravity="center"
+                    android:singleLine="true"
+
+                    android:text="@string/hint_time"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_8sdp" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:layout_toEndOf="@id/ll_user"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:background="@drawable/edt_round_halfcorner_white"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:orientation="vertical"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_5sdp"
+
+                android:weightSum="1">
+
+
+                <TextView
+                    android:id="@+id/tv_partyname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/roboto_regular"
+                    android:gravity="start"
+                    android:visibility="gone"
+                    android:singleLine="true"
+                    android:text="Party Name"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/_11sdp" />
+
+                <TextView
+                    android:id="@+id/tv_bookingid"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/roboto_medium"
+                    android:singleLine="true"
+                    android:text="Booking id: #1234"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_11sdp" />
+
+
+            </LinearLayout>
+
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="@dimen/_2sdp"
+                    android:gravity="bottom"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:weightSum="1">
+
+
+                        <TextView
+                            android:id="@+id/tv_username"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/roboto_bold"
+                            android:gravity="start"
+                            android:visibility="gone"
+                            android:singleLine="true"
+                            android:text="Rahul Sharma"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_13sdp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:orientation="horizontal">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:background="@android:color/transparent"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/from_location"
+                                android:padding="@dimen/_2sdp"/>
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/tv_start"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/roboto_regular"
+                            android:singleLine="true"
+                            android:paddingStart="@dimen/_2sdp"
+
+                            android:text="@string/hint_start"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_10sdp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginBottom="@dimen/_5sdp"
+                    >
+
+                        <LinearLayout
+                            android:id="@+id/lytVisiblePass"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:background="@android:color/transparent"
+                            android:gravity="center"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/ivVisiblePass"
+                                android:layout_width="20dp"
+                                android:layout_height="20dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/to_location"
+                                android:padding="@dimen/_2sdp"/>
+                        </LinearLayout>
+                    <TextView
+                        android:id="@+id/tv_stop"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_regular"
+                        android:singleLine="true"
+                        android:layout_gravity="center"
+                        android:paddingStart="@dimen/_2sdp"
+
+                        android:text="@string/hint_stop"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_10sdp" />
+
+                </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="@dimen/_70sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/iv_truck"
+                        android:layout_width="@dimen/_70sdp"
+                        android:layout_height="@dimen/_50sdp"
+                        android:src="@drawable/booking_vehicle_photo" />
+
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:gravity="bottom"
+                        android:layout_gravity="end">
+
+                        <TextView
+                            android:id="@+id/tv_weight"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:layout_marginBottom="@dimen/_3sdp"
+                            android:fontFamily="@font/roboto_medium"
+                            android:gravity="bottom|end"
+                            android:singleLine="true"
+                            android:text="2.5 Ton"
+                            android:textColor="@color/theme_yellow"
+                            android:textSize="@dimen/_12sdp" />
+
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    </RelativeLayout>
+
+</layout>
