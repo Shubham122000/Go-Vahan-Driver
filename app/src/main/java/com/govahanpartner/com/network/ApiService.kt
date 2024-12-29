@@ -43,7 +43,7 @@ interface ApiService {
       ): Response<RegisterResponseModel>
 
        @Multipart
-       @POST("add_loader_vehicle")
+       @POST("add_vehicle")
        suspend fun addloadervehical(
         @Header("Authorization") authorization: String,
         @Part("driver_id") driver_id: RequestBody,
@@ -74,11 +74,11 @@ interface ApiService {
         @Part("exp_date_4") exp_date_4: RequestBody,
         @Part("exp_date_5") exp_date_5: RequestBody,
         @Part("other_exp_date") other_exp_date: RequestBody,
-        @Part("doc_name_1") doc_name_1: RequestBody,
-        @Part("doc_name_2") doc_name_2: RequestBody,
-        @Part("doc_name_3") doc_name_3: RequestBody,
-        @Part("doc_name_4") doc_name_4: RequestBody,
-        @Part("doc_name_5") doc_name_5: RequestBody,
+//        @Part("doc_name_1") doc_name_1: RequestBody,
+//        @Part("doc_name_2") doc_name_2: RequestBody,
+//        @Part("doc_name_3") doc_name_3: RequestBody,
+//        @Part("doc_name_4") doc_name_4: RequestBody,
+//        @Part("doc_name_5") doc_name_5: RequestBody,
         @Part("other_doc_name") other_doc_name: RequestBody,
     ): Response<AddloaderResponse>
 

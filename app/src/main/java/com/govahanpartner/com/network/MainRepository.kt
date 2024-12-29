@@ -83,11 +83,11 @@ interface MainRepository {
         exp_date_4: RequestBody,
         exp_date_5: RequestBody,
         other_exp_date: RequestBody,
-        doc_name_1: RequestBody,
-        doc_name_2: RequestBody,
-        doc_name_3: RequestBody,
-        doc_name_4: RequestBody,
-        doc_name_5: RequestBody,
+//        doc_name_1: RequestBody,
+//        doc_name_2: RequestBody,
+//        doc_name_3: RequestBody,
+//        doc_name_4: RequestBody,
+//        doc_name_5: RequestBody,
         other_doc_name: RequestBody,
     ): Response<AddloaderResponse>
 

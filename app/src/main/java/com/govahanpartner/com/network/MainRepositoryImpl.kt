@@ -53,11 +53,11 @@ class MainRepositoryImpl @Inject constructor(private val apiService: ApiService)
         exp_date_4: RequestBody,
         exp_date_5: RequestBody,
         other_exp_date: RequestBody,
-        doc_name_1: RequestBody,
-        doc_name_2: RequestBody,
-        doc_name_3: RequestBody,
-        doc_name_4: RequestBody,
-        doc_name_5: RequestBody,
+//        doc_name_1: RequestBody,
+//        doc_name_2: RequestBody,
+//        doc_name_3: RequestBody,
+//        doc_name_4: RequestBody,
+//        doc_name_5: RequestBody,
         other_doc_name: RequestBody,
     ): Response<AddloaderResponse> = apiService.addloadervehical(
         token,
@@ -76,7 +76,7 @@ class MainRepositoryImpl @Inject constructor(private val apiService: ApiService)
         images1,
         images2,
         images3,
-        images4, doc1, doc2, doc3, doc4, doc5,doc6, exp_date_1, exp_date_2, exp_date_3, exp_date_4,exp_date_5, other_exp_date, doc_name_1, doc_name_2, doc_name_3, doc_name_4,doc_name_5, other_doc_name
+        images4, doc1, doc2, doc3, doc4, doc5,doc6, exp_date_1, exp_date_2, exp_date_3, exp_date_4,exp_date_5, other_exp_date, /*doc_name_1, doc_name_2, doc_name_3, doc_name_4,doc_name_5,*/ other_doc_name
     )
     override suspend fun indi_add_loader_vehicle(
         token: String,

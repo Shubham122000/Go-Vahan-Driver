@@ -375,7 +375,7 @@ class EditTruckDocumentsActivity : BaseActivity() {
 
 
         viewModel1.AddloaderResponse.observe(this) {
-            if (it?.status == 1) {
+            if (it?.error == false) {
                 Toast.makeText(this, "Vehicle Updated Successfully...", Toast.LENGTH_LONG).show()
                 finish()
             } else {
