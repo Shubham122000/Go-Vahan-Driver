@@ -70,9 +70,9 @@ class TriplistActivity : BaseActivity(),tripdelete, deleteVehicle,tripclick {
         }
 
         viewModel.TriplistResponse.observe(this) {
-            if (it?.status == 1) {
+            if (it?.error == false) {
                 Listdata.clear()
-                Listdata.addAll(it.data)
+                it.result?.let { it1 -> Listdata.addAll(it1.trips) }
                 binding.rvtriplit.layoutManager = LinearLayoutManager(this)
                 adapter = TripAdapter(this, Listdata,this,this)
                 binding.rvtriplit.adapter = adapter

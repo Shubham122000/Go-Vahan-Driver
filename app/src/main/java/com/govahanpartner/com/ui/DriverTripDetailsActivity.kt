@@ -46,38 +46,38 @@ class DriverTripDetailsActivity : BaseActivity() {
         }
 
         viewModel.TripDetailsResponse.observe(this) {
-        if (it?.status == 1) {
-            try{
-                if(it.data.vehicle_no==null){
-                    binding.tvNumber.text=it.data.vehicle_numbers
-                }else{
-                    binding.tvNumber.text=it.data.vehicle_no
-                }
-                if (it.data.vehicle_name==null){
-                    binding.tvType.text=it.data.vehicle_type
-                }
-                else{
-                    binding.tvType.text=it.data.vehicle_name
-                }
-                binding.tvDistance.text="${it.data.total_distance} KM"
-                binding.tvDriver.text=it.data.name
-                binding.tvFrom.text=it.data.from_trip
-                binding.tvTo.text=it.data.to_trip
-                binding.tvUsername.text=it.data.name
-                binding.tvPhone.text=it.data.mobile_number
-                binding.tvEmail.text=it.data.email
-                binding.tvOwner.text=it.data.owner_name
-                binding.date.text=it.data.booking_date_from
-                binding.time.text=it.data.time
-                binding.capacity.text=it.data.load_caring
-                binding.tvTyres.text= it.data.no_of_tyers
-                binding.tvBodytype.text=it.data.body_name
-                binding.tvAmount.text="₹${it.data.freight_amount}"
-                Glide.with(this).load(it.data.image).into(binding.tvTruckImage)
-
-            }catch (e:Exception){
-                e.printStackTrace()
-            }
+        if (it?.error == false) {
+//            try{
+//                if(it.data.vehicle_no==null){
+//                    binding.tvNumber.text=it.data.vehicle_numbers
+//                }else{
+//                    binding.tvNumber.text=it.data.vehicle_no
+//                }
+//                if (it.data.vehicle_name==null){
+//                    binding.tvType.text=it.data.vehicle_type
+//                }
+//                else{
+//                    binding.tvType.text=it.data.vehicle_name
+//                }
+//                binding.tvDistance.text="${it.data.total_distance} KM"
+//                binding.tvDriver.text=it.data.name
+//                binding.tvFrom.text=it.data.from_trip
+//                binding.tvTo.text=it.data.to_trip
+//                binding.tvUsername.text=it.data.name
+//                binding.tvPhone.text=it.data.mobile_number
+//                binding.tvEmail.text=it.data.email
+//                binding.tvOwner.text=it.data.owner_name
+//                binding.date.text=it.data.booking_date_from
+//                binding.time.text=it.data.time
+//                binding.capacity.text=it.data.load_caring
+//                binding.tvTyres.text= it.data.no_of_tyers
+//                binding.tvBodytype.text=it.data.body_name
+//                binding.tvAmount.text="₹${it.data.freight_amount}"
+//                Glide.with(this).load(it.data.image).into(binding.tvTruckImage)
+//
+//            }catch (e:Exception){
+//                e.printStackTrace()
+//            }
 
 
         } else {

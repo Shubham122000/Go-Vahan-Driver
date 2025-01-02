@@ -508,13 +508,13 @@ class MainRepositoryImpl @Inject constructor(private val apiService: ApiService)
 
     override suspend fun loader_vehicle_payment(
         token: String,
-        id:String,subscribe:String,fare:String,payment_mode:String,
-        transaction_id:String,validity:String,payment_crdated:String,status:String
+        id:String,subscribe:String,payment_mode:String,
+        transaction_id:String,payment_crdated:String,status:String
 
     ): Response<AddDriverResponse> =
         apiService.loader_vehicle_payment(token,
-            id,subscribe,fare,payment_mode,
-            transaction_id,validity,payment_crdated,status)
+            id,subscribe,payment_mode,
+            transaction_id,payment_crdated,status)
 
     override suspend fun add_passenger_vehicle_payment(
         token: String,
@@ -603,11 +603,12 @@ class MainRepositoryImpl @Inject constructor(private val apiService: ApiService)
     ): Response<VehicledataResponse> = apiService.get_loader_vehicleno_details(token,id)
 
     override suspend fun subscriptionplan(
-        token: String
-    ): Response<SubscriptionPlan> = apiService.subscriptonplan(token)
-    override suspend fun subscription_plan_passengers(
-        token: String
-    ): Response<SubscriptionPlan> = apiService.subscription_plan_passengers(token)
+        token: String,
+        forPassenger:Int
+    ): Response<SubscriptionPlan> = apiService.subscriptonplan(token,forPassenger)
+//    override suspend fun subscription_plan_passengers(
+//        token: String
+//    ): Response<SubscriptionPlan> = apiService.subscription_plan_passengers(token)
 
     override suspend fun Loadertruckrepositorylist(
         token: String
@@ -656,7 +657,7 @@ class MainRepositoryImpl @Inject constructor(private val apiService: ApiService)
         fuel_charge: String,
         toll_tax: String,
         driver_fee: String,
-    ): Response<CreateBusinesscard> = apiService.AddTrip(token,tip_task,load_caring,from_trip,to_trip,
+    ): Response<AddTripDriverMOdelClass> = apiService.AddTrip(token,tip_task,load_caring,from_trip,to_trip,
     /*vehicle_type,vehicle_numbers,no_tyers,body_type,*/assign_driver,
         total_distance,freight_amount,pickup_lat,
         pickup_long,dropup_lat,dropup_long,vehicle_id,booking_date_from,
@@ -735,7 +736,7 @@ class MainRepositoryImpl @Inject constructor(private val apiService: ApiService)
         fuel_charge: String,
         toll_tax: String,
         driver_fee: String,
-    ): Response<CreateBusinesscard> = apiService.add_passenger_vendor_trip(token,tip_task,load_caring,from_trip,to_trip,
+    ): Response<AddTripDriverMOdelClass> = apiService.add_passenger_vendor_trip(token,tip_task,load_caring,from_trip,to_trip,
         vehicle_type,vehicle_numbers,no_tyers,body_type,assign_driver,total_distance,freight_amount,pickup_lat,pickup_long,dropup_lat,dropup_long,vehicle_id,booking_date_from,booking_time,       fuel_charge,
       toll_tax,
       driver_fee)
@@ -842,18 +843,18 @@ class MainRepositoryImpl @Inject constructor(private val apiService: ApiService)
     override suspend fun DriverProfile(header: String,id:String): Response<DriverProfile> {
         return apiService.driverProfile(header,id)
     }
-    override suspend fun loader_truck_repository_list_details(header: String,vehicle_id:String): Response<TaxiRepositoryViewDetailsResponse> {
-        return apiService.loader_truck_repository_list_details(header,vehicle_id)
+    override suspend fun getVehicleDetails(header: String,vehicle_id:String): Response<TaxiRepositoryViewDetailsResponse> {
+        return apiService.getVehicleDetails(header,vehicle_id)
     }
-    override suspend fun loader_truck_repository_image_list_details(header: String,vehicle_id:String): Response<TruckImagesModelCLass> {
-        return apiService.loader_truck_repository_image_list_details(header,vehicle_id)
-    }
+//    override suspend fun loader_truck_repository_image_list_details(header: String,vehicle_id:String): Response<TruckImagesModelCLass> {
+//        return apiService.loader_truck_repository_image_list_details(header,vehicle_id)
+//    }
     override suspend fun passengers_truck_repository_image_list(header: String,vehicle_id:String): Response<TruckImagesModelCLass> {
         return apiService.passengers_truck_repository_image_list(header,vehicle_id)
     }
-    override suspend fun loader_truck_repository_doc_list_details(header: String,vehicle_id:String): Response<TruckDocumentsDetailsResponse> {
-        return apiService.loader_truck_repository_doc_list_details(header,vehicle_id)
-    }
+//    override suspend fun loader_truck_repository_doc_list_details(header: String,vehicle_id:String): Response<TruckDocumentsDetailsResponse> {
+//        return apiService.loader_truck_repository_doc_list_details(header,vehicle_id)
+//    }
     override suspend fun passengers_truck_repository_list_details(header: String,vehicle_id:String): Response<TaxiRepositoryViewDetailsResponse> {
         return apiService.passengers_truck_repository_list_details(header,vehicle_id)
     }

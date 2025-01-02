@@ -30,7 +30,7 @@ class TypeOfTruckViewModel @Inject constructor(private val mainRepository: MainR
     var VehiclenumberData = MutableLiveData<ArrayList<VehicleNumberListData>>()
     var VehicalwheelsResponse = MutableLiveData<vehicalwheelsResponse>()
     var AddloaderResponse = MutableLiveData<AddloaderResponse>()
-    var AddTripResponse = MutableLiveData<CreateBusinesscard>()
+    var AddTripResponse = MutableLiveData<AddTripDriverMOdelClass>()
     var AddVehicalfinalResponse = MutableLiveData<AddVehicalfinalResponse>()
     var LoadcarryingResponse = MutableLiveData<LoaodCarryingResponse>()
     var AddTripDriverMOdelClass = MutableLiveData<AddTripDriverMOdelClass>()
@@ -733,69 +733,69 @@ class TypeOfTruckViewModel @Inject constructor(private val mainRepository: MainR
         }
 
     }
-    fun AddTripVendor(
-        token: String,
-        tip_task: String,
-        load_caring: String,
-        from_trip: String,
-        to_trip: String,
-        vehicle_type: String,
-        vehicle_numbers: String,
-        no_tyers: String,
-        body_type: String,
-        assign_driver: String,
-        total_distance: String,
-        freight_amount: String,
-        pickup_lat: String,
-        pickup_long: String,
-        dropup_lat: String,
-        dropup_long: String,
-        vehicle_id: String,
-        booking_date_from: String,
-        booking_time: String,
-        fuel_charge: String,
-        toll_tax: String,
-        driver_fee: String,
-
-    ) {
-        progressBarStatus.value = true
-        viewModelScope.launch {
-
-            val response =
-                mainRepository.AddTripVendor(
-                    token,
-                    tip_task,
-                    load_caring,
-                    from_trip,
-                    to_trip,
-                    vehicle_type,
-                    vehicle_numbers,
-                    no_tyers,
-                    body_type,
-                    assign_driver,
-                    total_distance,
-                    freight_amount,
-                    pickup_lat,
-                    pickup_long,
-                    dropup_lat,
-                    dropup_long,
-                    vehicle_id,
-                    booking_date_from,
-                    booking_time,  fuel_charge,
-                    toll_tax,
-                    driver_fee,
-
-                )
-            if (response.isSuccessful) {
-                progressBarStatus.value = false
-                AddTripResponse.postValue(response.body())
-            } else {
-                progressBarStatus.value = false
-                Log.d("TAG", response.body().toString())
-            }
-        }
-
-    }
+//    fun AddTripVendor(
+//        token: String,
+//        tip_task: String,
+//        load_caring: String,
+//        from_trip: String,
+//        to_trip: String,
+//        vehicle_type: String,
+//        vehicle_numbers: String,
+//        no_tyers: String,
+//        body_type: String,
+//        assign_driver: String,
+//        total_distance: String,
+//        freight_amount: String,
+//        pickup_lat: String,
+//        pickup_long: String,
+//        dropup_lat: String,
+//        dropup_long: String,
+//        vehicle_id: String,
+//        booking_date_from: String,
+//        booking_time: String,
+//        fuel_charge: String,
+//        toll_tax: String,
+//        driver_fee: String,
+//
+//    ) {
+//        progressBarStatus.value = true
+//        viewModelScope.launch {
+//
+//            val response =
+//                mainRepository.AddTripVendor(
+//                    token,
+//                    tip_task,
+//                    load_caring,
+//                    from_trip,
+//                    to_trip,
+//                    vehicle_type,
+//                    vehicle_numbers,
+//                    no_tyers,
+//                    body_type,
+//                    assign_driver,
+//                    total_distance,
+//                    freight_amount,
+//                    pickup_lat,
+//                    pickup_long,
+//                    dropup_lat,
+//                    dropup_long,
+//                    vehicle_id,
+//                    booking_date_from,
+//                    booking_time,  fuel_charge,
+//                    toll_tax,
+//                    driver_fee,
+//
+//                )
+//            if (response.isSuccessful) {
+//                progressBarStatus.value = false
+//                AddTripResponse.postValue(response.body())
+//            } else {
+//                progressBarStatus.value = false
+//                Log.d("TAG", response.body().toString())
+//            }
+//        }
+//
+//    }
   fun add_passenger_vendor_trip(
         token: String,
         tip_task: String,

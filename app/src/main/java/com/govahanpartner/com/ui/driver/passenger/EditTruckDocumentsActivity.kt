@@ -182,9 +182,9 @@ class EditTruckDocumentsActivity : BaseActivity() {
                 hideProgressDialog()
             }
         }
-        viewModel.loader_truck_repository_image_list_details(
-            "Bearer "+ userPref.getToken().toString(),vehicle_id
-        )
+//        viewModel.loader_truck_repository_image_list_details(
+//            "Bearer "+ userPref.getToken().toString(),vehicle_id
+//        )
 
         viewModel.truckImagesResponse.observe(this) {
             if (it?.status == 1) {

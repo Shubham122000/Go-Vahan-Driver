@@ -40,7 +40,7 @@ class SubscriptionPlanPAdapter (val context : Context, val list: List<Subscripti
 
 
         holder.binding.linearItem.setOnClickListener(View.OnClickListener {
-            SubscriptionPLanClick.PLanClick(data.amount.toString(),data.planType.toString(),data.id.toString())
+            SubscriptionPLanClick.PLanClick(data.amount.toString(),data.validity.toString(),data.id.toString())
 
         })
 

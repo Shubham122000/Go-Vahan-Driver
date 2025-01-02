@@ -94,7 +94,7 @@ class AddTripLoaderDriver : BaseActivity() {
             }
         }
         viewModel.AddTripResponse.observe(this) {
-            if (it?.status == 1) {
+            if (it?.error == false) {
                 toast("Trip Successfully Added")
                 finish()
             } else {

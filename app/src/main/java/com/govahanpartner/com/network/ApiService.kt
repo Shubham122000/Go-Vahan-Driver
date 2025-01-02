@@ -299,15 +299,13 @@ interface ApiService {
     suspend fun termsAndConditions(@Header("Authorization") token : String): Response<PrivacyPolicyModel>
 
     @FormUrlEncoded
-    @POST("loader_vehicle_payment")
+    @POST("vehicle_payment")
     suspend fun loader_vehicle_payment(
         @Header("Authorization") authorization: String,
         @Field("id") id: String,
         @Field("subscribe") subscribe: String,
-        @Field("fare") fare: String,
         @Field("payment_mode") payment_mode: String,
         @Field("transaction_id") transaction_id: String,
-        @Field("validity") validity: String,
         @Field("payment_crdated") payment_crdated: String,
         @Field("doc_status") status: String,
         ): Response<AddDriverResponse>
@@ -541,15 +539,17 @@ interface ApiService {
         @Field("id") id: String,
     ): Response<VehicledataResponse>
 
-    @GET("subscription_plan")
+    @FormUrlEncoded
+    @POST("subscription_plan")
     suspend fun subscriptonplan(
         @Header("Authorization") authorization: String,
+        @Field ("for_passenger") forPassenger:Int
     ): Response<SubscriptionPlan>
 
-    @GET("subscription_plan_passengers")
-    suspend fun subscription_plan_passengers(
-        @Header("Authorization") authorization: String,
-    ): Response<SubscriptionPlan>
+//    @GET("subscription_plan_passengers")
+//    suspend fun subscription_plan_passengers(
+//        @Header("Authorization") authorization: String,
+//    ): Response<SubscriptionPlan>
 
     @FormUrlEncoded
     @POST("payment_status_check")
@@ -558,7 +558,7 @@ interface ApiService {
         @Field("transaction_id") transaction_id: String
     ): Response<Razorpay_status_Response>
 
-    @GET("loader_truck_repository_list")
+    @POST("vehicle_repository_list")
     suspend fun LoaderTruckRepositoryList(
         @Header("Authorization") authorization: String,
     ): Response<LoaderTruckRepositoryListResponse>
@@ -772,18 +772,18 @@ interface ApiService {
     ): Response<TripListDetailsModelClass>
 
     @FormUrlEncoded
-    @POST("loader_truck_repository_list_details")
-    suspend fun loader_truck_repository_list_details(
+    @POST("get_vehicle_details")
+    suspend fun getVehicleDetails(
         @Header("Authorization") authorization: String,
         @Field("vehicle_id") vehicle_id:String,
     ): Response<TaxiRepositoryViewDetailsResponse>
 
-    @FormUrlEncoded
-    @POST("loader_truck_repository_image_list_details")
-    suspend fun loader_truck_repository_image_list_details(
-        @Header("Authorization") authorization: String,
-        @Field("vehicle_id") vehicle_id:String,
-    ): Response<TruckImagesModelCLass>
+//    @FormUrlEncoded
+//    @POST("loader_truck_repository_image_list_details")
+//    suspend fun loader_truck_repository_image_list_details(
+//        @Header("Authorization") authorization: String,
+//        @Field("vehicle_id") vehicle_id:String,
+//    ): Response<TruckImagesModelCLass>
 
     @FormUrlEncoded
     @POST("passengers_truck_repository_image_list")
@@ -792,12 +792,12 @@ interface ApiService {
         @Field("vehicle_id") vehicle_id:String,
     ): Response<TruckImagesModelCLass>
 
-    @FormUrlEncoded
-    @POST("loader_truck_repository_doc_list_details")
-    suspend fun loader_truck_repository_doc_list_details(
-        @Header("Authorization") authorization: String,
-        @Field("vehicle_id") vehicle_id:String,
-    ): Response<TruckDocumentsDetailsResponse>
+//    @FormUrlEncoded
+//    @POST("loader_truck_repository_doc_list_details")
+//    suspend fun loader_truck_repository_doc_list_details(
+//        @Header("Authorization") authorization: String,
+//        @Field("vehicle_id") vehicle_id:String,
+//    ): Response<TruckDocumentsDetailsResponse>
 
     @FormUrlEncoded
     @POST("passengers_truck_repository_list_details")
@@ -1197,7 +1197,7 @@ interface ApiService {
         @Field("fuel_charge") fuel_charge: String,
         @Field("toll_tax") toll_tax: String,
         @Field("driver_fee")  driver_fee: String,
-    ): Response<CreateBusinesscard>
+    ): Response<AddTripDriverMOdelClass>
 
     @FormUrlEncoded
     @POST("add_loader_vendor_trip")
@@ -1278,7 +1278,7 @@ interface ApiService {
         @Field("toll_tax") toll_tax: String,
         @Field("driver_fee") driver_fee: String,
 
-    ): Response<CreateBusinesscard>
+    ): Response<AddTripDriverMOdelClass>
 
 
     @FormUrlEncoded

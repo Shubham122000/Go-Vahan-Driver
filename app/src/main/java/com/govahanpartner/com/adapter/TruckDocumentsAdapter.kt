@@ -1,6 +1,8 @@
 package com.govahanpartner.com.adapter
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,14 +10,16 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.govahanpartner.com.R
+import com.govahanpartner.com.model.Documents
 
 //import com.govahanpartner.com.customclick.click
 import com.govahanpartner.com.model.TruckDocumentsData
+import com.govahanpartner.com.utils.toast
 
 
-class TruckDocumentsAdapter  (var context: Context, var list: List<TruckDocumentsData>/*, var click: click*/)
+class TruckDocumentsAdapter  (var context: Context, var list: List<Documents>/*, var click: click*/)
     : RecyclerView.Adapter<TruckDocumentsAdapter.ViewHolder>() {
-    var newurl :String = ""
+//    var newurl :String = ""
     inner class ViewHolder(itemview: View) : RecyclerView.ViewHolder(itemview) {
 //        var binding: TruckRepositoryDocumentItemsBinding = DataBindingUtil.bind(itemview)!!
 
@@ -39,12 +43,32 @@ class TruckDocumentsAdapter  (var context: Context, var list: List<TruckDocument
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         var data = list[position]
-
-        holder.tv_rcbook.text=data.doc_name
-        holder.date.text=data.exp_date
+        if (data.docType == 1){
+            holder.tv_rcbook.text= "Rc"
+        }else if (data.docType == 2){
+            holder.tv_rcbook.text= "Insurance"
+        }else if (data.docType == 3){
+            holder.tv_rcbook.text= "Pollution"
+        }else if (data.docType == 4){
+            holder.tv_rcbook.text= "Fitness"
+        }else if (data.docType == 5){
+            holder.tv_rcbook.text= "Rto"
+        }else if (data.docType == 6){
+            holder.tv_rcbook.text= "Other"
+        }
+        holder.date.text=data.docExpiryDate
         holder.fileDwnd.setOnClickListener {
-//            click.Click(position,data.doc)
-
+            if (data.documentUrl?.isNotEmpty() == true) {
+                context.startActivity(
+                    Intent(
+                        Intent.ACTION_VIEW, Uri.parse(
+                            data.documentUrl
+                        )
+                    )
+                )
+            }else{
+                context.toast("No document found.")
+            }
         }
 
     }

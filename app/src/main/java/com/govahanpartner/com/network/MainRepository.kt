@@ -235,10 +235,10 @@ interface MainRepository {
     ): Response<AddloaderResponse>
     suspend fun driverSendOtpApi(mobile : String) : Response<RegisterResponseModel>
     suspend fun DriverProfile(header: String,id:String): Response<DriverProfile>
-    suspend fun loader_truck_repository_list_details(header: String,vehicle_id:String): Response<TaxiRepositoryViewDetailsResponse>
-    suspend fun loader_truck_repository_image_list_details(header: String,vehicle_id:String): Response<TruckImagesModelCLass>
+    suspend fun getVehicleDetails(header: String,vehicle_id:String): Response<TaxiRepositoryViewDetailsResponse>
+//    suspend fun loader_truck_repository_image_list_details(header: String,vehicle_id:String): Response<TruckImagesModelCLass>
     suspend fun passengers_truck_repository_image_list(header: String,vehicle_id:String): Response<TruckImagesModelCLass>
-    suspend fun loader_truck_repository_doc_list_details(header: String,vehicle_id:String): Response<TruckDocumentsDetailsResponse>
+//    suspend fun loader_truck_repository_doc_list_details(header: String,vehicle_id:String): Response<TruckDocumentsDetailsResponse>
     suspend fun passengers_truck_repository_list_details(header: String,vehicle_id:String): Response<TaxiRepositoryViewDetailsResponse>
     suspend fun passengers_truck_repository_doc_list(header: String,vehicle_id:String): Response<TruckDocumentsDetailsResponse>
     suspend fun loader_truck_repository_list_delete(header: String,id:String): Response<DriverProfile>
@@ -320,7 +320,7 @@ interface MainRepository {
         toll_tax: String,
         driver_fee: String,
 
-    ): Response<CreateBusinesscard>
+    ): Response<AddTripDriverMOdelClass>
 
    suspend fun AddTripVendor(
         token: String,
@@ -369,7 +369,7 @@ interface MainRepository {
         fuel_charge: String,
         toll_tax: String,
         driver_fee: String,
-    ): Response<CreateBusinesscard>
+    ): Response<AddTripDriverMOdelClass>
     suspend fun AddTripPassenger(
         token: String,
         tip_task: String,
@@ -425,12 +425,13 @@ interface MainRepository {
     suspend fun StateList(): Response<StateListResponse>
 
     suspend fun subscriptionplan(
-        token: String
+        token: String,
+        forPassenger:Int
     ): Response<SubscriptionPlan>
 
-    suspend fun subscription_plan_passengers(
-        token: String
-    ): Response<SubscriptionPlan>
+//    suspend fun subscription_plan_passengers(
+//        token: String
+//    ): Response<SubscriptionPlan>
     suspend fun Loadertruckrepositorypassengerlist(
         token: String
     ): Response<LoaderTruckRepositoryListResponse>
@@ -676,8 +677,8 @@ interface MainRepository {
 
     suspend fun loader_vehicle_payment(
         token: String,
-        id:String,subscribe:String,fare:String,payment_mode:String,
-        transaction_id:String,validity:String,payment_crdated:String,status:String
+        id:String,subscribe:String,payment_mode:String,
+        transaction_id:String,payment_crdated:String,status:String
     ): Response<AddDriverResponse>
 
   suspend fun add_passenger_vehicle_payment(

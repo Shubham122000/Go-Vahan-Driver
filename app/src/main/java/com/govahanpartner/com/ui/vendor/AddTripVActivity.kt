@@ -348,7 +348,7 @@ class AddTripVActivity : BaseActivity() {
 
 
         viewModel.AddTripResponse.observe(this) {
-            if (it?.status == 1) {
+            if (it?.error == false) {
                 toast("Trip Added Successfully")
                 finish()
             } else {

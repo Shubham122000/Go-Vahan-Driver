@@ -79,7 +79,7 @@ class PaymentThroughActivity : BaseActivity(), PaymentResultWithDataListener {
             finish()
         }
         viewModel.subscriptionPlanPayment.observe(this){
-                if (it.status == 1) {
+                if (it.error == false) {
                     val intent = Intent(this, DashboardActivity::class.java)
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
                     this.startActivity(intent)
@@ -291,7 +291,7 @@ class PaymentThroughActivity : BaseActivity(), PaymentResultWithDataListener {
       *  You need to pass current activity in order to let Razorpay create CheckoutActivity
       * */
 //        amount = (binding.payableAmount.text.toString().replace("₹", "").toFloat() * 100).toInt()
-        amount = (amountofuser.toFloat() * 100).toInt()
+        amount = (amountofuser.toFloat()).toInt()
         finalPamountInt = amount
         val co = Checkout()
         co.setKeyID("rzp_test_fWTippdyDGtkYn")
@@ -343,8 +343,7 @@ class PaymentThroughActivity : BaseActivity(), PaymentResultWithDataListener {
             else {
                 viewModel.PaymentSubscriptionPlan(
                     "Bearer " + userPref.user.apiToken,
-                    vehicle_id1, "2", paymentprice.toString(), "2", p1?.paymentId.toString(),
-                    plantype, currentdate, "2"
+                    vehicle_id1, "2",  "2", p1?.paymentId.toString(), currentdate, "2"
                 )
             }
         }
@@ -370,8 +369,7 @@ class PaymentThroughActivity : BaseActivity(), PaymentResultWithDataListener {
             else {
                 viewModel.PaymentSubscriptionPlan(
                     "Bearer " + userPref.user.apiToken,
-                    vehicle_id1, "2", paymentprice.toString(), "2", transactionId.toString(),
-                    plantype, currentdate, "3"
+                    vehicle_id1, "2" , "2", transactionId.toString(), currentdate, "3"
                 )
             }
         }

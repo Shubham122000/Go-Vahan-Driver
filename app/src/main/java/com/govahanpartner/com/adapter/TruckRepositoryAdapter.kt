@@ -16,13 +16,13 @@ import com.govahanpartner.com.customclick.loadervehiclelist
 import com.govahanpartner.com.customclick.tripdelete
 
 import com.govahanpartner.com.databinding.UiRowTruckRepositoryBinding
-import com.govahanpartner.com.model.LoaderTruckRepositoryListResponseData
+import com.govahanpartner.com.model.Vehicles
 
 
 class TruckRepositoryAdapter(
     val context: Context,
     var loadervehicleedit: loadervehicleedit,
-    val list: List<LoaderTruckRepositoryListResponseData>,
+    val list: List<Vehicles>,
     var deletevehicle: tripdelete,
     var loadervehiclelist: loadervehiclelist
 ) : RecyclerView.Adapter<TruckRepositoryAdapter.ViewHolder>() {
@@ -51,18 +51,21 @@ class TruckRepositoryAdapter(
 //        } else if (data.payment_status.equals("2")) {
 //            holder.binding.status.text = "Completed"
 //        }
-        if (data.status.equals("1")) {
-            holder.binding.status.text = "Payment Pending"
 
-        } else if (data.status.equals("0")) {
-            holder.binding.status.text = "Under reviewed"
-
-        } else if (data.status.equals("2")) {
-            holder.binding.status.text = "Completed"
-            holder.binding.status.setTextColor(Color.GREEN)
-        } else if (data.status.equals("4")) {
-            holder.binding.status.text = "Expired"
-            holder.binding.status.setTextColor(Color.RED)
+        if (data.documentStatus == 1) {
+            if (data.paymentStatus == 0) {
+                holder.binding.status.text = "Payment Pending"
+            } else if (data.paymentStatus == 1 && data.isSubscriptionValid == "Valid") {
+                holder.binding.status.text = "Completed"
+                holder.binding.status.setTextColor(Color.GREEN)
+            } else if (data.isSubscriptionValid == "Expired"){
+                    holder.binding.status.text = "Expired"
+                    holder.binding.status.setTextColor(Color.RED)
+            }
+        }else{
+            if (data.paymentStatus == 0) {
+                holder.binding.status.text = "Under reviewed"
+            }
         }
 
 
@@ -71,19 +74,19 @@ class TruckRepositoryAdapter(
 //            holder.binding.status.text = "Completed"
 //        }
 
-        holder.binding.tvTrucknumber.text = data.loaderNumber
-        holder.binding.tvTruckname.text = data.loaderName
-        holder.binding.tvOwnername.text = data.owner_name
-        holder.binding.validity.text = data.expired_date
-        Glide.with(context).load(data.image).into(holder.binding.ivVehicle)
+        holder.binding.tvTrucknumber.text = data.vehicleNumber
+        holder.binding.tvTruckname.text = data.vehicleName
+        holder.binding.tvOwnername.text = data.user?.name
+        holder.binding.validity.text = data.subscription_end
+        Glide.with(context).load(data.vehicleImage).into(holder.binding.ivVehicle)
         holder.binding.delete.setOnClickListener {
-            deletevehicle.tripdelete(data.vehicleId)
+            deletevehicle.tripdelete(data.id)
         }
         holder.binding.linearItem.setOnClickListener {
-            loadervehiclelist.loadervehiclelist(data.vehicleId.toString())
+            loadervehiclelist.loadervehiclelist(data?.id.toString())
         }
         holder.binding.edit.setOnClickListener {
-            loadervehicleedit.loadervehicleedit(data.vehicleId.toString())
+            loadervehicleedit.loadervehicleedit(data.id.toString())
         }
     }
     override fun getItemCount(): Int {

@@ -26,13 +26,14 @@ class SubscriptionPlanViewModel @Inject constructor(private val mainRepository: 
     val progressBarStatus = MutableLiveData<Boolean>()
 
     fun SubscriptionApi(
-        token:String
+        token:String,
+        forPassenger:Int
     ){
         progressBarStatus.value = true
         viewModelScope.launch {
 
             val response =
-                mainRepository.subscriptionplan(token)
+                mainRepository.subscriptionplan(token,forPassenger)
             if (response.isSuccessful) {
                 progressBarStatus.value = false
                 subscriptionPlan.postValue(response.body())
@@ -44,52 +45,52 @@ class SubscriptionPlanViewModel @Inject constructor(private val mainRepository: 
 
     }
 
-    fun checkupApi(token: String,
-        amount: String,  mobile: String,
-        user_id: String,
-  ): MutableLiveData<ChecksumResponse> {
-        if (ChecksumResponse == null) {
-            ChecksumResponse = MutableLiveData()
-        }
-        viewModelScope.launch {
-            try {
-                val response = mainRepository.checksumApi(token, amount,mobile,user_id
-                 )
+//    fun checkupApi(token: String,
+//        amount: String,  mobile: String,
+//        user_id: String,
+//  ): MutableLiveData<ChecksumResponse> {
+//        if (ChecksumResponse == null) {
+//            ChecksumResponse = MutableLiveData()
+//        }
+//        viewModelScope.launch {
+//            try {
+//                val response = mainRepository.checksumApi(token, amount,mobile,user_id
+//                 )
+//
+//                if (response.isSuccessful) {
+//                    progressBarStatus.value = false
+//                    ChecksumResponse.postValue(response.body())
+//                }
+//            }catch (e:Exception) {
+//                progressBarStatus.value = false
+//                e.printStackTrace()
+//            }
+//        }
+//        return ChecksumResponse
+//    }
 
-                if (response.isSuccessful) {
-                    progressBarStatus.value = false
-                    ChecksumResponse.postValue(response.body())
-                }
-            }catch (e:Exception) {
-                progressBarStatus.value = false
-                e.printStackTrace()
-            }
-        }
-        return ChecksumResponse
-    }
-
-    fun payment_status_check(token: String,
-                   transaction_id: String
-    ): MutableLiveData<Razorpay_status_Response> {
-        if (razorpayStatusResponse == null) {
-            razorpayStatusResponse = MutableLiveData()
-        }
-        viewModelScope.launch {
-            try {
-                val response = mainRepository.payment_status_check(token, transaction_id
-                )
-
-                if (response.isSuccessful) {
-                    progressBarStatus.value = false
-                    razorpayStatusResponse.postValue(response.body())
-                }
-            }catch (e:Exception) {
-                progressBarStatus.value = false
-                e.printStackTrace()
-            }
-        }
-        return razorpayStatusResponse
-    }
+//    fun payment_status_check(token: String,
+//                   transaction_id: String
+//    ): MutableLiveData<Razorpay_status_Response> {
+//        if (razorpayStatusResponse == null) {
+//            razorpayStatusResponse = MutableLiveData()
+//        }
+//        viewModelScope.launch {
+//            try {
+//                val response = mainRepository.payment_status_check(token, transaction_id
+//                )
+//
+//                if (response.isSuccessful) {
+//                    progressBarStatus.value = false
+//                    razorpayStatusResponse.postValue(response.body())
+//                }
+//            }catch (e:Exception) {
+//                progressBarStatus.value = false
+//                e.printStackTrace()
+//            }
+//        }
+//        return razorpayStatusResponse
+//    }
 
     fun paymentcheckApi(token: String,
         transactionid: String
@@ -113,32 +114,30 @@ class SubscriptionPlanViewModel @Inject constructor(private val mainRepository: 
         }
         return Paymentsuccessmsgresponse
     }
-    fun subscription_plan_passengers(
-        token:String
-    ){
-        progressBarStatus.value = true
-        viewModelScope.launch {
-
-            val response =
-                mainRepository.subscription_plan_passengers(token)
-            if (response.isSuccessful) {
-                progressBarStatus.value = false
-                subscriptionPlan.postValue(response.body())
-            } else {
-                progressBarStatus.value = false
-                Log.d("TAG", response.body().toString())
-            }
-        }
-
-    }
+//    fun subscription_plan_passengers(
+//        token:String
+//    ){
+//        progressBarStatus.value = true
+//        viewModelScope.launch {
+//
+//            val response =
+//                mainRepository.subscription_plan_passengers(token)
+//            if (response.isSuccessful) {
+//                progressBarStatus.value = false
+//                subscriptionPlan.postValue(response.body())
+//            } else {
+//                progressBarStatus.value = false
+//                Log.d("TAG", response.body().toString())
+//            }
+//        }
+//
+//    }
     fun PaymentSubscriptionPlan(
         token: String,
         id: String,
         subscribe: String,
-        fare: String,
         payment_mode: String,
         transaction_id: String,
-        validity: String,
         payment_crdated: String,status:String
 
         ){
@@ -149,9 +148,8 @@ class SubscriptionPlanViewModel @Inject constructor(private val mainRepository: 
                 mainRepository.loader_vehicle_payment(token,
                     id,
                     subscribe,
-                    fare,
                     payment_mode,
-                    transaction_id,validity,payment_crdated,status
+                    transaction_id,payment_crdated,status
                 )
             if (response.isSuccessful) {
                 progressBarStatus.value = false

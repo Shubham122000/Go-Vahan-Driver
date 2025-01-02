@@ -57,9 +57,9 @@ class LoderdriverViewTrip : BaseActivity(), tripdelete, deleteVehicle, tripclick
             "Bearer "+ userPref.getToken().toString(),id,type
         )
         viewModel.TriplistResponse.observe(this) {
-            if (it?.status == 1) {
+            if (it?.error == false) {
                 Listdata.clear()
-                Listdata.addAll(it.data)
+                it.result?.let { it1 -> Listdata.addAll(it1.trips) }
                 binding.rvtriplit.layoutManager = LinearLayoutManager(this)
                 adapter = TripAdapter(this, Listdata,this,this)
                 binding.rvtriplit.adapter = adapter

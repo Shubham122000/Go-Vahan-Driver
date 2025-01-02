@@ -16,7 +16,7 @@ import com.govahanpartner.com.customclick.loadervehiclelist
 import com.govahanpartner.com.customclick.tripdelete
 import com.govahanpartner.com.databinding.ActivityTruckRepositoryBinding
 import com.govahanpartner.com.dialogs.DeleteVehicleDialog
-import com.govahanpartner.com.model.LoaderTruckRepositoryListResponseData
+import com.govahanpartner.com.model.Vehicles
 import com.govahanpartner.com.ui.common.EditTaxiDocumentsActivity
 import com.govahanpartner.com.ui.common.TaxiRepositoryViewActivity
 import com.govahanpartner.com.ui.common.TruckRepositoryViewActivity
@@ -29,7 +29,7 @@ class TruckRepositoryActivity : BaseActivity(), tripdelete, loadervehiclelist, d
     loadervehicleedit {
     private lateinit var binding: ActivityTruckRepositoryBinding
     private val viewModel: TruckRepositoryViewModel by viewModels()
-    var Listdata: ArrayList<LoaderTruckRepositoryListResponseData> = ArrayList()
+    var Listdata: ArrayList<Vehicles> = ArrayList()
     lateinit var adapter: TruckRepositoryAdapter
     lateinit var flag: String
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -100,9 +100,9 @@ class TruckRepositoryActivity : BaseActivity(), tripdelete, loadervehiclelist, d
         }
 
         viewModel.TruckrepositoryList.observe(this) {
-            if (it?.status == 1) {
+            if (it?.error == false) {
                 Listdata.clear()
-                Listdata.addAll(it.data)
+                it.result?.vehicles?.let { it1 -> Listdata.addAll(it1) }
                 binding.rvTruckrepo.visibility=View.VISIBLE
                 binding.rvTruckrepo.layoutManager = LinearLayoutManager(this)
                 adapter = TruckRepositoryAdapter(this, this, Listdata, this, this)

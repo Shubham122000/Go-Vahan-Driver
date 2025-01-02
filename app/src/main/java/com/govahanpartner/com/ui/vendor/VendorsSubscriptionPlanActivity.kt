@@ -90,20 +90,26 @@ class VendorsSubscriptionPlanActivity : BaseActivity(),SubscriptionPLanClick{
             bodytype1 = intent.getStringExtra("bodytype1").toString()
             flag = intent.getStringExtra("flag1").toString()
         }
+
             viewModel.subscriptionPlan.observe(this){
-            Listdata.clear()
-            Listdata.addAll(it.data)
-            binding.rvPlans.layoutManager = LinearLayoutManager(this)
-            adapter = SubscriptionPlanPAdapter(this, Listdata,this)
-            binding.rvPlans.adapter = adapter
+                if (it.error == false) {
+                    Listdata.clear()
+                    it.result?.data?.let { it1 -> Listdata.addAll(it1) }
+                    binding.rvPlans.layoutManager = LinearLayoutManager(this)
+                    adapter = SubscriptionPlanPAdapter(this, Listdata, this)
+                    binding.rvPlans.adapter = adapter
+                }
         }
         if (flag.equals("passenger")){
-            viewModel.subscription_plan_passengers(
-                "Bearer "+userPref.getToken().toString())
+            viewModel.SubscriptionApi(
+                "Bearer "+userPref.getToken().toString(),
+                1)
         }
         else{
             viewModel.SubscriptionApi(
-           "Bearer "+userPref.getToken().toString())
+           "Bearer "+userPref.getToken().toString(),
+                0
+            )
 
         }
 

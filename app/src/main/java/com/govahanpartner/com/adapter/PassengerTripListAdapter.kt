@@ -32,17 +32,17 @@ class PassengerTripListAdapter (var context: Context, var list: List<TripListRes
 
         holder.binding.fair.text = "Rs."+data.freightAmount
 //        holder.binding.tvBookingid.text = data.
-        holder.binding.tvName.text = data.name
+        holder.binding.tvName.text = data.tipTask
         holder.binding.tvStart.text = data.fromTrip
         holder.binding.tvStop.text = data.toTrip
-        holder.binding.tvPartyname.text = data.vehicleName
+        holder.binding.tvPartyname.text = data.vehicle?.vehicleName
         var Datetime = data.createdAt
         var Datsplit = Datetime?.split(" ")!!.toTypedArray()
         var date = Datsplit[0]
         var time = Datsplit[1]
         holder.binding.tvDate.text = date
         holder.binding.tvTime.text = time
-        Glide.with(context).load(data.image).into(holder.binding.ivTruck)
+        Glide.with(context).load(data.vehicleImage).into(holder.binding.ivTruck)
         holder.binding.delete.setOnClickListener {
             tripdelete.tripdelete(data.id)
         }

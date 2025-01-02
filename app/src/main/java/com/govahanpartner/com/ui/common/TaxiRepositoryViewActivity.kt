@@ -14,6 +14,7 @@ import com.govahanpartner.com.adapter.TruckDocumentsAdapter
 import com.govahanpartner.com.adapter.TruckImagesAdapter
 import com.govahanpartner.com.base.BaseActivity
 import com.govahanpartner.com.databinding.ActivityTaxiRepositoryViewBinding
+import com.govahanpartner.com.model.Documents
 import com.govahanpartner.com.model.TruckDocumentsData
 import com.govahanpartner.com.model.TruckImagesData
 import com.govahanpartner.com.ui.vendor.VendorsSubscriptionPlanActivity
@@ -26,7 +27,7 @@ class TaxiRepositoryViewActivity : BaseActivity() /*, click*/ {
     private lateinit var binding : ActivityTaxiRepositoryViewBinding
     private val viewModel: TruckRepositoryViewModel by viewModels()
     var Listdata:ArrayList<TruckImagesData> = ArrayList()
-    var Listdata1:ArrayList<TruckDocumentsData> = ArrayList()
+    var Listdata1:ArrayList<Documents> = ArrayList()
     var newurl :String = ""
     var downlloadpdf :String = ""
     var url :String =""
@@ -51,20 +52,39 @@ class TaxiRepositoryViewActivity : BaseActivity() /*, click*/ {
             vehicle_id= intent.getStringExtra("vehicle_id").toString()
         }
         viewModel.truckviewResponse.observe(this) {
-            if (it?.status == 1) {
-                binding.etTruckownername.text=it.data.owner_name
-                binding.spinnerTrucktype.text=it.data.loader_name
-                binding.etVehivalnumber.text=it.data.loader_number
-                binding.spinnerTyrenumber.text= it.data.tyres.toString()
-                binding.spinnerYearofmodel.text=it.data.year.toString()
-                binding.seat.text=it.data.seat.toString()
-                if (it.data.status==1){
-                    binding.btn.visibility= View.VISIBLE
-                    binding.btn.text="Proceed Payment"
+            if (it?.error == false) {
+                binding.etTruckownername.text=it.result?.user?.name
+                binding.spinnerTrucktype.text=it.result?.vehicleName
+                binding.etVehivalnumber.text=it.result?.vehicleNumber
+                binding.spinnerTyrenumber.text= it.result?.wheels?.wheel.toString()
+                binding.spinnerYearofmodel.text=it.result?.modelYear?.year.toString()
+                if (it.result?.images?.isNotEmpty() == true){
+                    Glide.with(this@TaxiRepositoryViewActivity).load(it.result?.images?.get(0)?.imageUrl).into(binding.ivTruck1)
+                    Glide.with(this@TaxiRepositoryViewActivity).load(it.result?.images?.get(1)?.imageUrl).into(binding.ivTruck2)
+                    Glide.with(this@TaxiRepositoryViewActivity).load(it.result?.images?.get(2)?.imageUrl).into(binding.ivTruck3)
+                    Glide.with(this@TaxiRepositoryViewActivity).load(it.result?.images?.get(3)?.imageUrl).into(binding.ivTruck4)
                 }
-                else{
+                it.result?.documents?.let { it1 -> Listdata1.addAll(it1) }
+                binding.rvDocuments.layoutManager = LinearLayoutManager(this)
+                adapter1 = TruckDocumentsAdapter(this, Listdata1)
+                binding.rvDocuments.adapter =adapter1
+//                for (i in 0 until (it.result?.images?.size ?: 0)){
+//                    if (i == 0){
+//                        Glide.with(this@TaxiRepositoryViewActivity).load(it.result?.images[i])
+//                    }
+//                }
+//                binding.seat.text=it.data.seat.toString()
+                if (it.result?.documentStatus == 1){
+                    if (it.result?.status==1){
+                        binding.btn.visibility= View.VISIBLE
+                        binding.btn.text="Proceed Payment"
+                    } else{
+                        binding.btn.visibility= View.GONE
+                    }
+                }else{
                     binding.btn.visibility= View.GONE
                 }
+
             } else {
                 toast(it.message)
             }
@@ -113,18 +133,18 @@ class TaxiRepositoryViewActivity : BaseActivity() /*, click*/ {
         viewModel.passengers_truck_repository_doc_list(
             "Bearer "+ userPref.getToken().toString(),vehicle_id
         )
-        viewModel.truckDocumentsResponse.observe(this) {
-            if (it?.status == 1) {
-                Listdata1.clear()
-                Listdata1.addAll(it.data)
-
-                binding.rvDocuments.layoutManager = LinearLayoutManager(this)
-                adapter1 = TruckDocumentsAdapter(this, Listdata1)
-                binding.rvDocuments.adapter =adapter1
-            } else {
-                snackbar(it?.message!!)
-            }
-        }
+//        viewModel.truckDocumentsResponse.observe(this) {
+//            if (it?.status == 1) {
+//                Listdata1.clear()
+//                Listdata1.addAll(it.data)
+//
+//                binding.rvDocuments.layoutManager = LinearLayoutManager(this)
+//                adapter1 = TruckDocumentsAdapter(this, Listdata1)
+//                binding.rvDocuments.adapter =adapter1
+//            } else {
+//                snackbar(it?.message!!)
+//            }
+//        }
     }
 
 

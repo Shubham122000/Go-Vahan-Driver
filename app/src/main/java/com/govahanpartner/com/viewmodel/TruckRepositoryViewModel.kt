@@ -79,7 +79,7 @@ class TruckRepositoryViewModel @Inject constructor(private val mainRepository: M
         }
 
     }
-    fun loader_truck_repository_list_details(
+    fun getVehicleDetails(
         token:String,
         id:String
     ){
@@ -87,7 +87,7 @@ class TruckRepositoryViewModel @Inject constructor(private val mainRepository: M
         viewModelScope.launch {
 
             val response =
-                mainRepository.loader_truck_repository_list_details(token,id)
+                mainRepository.getVehicleDetails(token,id)
             if (response.isSuccessful) {
                 progressBarStatus.value = false
                 truckviewResponse.postValue(response.body())
@@ -98,25 +98,25 @@ class TruckRepositoryViewModel @Inject constructor(private val mainRepository: M
         }
 
     }
-    fun loader_truck_repository_image_list_details(
-        token:String,
-        id:String
-    ){
-        progressBarStatus.value = true
-        viewModelScope.launch {
-
-            val response =
-                mainRepository.loader_truck_repository_image_list_details(token,id)
-            if (response.isSuccessful) {
-                progressBarStatus.value = false
-                truckImagesResponse.postValue(response.body())
-            } else {
-                progressBarStatus.value = false
-                Log.d("TAG", response.body().toString())
-            }
-        }
-
-    }
+//    fun loader_truck_repository_image_list_details(
+//        token:String,
+//        id:String
+//    ){
+//        progressBarStatus.value = true
+//        viewModelScope.launch {
+//
+//            val response =
+//                mainRepository.loader_truck_repository_image_list_details(token,id)
+//            if (response.isSuccessful) {
+//                progressBarStatus.value = false
+//                truckImagesResponse.postValue(response.body())
+//            } else {
+//                progressBarStatus.value = false
+//                Log.d("TAG", response.body().toString())
+//            }
+//        }
+//
+//    }
     fun passengers_truck_repository_image_list(
         token:String,
         id:String
@@ -136,25 +136,25 @@ class TruckRepositoryViewModel @Inject constructor(private val mainRepository: M
         }
 
     }
-    fun loader_truck_repository_documents(
-        token:String,
-        id:String
-    ){
-        progressBarStatus.value = true
-        viewModelScope.launch {
-
-            val response =
-                mainRepository.loader_truck_repository_doc_list_details(token,id)
-            if (response.isSuccessful) {
-                progressBarStatus.value = false
-                truckDocumentsResponse.postValue(response.body())
-            } else {
-                progressBarStatus.value = false
-                Log.d("TAG", response.body().toString())
-            }
-        }
-
-    }
+//    fun loader_truck_repository_documents(
+//        token:String,
+//        id:String
+//    ){
+//        progressBarStatus.value = true
+//        viewModelScope.launch {
+//
+//            val response =
+//                mainRepository.loader_truck_repository_doc_list_details(token,id)
+//            if (response.isSuccessful) {
+//                progressBarStatus.value = false
+//                truckDocumentsResponse.postValue(response.body())
+//            } else {
+//                progressBarStatus.value = false
+//                Log.d("TAG", response.body().toString())
+//            }
+//        }
+//
+//    }
     fun passengers_truck_repository_list_details(
         token:String,
         id:String
