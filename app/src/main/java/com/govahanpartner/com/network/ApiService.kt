@@ -451,7 +451,7 @@ interface ApiService {
         @Part("name") name: RequestBody,
         @Part("driving_exp") driving_exp: RequestBody,
         @Part("driving_lic") driving_lic: RequestBody,
-        @Field("country_code") countryCode: RequestBody,
+        @Part("country_code") countryCode: RequestBody,
         @Part("mobile") mobile: RequestBody,
         @Part("email") email: RequestBody,
         @Part("password") password: RequestBody,
