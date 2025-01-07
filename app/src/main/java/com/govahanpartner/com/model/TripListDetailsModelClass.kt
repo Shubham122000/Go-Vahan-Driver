@@ -1,20 +1,21 @@
 package com.govahanpartner.com.model
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class TripListDetailsModelClass(
     @SerializedName("error"       ) var error      : Boolean? = null,
     @SerializedName("status_code" ) var statusCode : Int?     = null,
     @SerializedName("message"     ) var message    : String?  = null,
     @SerializedName("result"      ) var result     : TripListDetailsResult?  = TripListDetailsResult()
-)
+): Serializable
 
 data class TripListDetailsResult(
     @SerializedName("trips" ) var trips : ArrayList<TripListDetailsData> = arrayListOf(),
     @SerializedName("total" ) var total : Int?             = null,
     @SerializedName("page"  ) var page  : Int?             = null,
     @SerializedName("limit" ) var limit : Int?             = null
-)
+): Serializable
 data class TripListDetailsData(
     @SerializedName("id"                ) var id              : Int?     = null,
     @SerializedName("loader_type"       ) var loaderType      : Int?     = null,
@@ -46,7 +47,7 @@ data class TripListDetailsData(
     @SerializedName("year_of_model"     ) var yearOfModel     : String?  = null,
     @SerializedName("user"              ) var user            : User?    = User(),
     @SerializedName("vehicle"           ) var vehicle         : Vehicle? = Vehicle()
-)
+): Serializable
 data class Vehicle (
     @SerializedName("id"             ) var id            : Int?    = null,
     @SerializedName("vehicle_name"   ) var vehicleName   : String? = null,
@@ -55,4 +56,4 @@ data class Vehicle (
     @SerializedName("body_type"      ) var bodyType      : String? = null,
     @SerializedName("wheels"         ) var wheels        : String? = null,
     @SerializedName("model_year"     ) var modelYear     : String? = null
-)
+): Serializable

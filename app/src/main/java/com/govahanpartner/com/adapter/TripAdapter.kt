@@ -42,7 +42,7 @@ class TripAdapter(var context: Context,var list: List<TripListResponseData>,var 
 //        holder.binding.tvTime.text = time
         Glide.with(context).load(data.vehicleImage).into(holder.binding.ivTruck)
         holder.binding.click.setOnClickListener {
-            tripclick.tripclick(data.id.toString())
+            tripclick.tripclick(data)
         }
         holder.binding.delete.setOnClickListener {
             tripdelete.tripdelete(data.id)

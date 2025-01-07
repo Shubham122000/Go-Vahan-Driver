@@ -1,19 +1,20 @@
 package com.govahanpartner.com.model
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class TripListResponse(
     @SerializedName("error"       ) var error      : Boolean? = null,
     @SerializedName("status_code" ) var statusCode : Int?     = null,
     @SerializedName("message"     ) var message    : String?  = null,
     @SerializedName("result"      ) var result     : TripListResult?  = TripListResult()
-)
+): Serializable
 data class TripListResult(
     @SerializedName("trips" ) var trips : ArrayList<TripListResponseData> = arrayListOf(),
     @SerializedName("total" ) var total : Int?             = null,
     @SerializedName("page"  ) var page  : Int?             = null,
     @SerializedName("limit" ) var limit : Int?             = null
-)
+): Serializable
 data class TripListResponseData(
     @SerializedName("id"                ) var id              : Int?     = null,
     @SerializedName("loader_type"       ) var loaderType      : Int?     = null,
@@ -45,4 +46,4 @@ data class TripListResponseData(
     @SerializedName("year_of_model"     ) var yearOfModel     : String?  = null,
     @SerializedName("user"              ) var user            : User?    = User(),
     @SerializedName("vehicle"           ) var vehicle         : Vehicle? = Vehicle()
-)
+): Serializable

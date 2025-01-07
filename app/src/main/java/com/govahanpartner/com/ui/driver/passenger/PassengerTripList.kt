@@ -112,10 +112,11 @@ class PassengerTripList : BaseActivity() ,tripdelete,deleteVehicle,tripclick{
         )
     }
 
-    override fun tripclick(id: String?) {
+    override fun tripclick(tripData: TripListResponseData?) {
         val intent = Intent(this, DriverTripDetailsActivity::class.java)
-        intent.putExtra("_id",id)
-        intent.putExtra("flag","passenger")
+            .putExtra("modelDataList", tripData)
+//        intent.putExtra("_id",id)
+//        intent.putExtra("flag","passenger")
         startActivity(intent)
     }
 }

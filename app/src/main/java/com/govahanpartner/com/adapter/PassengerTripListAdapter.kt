@@ -47,7 +47,7 @@ class PassengerTripListAdapter (var context: Context, var list: List<TripListRes
             tripdelete.tripdelete(data.id)
         }
         holder.binding.click.setOnClickListener {
-            tripclick.tripclick(data.id.toString())
+            tripclick.tripclick(data)
         }
     }
     override fun getItemCount(): Int {

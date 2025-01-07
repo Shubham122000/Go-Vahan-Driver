@@ -1,6 +1,7 @@
 package com.govahanpartner.com.model
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class LoaderTruckRepositoryListResponse(
 //    @SerializedName("status"  ) var status  : Int?            = null,
@@ -17,7 +18,7 @@ data class LoaderTruckRepositoryListResult(
     @SerializedName("total"    ) var total    : Int?                = null,
     @SerializedName("page"     ) var page     : Int?                = null,
     @SerializedName("limit"    ) var limit    : Int?                = null
-)
+): Serializable
 data class Vehicles (
 
     @SerializedName("id"                     ) var id                   : Int?       = null,
@@ -50,7 +51,7 @@ data class Vehicles (
     @SerializedName("wheels"                 ) var wheels               : Wheels?    = Wheels(),
     @SerializedName("model_year"             ) var modelYear            : ModelYear? = ModelYear()
 
-)
+): Serializable
 data class ModelYear (
 
     @SerializedName("id"   ) var id   : Int?    = null,
@@ -68,13 +69,13 @@ data class Category (
     @SerializedName("id"     ) var id    : Int?    = null,
     @SerializedName("v_type" ) var vType : String? = null
 
-)
+): Serializable
 data class User (
 
     @SerializedName("id"   ) var id   : Int?    = null,
     @SerializedName("name" ) var name : String? = null
 
-)
+): Serializable
 
 //data class LoaderTruckRepositoryListResponseData(
 //    @SerializedName("vehicle_id"    ) var vehicleId    : Int?    = null,

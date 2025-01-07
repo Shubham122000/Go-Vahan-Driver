@@ -1,5 +1,7 @@
 package com.govahanpartner.com.customclick
 
+import com.govahanpartner.com.model.TripListResponseData
+
 interface wallet_customclick {
 
     fun onItemClick(id:String)
@@ -12,7 +14,7 @@ interface tripdelete {
 }
 interface tripclick {
 
-    fun tripclick(id:String?)
+    fun tripclick(tripData: TripListResponseData?)
 
 }
 interface deleteVehicle{

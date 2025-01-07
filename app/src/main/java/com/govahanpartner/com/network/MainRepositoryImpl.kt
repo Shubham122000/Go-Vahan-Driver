@@ -819,9 +819,9 @@ class MainRepositoryImpl @Inject constructor(private val apiService: ApiService)
    override suspend fun vendor_upcooming_booking_passengers(header: String): Response<TripHistoryResponse> {
         return apiService.vendor_upcooming_booking_passengers(header)
     }
-    override suspend fun loader_trip_list_details(header: String,loader_id:String): Response<TripListDetailsModelClass> {
-        return apiService.loader_trip_list_details(header,loader_id)
-    }
+//    override suspend fun loader_trip_list_details(header: String,loader_id:String): Response<TripListDetailsModelClass> {
+//        return apiService.loader_trip_list_details(header,loader_id)
+//    }
     override suspend fun passenger_trip_list_details(header: String,loader_id:String): Response<TripListDetailsModelClass> {
         return apiService.passenger_trip_list_details(header,loader_id)
     }

@@ -10,22 +10,29 @@ import com.bumptech.glide.Glide
 import com.govahanpartner.com.R
 import com.govahanpartner.com.databinding.ActivityDriverTripDetailsBinding
 import com.govahanpartner.com.base.BaseActivity
+import com.govahanpartner.com.model.TripListResponseData
 import com.govahanpartner.com.passengerviewmodel.TripHistoryPassengerViewModel
 import com.govahanpartner.com.utils.toast
 
 class DriverTripDetailsActivity : BaseActivity() {
     lateinit var binding: ActivityDriverTripDetailsBinding
     private val viewModel: TripHistoryPassengerViewModel by viewModels()
+    var modelData: TripListResponseData?=null
     var id=""
     var flag=""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_driver_trip_details)
-        if (intent != null){
-            id=intent.getStringExtra("_id").toString()
-            flag=intent.getStringExtra("flag").toString()
+//        if (intent != null){
+//            id=intent.getStringExtra("_id").toString()
+//            flag=intent.getStringExtra("flag").toString()
+//        }
+        val extras = intent.extras
+        if (extras != null) {
+            modelData = (extras.getSerializable("modelDataList") as TripListResponseData?)
         }
+//        toast(modelData.toString())
         binding.ivBack.setOnClickListener(View.OnClickListener {
             finish()
         })
@@ -38,52 +45,52 @@ class DriverTripDetailsActivity : BaseActivity() {
         }
         if (flag.equals("loader")){
             binding.llBody.visibility=View.VISIBLE
-            viewModel.loader_trip_list_details("Bearer "+ userPref.getToken().toString(),id)
+//            viewModel.loader_trip_list_details("Bearer "+ userPref.getToken().toString(),id)
         }
         else{
             binding.llBody.visibility=View.GONE
             viewModel.passenger_trip_list_details("Bearer "+ userPref.getToken().toString(),id)
         }
 
-        viewModel.TripDetailsResponse.observe(this) {
-        if (it?.error == false) {
+//        viewModel.TripDetailsResponse.observe(this) {
+//        if (it?.error == false) {
 //            try{
-//                if(it.data.vehicle_no==null){
-//                    binding.tvNumber.text=it.data.vehicle_numbers
-//                }else{
-//                    binding.tvNumber.text=it.data.vehicle_no
-//                }
-//                if (it.data.vehicle_name==null){
-//                    binding.tvType.text=it.data.vehicle_type
-//                }
-//                else{
-//                    binding.tvType.text=it.data.vehicle_name
-//                }
-//                binding.tvDistance.text="${it.data.total_distance} KM"
-//                binding.tvDriver.text=it.data.name
-//                binding.tvFrom.text=it.data.from_trip
-//                binding.tvTo.text=it.data.to_trip
-//                binding.tvUsername.text=it.data.name
-//                binding.tvPhone.text=it.data.mobile_number
-//                binding.tvEmail.text=it.data.email
-//                binding.tvOwner.text=it.data.owner_name
-//                binding.date.text=it.data.booking_date_from
-//                binding.time.text=it.data.time
-//                binding.capacity.text=it.data.load_caring
-//                binding.tvTyres.text= it.data.no_of_tyers
-//                binding.tvBodytype.text=it.data.body_name
-//                binding.tvAmount.text="₹${it.data.freight_amount}"
-//                Glide.with(this).load(it.data.image).into(binding.tvTruckImage)
+                if(modelData?.vehicle?.vehicleNumber==null){
+                    binding.tvNumber.text=modelData?.vehicle?.vehicleNumber
+                }else{
+                    binding.tvNumber.text=modelData?.vehicle?.vehicleNumber
+                }
+                if (modelData?.vehicle?.vehicleName==null){
+                    binding.tvType.text=modelData?.vehicle?.vehicleName
+                }
+                else{
+                    binding.tvType.text=modelData?.vehicle?.vehicleName
+                }
+                binding.tvDistance.text="${modelData?.totalDistance} KM"
+//                binding.tvDriver.text=modelData.name
+                binding.tvFrom.text=modelData?.fromTrip
+                binding.tvTo.text=modelData?.toTrip
+                binding.tvUsername.text=modelData?.user?.name
+//                binding.tvPhone.text=modelData.mobile_number
+//                binding.tvEmail.text=modelData.email
+//                binding.tvOwner.text=modelData.owner_name
+                binding.date.text=modelData?.bookingDateFrom
+                binding.time.text=modelData?.time
+                binding.capacity.text=modelData?.loadCaring
+                binding.tvTyres.text= modelData?.vehicle?.wheels
+                binding.tvBodytype.text=modelData?.vehicle?.bodyType
+                binding.tvAmount.text="₹${modelData?.freightAmount}"
+                Glide.with(this).load(modelData?.vehicleImage).into(binding.tvTruckImage)
 //
 //            }catch (e:Exception){
 //                e.printStackTrace()
 //            }
 
 
-        } else {
-            toast(it.message)
-        }
-    }
+//        } else {
+//            toast(it.message)
+//        }
+//    }
 }
 
     }

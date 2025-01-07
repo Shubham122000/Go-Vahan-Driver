@@ -54,24 +54,24 @@ class TripHistoryPassengerViewModel @Inject constructor(private val mainReposito
             }
         }
     }
-    fun loader_trip_list_details(
-        token: String,
-        loader_id:String
-    ) {
-        progressBarStatus.value = true
-        viewModelScope.launch {
-
-            val response =
-                mainRepository.loader_trip_list_details(token,loader_id)
-            if (response.isSuccessful) {
-                progressBarStatus.value = false
-                TripDetailsResponse.postValue(response.body())
-            } else {
-                progressBarStatus.value = false
-                Log.d("TAG", response.body().toString())
-            }
-        }
-    }
+//    fun loader_trip_list_details(
+//        token: String,
+//        loader_id:String
+//    ) {
+//        progressBarStatus.value = true
+//        viewModelScope.launch {
+//
+//            val response =
+//                mainRepository.loader_trip_list_details(token,loader_id)
+//            if (response.isSuccessful) {
+//                progressBarStatus.value = false
+//                TripDetailsResponse.postValue(response.body())
+//            } else {
+//                progressBarStatus.value = false
+//                Log.d("TAG", response.body().toString())
+//            }
+//        }
+//    }
     fun passenger_trip_list_details(
         token: String,
         loader_id:String

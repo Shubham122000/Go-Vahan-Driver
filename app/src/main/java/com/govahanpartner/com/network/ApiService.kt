@@ -757,12 +757,12 @@ interface ApiService {
         @Field("id") booking_id:String,
     ): Response<DriverProfile>
 
-    @FormUrlEncoded
-    @POST("loader_trip_list_details")
-    suspend fun loader_trip_list_details(
-        @Header("Authorization") authorization: String,
-        @Field("id") loader_id:String,
-    ): Response<TripListDetailsModelClass>
+//    @FormUrlEncoded
+//    @POST("loader_trip_list_details")
+//    suspend fun loader_trip_list_details(
+//        @Header("Authorization") authorization: String,
+//        @Field("id") loader_id:String,
+//    ): Response<TripListDetailsModelClass>
 
     @FormUrlEncoded
     @POST("passenger_trip_list_details")

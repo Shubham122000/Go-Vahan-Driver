@@ -692,10 +692,10 @@ interface MainRepository {
         driver_id: String
     ): Response<AddVehicalfinalResponse>
 
-    suspend fun loader_trip_list_details(
-        token: String,
-        loader_id: String
-    ): Response<TripListDetailsModelClass>
+//    suspend fun loader_trip_list_details(
+//        token: String,
+//        loader_id: String
+//    ): Response<TripListDetailsModelClass>
 
     suspend fun passenger_trip_list_details(
         token: String,
