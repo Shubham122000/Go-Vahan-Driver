@@ -67,18 +67,24 @@ class DriverTripDetailsActivity : BaseActivity() {
                     binding.tvType.text=modelData?.vehicle?.vehicleName
                 }
                 binding.tvDistance.text="${modelData?.totalDistance} KM"
-//                binding.tvDriver.text=modelData.name
+
                 binding.tvFrom.text=modelData?.fromTrip
                 binding.tvTo.text=modelData?.toTrip
                 binding.tvUsername.text=modelData?.user?.name
-//                binding.tvPhone.text=modelData.mobile_number
-//                binding.tvEmail.text=modelData.email
-//                binding.tvOwner.text=modelData.owner_name
+                binding.tvDriver.text=modelData?.driver?.name
+        if (modelData?.driver?.countryCode == null){
+            binding.tvPhone.text= modelData?.driver?.mobileNumber
+        }else{
+            binding.tvPhone.text= "+ ${modelData?.driver?.countryCode} ${modelData?.driver?.mobileNumber}"
+        }
+
+                binding.tvEmail.text=modelData?.driver?.email
+                binding.tvOwner.text=modelData?.user?.name
                 binding.date.text=modelData?.bookingDateFrom
                 binding.time.text=modelData?.time
                 binding.capacity.text=modelData?.loadCaring
-                binding.tvTyres.text= modelData?.vehicle?.wheels
-                binding.tvBodytype.text=modelData?.vehicle?.bodyType
+                binding.tvTyres.text= modelData?.vehicle?.wheels?.wheel.toString()
+                binding.tvBodytype.text=modelData?.vehicle?.bodyType?.name
                 binding.tvAmount.text="₹${modelData?.freightAmount}"
                 Glide.with(this).load(modelData?.vehicleImage).into(binding.tvTruckImage)
 //

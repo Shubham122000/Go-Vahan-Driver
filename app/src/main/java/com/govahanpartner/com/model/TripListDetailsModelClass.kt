@@ -52,8 +52,16 @@ data class Vehicle (
     @SerializedName("id"             ) var id            : Int?    = null,
     @SerializedName("vehicle_name"   ) var vehicleName   : String? = null,
     @SerializedName("vehicle_number" ) var vehicleNumber : String? = null,
-    @SerializedName("category"       ) var category      : String? = null,
-    @SerializedName("body_type"      ) var bodyType      : String? = null,
-    @SerializedName("wheels"         ) var wheels        : String? = null,
-    @SerializedName("model_year"     ) var modelYear     : String? = null
+    @SerializedName("category"       ) var category      : Category? = Category(),
+    @SerializedName("body_type"        ) var bodyType        : ForTripBodyType?  = ForTripBodyType(),
+    @SerializedName("wheels"         ) var wheels        : Wheels? = Wheels(),
+    @SerializedName("model_year"       ) var modelYear       : ModelYear? = ModelYear()
+
+): Serializable
+
+data class ForTripBodyType (
+
+    @SerializedName("id"   ) var id   : Int?    = null,
+    @SerializedName("name" ) var name : String? = null
+
 ): Serializable

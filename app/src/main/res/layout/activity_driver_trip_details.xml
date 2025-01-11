@@ -115,7 +115,7 @@
                             android:fontFamily="@font/roboto_regular"
                             android:singleLine="true"
 
-                            android:text="Type: "
+                            android:text="Vehicle Name: "
                             android:textColor="@color/darkgray"
                             android:textSize="@dimen/_10sdp" />
 
@@ -366,7 +366,6 @@
                             android:layout_weight="1"
                             android:fontFamily="@font/roboto_regular"
                             android:singleLine="true"
-
                             android:text="Vehicle Owner: "
                             android:textColor="@color/darkgray"
                             android:textSize="@dimen/_10sdp" />

@@ -34,12 +34,12 @@ class TripAdapter(var context: Context,var list: List<TripListResponseData>,var 
         holder.binding.tvStart.text = data.fromTrip
         holder.binding.tvStop.text = data.toTrip
         holder.binding.tvPartyname.text = data.vehicle?.vehicleName
-        var Datetime = data.createdAt
+//        var Datetime = data.createdAt
 //        var Datsplit = Datetime?.split(" ")!!.toTypedArray()
 //        var date = Datsplit[0]
 //        var time = Datsplit[1]
-//        holder.binding.tvDate.text = date
-//        holder.binding.tvTime.text = time
+        holder.binding.tvDate.text = data.bookingDateFrom
+        holder.binding.tvTime.text = data.time
         Glide.with(context).load(data.vehicleImage).into(holder.binding.ivTruck)
         holder.binding.click.setOnClickListener {
             tripclick.tripclick(data)

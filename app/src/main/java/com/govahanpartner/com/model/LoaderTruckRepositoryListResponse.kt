@@ -53,17 +53,13 @@ data class Vehicles (
 
 ): Serializable
 data class ModelYear (
-
     @SerializedName("id"   ) var id   : Int?    = null,
     @SerializedName("year" ) var year : String? = null
-
-)
+): Serializable
 data class Wheels (
-
     @SerializedName("id"    ) var id    : Int? = null,
     @SerializedName("wheel" ) var wheel : Int? = null
-
-)
+): Serializable
 data class Category (
 
     @SerializedName("id"     ) var id    : Int?    = null,
@@ -71,10 +67,8 @@ data class Category (
 
 ): Serializable
 data class User (
-
     @SerializedName("id"   ) var id   : Int?    = null,
     @SerializedName("name" ) var name : String? = null
-
 ): Serializable
 
 //data class LoaderTruckRepositoryListResponseData(

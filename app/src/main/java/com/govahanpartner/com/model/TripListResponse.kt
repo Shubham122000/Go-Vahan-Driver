@@ -45,5 +45,15 @@ data class TripListResponseData(
     @SerializedName("vehicle_image"     ) var vehicleImage    : String?  = null,
     @SerializedName("year_of_model"     ) var yearOfModel     : String?  = null,
     @SerializedName("user"              ) var user            : User?    = User(),
+    @SerializedName("driver"            ) var driver          : Driver?  = Driver(),
     @SerializedName("vehicle"           ) var vehicle         : Vehicle? = Vehicle()
+): Serializable
+
+data class Driver (
+    @SerializedName("id"            ) var id           : Int?    = null,
+    @SerializedName("name"          ) var name         : String? = null,
+    @SerializedName("email"         ) var email        : String? = null,
+    @SerializedName("mobile_number" ) var mobileNumber : String? = null,
+    @SerializedName("country_code"  ) var countryCode  : String? = null
+
 ): Serializable
