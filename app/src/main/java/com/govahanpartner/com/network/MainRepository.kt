@@ -405,7 +405,7 @@ interface MainRepository {
     ): Response<DeiselPrice>
     suspend fun driverList(
         token:String,
-        vendor_id: String
+//        vendor_id: String
     ): Response<DriverListResponse>
    suspend fun bank_account_list(
         token:String): Response<BankAccountListResponse>

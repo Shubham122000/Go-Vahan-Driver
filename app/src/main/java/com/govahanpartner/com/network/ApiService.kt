@@ -518,11 +518,11 @@ interface ApiService {
         @Header("Authorization") authorization: String,
     ): Response<SeatResponse>
 
-    @FormUrlEncoded
+//    @FormUrlEncoded
     @POST("vendor_driver_list")
     suspend fun driverList(
         @Header("Authorization") authorization: String,
-        @Field("vendor_id") vendor_id: String,
+//        @Field("vendor_id") vendor_id: String,
     ): Response<DriverListResponse>
 
     @FormUrlEncoded

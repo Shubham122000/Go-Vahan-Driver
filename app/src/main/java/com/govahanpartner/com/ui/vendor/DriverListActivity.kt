@@ -44,13 +44,13 @@ class DriverListActivity : BaseActivity() ,tripdelete,deleteVehicle{
         })
         viewModel.driverListApi(
             "Bearer "+userPref.getToken().toString(),
-            userPref.getid().toString()
+//            userPref.getid().toString()
         )
         viewModel.DriverProfileResponse.observe(this) {
             if (it?.status == 1) {
                 viewModel.driverListApi(
                     "Bearer "+userPref.getToken().toString(),
-                    userPref.getid().toString()
+//                    userPref.getid().toString()
                 )
 
             } else {
@@ -66,9 +66,9 @@ class DriverListActivity : BaseActivity() ,tripdelete,deleteVehicle{
             }
         }
         viewModel.DriverlistResponse.observe(this) {
-            if (it?.status == 1) {
+            if (it?.error == false) {
                 Listdata.clear()
-                Listdata.addAll(it.data)
+                it.result?.data?.let { it1 -> Listdata.addAll(it1) }
                 binding.rvDriverlist.layoutManager = LinearLayoutManager(this)
                 adapter = DriverListAdapter(this, Listdata,this,"1")
                 binding.rvDriverlist.adapter =adapter
@@ -96,7 +96,7 @@ class DriverListActivity : BaseActivity() ,tripdelete,deleteVehicle{
         super.onResume()
         viewModel.driverListApi(
             "Bearer "+userPref.getToken().toString(),
-            userPref.getid().toString()
+//            userPref.getid().toString()
         )
     }
 

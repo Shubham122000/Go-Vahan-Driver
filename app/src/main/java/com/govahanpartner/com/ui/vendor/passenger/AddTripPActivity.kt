@@ -201,17 +201,17 @@ class AddTripPActivity : BaseActivity() {
 
         viewModel.driverListApi(
             "Bearer "+userPref.getToken().toString(),
-            userPref.getid().toString()
+//            userPref.getid().toString()
         )
         viewModel.DriverlistResponse.observe(this) {
-            if (it?.status == 1) {
+            if (it?.error == false) {
                 assigneddriver.clear()
                 driver.clear()
-                assigneddriver.addAll(it.data)
-                viewModel.DriverlistResponseData.value = it.data
-                for (i in 0 until it.data.size) {
-                    driver.add(it.data[i].name.toString())
-                    id_driver.add(it.data[i].id.toString())
+                it.result?.data?.let { it1 -> assigneddriver.addAll(it1) }
+                viewModel.DriverlistResponseData.value = it.result?.data
+                for (i in 0 until it.result?.data?.size!!) {
+                    driver.add(it.result?.data!![i].name.toString())
+                    id_driver.add(it.result?.data!![i].id.toString())
                 }
                 val spinnerArrayAdapter: ArrayAdapter<String> = ArrayAdapter<String>(
                     this,

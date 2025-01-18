@@ -186,13 +186,12 @@ class AddDriverViewModel @Inject constructor(private val mainRepository: MainRep
 
     fun driverListApi(
         token: String,
-        vendor_id: String,
     ) {
         progressBarStatus.value = true
         viewModelScope.launch {
 
             val response =
-                mainRepository.driverList(token, vendor_id)
+                mainRepository.driverList(token)
             if (response.isSuccessful) {
                 progressBarStatus.value = false
                 DriverlistResponse.postValue(response.body())
