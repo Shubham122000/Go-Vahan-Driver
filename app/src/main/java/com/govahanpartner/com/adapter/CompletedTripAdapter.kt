@@ -33,22 +33,22 @@ class CompletedTripAdapter (val context : Context, val list: List<TripHistoryRes
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         val data = list[position]
-        holder.binding.tvDate.text = data.bookingDate
+        holder.binding.tvDate.text = data.tripDetails?.bookingDateFrom
         holder.binding.tvTime.text =  data.bookingTime
         holder.binding.tvUsername.text = data.bookingId
-        holder.binding.tvStart.text = data.picupLocation
-        holder.binding.tvStop.text = data.dropLocation
+        holder.binding.tvStart.text = data.tripDetails?.fromTrip
+        holder.binding.tvStop.text = data.tripDetails?.toTrip
         holder.binding.tvBookingid.text = "Booking  Id: ${data.bookingId}"
-        holder.binding.tvWeight.text = data.capacity
+        holder.binding.tvWeight.text = data.tripDetails?.vehicle?.capacity
         bookingid = data.bookingId.toString()
         getbookindid.getbooking(bookingid)
-        Glide.with(context).load(data.vehicleImage).into(holder.binding.ivTruck)
+        Glide.with(context).load(data.tripDetails?.vehicle?.vehicleImage).into(holder.binding.ivTruck)
 
         if (flag == "AdapterforLoader"){
             holder.binding.linearItem.setOnClickListener(View.OnClickListener {
                 val intent = Intent(context, BookingDetailsActivity::class.java)
                 intent.putExtra("orderType", "4")
-                intent.putExtra("bookingid",data.bookingId.toString())
+                intent.putExtra("booking", data)
                 intent.putExtra("flag","AdapterforLoader")
                 context.startActivity(intent)
             })
@@ -57,7 +57,7 @@ class CompletedTripAdapter (val context : Context, val list: List<TripHistoryRes
             holder.binding.linearItem.setOnClickListener(View.OnClickListener {
                 val intent = Intent(context, BookingDetailsActivity::class.java)
                 intent.putExtra("orderType", "4")
-                intent.putExtra("bookingid",data.bookingId.toString())
+                intent.putExtra("booking", data)
                 intent.putExtra("flag","AdapterforPassenger")
                 context.startActivity(intent)
             })

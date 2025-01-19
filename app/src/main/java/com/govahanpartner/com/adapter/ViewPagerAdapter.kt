@@ -24,6 +24,7 @@ class ViewPagerAdapter(
         return when (position) {
             0-> {
                 fragment = PendingBookingHistory()
+                bundle.putString("VehicleType","Loader")
                 bundle.putInt("type",0)
                 fragment.arguments = bundle
                 fragment
@@ -32,12 +33,14 @@ class ViewPagerAdapter(
             }
             1-> {
                 fragment = OngoingTripHistoryFragment()
+                bundle.putString("VehicleType","Loader")
                 bundle.putInt("type",1)
                 fragment.arguments = bundle
                 fragment
             }
             2-> {
                 fragment = CompletedTripHistoryFragment()
+                bundle.putString("VehicleType","Loader")
                 bundle.putInt("type",2)
                 fragment.arguments = bundle
                 fragment
@@ -45,6 +48,7 @@ class ViewPagerAdapter(
 
             else -> {
                 fragment = CancelledBookingHistory()
+                bundle.putString("VehicleType","Loader")
                 bundle.putInt("type",3)
                 fragment.arguments = bundle
                 fragment

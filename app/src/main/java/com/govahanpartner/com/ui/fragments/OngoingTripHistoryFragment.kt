@@ -43,13 +43,20 @@ class OngoingTripHistoryFragment : BaseFragment() {
                 hideProgressDialog()
             }
         }
-        viewModel.OngoinTripHistoryApi(
-            "Bearer "+ userPref.getToken().toString(),
-        )
+        if (userPref.getRole() == "2" || userPref.getRole() == "3") {
+            viewModel.UpComingsTripHistoryApi(
+                "Bearer "+ userPref.getToken().toString(),"1","1","2"
+            )
+        }else{
+            viewModel.UpComingsTripHistoryApi(
+                "Bearer "+ userPref.getToken().toString(),"0","1","2"
+            )
+        }
+
         viewModel.TripHistoryResponse.observe(viewLifecycleOwner) {
-            if (it?.status == 1) {
+            if (it?.error == false) {
                 Listdata.clear()
-                Listdata.addAll(it.data)
+                it.result?.data?.let { it1 -> Listdata.addAll(it1) }
                 if (Listdata.size>0){
                     binding.rvOngoing.layoutManager = LinearLayoutManager(requireContext())
                     adapter = OngoingTripAdapter(requireContext(), Listdata,flags)
@@ -69,9 +76,15 @@ class OngoingTripHistoryFragment : BaseFragment() {
 
     override fun onResume() {
         super.onResume()
-        viewModel.OngoinTripHistoryApi(
-            "Bearer "+ userPref.getToken().toString(),
-        )
+        if (userPref.getRole() == "2" || userPref.getRole() == "3") {
+            viewModel.UpComingsTripHistoryApi(
+                "Bearer "+ userPref.getToken().toString(),"1","1","2"
+            )
+        }else{
+            viewModel.UpComingsTripHistoryApi(
+                "Bearer "+ userPref.getToken().toString(),"0","1","2"
+            )
+        }
     }
 
 }

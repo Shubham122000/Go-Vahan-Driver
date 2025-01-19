@@ -31,15 +31,15 @@ class CancelTripAdapter (val context : Context, val list: List<TripHistoryRespon
 
         val data = list[position]
 
-        holder.binding.tvDate.text = data.bookingDate
+        holder.binding.tvDate.text = data.tripDetails?.bookingDateFrom
         holder.binding.tvTime.text =  data.bookingTime
         holder.binding.tvUsername.text = data.bookingId
-        holder.binding.tvStart.text = data.picupLocation
-        holder.binding.tvStop.text = data.dropLocation
+        holder.binding.tvStart.text = data.tripDetails?.fromTrip
+        holder.binding.tvStop.text = data.tripDetails?.toTrip
         holder.binding.tvBookingid.text = "Booking  Id: ${data.bookingId}"
-        holder.binding.tvWeight.text = data.capacity
+        holder.binding.tvWeight.text = data.tripDetails?.vehicle?.capacity
 
-        Glide.with(context).load(data.vehicleImage).into(holder.binding.ivTruck)
+        Glide.with(context).load(data.tripDetails?.vehicle?.vehicleImage).into(holder.binding.ivTruck)
 
         /*holder.binding.tvCountryname.text = data.country
         holder.binding.tvComment.text = data.comment
@@ -60,7 +60,7 @@ class CancelTripAdapter (val context : Context, val list: List<TripHistoryRespon
         holder.binding.linearItem.setOnClickListener(View.OnClickListener {
             val intent = Intent(context, BookingDetailsActivity::class.java)
             intent.putExtra("orderType", "4")
-            intent.putExtra("bookingid", data.bookingId)
+            intent.putExtra("booking", data)
             intent.putExtra("flag","CancelLoader")
             context.startActivity(intent)
 
@@ -71,7 +71,7 @@ class CancelTripAdapter (val context : Context, val list: List<TripHistoryRespon
             holder.binding.linearItem.setOnClickListener(View.OnClickListener {
                 val intent = Intent(context, BookingDetailsActivity::class.java)
                 intent.putExtra("orderType", "4")
-                intent.putExtra("bookingid", data.bookingId)
+                intent.putExtra("booking", data)
                 intent.putExtra("flag","CancelPassenger")
                 context.startActivity(intent)
 

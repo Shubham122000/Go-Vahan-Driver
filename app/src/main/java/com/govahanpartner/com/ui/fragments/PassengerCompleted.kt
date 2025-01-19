@@ -46,9 +46,9 @@ class PassengerCompleted : BaseFragment(), Bookingid {
             "Bearer "+ userPref.getToken().toString(),
         )
         viewModel.TripHistoryResponse.observe(viewLifecycleOwner) {
-            if (it?.status == 1) {
+            if (it?.error == false) {
                 Listdata.clear()
-                Listdata.addAll(it.data)
+                it.result?.data?.let { it1 -> Listdata.addAll(it1) }
                 binding.rvCompleted.layoutManager = LinearLayoutManager(requireContext())
                 adapter = CompletedTripAdapter(requireContext(), Listdata,this,flags)
                 binding.rvCompleted.adapter =adapter

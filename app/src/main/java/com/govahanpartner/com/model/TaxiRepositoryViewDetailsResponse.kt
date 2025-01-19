@@ -1,14 +1,18 @@
 package com.govahanpartner.com.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 data class TaxiRepositoryViewDetailsResponse(
     @SerializedName("error"       ) var error      : Boolean? = null,
     @SerializedName("status_code" ) var statusCode : Int?     = null,
     @SerializedName("message"     ) var message    : String?  = null,
     @SerializedName("result"      ) var result     : TaxiRepositoryViewDetailsResult?  = TaxiRepositoryViewDetailsResult()
 
-)
+): Parcelable
+@Parcelize
 data class TaxiRepositoryViewDetailsResult(
     @SerializedName("id"                     ) var id                   : Int?                 = null,
     @SerializedName("user_id"                ) var userId               : Int?                 = null,
@@ -36,17 +40,18 @@ data class TaxiRepositoryViewDetailsResult(
     @SerializedName("category"               ) var category             : Category?            = Category(),
     @SerializedName("wheels"                 ) var wheels               : Wheels?              = Wheels(),
     @SerializedName("model_year"             ) var modelYear            : ModelYear?           = ModelYear()
-)
+): Parcelable
+@Parcelize
 data class PaymentDetails (
-
     @SerializedName("status"             ) var status            : Int?    = null,
     @SerializedName("payment_mode"       ) var paymentMode       : String? = null,
     @SerializedName("is_subscription_valid"       ) var isSubscriptionValid       : String? = null,
-    @SerializedName("amount"             ) var amount            : Int?    = null,
+    @SerializedName("amount"             ) var amount            : Float?    = null,
     @SerializedName("subscription_start" ) var subscriptionStart : String? = null,
     @SerializedName("subscription_end"   ) var subscriptionEnd   : String? = null
 
-)
+): Parcelable
+@Parcelize
 data class Documents (
 
     @SerializedName("id"              ) var id            : Int?    = null,
@@ -56,7 +61,8 @@ data class Documents (
     @SerializedName("file_id"         ) var fileId        : Int?    = null,
     @SerializedName("document_url"    ) var documentUrl   : String? = null
 
-)
+): Parcelable
+@Parcelize
 data class Images (
 
     @SerializedName("id"         ) var id        : Int?    = null,
@@ -64,7 +70,7 @@ data class Images (
     @SerializedName("image_view" ) var imageView : Int?    = null,
     @SerializedName("image_url"  ) var imageUrl  : String? = null
 
-)
+): Parcelable
 
 //data class Category (
 //

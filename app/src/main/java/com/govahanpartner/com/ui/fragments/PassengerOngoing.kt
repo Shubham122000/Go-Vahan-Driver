@@ -42,9 +42,9 @@ class PassengerOngoing : BaseFragment() {
             "Bearer "+ userPref.getToken().toString(),
         )
         viewModel.TripHistoryResponse.observe(viewLifecycleOwner) {
-            if (it?.status == 1) {
+            if (it?.error == false) {
                 Listdata.clear()
-                Listdata.addAll(it.data)
+                it.result?.data?.let { it1 -> Listdata.addAll(it1) }
                 binding.rvOngoing.layoutManager = LinearLayoutManager(requireContext())
                 adapter = OngoingTripAdapter(requireContext(), Listdata,flags)
                 binding.rvOngoing.adapter =adapter

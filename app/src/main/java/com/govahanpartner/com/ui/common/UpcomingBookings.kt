@@ -48,25 +48,21 @@ class UpcomingBookings : BaseActivity(){
                 hideProgressDialog()
             }
         }
-        if (userPref.getRole() == "3"){
+        if (userPref.getRole() == "2" || userPref.getRole() == "3") {
             viewModel.UpComingsTripHistoryApi(
                 "Bearer "+ userPref.getToken().toString(),
+                "1","1","1"
             )
-        }
-        else if(userPref.getRole() == "2"){
+        }else{
             viewModel.UpComingsTripHistoryApi(
-                "Bearer "+ userPref.getToken().toString(),
+                "Bearer "+ userPref.getToken().toString(),"0","1","1"
             )
         }
-        else{
-            viewModel.vendor_upcooming_booking_loder(
-                "Bearer "+ userPref.getToken().toString(),
-            )
-        }
+
         viewModel.TripHistoryResponse.observe(this) {
-            if (it?.status == 1) {
+            if (it?.error == false) {
                 Listdata.clear()
-                Listdata.addAll(it.data)
+                it.result?.data?.let { it1 -> Listdata.addAll(it1) }
                 if(Listdata.size>0){
                     binding.rvUpcomingbookings.layoutManager = LinearLayoutManager(this)
                     adapter = UpcomingBookingsAdapter(this,prefrence, Listdata,flag)
@@ -87,15 +83,18 @@ class UpcomingBookings : BaseActivity(){
         if (userPref.getRole() == "3"){
             viewModel.UpComingsTripHistoryApi(
                 "Bearer "+ userPref.getToken().toString(),
+                "1","1","1"
             )
         }else if(userPref.getRole() == "2"){
             viewModel.UpComingsTripHistoryApi(
                 "Bearer "+ userPref.getToken().toString(),
+                "0","1","1"
             )
         }
         else{
-            viewModel.vendor_upcooming_booking_loder(
+            viewModel.UpComingsTripHistoryApi(
                 "Bearer "+ userPref.getToken().toString(),
+                "0","1","1"
             )
         }
     }

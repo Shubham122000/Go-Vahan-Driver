@@ -28,6 +28,7 @@ class PendingBookingHistory : BaseFragment() {
     var Listdata: ArrayList<TripHistoryResponseData> = ArrayList()
     lateinit var adapter : PendingTripAdapter
     lateinit var mContext: Context
+    var vehicleType:String=""
     var flags:String=""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,18 +44,32 @@ class PendingBookingHistory : BaseFragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_pending_booking_history, container, false)
         mContext=this.requireContext()
 
-        val vehicleType = arguments?.getString("VehicleType")
+        vehicleType = arguments?.getString("VehicleType").toString()
         vehicleType?.let {
             // Use vehicleType as needed
             if (it == "Passenger"){
                 flags = "PendingPassenger"
-                viewModel.vendor_upcooming_booking_passengers("Bearer "+ userPref.getToken().toString())
+                if (userPref.getRole() == "2" || userPref.getRole() == "3") {
+                    viewModel.UpComingsTripHistoryApi(
+                        "Bearer " + userPref.getToken().toString(), "1", "2", "1"
+                    )
+                }else{
+                    viewModel.UpComingsTripHistoryApi(
+                        "Bearer " + userPref.getToken().toString(), "0", "2", "1"
+                    )
+                }
 
             }else{
                 flags = "PendingLoader"
-                viewModel.UpComingsTripHistoryApi(
-                    "Bearer "+ userPref.getToken().toString(),
-                )
+                if (userPref.getRole() == "2" || userPref.getRole() == "3") {
+                    viewModel.UpComingsTripHistoryApi(
+                        "Bearer " + userPref.getToken().toString(), "1", "1", "1"
+                    )
+                }else{
+                    viewModel.UpComingsTripHistoryApi(
+                        "Bearer " + userPref.getToken().toString(), "0", "1", "1"
+                    )
+                }
             }
         }
 
@@ -68,9 +83,9 @@ class PendingBookingHistory : BaseFragment() {
         }
 
         viewModel.TripHistoryResponse.observe(viewLifecycleOwner) {
-            if (it?.status == 1) {
+            if (it?.error == false) {
                 Listdata.clear()
-                Listdata.addAll(it.data)
+                it.result?.data?.let { it1 -> Listdata.addAll(it1) }
                 if (Listdata.size>0){
                     binding.rvPending.layoutManager = LinearLayoutManager(requireContext())
                     adapter = PendingTripAdapter(requireContext(), Listdata,flags)
@@ -86,6 +101,38 @@ class PendingBookingHistory : BaseFragment() {
         }
 
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        vehicleType?.let {
+            // Use vehicleType as needed
+            if (it == "Passenger"){
+                flags = "PendingPassenger"
+                if (userPref.getRole() == "2" || userPref.getRole() == "3") {
+                    viewModel.UpComingsTripHistoryApi(
+                        "Bearer " + userPref.getToken().toString(), "1", "2", "1"
+                    )
+                }else{
+                    viewModel.UpComingsTripHistoryApi(
+                        "Bearer " + userPref.getToken().toString(), "0", "2", "1"
+                    )
+                }
+
+            }else{
+                flags = "PendingLoader"
+                if (userPref.getRole() == "2" || userPref.getRole() == "3") {
+                    viewModel.UpComingsTripHistoryApi(
+                        "Bearer " + userPref.getToken().toString(), "1", "1", "1"
+                    )
+                }else{
+                    viewModel.UpComingsTripHistoryApi(
+                        "Bearer " + userPref.getToken().toString(), "0", "1", "1"
+                    )
+                }
+            }
+        }
+
     }
 
 

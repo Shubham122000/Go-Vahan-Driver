@@ -5,6 +5,7 @@ import com.govahanpartner.com.ui.common.ReferNEarnResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
+import retrofit2.http.Field
 import retrofit2.http.Part
 import javax.inject.Inject
 
@@ -806,8 +807,8 @@ class MainRepositoryImpl @Inject constructor(private val apiService: ApiService)
         return apiService.loadercancellationReasonlist(header)
     }
 
-    override suspend fun UpcomingsTripHistory(header: String): Response<TripHistoryResponse> {
-        return apiService.UpcomingsTripHistory(header)
+    override suspend fun UpcomingsTripHistory(header: String, hitFromDriver :String, forPassenger :String, bookingStatus :String): Response<TripHistoryResponse> {
+        return apiService.UpcomingsTripHistory(header,hitFromDriver, forPassenger, bookingStatus)
     }
     override suspend fun vendor_upcooming_booking_loder(header: String): Response<TripHistoryResponse> {
         return apiService.vendor_upcooming_booking_loder(header)
@@ -889,9 +890,15 @@ class MainRepositoryImpl @Inject constructor(private val apiService: ApiService)
         return apiService.passengers_ride_completed(header,id)
     }
 
-    override suspend fun AcceptRide(header: String,booking_id: String,start_code:String): Response<Addmoneywallet> {
-        return apiService.AcceptRide(header,booking_id,start_code)
+//    override suspend fun AcceptRide(header: String,booking_id: String,start_code:String): Response<Addmoneywallet> {
+//        return apiService.AcceptRide(header,booking_id,start_code)
+//    }
+
+    override suspend fun updateBookingStatus(header: String,bookingId: String,startCode:String,status:String,cancelReason:String): Response<Addmoneywallet> {
+        return apiService.updateBookingStatus(header,bookingId,startCode,status,cancelReason)
     }
+
+
 
     override suspend fun WalletList(header: String,date : String,transaction_type : String): Response<VendorWalletActivity> {
         return apiService.Mywalletlist(header,date,transaction_type)

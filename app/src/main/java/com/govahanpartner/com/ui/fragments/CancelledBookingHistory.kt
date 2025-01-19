@@ -47,14 +47,20 @@ class CancelledBookingHistory : BaseFragment() {
                 hideProgressDialog()
             }
         }
+        if (userPref.getRole() == "2" || userPref.getRole() == "3") {
+            viewModel.UpComingsTripHistoryApi(
+                "Bearer "+ userPref.getToken().toString(),"1","1","3"
+            )
+        }else{
+            viewModel.UpComingsTripHistoryApi(
+                "Bearer "+ userPref.getToken().toString(),"0","1","3"
+            )
+        }
 
-        viewModel.cancel_booking_history_loader(
-            "Bearer " + userPref.getToken().toString(),
-        )
         viewModel.TripHistoryResponse.observe(viewLifecycleOwner) {
-            if (it?.status == 1) {
+            if (it?.error == false) {
                 Listdata.clear()
-                Listdata.addAll(it.data)
+                it.result?.data?.let { it1 -> Listdata.addAll(it1) }
                 if (Listdata.size > 0){
                     binding.rvCancelled.layoutManager = LinearLayoutManager(requireContext())
                     adapter = CancelTripAdapter(requireContext(), Listdata,flags)
@@ -76,8 +82,14 @@ class CancelledBookingHistory : BaseFragment() {
 
     override fun onResume() {
         super.onResume()
-        viewModel.cancel_booking_history_loader(
-            "Bearer " + userPref.getToken().toString(),
-        )
+        if (userPref.getRole() == "2" || userPref.getRole() == "3") {
+            viewModel.UpComingsTripHistoryApi(
+                "Bearer "+ userPref.getToken().toString(),"1","1","3"
+            )
+        }else{
+            viewModel.UpComingsTripHistoryApi(
+                "Bearer "+ userPref.getToken().toString(),"0","1","3"
+            )
+        }
     }
 }

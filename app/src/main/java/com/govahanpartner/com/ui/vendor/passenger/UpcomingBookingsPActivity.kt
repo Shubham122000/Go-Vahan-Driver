@@ -55,10 +55,9 @@ class UpcomingBookingsPActivity : BaseActivity() {
         }
 
         viewModel.TripHistoryResponse.observe(this) {
-            if (it?.status == 1) {
-
+            if (it?.error == false) {
                 Listdata.clear()
-                Listdata.addAll(it.data)
+                it.result?.data?.let { it1 -> Listdata.addAll(it1) }
                 binding.rvUpcomingbookings.layoutManager = LinearLayoutManager(this)
                 adapter = UpcomingBookingsAdapter(this,prefrence, Listdata,flag)
                 binding.rvUpcomingbookings.adapter =adapter

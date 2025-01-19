@@ -698,9 +698,13 @@ interface ApiService {
         @Header("Authorization") authorization: String
     ): Response<Loader_cancel_ReasonList_Response>
 
-    @GET("upcooming_booking_loder")
+    @FormUrlEncoded
+    @POST("get_upcoming_bookings")
     suspend fun UpcomingsTripHistory(
-        @Header("Authorization") authorization: String
+        @Header("Authorization") authorization: String,
+        @Field("hit_from_driver") hitFromDriver :String,
+        @Field("for_passenger") forPassenger :String,
+        @Field("booking_status") bookingStatus :String,
     ): Response<TripHistoryResponse>
 
     @GET("vendor_upcooming_booking_loder")
@@ -888,12 +892,22 @@ interface ApiService {
     ): Response<RideCompletedResponse>
 
 
+//    @FormUrlEncoded
+//    @POST("loader_driver_start_trip")
+//    suspend fun AcceptRide(
+//        @Header("Authorization") authorization: String,
+//        @Field("booking_id") booking_id:String,
+//        @Field("start_code") start_code:String,
+//    ): Response<Addmoneywallet>
+
     @FormUrlEncoded
-    @POST("loader_driver_start_trip")
-    suspend fun AcceptRide(
+    @POST("update_booking_status")
+    suspend fun updateBookingStatus(
         @Header("Authorization") authorization: String,
-        @Field("booking_id") booking_id:String,
-        @Field("start_code") start_code:String,
+        @Field("booking_id") bookingId:String,
+        @Field("ride_code") rideCode:String,
+        @Field("status") status:String,
+        @Field("cancel_reason") cancelReason:String,
     ): Response<Addmoneywallet>
 
     @Multipart

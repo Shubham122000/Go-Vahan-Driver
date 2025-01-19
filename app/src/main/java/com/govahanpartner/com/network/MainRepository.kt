@@ -258,11 +258,13 @@ interface MainRepository {
     suspend fun RideCompleted(header: String,id:String): Response<RideCompletedResponse>
     suspend fun DriverUpdateProfile(header: String,id: RequestBody,name:RequestBody,mobile_number:RequestBody,experience:RequestBody
                                     ,licence_number:RequestBody,device_token:RequestBody,device_type:RequestBody,device_id:RequestBody,password:RequestBody,profile_image:MultipartBody.Part): Response<DriverUpdateProfileResponse>
-    suspend fun AcceptRide(header: String,booking_id: String,start_code:String): Response<Addmoneywallet>
+//    suspend fun AcceptRide(header: String,booking_id: String,start_code:String): Response<Addmoneywallet>
+
+    suspend fun updateBookingStatus(header: String,bookingId: String,startCode:String,status:String,cancelReason:String): Response<Addmoneywallet>
     suspend fun OngoinTripHistory(header: String): Response<TripHistoryResponse>
     suspend fun LoaderCancelReason(header: String): Response<Loader_cancel_ReasonList_Response>
     suspend fun CompletedTripHistory(header: String): Response<TripHistoryResponse>
-    suspend fun UpcomingsTripHistory(header: String): Response<TripHistoryResponse>
+    suspend fun UpcomingsTripHistory(header: String, hitFromDriver :String, forPassenger :String, bookingStatus :String): Response<TripHistoryResponse>
     suspend fun vendor_upcooming_booking_loder(header: String): Response<TripHistoryResponse>
     suspend fun vendor_driver_loadertrip_list(header: String,driver_id:String,type: String): Response<TripListResponse>
     suspend fun vendor_upcooming_booking_passengers(header: String): Response<TripHistoryResponse>

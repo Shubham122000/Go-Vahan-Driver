@@ -34,12 +34,13 @@ import android.location.Location
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.Task
+import com.govahanpartner.com.model.TripHistoryResponseData
 
 @AndroidEntryPoint
 class TripDetailsActivity : BaseActivity(),Canceldata {
     private lateinit var binding : ActivityTripDetailsBinding
     private val viewModel: InvoiceViewModel by viewModels()
-    lateinit var Bookingid :String
+    lateinit var booking : TripHistoryResponseData
     lateinit var invoicenumber :String
     lateinit var Bookingstatus :String
     lateinit var canselreasonadapter :CancelReasonAdapter
@@ -62,9 +63,11 @@ class TripDetailsActivity : BaseActivity(),Canceldata {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_trip_details)
 
         if (intent!=null){
-            Bookingid = intent.getStringExtra("bookingid").toString()
+//            Booking = intent.getStringExtra("bookingid").toString()
             flag = intent.getStringExtra("flag").toString()
         }
+        val data = intent.extras
+        booking = data?.getParcelable<TripHistoryResponseData>("booking")!!
         binding.ivBack.setOnClickListener(View.OnClickListener {
             finish()
         })
@@ -83,106 +86,113 @@ class TripDetailsActivity : BaseActivity(),Canceldata {
                 hideProgressDialog()
             }
         }
-        if (flag == "upcomingpassenger"){
-            viewModel.CompletedtrippassengerdetailsAPI(
-                "Bearer "+ userPref.getToken().toString(),
-                Bookingid
-//        ,"Book21530"
-            )
-        }else if(flag == "upcomingloader"){
-            viewModel.CompletedtripdetailsAPI(
-                "Bearer "+ userPref.getToken().toString(),
-                Bookingid
-//        ,"Book21530"
-            )
-        }
+//        if (flag == "upcomingpassenger"){
+//            viewModel.CompletedtrippassengerdetailsAPI(
+//                "Bearer "+ userPref.getToken().toString(),
+//                Bookingid
+////        ,"Book21530"
+//            )
+//        }else if(flag == "upcomingloader"){
+//            viewModel.CompletedtripdetailsAPI(
+//                "Bearer "+ userPref.getToken().toString(),
+//                Bookingid
+////        ,"Book21530"
+//            )
+//        }
 
 
 
 
-        viewModel.CompleteDriverDetailsResponse.observe(this) {
-            if (it?.status == 1) {
-                try {
-                    try {
-                        if (it.userDetails != null) {
-                            if (it.userDetails?.name==null){
-                                binding.tvName.text = ""
-                            }else{
-                                binding.tvName.text = it.userDetails?.name.toString()
-                            }
+//        viewModel.CompleteDriverDetailsResponse.observe(this) {
+//            if (it?.status == 1) {
+//                try {
+//                    try {
+//                        if (it.userDetails != null) {
+//                            if (it.userDetails?.name==null){
+//                                binding.tvName.text = ""
+//                            }else{
+                                binding.tvName.text = booking.tripDetails?.user?.name
+//                            }
 
-                            if (it.userDetails?.email==null){
-                                binding.tvEmail.text =""
-                            }else{
-                                binding.tvEmail.text = it.userDetails?.email.toString()
-                            }
+//                            if (it.userDetails?.email==null){
+//                                binding.tvEmail.text =""
+//                            }else{
+                                binding.tvEmail.text = booking.tripDetails?.user?.email
+//                            }
 
 //                            binding.tvName.text = it.userDetails?.name.toString()
-                            binding.tvPhone.text = it.userDetails?.mobile_number.toString()
+                            binding.tvPhone.text = booking.tripDetails?.user?.mobileNumber
 //                            binding.tvEmail.text = it.userDetails?.email.toString()
-                        }
-                        if (it.data != null) {
-                            binding.tvTruckname.text = it.data?.vehicle_name.toString()
-                            binding.tvNumber.text = it.data?.vehicle_number.toString()
-                            binding.tvType.text = it.data?.bodyname.toString()
-                            binding.tvCapacity.text = it.data?.capacity.toString()
-                            binding.tvWheeler.text = "${it.data?.no_of_tyres.toString()}"+" Wheelers"
-                            binding.tvHead.text = "Booking id: " + it.data?.booking_id.toString()
-                            binding.tvDistance.text = it.data?.distance.toString()
-                            binding.tvFrom.text = it.data?.picup_location.toString()
-                            binding.tvTo.text = it.data?.drop_location.toString()
-                            binding.tvAmount.text = "₹" + it.data?.fare.toString()
-                            binding.tvDrivername.text = it.ownerDetails?.name.toString()
-                            binding.tvDriverphone.text = it.ownerDetails?.mobile.toString()
-                            binding.tvLicno.text = it.ownerDetails?.licenseno.toString()
-                            invoicenumber = it.data?.invoice_number.toString()
-                            Bookingstatus = it.data?.booking_status.toString()
-                            var picLatitude = it.data.picup_lat.toDouble()
-                            var picLongitude = it.data.picup_long.toDouble()
-                            var dropLatitude = it.data.drop_lat.toDouble()
-                            var dropLongitude = it.data.drop_long.toDouble()
+//                        }
+//                        if (it.data != null) {
+                            binding.tvTruckname.text = booking.tripDetails?.vehicle?.vehicleName.toString()
+                            binding.tvNumber.text = booking.tripDetails?.vehicle?.vehicleNumber.toString()
+                            binding.tvType.text = booking.tripDetails?.vehicle?.bodyType?.name.toString()
+                            binding.tvCapacity.text = booking.tripDetails?.vehicle?.capacity.toString()
+                            binding.tvWheeler.text = "${booking.tripDetails?.vehicle?.noOfTyres.toString()}"+" Wheelers"
+                            binding.tvHead.text = "Booking id: " + booking.bookingId
+                            binding.tvDistance.text = booking.tripDetails?.totalDistance.toString()
+                            binding.tvFrom.text = booking.tripDetails?.fromTrip
+                            binding.tvTo.text = booking.tripDetails?.toTrip
+                            binding.tvAmount.text = "₹" + booking.tripDetails?.freightAmount
+                            binding.tvDrivername.text = booking.tripDetails?.driver?.name.toString()
+                            binding.tvDriverphone.text = booking.tripDetails?.driver?.mobileNumber.toString()
+                            binding.tvLicno.text = booking.tripDetails?.driver?.licenceNumber.toString()
+//                            invoicenumber = it.data?.invoice_number.toString()
+                            Bookingstatus = booking.tripDetails?.tripStatus.toString()
+                            var picLatitude = booking.tripDetails?.pickupLat?.toDouble()
+                            var picLongitude =  booking.tripDetails?.pickupLong?.toDouble()
+                            var dropLatitude = booking.tripDetails?.dropupLat?.toDouble()
+                            var dropLongitude = booking.tripDetails?.dropupLong?.toDouble()
                             binding.ivNavigation.setOnClickListener {
-                                openGoogleMaps(this,lat.toDouble(),long.toDouble(),picLatitude.toDouble(),picLongitude.toDouble())
+                                picLatitude?.toDouble()?.let { it1 ->
+                                    picLongitude?.toDouble()?.let { it2 ->
+                                        openGoogleMaps(this,lat.toDouble(),long.toDouble(),
+                                            it1, it2
+                                        )
+                                    }
+                                }
                             }
-                            Glide.with(this).load(it.ownerDetails?.image).placeholder(R.drawable.image_placeholder).into(binding.imgUser)
-                            if (it.data.height==null){
-                                binding.tvHeight.text =""
-                            }else{
-                                binding.tvHeight.text =it.data?.height.toString()
-                            }
-                            if (it.data?.payment_mode.equals("1")) {
+                            Glide.with(this).load(booking.tripDetails?.vehicle?.vehicleImage).placeholder(R.drawable.image_placeholder).into(binding.imgUser)
+//                            if (it.data.height==null){
+//                                binding.tvHeight.text =""
+//                            }else{
+//                                binding.tvHeight.text =it.data?.height.toString()
+//                            }
+                            if (booking.paymentDetails.get(0)?.paymentMode.equals("1")) {
                                 binding.tvPaymentmode.text = "Cash"
-                            } else if (it.data?.payment_mode.equals("2")) {
+                            } else if (booking.paymentDetails.get(0)?.paymentMode.equals("2")) {
                                 binding.tvPaymentmode.text = "Online"
-                            } else if (it.data?.payment_mode.equals("3")) {
+                            } else if (booking.paymentDetails.get(0)?.paymentMode.equals("3")) {
                                 binding.tvPaymentmode.text = "Wallet"
                             }
-                            etfromlat = it.data?.picup_lat!!.toDouble()
-                            etfromlong = it.data?.picup_long!!.toDouble()
-                            ettolat = it.data?.drop_lat!!.toDouble()
-                            ettolong = it.data?.drop_long!!.toDouble()
+                            etfromlat = booking.tripDetails?.pickupLat?.toDouble()!!
+                            etfromlong = booking.tripDetails?.pickupLong?.toDouble()!!
+                            ettolat = booking.tripDetails?.dropupLat?.toDouble()!!
+                            ettolong = booking.tripDetails?.dropupLong?.toDouble()!!
 
-                        }
-                    } catch (e: Exception) {
-                        e.printStackTrace()
-                    }
-
-                }catch (e:Exception){
-                    e.printStackTrace()
-                }
-            } else {
-
-            }
-        }
+//                        }
+//                    } catch (e: Exception) {
+//                        e.printStackTrace()
+//                    }
+//
+//                }catch (e:Exception){
+//                    e.printStackTrace()
+//                }
+//            } else {
+//
+//            }
+//        }
 
         binding.btnAccepttrip.setOnClickListener(View.OnClickListener {
             if (binding.etStartRide.text.toString().isNullOrEmpty()){
                 snackbar("Please enter start ride code")
             }else{
-                viewModel.AcceptRideAPI(
+                viewModel.updateBookingStatus(
                     "Bearer "+ userPref.getToken().toString(),
-                    Bookingid,
-                    binding.etStartRide.text.toString()
+                    booking.id.toString(),
+                    binding.etStartRide.text.toString(),
+                    "2",""
                 )
             }
         })
@@ -207,7 +217,7 @@ class TripDetailsActivity : BaseActivity(),Canceldata {
                     intent.putExtra("piclong",etfromlong.toDouble())
                     intent.putExtra("droplat",ettolat.toDouble())
                     intent.putExtra("droplong",ettolong.toDouble())
-                    intent.putExtra("bookingid",Bookingid)
+                    intent.putExtra("bookingid",booking.id.toString())
                     startActivity(intent)
                     finish()
                 }catch (e:Exception){
@@ -284,11 +294,6 @@ class TripDetailsActivity : BaseActivity(),Canceldata {
                 bindingDialog.rvReasons.layoutManager = LinearLayoutManager(this)
                 canselreasonadapter = CancelReasonAdapter(this, Listdata,this)
                 bindingDialog.rvReasons.adapter =canselreasonadapter
-
-////                userPref.setUserId(it!!.data!!.Id.toString())
-//                val intent = Intent(this, DashboardActivity::class.java)
-//                startActivity(intent)
-//                finish()
             } else {
 //                toast(.message)
             }
@@ -311,32 +316,39 @@ class TripDetailsActivity : BaseActivity(),Canceldata {
 
         bindingDialog.btnCancel.setOnClickListener {
             cancelreason = bindingDialog.etFeedback.text.toString()
-            if (flag=="upcomingloader"){
-                viewModel.LoaderDriverTripCancelAPI(
-                    "Bearer "+ userPref.getToken().toString(),
-                    Bookingid,
-                    cancelid,
-                    cancelreason
-                )
 
-            }else{
-                viewModel.passenger_driver_trip_cancelApi(
-                    "Bearer "+ userPref.getToken().toString(),
-                    Bookingid,
-                    cancelid,
-                    cancelreason
-                )
+            viewModel.updateBookingStatus(
+                "Bearer "+ userPref.getToken().toString(),
+                booking.id.toString(),
+                binding.etStartRide.text.toString(),
+                "3",cancelreason
+            )
+//            if (flag=="upcomingloader"){
+//                viewModel.LoaderDriverTripCancelAPI(
+//                    "Bearer "+ userPref.getToken().toString(),
+//                    booking.id.toString(),
+//                    cancelid,
+//                    cancelreason
+//                )
+//
+//            }else{
+//                viewModel.passenger_driver_trip_cancelApi(
+//                    "Bearer "+ userPref.getToken().toString(),
+//                    booking.id.toString(),
+//                    cancelid,
+//                    cancelreason
+//                )
+//
+//            }
 
-            }
-
-            viewModel.LoaderdrivertripcancelResponse.observe(this) {
-                if (it?.status == 1) {
-                    toast(it.message)
-                    cDialog.dismiss()
-                } else {
-                toast(it.message)
-                }
-            }
+//            viewModel.LoaderdrivertripcancelResponse.observe(this) {
+//                if (it?.status == 1) {
+//                    toast(it.message)
+//                    cDialog.dismiss()
+//                } else {
+//                toast(it.message)
+//                }
+//            }
 
         }
     }

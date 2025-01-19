@@ -54,6 +54,7 @@ data class Driver (
     @SerializedName("name"          ) var name         : String? = null,
     @SerializedName("email"         ) var email        : String? = null,
     @SerializedName("mobile_number" ) var mobileNumber : String? = null,
+    @SerializedName("licence_number"    ) var licenceNumber   : String? = null,
     @SerializedName("country_code"  ) var countryCode  : String? = null
 
 ): Serializable

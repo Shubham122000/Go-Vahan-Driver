@@ -49,9 +49,9 @@ class PassengerCancelledTrip : BaseFragment() {
             "Bearer " + userPref.getToken().toString(),
         )
         viewModel.TripHistoryResponse.observe(viewLifecycleOwner) {
-            if (it?.status == 1) {
+            if (it?.error == false) {
                 Listdata.clear()
-                Listdata.addAll(it.data)
+                it.result?.data?.let { it1 -> Listdata.addAll(it1) }
                 binding.rvCancelled.layoutManager = LinearLayoutManager(requireContext())
                 adapter = CancelTripAdapter(requireContext(), Listdata,flags)
                 binding.rvCancelled.adapter = adapter

@@ -32,16 +32,14 @@ class UpcomingBookingsAdapter (val context : Context,var userPref: UserPref, val
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val data = list[position]
         try {
-
-
-            holder.binding.tvDate.text = data.bookingDate
+            holder.binding.tvDate.text = data.tripDetails?.bookingDateFrom
             holder.binding.tvTime.text = data.bookingTime
-            holder.binding.tvUsername.text = data.partyName
-            holder.binding.tvStart.text = data.picupLocation
-            holder.binding.tvStop.text = data.dropLocation
+            holder.binding.tvUsername.text = data.tripDetails?.user?.name
+            holder.binding.tvStart.text = data.tripDetails?.fromTrip
+            holder.binding.tvStop.text = data.tripDetails?.toTrip
             holder.binding.tvBookingid.text = "Booking  Id: ${data.bookingId}"
-            holder.binding.tvWeight.text = data.capacity
-            Glide.with(context).load(data.vehicleImage).into(holder.binding.ivTruck)
+            holder.binding.tvWeight.text = data.tripDetails?.vehicle?.capacity
+            Glide.with(context).load(data.tripDetails?.vehicle?.vehicleImage).into(holder.binding.ivTruck)
         }catch (e:Exception){
             e.printStackTrace()
         }
@@ -52,7 +50,7 @@ class UpcomingBookingsAdapter (val context : Context,var userPref: UserPref, val
                 holder.binding.linearItem.setOnClickListener(View.OnClickListener {
                     val intent = Intent(context, TripDetailsActivity::class.java)
 //                intent.putExtra("orderType", "4")
-                    intent.putExtra("bookingid", data.bookingId.toString())
+                    intent.putExtra("booking", data)
                     intent.putExtra("flag", "upcomingpassenger")
                     context.startActivity(intent)
                 })
@@ -60,7 +58,7 @@ class UpcomingBookingsAdapter (val context : Context,var userPref: UserPref, val
                 holder.binding.linearItem.setOnClickListener(View.OnClickListener {
                     val intent = Intent(context, TripDetailsActivity::class.java)
 //                intent.putExtra("orderType", "4")
-                    intent.putExtra("bookingid", data.bookingId.toString())
+                    intent.putExtra("booking", data)
                     intent.putExtra("flag", "upcomingloader")
                     context.startActivity(intent)
                 })
@@ -71,7 +69,7 @@ class UpcomingBookingsAdapter (val context : Context,var userPref: UserPref, val
                 holder.binding.linearItem.setOnClickListener(View.OnClickListener {
                     val intent = Intent(context, TripDetailsActivity::class.java)
 //                intent.putExtra("orderType", "4")
-                    intent.putExtra("bookingid", data.bookingId.toString())
+                    intent.putExtra("booking", data.bookingId.toString())
                     intent.putExtra("flag", "upcomingpassenger")
                     context.startActivity(intent)
                 })
@@ -79,7 +77,7 @@ class UpcomingBookingsAdapter (val context : Context,var userPref: UserPref, val
                 holder.binding.linearItem.setOnClickListener(View.OnClickListener {
                     val intent = Intent(context, TripDetailsActivity::class.java)
 //                intent.putExtra("orderType", "4")
-                    intent.putExtra("bookingid", data.bookingId.toString())
+                    intent.putExtra("booking", data.bookingId.toString())
                     intent.putExtra("flag", "upcomingloader")
                     context.startActivity(intent)
                 })

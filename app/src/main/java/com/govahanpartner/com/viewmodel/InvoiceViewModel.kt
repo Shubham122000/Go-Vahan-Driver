@@ -239,15 +239,19 @@ class InvoiceViewModel @Inject constructor(private val mainRepository: MainRepos
         }
     }
 
-    fun AcceptRideAPI(
+
+
+    fun updateBookingStatus(
         token: String,
-        bookingid: String,
-        startcode: String,
+        bookingId: String,
+        startCode: String,
+        status: String,
+        cancelReason:String
     ) {
         progressBarStatus.value = true
         viewModelScope.launch {
             val response =
-                mainRepository.AcceptRide(token,bookingid,startcode)
+                mainRepository.updateBookingStatus(token,bookingId,startCode,status,cancelReason)
             if (response.isSuccessful) {
                 progressBarStatus.value = false
                 acceptRide.postValue(response.body())
@@ -257,6 +261,25 @@ class InvoiceViewModel @Inject constructor(private val mainRepository: MainRepos
             }
         }
     }
+
+//    fun AcceptRideAPI(
+//        token: String,
+//        bookingid: String,
+//        startcode: String,
+//    ) {
+//        progressBarStatus.value = true
+//        viewModelScope.launch {
+//            val response =
+//                mainRepository.AcceptRide(token,bookingid,startcode)
+//            if (response.isSuccessful) {
+//                progressBarStatus.value = false
+//                acceptRide.postValue(response.body())
+//            } else {
+//                progressBarStatus.value = false
+//                Log.d("TAG", response.body().toString())
+//            }
+//        }
+//    }
 
     fun InvoicesummeryAPI(
         token: String,

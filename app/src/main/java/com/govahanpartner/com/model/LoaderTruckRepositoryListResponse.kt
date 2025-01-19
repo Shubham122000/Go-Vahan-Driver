@@ -1,24 +1,26 @@
 package com.govahanpartner.com.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 import java.io.Serializable
 
+@Parcelize
 data class LoaderTruckRepositoryListResponse(
-//    @SerializedName("status"  ) var status  : Int?            = null,
-//    @SerializedName("message" ) var message : String?         = null,
-//    @SerializedName("data"    ) var data    : ArrayList<LoaderTruckRepositoryListResponseData> = arrayListOf()
 
     @SerializedName("error"       ) var error      : Boolean? = null,
     @SerializedName("status_code" ) var statusCode : Int?     = null,
     @SerializedName("message"     ) var message    : String?  = null,
     @SerializedName("result"      ) var result     : LoaderTruckRepositoryListResult?  = LoaderTruckRepositoryListResult()
-)
+): Serializable, Parcelable
+@Parcelize
 data class LoaderTruckRepositoryListResult(
     @SerializedName("vehicles" ) var vehicles : ArrayList<Vehicles> = arrayListOf(),
     @SerializedName("total"    ) var total    : Int?                = null,
     @SerializedName("page"     ) var page     : Int?                = null,
     @SerializedName("limit"    ) var limit    : Int?                = null
-): Serializable
+): Serializable, Parcelable
+@Parcelize
 data class Vehicles (
 
     @SerializedName("id"                     ) var id                   : Int?       = null,
@@ -51,25 +53,31 @@ data class Vehicles (
     @SerializedName("wheels"                 ) var wheels               : Wheels?    = Wheels(),
     @SerializedName("model_year"             ) var modelYear            : ModelYear? = ModelYear()
 
-): Serializable
+): Serializable, Parcelable
+@Parcelize
 data class ModelYear (
     @SerializedName("id"   ) var id   : Int?    = null,
     @SerializedName("year" ) var year : String? = null
-): Serializable
+): Serializable, Parcelable
+@Parcelize
 data class Wheels (
     @SerializedName("id"    ) var id    : Int? = null,
     @SerializedName("wheel" ) var wheel : Int? = null
-): Serializable
+): Serializable, Parcelable
+@Parcelize
 data class Category (
 
     @SerializedName("id"     ) var id    : Int?    = null,
     @SerializedName("v_type" ) var vType : String? = null
 
-): Serializable
+): Serializable, Parcelable
+@Parcelize
 data class User (
     @SerializedName("id"   ) var id   : Int?    = null,
-    @SerializedName("name" ) var name : String? = null
-): Serializable
+    @SerializedName("name" ) var name : String? = null,
+    @SerializedName("email" ) var email : String? = null,
+    @SerializedName("mobile_number" ) var mobileNumber : String? = null
+): Serializable, Parcelable
 
 //data class LoaderTruckRepositoryListResponseData(
 //    @SerializedName("vehicle_id"    ) var vehicleId    : Int?    = null,

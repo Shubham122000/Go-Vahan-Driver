@@ -31,19 +31,19 @@ class OngoingTripAdapter (val context : Context, val list: List<TripHistoryRespo
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val data = list[position]
-        holder.binding.tvDate.text = data.bookingDate
+        holder.binding.tvDate.text = data.tripDetails?.bookingDateFrom
         holder.binding.tvTime.text =  data.bookingTime
         holder.binding.tvUsername.text = data.bookingId
-        holder.binding.tvStart.text = data.picupLocation
-        holder.binding.tvStop.text = data.dropLocation
+        holder.binding.tvStart.text = data.tripDetails?.fromTrip
+        holder.binding.tvStop.text = data.tripDetails?.toTrip
         holder.binding.tvBookingid.text = "Booking  Id: ${data.bookingId}"
-        holder.binding.tvWeight.text = data.capacity
-        Glide.with(context).load(data.vehicleImage).into(holder.binding.ivTruck)
+        holder.binding.tvWeight.text = data.tripDetails?.vehicle?.capacity
+        Glide.with(context).load(data.tripDetails?.vehicle?.vehicleImage).into(holder.binding.ivTruck)
         if (flag == "OngoingLoader") {
             holder.binding.linearItem.setOnClickListener(View.OnClickListener {
                 val intent = Intent(context, BookingDetailsActivity::class.java)
                 intent.putExtra("orderType", "4")
-                intent.putExtra("bookingid", data.bookingId)
+                intent.putExtra("booking", data)
                 intent.putExtra("flag", "OngoingLoader")
                 context.startActivity(intent)
             })
@@ -52,7 +52,7 @@ class OngoingTripAdapter (val context : Context, val list: List<TripHistoryRespo
             holder.binding.linearItem.setOnClickListener(View.OnClickListener {
                 val intent = Intent(context, BookingDetailsActivity::class.java)
                 intent.putExtra("orderType", "4")
-                intent.putExtra("bookingid", data.bookingId)
+                intent.putExtra("booking", data)
                 intent.putExtra("flag", "OngoingPassenger")
                 context.startActivity(intent)
 
