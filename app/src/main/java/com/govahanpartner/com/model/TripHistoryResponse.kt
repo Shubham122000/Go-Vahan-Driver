@@ -23,6 +23,7 @@ data class TripHistoryResponseData(
     @SerializedName("ride_code"       ) var rideCode       : String?                   = null,
     @SerializedName("created_at"      ) var createdAt      : String?                   = null,
     @SerializedName("updated_at"      ) var updatedAt      : String?                   = null,
+    @SerializedName("is_doc_upload"      ) var isDocUpload      : Int?                   = null,
     @SerializedName("payment_details" ) var paymentDetails : ArrayList<PaymentDetails> = arrayListOf(),
     @SerializedName("trip_details"    ) var tripDetails    : TripDetails?              = TripDetails()
 ): Parcelable

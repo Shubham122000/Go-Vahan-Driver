@@ -76,7 +76,8 @@ data class User (
     @SerializedName("id"   ) var id   : Int?    = null,
     @SerializedName("name" ) var name : String? = null,
     @SerializedName("email" ) var email : String? = null,
-    @SerializedName("mobile_number" ) var mobileNumber : String? = null
+    @SerializedName("mobile_number" ) var mobileNumber : String? = null,
+    @SerializedName("image" ) var image : String? = null
 ): Serializable, Parcelable
 
 //data class LoaderTruckRepositoryListResponseData(
