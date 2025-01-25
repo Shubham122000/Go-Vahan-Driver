@@ -114,19 +114,19 @@ class BookingDetailsActivity : BaseActivity() {
         binding.BTN.setOnClickListener {
             if (binding.POD.isChecked && binding.challan.isChecked && binding.signature.isChecked){
                 flag1="1"
-                val intent = Intent(this, UploadDocumentsRegardingTrip::class.java).putExtra("id",booking.bookingId).putExtra("flag",flag)
+                val intent = Intent(this, UploadDocumentsRegardingTrip::class.java).putExtra("id",booking.id.toString()).putExtra("flag",flag)
                 startActivity(intent)
             }  else if (binding.POD.isChecked&&binding.challan.isChecked) {
                 flag1="1"
-                val intent = Intent(this, UploadDocumentsRegardingTrip::class.java).putExtra("id",booking.bookingId).putExtra("flag",flag)
+                val intent = Intent(this, UploadDocumentsRegardingTrip::class.java).putExtra("id",booking.id.toString()).putExtra("flag",flag)
                 startActivity(intent)
             } else if (binding.POD.isChecked&&binding.signature.isChecked) {
                 flag1="1"
-                val intent = Intent(this, UploadDocumentsRegardingTrip::class.java).putExtra("id",booking.bookingId).putExtra("flag",flag)
+                val intent = Intent(this, UploadDocumentsRegardingTrip::class.java).putExtra("id",booking.id.toString()).putExtra("flag",flag)
                 startActivity(intent)
             }else if (binding.challan.isChecked&&binding.signature.isChecked){
                 flag1="1"
-                val intent = Intent(this, UploadDocumentsRegardingTrip::class.java).putExtra("id",booking.bookingId).putExtra("flag",flag)
+                val intent = Intent(this, UploadDocumentsRegardingTrip::class.java).putExtra("id",booking.id.toString()).putExtra("flag",flag)
                 startActivity(intent)
             }
             else{
@@ -137,12 +137,21 @@ class BookingDetailsActivity : BaseActivity() {
 
         binding.cashsubit.setOnClickListener {
             if (flag == "OngoingLoader") {
-                viewModel1.checkTripPaymentsApi(
-                    "Bearer " + userPref.getToken().toString(),pendingAmount ,
-                    booking.bookingId.toString(),
-                )
-                viewModel1.CheckTripPayment.observe(this) {
-                    if (it?.status == 1) {
+//                viewModel1.checkTripPaymentsApi(
+//                    "Bearer " + userPref.getToken().toString(),pendingAmount ,
+//                    booking.bookingId.toString(),
+//                )
+                if (userPref.getRole() == "2" || userPref.getRole() == "3") {
+                    viewModel.updateBookingStatus(
+                        "Bearer "+ userPref.getToken().toString(),booking.id.toString(),"","4",""
+                    )
+                }else{
+                    viewModel.updateBookingStatus(
+                        "Bearer "+ userPref.getToken().toString(),booking.id.toString(),"","4",""
+                    )
+                }
+                viewModel.acceptRide.observe(this) {
+                    if (it?.error == false) {
                         val intent = Intent(this, DashboardActivity::class.java)
                         startActivity(intent)
                         finishAffinity()
@@ -151,12 +160,17 @@ class BookingDetailsActivity : BaseActivity() {
                     }
                 }
                 } else {
-                viewModel1.passenger_Payments_checkApi(
-                    "Bearer " + userPref.getToken().toString(), amount,
-                    booking.bookingId.toString()
-                )
-                viewModel1.CheckTripPayment2.observe(this) {
-                    if (it?.status == 1) {
+                if (userPref.getRole() == "2" || userPref.getRole() == "3") {
+                    viewModel.updateBookingStatus(
+                        "Bearer "+ userPref.getToken().toString(),booking.id.toString(),"","4",""
+                    )
+                }else{
+                    viewModel.updateBookingStatus(
+                        "Bearer "+ userPref.getToken().toString(),booking.id.toString(),"","4",""
+                    )
+                }
+                viewModel.acceptRide.observe(this) {
+                    if (it?.error == false) {
                         val intent = Intent(this, DashboardActivity::class.java)
                         startActivity(intent)
                         finishAffinity()
@@ -281,9 +295,9 @@ class BookingDetailsActivity : BaseActivity() {
                         binding.tvDistance.text = booking.tripDetails?.totalDistance.toString()
                         binding.tvFrom.text = booking.tripDetails?.fromTrip.toString()
                         binding.tvAmount.text =  "₹${booking.tripDetails?.percentAmount.toString()}"
-                        binding.tvPending.text =  "₹${booking.tripDetails?.freightAmount.toString()}"
-                        pendingAmount = booking.tripDetails?.freightAmount.toString()
-//                        invoicenumber = it.data?.invoice_number.toString()
+                        binding.tvPending.text =  "₹${booking.tripDetails?.remainingAmount.toString()}"
+                        pendingAmount = booking.tripDetails?.remainingAmount.toString()
+                        invoicenumber = booking.paymentDetails.get(0).invoice.toString()
                         Bookingstatus = booking.tripDetails?.tripStatus.toString()
                         Glide.with(this).load(booking.tripDetails?.user?.image).placeholder(R.drawable.image_placeholder).into(binding.imgUser)
                         if (Bookingstatus == "4"){
@@ -300,13 +314,13 @@ class BookingDetailsActivity : BaseActivity() {
                         binding.tvDriverphone.text = booking.tripDetails?.driver?.mobileNumber.toString()
                         binding.tvLicno.text = booking.tripDetails?.driver?.licenceNumber.toString()
                         binding.tvWheeler.text = "${booking.tripDetails?.vehicle?.wheels?.wheel.toString()}"+" Wheelers"
-                        if (booking.paymentDetails.get(0).paymentMode.equals("1")){
+                        if (booking.paymentDetails.get(0).paymentMode?.equals("1") == true){
                             binding.tvPaymentmode.text ="Cash"
                         }
-                        else if (booking.paymentDetails.get(0).paymentMode.equals("2")){
+                        else if (booking.paymentDetails.get(0).paymentMode?.equals("2") == true){
                             binding.tvPaymentmode.text ="Online"
                         }
-                        else if (booking.paymentDetails.get(0).paymentMode.equals("3")){
+                        else if (booking.paymentDetails.get(0).paymentMode?.equals("3") == true){
                             binding.tvPaymentmode.text ="Wallet"
                         }
                         binding.tvType.text = booking.tripDetails?.vehicle?.bodyType?.name.toString()
@@ -326,7 +340,7 @@ class BookingDetailsActivity : BaseActivity() {
                             }
                         }
 
-                        if (booking.isDocUpload == 1){
+                        if (booking.isDocUpload == true){
                             binding.POD.isChecked = true
                             binding.challan.isChecked = true
                             binding.signature.isChecked = true

@@ -250,7 +250,7 @@ class WalletActivity : BaseActivity(),wallet_customclick, PopupMenu.OnMenuItemCl
             }
         }
         viewModel.addmoneytowalletresponse.observe(this) {
-            if (it.status == 1) {
+            if (it.error == false) {
                 toast(it.message)
                 finish()
             } else {

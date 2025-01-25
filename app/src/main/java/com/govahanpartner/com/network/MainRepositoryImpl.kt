@@ -880,8 +880,8 @@ class MainRepositoryImpl @Inject constructor(private val apiService: ApiService)
     override suspend fun add_bank_account(header: String,account_no:RequestBody,name:RequestBody,ifsc:RequestBody,bank_name:RequestBody,account_branch:RequestBody,upi_id:RequestBody,image: MultipartBody.Part): Response<DriverProfile> {
         return apiService.add_bank_account(header,account_no,name,ifsc,bank_name,account_branch,upi_id,image)
     }
-    override suspend fun loader_builty_img(header: String,booking_id:RequestBody,type:RequestBody,pod:MultipartBody.Part?,signature:MultipartBody.Part?,builty:MultipartBody.Part?): Response<DriverProfile> {
-        return apiService.loader_builty_img(header,booking_id,type,pod,signature,builty)
+    override suspend fun createBookingDocument(header: String,booking_id:RequestBody,pod:MultipartBody.Part?,signature:MultipartBody.Part?,builty:MultipartBody.Part?): Response<DriverProfile> {
+        return apiService.createBookingDocument(header,booking_id,pod,signature,builty)
     }
     override suspend fun RideCompleted(header: String,id:String): Response<RideCompletedResponse> {
         return apiService.rideCompleted(header,id)

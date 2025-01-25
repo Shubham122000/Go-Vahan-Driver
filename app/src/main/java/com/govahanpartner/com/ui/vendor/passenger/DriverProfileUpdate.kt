@@ -109,7 +109,7 @@ class DriverProfileUpdate : BaseActivity() {
             }
         }
         viewModel.DriverProfileResponse.observe(this){
-            if (it.status == 1){
+            if (it.error == false){
                 binding.etFullName2.setText(it.data?.name)
                 binding.edtDrivingexp.setText(it.data?.experience)
                 binding.edtMobile.setText( it.data?.mobileNumber.toString())

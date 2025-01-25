@@ -55,7 +55,7 @@ class TruckRepositoryActivity : BaseActivity(), tripdelete, loadervehiclelist, d
             onBackPressed()
         }
         viewModel.TruckrepositoryDelete.observe(this) {
-            if (it?.status == 1) {
+            if (it?.error == false) {
                 viewModel.TruckrepositoryListApi(
                     "Bearer " + userPref.getToken().toString()
                 )
@@ -81,7 +81,7 @@ class TruckRepositoryActivity : BaseActivity(), tripdelete, loadervehiclelist, d
             }
 
            viewModel.TruckrepositorymodelClass.observe(this) {
-            if (it?.status == 1) {
+            if (it?.error == false) {
                     viewModel.TruckrepositoryPassengerListApi(
                         "Bearer " + userPref.getToken().toString()
                     )

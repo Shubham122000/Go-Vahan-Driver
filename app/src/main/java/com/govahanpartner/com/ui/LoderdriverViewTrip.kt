@@ -70,7 +70,7 @@ class LoderdriverViewTrip : BaseActivity(), tripdelete, deleteVehicle, tripclick
         }
 
         viewModel.DeleteTRipComplete.observe(this) {
-            if (it?.status == 1) {
+            if (it?.error == false) {
                 viewModel.vendor_driver_loadertrip_list(
                     "Bearer "+ userPref.getToken().toString(),id,type
                 )

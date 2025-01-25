@@ -23,7 +23,7 @@ data class TripHistoryResponseData(
     @SerializedName("ride_code"       ) var rideCode       : String?                   = null,
     @SerializedName("created_at"      ) var createdAt      : String?                   = null,
     @SerializedName("updated_at"      ) var updatedAt      : String?                   = null,
-    @SerializedName("is_doc_upload"      ) var isDocUpload      : Int?                   = null,
+    @SerializedName("is_doc_upload"      ) var isDocUpload      : Boolean?                   = null,
     @SerializedName("payment_details" ) var paymentDetails : ArrayList<PaymentDetails> = arrayListOf(),
     @SerializedName("trip_details"    ) var tripDetails    : TripDetails?              = TripDetails()
 ): Parcelable
@@ -56,6 +56,7 @@ data class TripDetails (
     @SerializedName("billing_type"      ) var billingType     : String?  = null,
     @SerializedName("freight_amount"    ) var freightAmount   : String?  = null,
     @SerializedName("percent_amount"    ) var percentAmount   : String?  = null,
+    @SerializedName("remaining_amount"  ) var remainingAmount  : String?  = null,
     @SerializedName("trip_status"       ) var tripStatus      : Int?     = null,
     @SerializedName("booking_date_from" ) var bookingDateFrom : String?  = null,
     @SerializedName("booking_date_to"   ) var bookingDateTo   : String?  = null,

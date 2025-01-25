@@ -47,7 +47,7 @@ class DriverDetailActivity : BaseActivity() {
             }
         }
         viewModel.DriverProfileResponse.observe(this){
-            if (it.status == 1){
+            if (it.error == false){
                 driver_id = it.data?.id.toString()
                 binding.tvUsername.text = it.data?.email.toString()
                 binding.tvExperience.text = it.data?.experience.toString()

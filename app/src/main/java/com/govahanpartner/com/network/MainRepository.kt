@@ -275,7 +275,7 @@ interface MainRepository {
     suspend fun vendor_driver_delete(header: String,id:String): Response<DriverProfile>
     suspend fun my_wallet_payment(header: String,type:String,transaction_id:String,amount: String): Response<DriverProfile>
     suspend fun add_bank_account(header: String,account_no:RequestBody,name:RequestBody,ifsc:RequestBody,bank_name:RequestBody,account_branch:RequestBody,upi_id:RequestBody,image: MultipartBody.Part): Response<DriverProfile>
-    suspend fun loader_builty_img(header: String,booking_id:RequestBody,type:RequestBody,pod:MultipartBody.Part?,signature:MultipartBody.Part?,builty:MultipartBody.Part?): Response<DriverProfile>
+    suspend fun createBookingDocument(header: String,booking_id:RequestBody,pod:MultipartBody.Part?,signature:MultipartBody.Part?,builty:MultipartBody.Part?): Response<DriverProfile>
     suspend fun getBankAccountsApi(header: String): Response<GetBankAcountResponse>
     suspend fun loader_driver_invoice_url(header: String,booking_id:String,type:String): Response<InvoiceurldownloadResponse>
     suspend fun my_driver_wallet_list_donload(header: String): Response<ProfileResponse>

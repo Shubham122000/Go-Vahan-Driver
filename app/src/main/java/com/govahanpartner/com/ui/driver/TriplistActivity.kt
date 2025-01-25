@@ -83,7 +83,7 @@ class TriplistActivity : BaseActivity(),tripdelete, deleteVehicle,tripclick {
         }
 
         viewModel.DeleteTRipComplete.observe(this) {
-            if (it?.status == 1) {
+            if (it?.error == false) {
                 if (userPref.getRole().equals("3")){
                     viewModel.driver_loadertrip_list(
                         "Bearer "+ userPref.getToken().toString(),"1"

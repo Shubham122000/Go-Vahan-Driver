@@ -43,10 +43,17 @@ data class TaxiRepositoryViewDetailsResult(
 ): Parcelable
 @Parcelize
 data class PaymentDetails (
-    @SerializedName("status"             ) var status            : Int?    = null,
-    @SerializedName("payment_mode"       ) var paymentMode       : String? = null,
+    @SerializedName("id"             ) var id            : Int?    = null,
+    @SerializedName("booking_id"     ) var bookingId     : Int?    = null,
+    @SerializedName("payment_mode"   ) var paymentMode   : Int?    = null,
+    @SerializedName("invoice"        ) var invoice       : String? = null,
+    @SerializedName("transaction_id" ) var transactionId : String? = null,
+    @SerializedName("status"         ) var status        : Int?    = null,
+    @SerializedName("currency"       ) var currency      : String? = null,
+    @SerializedName("amount"         ) var amount        : String? = null,
+    @SerializedName("created_at"     ) var createdAt     : String? = null,
+    @SerializedName("updated_at"     ) var updatedAt     : String? = null,
     @SerializedName("is_subscription_valid"       ) var isSubscriptionValid       : String? = null,
-    @SerializedName("amount"             ) var amount            : Float?    = null,
     @SerializedName("subscription_start" ) var subscriptionStart : String? = null,
     @SerializedName("subscription_end"   ) var subscriptionEnd   : String? = null
 

@@ -868,11 +868,10 @@ interface ApiService {
     ): Response<DriverProfile>
 
     @Multipart
-    @POST("loader_builty_img")
-    suspend fun loader_builty_img(
+    @POST("create_booking_document")
+    suspend fun createBookingDocument(
         @Header("Authorization") authorization: String,
         @Part("booking_id") booking_id:RequestBody,
-        @Part("type") type:RequestBody,
         @Part pod: MultipartBody.Part?,
         @Part signature: MultipartBody.Part?,
         @Part builty: MultipartBody.Part?,

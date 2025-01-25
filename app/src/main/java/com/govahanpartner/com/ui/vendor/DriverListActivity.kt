@@ -47,7 +47,7 @@ class DriverListActivity : BaseActivity() ,tripdelete,deleteVehicle{
 //            userPref.getid().toString()
         )
         viewModel.DriverProfileResponse.observe(this) {
-            if (it?.status == 1) {
+            if (it?.error == false) {
                 viewModel.driverListApi(
                     "Bearer "+userPref.getToken().toString(),
 //                    userPref.getid().toString()

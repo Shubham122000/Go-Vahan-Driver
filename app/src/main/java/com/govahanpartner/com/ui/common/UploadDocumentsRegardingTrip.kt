@@ -139,7 +139,7 @@ class UploadDocumentsRegardingTrip : BaseActivity() {
             }
 
         viewModel.DriverProfileResponse.observe(this) {
-            if (it?.status == 1) {
+            if (it?.error == false) {
                 toast(it.message)
                 finish()
             } else {
@@ -232,9 +232,9 @@ class UploadDocumentsRegardingTrip : BaseActivity() {
 */
 
                 Log.d("typeNEW",type)
-                viewModel.loader_builty_img(
+                viewModel.createBookingDocument(
                     "Bearer " + userPref.getToken().toString(),
-                    id,type,
+                    id,
                     image2,
                     image3,
                     image1

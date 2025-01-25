@@ -118,23 +118,22 @@ class AddDriverViewModel @Inject constructor(private val mainRepository: MainRep
             }
         }
     }
-  fun loader_builty_img(
+  fun createBookingDocument(
         token:String,
         booking_id:String,
-        type:String,
         pod:MultipartBody.Part?,
         signature:MultipartBody.Part?,
         builty:MultipartBody.Part?
     ) {
       val booking_id: RequestBody = booking_id.toRequestBody("text/plain".toMediaTypeOrNull())
-      val type: RequestBody = type.toRequestBody("text/plain".toMediaTypeOrNull())
+//      val type: RequestBody = type.toRequestBody("text/plain".toMediaTypeOrNull())
 
       progressBarStatus.value = true
         viewModelScope.launch {
 
-            val response = mainRepository.loader_builty_img(
+            val response = mainRepository.createBookingDocument(
                 token,
-                booking_id,type,pod,signature,builty)
+                booking_id,pod,signature,builty)
             if (response.isSuccessful) {
                 progressBarStatus.value = false
                 DriverProfileResponse.postValue(response.body())

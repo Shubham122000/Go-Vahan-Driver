@@ -143,7 +143,7 @@ class PaymentThroughActivity : BaseActivity(), PaymentResultWithDataListener {
             }
         }
         viewModel1.AddwalletResponse.observe(this) {
-            if (it.status == 1) {
+            if (it.error == false) {
                 val intent = Intent(this, DashboardActivity::class.java)
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
                 this.startActivity(intent)

@@ -109,7 +109,7 @@ class AddAccountActivity : BaseActivity() {
         }
         viewModel.addmoneytowalletresponse.observe(this)
         {
-            if (it.status == 1) {
+            if (it.error == false) {
                 toast(it.message)
          finish()
             } else {

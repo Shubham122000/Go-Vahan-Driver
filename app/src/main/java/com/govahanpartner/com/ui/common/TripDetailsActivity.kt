@@ -159,11 +159,11 @@ class TripDetailsActivity : BaseActivity(),Canceldata {
 //                            }else{
 //                                binding.tvHeight.text =it.data?.height.toString()
 //                            }
-                            if (booking.paymentDetails.get(0)?.paymentMode.equals("1")) {
+                            if (booking.paymentDetails.get(0)?.paymentMode == 1) {
                                 binding.tvPaymentmode.text = "Cash"
-                            } else if (booking.paymentDetails.get(0)?.paymentMode.equals("2")) {
+                            } else if (booking.paymentDetails.get(0)?.paymentMode == 2) {
                                 binding.tvPaymentmode.text = "Online"
-                            } else if (booking.paymentDetails.get(0)?.paymentMode.equals("3")) {
+                            } else if (booking.paymentDetails.get(0)?.paymentMode == 3) {
                                 binding.tvPaymentmode.text = "Wallet"
                             }
                             etfromlat = booking.tripDetails?.pickupLat?.toDouble()!!
@@ -197,7 +197,7 @@ class TripDetailsActivity : BaseActivity(),Canceldata {
             }
         })
         viewModel.acceptRide.observe(this) {
-            if (it?.status == 1) {
+            if (it?.error == false) {
                 try {
                     toast(it.message)
                     var flag1=""
