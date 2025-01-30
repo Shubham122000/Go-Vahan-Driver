@@ -1,5 +1,6 @@
 package com.govahanpartner.com.customclick
 
+import com.govahanpartner.com.model.InvoiceListResponseData
 import com.govahanpartner.com.model.TripListResponseData
 
 interface wallet_customclick {
@@ -24,7 +25,7 @@ interface deleteVehicle{
 }
 interface Click{
 
-    fun click(id:String?)
+    fun click(data: InvoiceListResponseData?)
 
 }
 interface loadervehiclelist {

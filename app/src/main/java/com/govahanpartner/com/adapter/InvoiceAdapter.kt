@@ -28,14 +28,14 @@ class InvoiceListAdapter (val context : Context, var list: ArrayList<InvoiceList
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         var data = list[position]
-        holder.binding.date.text = data.bookingDate
-        holder.binding.locationfrom.text = data.picupLocation
-        holder.binding.locationto.text = data.dropLocation
+        holder.binding.date.text = data.tripDetails?.bookingDateFrom
+        holder.binding.locationfrom.text = data.tripDetails?.fromTrip
+        holder.binding.locationto.text = data.tripDetails?.toTrip
         holder.binding.tvBookingid.text = data.bookingId
-        holder.binding.tvInvoicenumber.text = data.invoiceNumber
+        holder.binding.tvInvoicenumber.text = data.paymentDetails.get(0).invoice
 
         holder.binding.click.setOnClickListener {
-            click.click(data.bookingId.toString())
+            click.click(data)
         }
     }
     override fun getItemCount(): Int {

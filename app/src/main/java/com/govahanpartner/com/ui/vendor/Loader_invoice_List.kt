@@ -65,9 +65,9 @@ class Loader_invoice_List : BaseActivity() ,Click{
             }
         }
         viewModel.InvoiceListResponse.observe(this) {
-            if (it?.status == 1) {
+            if (it?.error == false) {
                 Listdata.clear()
-                Listdata.addAll(it.data)
+                it.result?.data?.let { it1 -> Listdata.addAll(it1) }
                 binding.rvinvoice.layoutManager = LinearLayoutManager(this)
                 adapter = InvoiceListAdapter(this, Listdata,this)
                 binding.rvinvoice.adapter = adapter
@@ -83,12 +83,14 @@ class Loader_invoice_List : BaseActivity() ,Click{
 
     }
 
-    override fun click(id: String?) {
-        if (flag.equals("loader")) {
-            viewModel.loader_driver_invoice_url("Bearer " + userPref.getToken().toString(), id!!, "1")
-        }
-        else{
-            viewModel.loader_driver_invoice_url("Bearer " + userPref.getToken().toString(), id!!, "2")
-        }
+    override fun click(data: InvoiceListResponseData?) {
+        val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(data?.pdfUrl))
+        startActivity(browserIntent)
+//        if (flag.equals("loader")) {
+//            viewModel.loader_driver_invoice_url("Bearer " + userPref.getToken().toString(), id!!, "1")
+//        }
+//        else{
+//            viewModel.loader_driver_invoice_url("Bearer " + userPref.getToken().toString(), id!!, "2")
+//        }
     }
 }

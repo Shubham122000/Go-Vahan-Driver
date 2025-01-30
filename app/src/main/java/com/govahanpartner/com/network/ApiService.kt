@@ -1082,7 +1082,7 @@ interface ApiService {
     ): Response<AddTripDriverMOdelClass>
 
     @FormUrlEncoded
-    @POST("loader_driver_invoice_list")
+    @POST("invoice_list")
     suspend fun InvoiceList(
         @Header("Authorization") authorization: String,
         @Field("type") type: String,
@@ -1090,7 +1090,7 @@ interface ApiService {
 
     @FormUrlEncoded
     @POST("loader_driver_invoice_url")
-    suspend fun loader_driver_invoice_url(
+    suspend fun loader_driver_invoiceinvoice_url(
         @Header("Authorization") authorization: String,
         @Field("booking_id") booking_id: String,
         @Field("type") type: String,
