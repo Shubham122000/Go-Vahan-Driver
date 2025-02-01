@@ -72,6 +72,7 @@ class WalletActivity : BaseActivity(),wallet_customclick, PopupMenu.OnMenuItemCl
     lateinit var fillAmount: String
     lateinit var date: String
     var transactionid=""
+    var transactionType=""
     var transactionid2=""
     var formattedDate=""
     var transactiontype=""
@@ -99,7 +100,7 @@ class WalletActivity : BaseActivity(),wallet_customclick, PopupMenu.OnMenuItemCl
         binding.tvDate.setText(formattedDate)
 
         viewModel.walletListApi(
-                "Bearer "+userPref.getToken().toString(),"",""
+                "Bearer "+userPref.getToken().toString(),"",transactionType
         )
 
 //        if (userPref.getRole().equals("3")){
@@ -128,7 +129,7 @@ class WalletActivity : BaseActivity(),wallet_customclick, PopupMenu.OnMenuItemCl
                     binding.btnMoneyTrans.visibility=View.GONE
                     binding.payoutrequest.text="Move to vendor"
                     viewModel.walletListApi(
-                        "Bearer "+userPref.getToken().toString(),"",""
+                        "Bearer "+userPref.getToken().toString(),selectedDateFormat2,transactionType
                     )
                     }else if (userPref.getRole().equals("2")){
                     binding.btnMoneyTrans.visibility=View.VISIBLE
@@ -259,7 +260,9 @@ class WalletActivity : BaseActivity(),wallet_customclick, PopupMenu.OnMenuItemCl
         viewModel.addmoneytowalletresponse.observe(this) {
             if (it.error == false) {
                 toast(it.message)
-                finish()
+                viewModel.walletListApi(
+                    "Bearer "+userPref.getToken().toString(),"",transactionType
+                )
             } else {
                 toast(it.message!!)
             }
@@ -290,30 +293,30 @@ class WalletActivity : BaseActivity(),wallet_customclick, PopupMenu.OnMenuItemCl
             flag="addmoney"
             AddMoney()
         }
-            binding.payoutrequest.setOnClickListener {
-                flag="payout"
-                AddMoney()
-               }
+        binding.payoutrequest.setOnClickListener {
+            flag="payout"
+            AddMoney()
+        }
 
     }
-         override fun onStart() {
-             super.onStart()
-             if(flag1.equals("1")){
-             }
-             else{
-             viewModel1.paymentcheckApi("Bearer " + userPref.user.apiToken,transactionid2)
-             viewModel1.Paymentsuccessmsgresponse.observe(this) {
-                 if (it.code == "PAYMENT_SUCCESS") {
-                     toast(it.message)
-                     viewModel.my_wallet_payment(
-                         "Bearer " + userPref.user.apiToken,"1",transactionid2,bindingDialog.edtText.text.toString()
-                     )
-
-                 } else {
-                        toast("Payment Failed")
-                    }
-                 }}
-             }
+//         override fun onStart() {
+//             super.onStart()
+//             if(flag1.equals("1")){
+//             }
+//             else{
+//             viewModel1.paymentcheckApi("Bearer " + userPref.user.apiToken,transactionid2)
+//             viewModel1.Paymentsuccessmsgresponse.observe(this) {
+//                 if (it.code == "PAYMENT_SUCCESS") {
+//                     toast(it.message)
+//                     viewModel.addMoney(
+//                         "Bearer " + userPref.user.apiToken,"1",transactionid2,bindingDialog.edtText.text.toString()
+//                     )
+//
+//                 } else {
+//                        toast("Payment Failed")
+//                    }
+//                 }}
+//             }
 
 
         fun AddMoney(){
@@ -373,20 +376,18 @@ class WalletActivity : BaseActivity(),wallet_customclick, PopupMenu.OnMenuItemCl
         }else {
             if (flag.equals("addmoney")){
                 startPayment(amountofuser)
-            }
-            else{
-               if(userPref.getRole().equals("3")){
-
-                       viewModel.vendor_driver_transection(
-                           "Bearer " + userPref.getToken().toString(),
-                           bindingDialog.edtText.text.toString()
-                       )
-
-
-               }else{
-                   viewModel.withdrawapi("Bearer " + userPref.getToken().toString(),bindingDialog.edtText.text.toString())
-
-               }
+            } else{
+//               if(userPref.getRole().equals("3")){
+                   viewModel.addMoney(
+                       "Bearer " + userPref.user.apiToken,
+                       "2",
+                       "",
+                       bindingDialog.edtText.text.toString()
+                   )
+//               }else{
+//                   viewModel.withdrawapi("Bearer " + userPref.getToken().toString(),bindingDialog.edtText.text.toString())
+//
+//               }
             }
         }
     }
@@ -407,7 +408,7 @@ class WalletActivity : BaseActivity(),wallet_customclick, PopupMenu.OnMenuItemCl
             R.id.menu_all -> {
 //                if (userPref.getRole().equals("3")) {
                     viewModel.walletListApi(
-                        "Bearer " + userPref.getToken().toString(),"",""
+                        "Bearer " + userPref.getToken().toString(),selectedDateFormat2,transactionType
                     )
 //                } else if (userPref.getRole().equals("2")) {
 //                    viewModel.individual_payment_list(
@@ -421,9 +422,10 @@ class WalletActivity : BaseActivity(),wallet_customclick, PopupMenu.OnMenuItemCl
                 true
             }
             R.id.menu_cedit -> {
+                transactionType = "1"
 //                if (userPref.getRole().equals("3")) {
                     viewModel.walletListApi(
-                        "Bearer " + userPref.getToken().toString(),"","1"
+                        "Bearer " + userPref.getToken().toString(),selectedDateFormat2,transactionType
                     )
 //                } else if (userPref.getRole().equals("2")) {
 //                    viewModel.individual_payment_list(
@@ -438,9 +440,10 @@ class WalletActivity : BaseActivity(),wallet_customclick, PopupMenu.OnMenuItemCl
                 true
             }
             R.id.menu_debit -> {
+                transactionType = "2"
 //                if (userPref.getRole().equals("3")) {
                     viewModel.walletListApi(
-                        "Bearer " + userPref.getToken().toString(),"","2"
+                        "Bearer " + userPref.getToken().toString(),selectedDateFormat2,transactionType
                     )
 //                } else if (userPref.getRole().equals("2")) {
 //                    viewModel.individual_payment_list(
@@ -474,7 +477,7 @@ class WalletActivity : BaseActivity(),wallet_customclick, PopupMenu.OnMenuItemCl
                 binding.tvDate.text=selectedDateFormat2
 //                if (userPref.getRole().equals("3")) {
                     viewModel.walletListApi(
-                        "Bearer " + userPref.getToken().toString(),selectedDateFormat2,""
+                        "Bearer " + userPref.getToken().toString(),selectedDateFormat2,transactionType
                     )
 //                } else if (userPref.getRole().equals("2")) {
 //                    viewModel.individual_payment_list(
@@ -530,11 +533,23 @@ class WalletActivity : BaseActivity(),wallet_customclick, PopupMenu.OnMenuItemCl
     }
 
     override fun onPaymentSuccess(p0: String?, p1: PaymentData?) {
-        viewModel.my_wallet_payment(
-            "Bearer " + userPref.user.apiToken,"1",p1!!.paymentId,bindingDialog.edtText.text.toString()
-        )
+//        if (flag == "addmoney") {
+            viewModel.addMoney(
+                "Bearer " + userPref.user.apiToken,
+                "1",
+                p1!!.paymentId,
+                bindingDialog.edtText.text.toString()
+            )
+//        }else{
+//            viewModel.addMoney(
+//                "Bearer " + userPref.user.apiToken,
+//                "2",
+//                p1!!.paymentId,
+//                bindingDialog.edtText.text.toString()
+//            )
+//        }
 //        viewModel.payment_status_check("Bearer " + userPref.getToken().toString(),p1!!.paymentId)
-        Toast.makeText(this@WalletActivity, "Ho gai payment", Toast.LENGTH_LONG).show()
+//        Toast.makeText(this@WalletActivity, "Payment Successfully", Toast.LENGTH_LONG).show()
 
     }
 

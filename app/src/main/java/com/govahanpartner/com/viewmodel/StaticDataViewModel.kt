@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.govahanpartner.com.model.*
 import com.govahanpartner.com.model.AboutUs
-import com.govahanpartner.com.model.ContactUSRsponse
 import com.govahanpartner.com.model.NotificationResponse
 import com.govahanpartner.com.model.PrivacyPolicy
 import com.govahanpartner.com.network.MainRepository
@@ -17,7 +16,7 @@ import javax.inject.Inject
 @HiltViewModel
 class StaticDataViewModel @Inject constructor(private val mainRepository: MainRepository) :ViewModel() {
     val progressBarStatus = MutableLiveData<Boolean>()
-    val ContactUSRsponse = MutableLiveData<ContactUSRsponse>()
+    val ContactUSRsponse = MutableLiveData<ContactUsRsponse>()
     val AboutUSRsponse = MutableLiveData<AboutUs>()
     val PrivacyPolicyRsponse = MutableLiveData<PrivacyPolicy>()
     val cancellationRsponse = MutableLiveData<PrivacyPolicyModel>()
@@ -31,7 +30,7 @@ class StaticDataViewModel @Inject constructor(private val mainRepository: MainRe
         viewModelScope.launch {
 
             val response =
-                mainRepository.ContactUs(token)
+                mainRepository.contactUs(token)
             if (response.isSuccessful) {
                 progressBarStatus.value = false
                 ContactUSRsponse.postValue(response.body())

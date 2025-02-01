@@ -38,11 +38,12 @@ class ContactusActivity : BaseActivity() {
             "Bearer " + userPref.getToken().toString()
         )
         viewModel.ContactUSRsponse.observe(this){
-            if (it.status == 1){
-                binding.dummytext.text = it.data?.name
-                binding.phone.text = it.data?.contactNumber
-                binding.email.text = it.data?.email
-                Glide.with(this).load(it.data?.image).into(binding.ivDriver)
+            if (it.error == false){
+                binding.dummytext.text = it.result?.data?.name
+                binding.phone.text = it.result?.data?.contactNumber
+                binding.email.text = it.result?.data?.email
+                binding.dummytext.text = it.result?.data?.address
+//                Glide.with(this).load(it.data?.image).into(binding.ivDriver)
             }
         }
 

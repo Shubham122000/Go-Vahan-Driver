@@ -755,8 +755,8 @@ class MainRepositoryImpl @Inject constructor(private val apiService: ApiService)
         return apiService.aboutUs(header)
     }
 
-    override suspend fun contactus(header: String): Response<RegisterResponseModel> {
-        return apiService.contactus(header)
+    override suspend fun contactUs(header: String): Response<ContactUsRsponse> {
+        return apiService.contactUs(header)
     }
 
     override suspend fun privacypolicy(header: String): Response<RegisterResponseModel> {
@@ -874,8 +874,8 @@ class MainRepositoryImpl @Inject constructor(private val apiService: ApiService)
     override suspend fun vendor_driver_delete(header: String,id:String): Response<DriverProfile> {
         return apiService.vendor_driver_delete(header,id)
     }
-    override suspend fun my_wallet_payment(header: String,type:String,transaction_id:String,amount:String): Response<DriverProfile> {
-        return apiService.my_wallet_payment(header,type,transaction_id,amount)
+    override suspend fun addMoney(header: String,type:String,transactionId:String,amount:String): Response<DriverProfile> {
+        return apiService.addMoney(header,type,transactionId,amount)
     }
     override suspend fun add_bank_account(header: String,account_no:RequestBody,name:RequestBody,ifsc:RequestBody,bank_name:RequestBody,account_branch:RequestBody,upi_id:RequestBody,image: MultipartBody.Part): Response<DriverProfile> {
         return apiService.add_bank_account(header,account_no,name,ifsc,bank_name,account_branch,upi_id,image)
@@ -900,8 +900,8 @@ class MainRepositoryImpl @Inject constructor(private val apiService: ApiService)
 
 
 
-    override suspend fun walletList(header: String,date : String,transaction_type : String): Response<WalletFilterListResponse> {
-        return apiService.walletList(header)
+    override suspend fun walletList(header: String,date : String,transactionType : String): Response<WalletFilterListResponse> {
+        return apiService.walletList(header,date,transactionType)
     }
 //    override suspend fun vendor_wallet_list(header: String,date : String,transaction_type : String): Response<VendorWalletActivity> {
 //        return apiService.vendor_wallet_list(header,date,transaction_type)
@@ -917,9 +917,9 @@ class MainRepositoryImpl @Inject constructor(private val apiService: ApiService)
         return apiService.Visitingcardurl(header)
     }
 
-    override suspend fun ContactUs(header: String): Response<ContactUSRsponse> {
-        return apiService.ContactUS(header)
-    }
+//    override suspend fun ContactUs(header: String): Response<ContactUSRsponse> {
+//        return apiService.ContactUS(header)
+//    }
 
     override suspend fun Aboutus(header: String): Response<AboutUs> {
         return apiService.AboutUS(header)

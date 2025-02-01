@@ -2,10 +2,10 @@ package com.govahanpartner.com.adapter
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 
@@ -13,6 +13,9 @@ import com.govahanpartner.com.R
 import com.govahanpartner.com.databinding.RowWalletListBinding
 import com.govahanpartner.com.customclick.wallet_customclick
 import com.govahanpartner.com.model.WalletFilterListData
+import java.time.Instant
+import java.time.ZoneId
+import java.time.format.DateTimeFormatter
 
 //import com.govahanpartner.com.model.VendorWalletData
 
@@ -33,15 +36,41 @@ class WalletVendorAdapter (val context : Context, var wallet_customclick: wallet
         val data = list[position]
 
         try {
-            holder.binding.tvAmount.text = "+₹${data.paymentDetails?.amount}"
-            holder.binding.tvDate.text = data.paymentDetails?.createdAt
-            holder.binding.tvDetail.text = "Amount credited for ${data.bookingId}"
+            holder.binding.tvAmount.text = "+₹${data.amount}"
+
+            if (data.type == "1") {
+                holder.binding.tvDetail.text = "Amount credited for ${data.bookingId}."
+            }else if (data.type == "2"){
+                holder.binding.tvDetail.text = "Added amount."
+            }else{
+                holder.binding.tvDetail.text = "Received requested amount."
+                holder.binding.tvAmount.setTextColor(ContextCompat.getColor(context, R.color.red))
+
+            }
+
+            // Convert ISO string to Instant
+            val instant = Instant.parse(data.createdAt)
+
+            // Convert Instant to LocalDate and LocalTime
+            val localDate = instant.atZone(ZoneId.systemDefault()).toLocalDate() // Extract Date
+            val localTime = instant.atZone(ZoneId.systemDefault()).toLocalTime() // Extract Time
+
+            // Format Date and Time separately
+            val dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+            val timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss")
+
+            holder.binding.tvDate.text = "${localDate.format(dateFormatter)}"
+
+//            val formattedDate =  // e.g., "2025-01-30"
+//            val formattedTime = localTime.format(timeFormatter // e.g., "19:26:26"
+
+
 //            holder.binding.tvDate.text = data.transaction_date
 //            if (data.transaction_id== null){
 //                holder.binding.transactionId.text="Subscription."
 //            }
 //            else{
-                holder.binding.transactionId.text=data.paymentDetails?.transactionId
+                holder.binding.transactionId.text=data.transactionId
 //            }
 
 //            if (data.referal_type==1){

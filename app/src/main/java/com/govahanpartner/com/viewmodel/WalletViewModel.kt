@@ -29,13 +29,13 @@ class WalletViewModel @Inject constructor(private val mainRepository: MainReposi
     var razorpayStatusResponse= MutableLiveData<Razorpay_status_Response> ()
 
     fun walletListApi(
-        header: String,date : String,transaction_type : String
+        header: String,date : String,transactionType : String
     ) {
         progressBarStatus.value = true
         viewModelScope.launch {
 
             val response =
-                mainRepository.walletList(header,date,transaction_type)
+                mainRepository.walletList(header,date,transactionType)
             if (response.isSuccessful) {
                 progressBarStatus.value = false
                 walletListResponse.postValue(response.body())
@@ -103,17 +103,17 @@ class WalletViewModel @Inject constructor(private val mainRepository: MainReposi
         return razorpayStatusResponse
     }
 
-    fun my_wallet_payment(
+    fun addMoney(
         token: String,
         type: String,
-        transaction_id: String,
+        transactionId: String,
         amount: String,
     ) {
         progressBarStatus.value = true
         viewModelScope.launch {
 
             val response =
-                mainRepository.my_wallet_payment(token,type,transaction_id,amount)
+                mainRepository.addMoney(token,type,transactionId,amount)
             if (response.isSuccessful) {
                 progressBarStatus.value = false
                 addmoneytowalletresponse.postValue(response.body())

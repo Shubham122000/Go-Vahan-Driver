@@ -664,9 +664,9 @@ interface ApiService {
     ): Response<RegisterResponseModel>
 
     @GET("contact_us")
-    suspend fun contactus(
+    suspend fun contactUs(
         @Header("Authorization") authorization: String
-    ): Response<RegisterResponseModel>
+    ): Response<ContactUsRsponse>
 
     @GET("driver_get_profile")
     suspend fun getProfile(
@@ -846,11 +846,11 @@ interface ApiService {
     ): Response<DriverProfile>
 
     @FormUrlEncoded
-    @POST("my_wallet_payment")
-    suspend fun my_wallet_payment(
+    @POST("add_money")
+    suspend fun addMoney(
         @Header("Authorization") authorization: String,
         @Field("type") type:String,
-        @Field("transaction_id") transaction_id:String,
+        @Field("transaction_id") transactionId:String,
         @Field("amount") amount:String,
     ): Response<DriverProfile>
 
@@ -925,12 +925,12 @@ interface ApiService {
         @Part image: MultipartBody.Part
     ): Response<DriverUpdateProfileResponse>
 
-//    @FormUrlEncoded
-    @POST("driver_wallet_list")
+    @FormUrlEncoded
+    @POST("wallet_list")
     suspend fun walletList(
         @Header("Authorization") authorization: String,
-//        @Field("date") date : String,
-//        @Field("transaction_type") transaction_type : String
+        @Field("date") date : String,
+        @Field("transaction_type") transactionType : String
     ): Response<WalletFilterListResponse>
 
 //    @FormUrlEncoded
@@ -959,10 +959,10 @@ interface ApiService {
         @Header("Authorization") authorization: String
     ): Response<VisitingCardUrlResponse>
 
-    @GET("loader_contact_us")
-    suspend fun ContactUS(
-        @Header("Authorization") authorization: String
-    ): Response<ContactUSRsponse>
+//    @GET("loader_contact_us")
+//    suspend fun ContactUS(
+//        @Header("Authorization") authorization: String
+//    ): Response<ContactUSRsponse>
 
     @GET("loder_about_us")
     suspend fun AboutUS(

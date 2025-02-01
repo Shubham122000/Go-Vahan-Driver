@@ -268,12 +268,12 @@ interface MainRepository {
     suspend fun vendor_upcooming_booking_loder(header: String): Response<TripHistoryResponse>
     suspend fun vendor_driver_loadertrip_list(header: String,driver_id:String,type: String): Response<TripListResponse>
     suspend fun vendor_upcooming_booking_passengers(header: String): Response<TripHistoryResponse>
-     suspend fun walletList(header: String,date : String,transaction_type : String): Response<WalletFilterListResponse>
+     suspend fun walletList(header: String,date : String,transactionType : String): Response<WalletFilterListResponse>
 //    suspend fun vendor_wallet_list(header: String,date : String,transaction_type : String): Response<VendorWalletActivity>
 //    suspend fun individual_payment_list(header: String,date : String,transaction_type : String): Response<VendorWalletActivity>
     suspend fun loader_trip_delete(header: String,id:String): Response<DriverProfile>
     suspend fun vendor_driver_delete(header: String,id:String): Response<DriverProfile>
-    suspend fun my_wallet_payment(header: String,type:String,transaction_id:String,amount: String): Response<DriverProfile>
+    suspend fun addMoney(header: String,type:String,transaction_id:String,amount: String): Response<DriverProfile>
     suspend fun add_bank_account(header: String,account_no:RequestBody,name:RequestBody,ifsc:RequestBody,bank_name:RequestBody,account_branch:RequestBody,upi_id:RequestBody,image: MultipartBody.Part): Response<DriverProfile>
     suspend fun createBookingDocument(header: String,booking_id:RequestBody,pod:MultipartBody.Part?,signature:MultipartBody.Part?,builty:MultipartBody.Part?): Response<DriverProfile>
     suspend fun getBankAccountsApi(header: String): Response<GetBankAcountResponse>
@@ -452,7 +452,7 @@ interface MainRepository {
     suspend fun Notification(header: String): Response<NotificationResponse>
 
     suspend fun driverVerifyOtp(otp: String, mobile: String, ): Response<RegisterResponseModel>
-    suspend fun ContactUs(header: String): Response<ContactUSRsponse>
+//    suspend fun ContactUs(header: String): Response<ContactUSRsponse>
     suspend fun Rating(header: String): Response<RatingResponse>
     suspend fun Aboutus(header: String): Response<AboutUs>
 
@@ -497,9 +497,9 @@ interface MainRepository {
     suspend fun calcelation_refund_policy(header: String): Response<PrivacyPolicyModel>
 
 
-    suspend fun contactus(
+    suspend fun contactUs(
         header: String
-    ): Response<RegisterResponseModel>
+    ): Response<ContactUsRsponse>
 
     suspend fun truckTypeApi(
     ): Response<TruckTypeResponse>

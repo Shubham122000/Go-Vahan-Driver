@@ -33,8 +33,8 @@ class TRansactionwalletfilterAdapter (val context : Context, var wallet_customcl
         try {
 
             holder.binding.tvAmount.setTextColor(Color.parseColor("#000000"))
-            holder.binding.tvAmount.text = "+₹${data.paymentDetails?.amount}"
-            holder.binding.tvDate.text = data.paymentDetails?.createdAt
+            holder.binding.tvAmount.text = "+₹${data.amount}"
+            holder.binding.tvDate.text = data.createdAt
 //            holder.binding.transactionId.text=data.transaction_id
 //            if (data.credit == "credit") {
                 holder.binding.tvDetail.text =

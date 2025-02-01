@@ -16,9 +16,18 @@ data class WalletFilterListResult (
 
 )
 data class WalletFilterListData(
-    @SerializedName("id"              ) var id             : Int?            = null,
-    @SerializedName("booking_id"      ) var bookingId      : String?         = null,
-    @SerializedName("user_id"         ) var userId         : Int?            = null,
-    @SerializedName("user"            ) var user           : User?           = User(),
-    @SerializedName("payment_details" ) var paymentDetails : PaymentDetails? = PaymentDetails()
+
+    @SerializedName("id"               ) var id              : Int?    = null,
+    @SerializedName("user_id"          ) var userId          : Int?    = null,
+    @SerializedName("amount"           ) var amount          : String? = null,
+    @SerializedName("transaction_type" ) var transactionType : String? = null,
+    @SerializedName("type"             ) var type : String? = null,
+    @SerializedName("referal_type"     ) var referalType     : Int?    = null,
+    @SerializedName("transaction_date" ) var transactionDate : String? = null,
+    @SerializedName("transaction_id"   ) var transactionId   : String? = null,
+    @SerializedName("invoice"          ) var invoice         : String? = null,
+    @SerializedName("status"           ) var status          : Int?    = null,
+    @SerializedName("created_at"       ) var createdAt       : String? = null,
+    @SerializedName("updated_at"       ) var updatedAt       : String? = null,
+    @SerializedName("booking_id"       ) var bookingId       : String? = null,
 )

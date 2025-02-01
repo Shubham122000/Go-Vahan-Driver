@@ -31,10 +31,10 @@ class ReferAndEarnActivity : BaseActivity() {
         }
         viewModel.referralsApi("Bearer "+userPref.getToken().toString())
         viewModel.refernearnResponse.observe(this){
-            if (it.status==1){
-                referalcode=it.data.referal_code
-                link=it.data.referal_link
-                binding.tvRefercode.text= it.data.referal_code
+            if (it.error == false){
+                referalcode = it.result?.referalCode.toString()
+                link= it.result?.referalLink.toString()
+                binding.tvRefercode.text= it.result?.referalCode
             }else{
                 toast(it.message)
             }
