@@ -1,16 +1,24 @@
 package com.govahanpartner.com.model
 
-data class WalletFilterLIstREsponse(
-    var `data`: List<WalletFilterLIstData>,
-    var message: String,
-    var status: Int, var TotalAmount: String
+import com.google.gson.annotations.SerializedName
+
+data class WalletFilterListResponse(
+    @SerializedName("error"       ) var error      : Boolean? = null,
+    @SerializedName("status_code" ) var statusCode : Int?     = null,
+    @SerializedName("message"     ) var message    : String?  = null,
+    @SerializedName("result"      ) var result     : WalletFilterListResult?  = WalletFilterListResult()
 )
 
+data class WalletFilterListResult (
 
-data class WalletFilterLIstData(
-    var amount: String,
-    var credit: String,
-    var name: String,
-    var create_at: String,
-    var transaction_id:String
+    @SerializedName("total_amount" ) var totalAmount : Double?         = null,
+    @SerializedName("data"         ) var data        : ArrayList<WalletFilterListData> = arrayListOf()
+
+)
+data class WalletFilterListData(
+    @SerializedName("id"              ) var id             : Int?            = null,
+    @SerializedName("booking_id"      ) var bookingId      : String?         = null,
+    @SerializedName("user_id"         ) var userId         : Int?            = null,
+    @SerializedName("user"            ) var user           : User?           = User(),
+    @SerializedName("payment_details" ) var paymentDetails : PaymentDetails? = PaymentDetails()
 )

@@ -12,9 +12,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.govahanpartner.com.R
 import com.govahanpartner.com.databinding.RowWalletListBinding
 import com.govahanpartner.com.customclick.wallet_customclick
-import com.govahanpartner.com.model.VendorWalletData
+import com.govahanpartner.com.model.WalletFilterListData
 
-class WalletVendorAdapter (val context : Context, var wallet_customclick: wallet_customclick, val list: List<VendorWalletData>) :
+//import com.govahanpartner.com.model.VendorWalletData
+
+class WalletVendorAdapter (val context : Context, var wallet_customclick: wallet_customclick, val list: List<WalletFilterListData>) :
     RecyclerView.Adapter<WalletVendorAdapter.ViewHolder>() {
     private var listener: OnItemClickListener? = null
 
@@ -31,55 +33,58 @@ class WalletVendorAdapter (val context : Context, var wallet_customclick: wallet
         val data = list[position]
 
         try {
-            holder.binding.tvDate.text = data.transaction_date
+            holder.binding.tvAmount.text = "+₹${data.paymentDetails?.amount}"
+            holder.binding.tvDate.text = data.paymentDetails?.createdAt
+            holder.binding.tvDetail.text = "Amount credited for ${data.bookingId}"
+//            holder.binding.tvDate.text = data.transaction_date
 //            if (data.transaction_id== null){
 //                holder.binding.transactionId.text="Subscription."
 //            }
 //            else{
-                holder.binding.transactionId.text=data.transaction_id
+                holder.binding.transactionId.text=data.paymentDetails?.transactionId
 //            }
 
-            if (data.referal_type==1){
-                if (data.transaction_type.equals("1")){
-                    holder.binding.tvAmount.setTextColor(Color.parseColor("#3CB878"))
-                    holder.binding.tvAmount.text = "+₹${data.amount}"
-                    holder.binding.tvDetail.text = "Amount added by refferal code."
-                }
-            }
-            else if(data.referal_type==2){
-                    holder.binding.tvAmount.setTextColor(Color.parseColor("#FF0000"))
-                    holder.binding.tvAmount.text = "-₹${data.amount}"
-                    holder.binding.tvDetail.text = "Refund amount deducted."
-            }
-            else{
-                if (data.transaction_type.equals("1")){
-                    holder.binding.tvAmount.setTextColor(Color.parseColor("#3CB878"))
-                    holder.binding.tvAmount.text = "+₹${data.amount}"
-                    if(data.custom_key_one==null){
-                        holder.binding.tvDetail.text = "Amount added to wallet"
-                    }else{
-                        if (data.driver_name==null){
-                            holder.binding.tvDetail.text = "Amount pay by user"
-                        }
-                        else{
-                            holder.binding.tvDetail.text = "Amount pay by ${data.driver_name}driver."
-                        }
-                    }
-                }
-                else{
-                    holder.binding.tvAmount.setTextColor(Color.parseColor("#FF0000"))
-                    holder.binding.tvAmount.text = "-₹${data.amount}"
-                    if (data.custom_key==1){
-                        holder.binding.tvDetail.text = "Amount move to vendor."
-                    }
-                    else{
-                        holder.binding.tvDetail.text = "Subscription purchased."
-                    }
-                }
-            }
-             if (data.transaction_id.equals("withdraw")){
-                holder.binding.tvDetail.text = "Withdraw amount."
-            }
+//            if (data.referal_type==1){
+//                if (data.transaction_type.equals("1")){
+//                    holder.binding.tvAmount.setTextColor(Color.parseColor("#3CB878"))
+//                    holder.binding.tvAmount.text = "+₹${data.amount}"
+//                    holder.binding.tvDetail.text = "Amount added by refferal code."
+//                }
+//            }
+//            else if(data.referal_type==2){
+//                    holder.binding.tvAmount.setTextColor(Color.parseColor("#FF0000"))
+//                    holder.binding.tvAmount.text = "-₹${data.amount}"
+//                    holder.binding.tvDetail.text = "Refund amount deducted."
+//            }
+//            else{
+//                if (data.transaction_type.equals("1")){
+//                    holder.binding.tvAmount.setTextColor(Color.parseColor("#3CB878"))
+//                    holder.binding.tvAmount.text = "+₹${data.amount}"
+//                    if(data.custom_key_one==null){
+//                        holder.binding.tvDetail.text = "Amount added to wallet"
+//                    }else{
+//                        if (data.driver_name==null){
+//                            holder.binding.tvDetail.text = "Amount pay by user"
+//                        }
+//                        else{
+//                            holder.binding.tvDetail.text = "Amount pay by ${data.driver_name}driver."
+//                        }
+//                    }
+//                }
+//                else{
+//                    holder.binding.tvAmount.setTextColor(Color.parseColor("#FF0000"))
+//                    holder.binding.tvAmount.text = "-₹${data.amount}"
+//                    if (data.custom_key==1){
+//                        holder.binding.tvDetail.text = "Amount move to vendor."
+//                    }
+//                    else{
+//                        holder.binding.tvDetail.text = "Subscription purchased."
+//                    }
+//                }
+//            }
+//             if (data.transaction_id.equals("withdraw")){
+//                holder.binding.tvDetail.text = "Withdraw amount."
+//            }
         }catch (e:Exception){
             e.printStackTrace()
         }

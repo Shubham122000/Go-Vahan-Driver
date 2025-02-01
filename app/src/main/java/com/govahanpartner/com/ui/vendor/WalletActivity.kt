@@ -35,8 +35,8 @@ import java.util.*
 import com.govahanpartner.com.base.BaseActivity
 import com.govahanpartner.com.customclick.wallet_customclick
 import com.govahanpartner.com.databinding.WalletpriceBinding
-import com.govahanpartner.com.model.VendorWalletData
-import com.govahanpartner.com.model.WalletFilterLIstData
+import com.govahanpartner.com.model.WalletFilterListData
+import com.govahanpartner.com.model.WalletFilterListResponse
 import com.govahanpartner.com.model.WalletListData
 import com.govahanpartner.com.ui.common.BankAccountList
 import com.govahanpartner.com.utils.toast
@@ -58,9 +58,9 @@ class WalletActivity : BaseActivity(),wallet_customclick, PopupMenu.OnMenuItemCl
     private val viewModel1: SubscriptionPlanViewModel by viewModels()
     var phonepayurl = ""
     private val viewModel: WalletViewModel by viewModels()
-    var Listdata:ArrayList<WalletListData> = ArrayList()
-    var Listdata2:ArrayList<VendorWalletData> = ArrayList()
-    var Listdata1:ArrayList<WalletFilterLIstData> = ArrayList()
+    var Listdata:ArrayList<WalletFilterListData> = ArrayList()
+//    var Listdata2:ArrayList<VendorWalletData> = ArrayList()
+//    var Listdata1:ArrayList<WalletFilterListData> = ArrayList()
     lateinit var bindingDialog: WalletpriceBinding
     var selectedDateFormat2 = ""
     private val B2B_PG_REQUEST_CODE = 777
@@ -98,48 +98,52 @@ class WalletActivity : BaseActivity(),wallet_customclick, PopupMenu.OnMenuItemCl
 
         binding.tvDate.setText(formattedDate)
 
-        if (userPref.getRole().equals("3")){
-            binding.btnMoneyTrans.visibility=View.GONE
-            binding.payoutrequest.text="Move to vendor"
+        viewModel.walletListApi(
+                "Bearer "+userPref.getToken().toString(),"",""
+        )
 
-            viewModel.WalletListApi(
-                "Bearer "+userPref.getToken().toString(),"",""
-            )
-         } else if (userPref.getRole().equals("2")){
-            binding.btnMoneyTrans.visibility=View.VISIBLE
-            binding.payoutrequest.text="Payout Request"
-            viewModel.individual_payment_list(
-                "Bearer "+userPref.getToken().toString(),"",""
-            )
-        }else if (userPref.getRole().equals("4")){
-            binding.btnMoneyTrans.visibility=View.VISIBLE
-            binding.payoutrequest.text="Payout Request"
-            viewModel.vendor_wallet_list(
-                "Bearer "+userPref.getToken().toString(),"",""
-            )
-        }
+//        if (userPref.getRole().equals("3")){
+//            binding.btnMoneyTrans.visibility=View.GONE
+//            binding.payoutrequest.text="Move to vendor"
+//
+//            viewModel.WalletListApi(
+//                "Bearer "+userPref.getToken().toString(),"",""
+//            )
+//         } else if (userPref.getRole().equals("2")){
+//            binding.btnMoneyTrans.visibility=View.VISIBLE
+//            binding.payoutrequest.text="Payout Request"
+//            viewModel.individual_payment_list(
+//                "Bearer "+userPref.getToken().toString(),"",""
+//            )
+//        }else if (userPref.getRole().equals("4")){
+//            binding.btnMoneyTrans.visibility=View.VISIBLE
+//            binding.payoutrequest.text="Payout Request"
+//            viewModel.vendor_wallet_list(
+//                "Bearer "+userPref.getToken().toString(),"",""
+//            )
+//        }
         viewModel.bank_account_listResponse.observe(this){
             if (it.status==1){
                 if (userPref.getRole().equals("3")){
                     binding.btnMoneyTrans.visibility=View.GONE
                     binding.payoutrequest.text="Move to vendor"
-                    viewModel.WalletListApi(
+                    viewModel.walletListApi(
                         "Bearer "+userPref.getToken().toString(),"",""
                     )
                     }else if (userPref.getRole().equals("2")){
                     binding.btnMoneyTrans.visibility=View.VISIBLE
                     binding.payoutrequest.text="Payout Request"
-                    viewModel.individual_payment_list(
-                        "Bearer "+userPref.getToken().toString(),"",""
-                    )
+//                    viewModel.individual_payment_list(
+//                        "Bearer "+userPref.getToken().toString(),"",""
+//                    )
 
                      }else if (userPref.getRole().equals("4")){
                     binding.btnMoneyTrans.visibility=View.VISIBLE
                     binding.payoutrequest.text="Payout Request"
 
-                    viewModel.vendor_wallet_list(
-                        "Bearer "+userPref.getToken().toString(),"",""
-                    )
+//                    viewModel.vendor_wallet_list(
+//                        "Bearer "+userPref.getToken().toString(),"",""
+//                    )
                 }
             }else{
                 toast(it.message)
@@ -208,47 +212,50 @@ class WalletActivity : BaseActivity(),wallet_customclick, PopupMenu.OnMenuItemCl
             }
         }
 
-        viewModel.walletListfilterResponse.observe(this){
-            if (it?.status == 1) {
-                Listdata1.clear()
-                Listdata1.addAll(it.data)
-                binding.rvMywallet.layoutManager = LinearLayoutManager(this)
-                adapter1 = TRansactionwalletfilterAdapter(this, this,Listdata1)
-                binding.rvMywallet.adapter =adapter1
-            } else {
-                toast(it.message)
-            }
-        }
+//        viewModel.walletListfilterResponse.observe(this){
+//            if (it?.error == false) {
+//                Listdata.clear()
+//                it.result?.data?.let { it1 -> Listdata.addAll(it1) }
+//                binding.rvMywallet.layoutManager = LinearLayoutManager(this)
+//                adapter1 = TRansactionwalletfilterAdapter(this, this,Listdata)
+//                binding.rvMywallet.adapter =adapter1
+//            } else {
+//                toast(it.message)
+//            }
+//        }
         viewModel.walletListResponse.observe(this) {
-            if (it?.status == 1) {
+            if (it?.error == false) {
                 binding.rvMywallet.visibility=View.VISIBLE
-                binding.tvBalance.text = "₹"+it.TotalAmount
-                walletamount=it.TotalAmount
-                Listdata2.clear()
-                Listdata2.addAll(it.data)
+                binding.tvBalance.text = "₹"+it.result?.totalAmount
+                walletamount = it.result?.totalAmount.toString()
+                Listdata.clear()
+                it.result?.data?.let { it1 -> Listdata.addAll(it1) }
                 binding.rvMywallet.layoutManager = LinearLayoutManager(this)
-                adapter2 = WalletVendorAdapter(this, this,Listdata2)
+//                adapter1 = TRansactionwalletfilterAdapter(this, this,Listdata)
+//                binding.rvMywallet.adapter =adapter1
+//                binding.rvMywallet.layoutManager = LinearLayoutManager(this)
+                adapter2 = WalletVendorAdapter(this, this,Listdata)
                 binding.rvMywallet.adapter =adapter2
                 } else {
                 binding.rvMywallet.visibility=View.GONE
                 toast(it.message)
                 }
         }
-        viewModel.walletData.observe(this) {
-            if (it?.status == 1) {
-                binding.rvMywallet.visibility=View.VISIBLE
-                binding.tvBalance.text = "₹"+it.TotalAmount
-                walletamount = it.TotalAmount
-                Listdata2.clear()
-                Listdata2.addAll(it.data)
-                binding.rvMywallet.layoutManager = LinearLayoutManager(this)
-                adapter2 = WalletVendorAdapter(this, this,Listdata2)
-                binding.rvMywallet.adapter =adapter2
-            } else {
-                binding.rvMywallet.visibility=View.GONE
-                toast(it.message)
-            }
-        }
+//        viewModel.walletData.observe(this) {
+//            if (it?.status == 1) {
+//                binding.rvMywallet.visibility=View.VISIBLE
+//                binding.tvBalance.text = "₹"+it.TotalAmount
+//                walletamount = it.TotalAmount
+//                Listdata2.clear()
+//                Listdata2.addAll(it.data)
+//                binding.rvMywallet.layoutManager = LinearLayoutManager(this)
+//                adapter2 = WalletVendorAdapter(this, this,Listdata2)
+//                binding.rvMywallet.adapter =adapter2
+//            } else {
+//                binding.rvMywallet.visibility=View.GONE
+//                toast(it.message)
+//            }
+//        }
         viewModel.addmoneytowalletresponse.observe(this) {
             if (it.error == false) {
                 toast(it.message)
@@ -398,53 +405,53 @@ class WalletActivity : BaseActivity(),wallet_customclick, PopupMenu.OnMenuItemCl
     override fun onMenuItemClick(item: MenuItem?): Boolean {
         return when (item?.itemId) {
             R.id.menu_all -> {
-                if (userPref.getRole().equals("3")) {
-                    viewModel.WalletListApi(
+//                if (userPref.getRole().equals("3")) {
+                    viewModel.walletListApi(
                         "Bearer " + userPref.getToken().toString(),"",""
                     )
-                } else if (userPref.getRole().equals("2")) {
-                    viewModel.individual_payment_list(
-                        "Bearer " + userPref.getToken().toString(),"",""
-                    )
-                } else if (userPref.getRole().equals("4")) {
-                    viewModel.vendor_wallet_list(
-                        "Bearer " + userPref.getToken().toString(),"",""
-                    )
-                }
+//                } else if (userPref.getRole().equals("2")) {
+//                    viewModel.individual_payment_list(
+//                        "Bearer " + userPref.getToken().toString(),"",""
+//                    )
+//                } else if (userPref.getRole().equals("4")) {
+//                    viewModel.vendor_wallet_list(
+//                        "Bearer " + userPref.getToken().toString(),"",""
+//                    )
+//                }
                 true
             }
             R.id.menu_cedit -> {
-                if (userPref.getRole().equals("3")) {
-                    viewModel.WalletListApi(
+//                if (userPref.getRole().equals("3")) {
+                    viewModel.walletListApi(
                         "Bearer " + userPref.getToken().toString(),"","1"
                     )
-                } else if (userPref.getRole().equals("2")) {
-                    viewModel.individual_payment_list(
-                        "Bearer " + userPref.getToken().toString(),"","1"
-                    )
-                    transactiontype="1"
-                } else if (userPref.getRole().equals("4")) {
-                    viewModel.vendor_wallet_list(
-                        "Bearer " + userPref.getToken().toString(),"","1"
-                    )
-                }
+//                } else if (userPref.getRole().equals("2")) {
+//                    viewModel.individual_payment_list(
+//                        "Bearer " + userPref.getToken().toString(),"","1"
+//                    )
+//                    transactiontype="1"
+//                } else if (userPref.getRole().equals("4")) {
+//                    viewModel.vendor_wallet_list(
+//                        "Bearer " + userPref.getToken().toString(),"","1"
+//                    )
+//                }
                 true
             }
             R.id.menu_debit -> {
-                if (userPref.getRole().equals("3")) {
-                    viewModel.WalletListApi(
+//                if (userPref.getRole().equals("3")) {
+                    viewModel.walletListApi(
                         "Bearer " + userPref.getToken().toString(),"","2"
                     )
-                } else if (userPref.getRole().equals("2")) {
-                    viewModel.individual_payment_list(
-                        "Bearer " + userPref.getToken().toString(),"","2"
-                    )
-                    transactiontype="2"
-                } else if (userPref.getRole().equals("4")) {
-                    viewModel.vendor_wallet_list(
-                        "Bearer " + userPref.getToken().toString(),"","2"
-                    )
-                }
+//                } else if (userPref.getRole().equals("2")) {
+//                    viewModel.individual_payment_list(
+//                        "Bearer " + userPref.getToken().toString(),"","2"
+//                    )
+//                    transactiontype="2"
+//                } else if (userPref.getRole().equals("4")) {
+//                    viewModel.vendor_wallet_list(
+//                        "Bearer " + userPref.getToken().toString(),"","2"
+//                    )
+//                }
 
 
                 true
@@ -465,20 +472,20 @@ class WalletActivity : BaseActivity(),wallet_customclick, PopupMenu.OnMenuItemCl
                 cal.set(year, monthOfYear, dayOfMonth)
                 selectedDateFormat2 = simpleDateFormat2.format(cal.time)
                 binding.tvDate.text=selectedDateFormat2
-                if (userPref.getRole().equals("3")) {
-                    viewModel.WalletListApi(
+//                if (userPref.getRole().equals("3")) {
+                    viewModel.walletListApi(
                         "Bearer " + userPref.getToken().toString(),selectedDateFormat2,""
                     )
-                } else if (userPref.getRole().equals("2")) {
-                    viewModel.individual_payment_list(
-                        "Bearer " + userPref.getToken().toString(),selectedDateFormat2,""
-                    )
-                    transactiontype="2"
-                } else if (userPref.getRole().equals("4")) {
-                    viewModel.vendor_wallet_list(
-                        "Bearer " + userPref.getToken().toString(),selectedDateFormat2,""
-                    )
-                }
+//                } else if (userPref.getRole().equals("2")) {
+//                    viewModel.individual_payment_list(
+//                        "Bearer " + userPref.getToken().toString(),selectedDateFormat2,""
+//                    )
+//                    transactiontype="2"
+//                } else if (userPref.getRole().equals("4")) {
+//                    viewModel.vendor_wallet_list(
+//                        "Bearer " + userPref.getToken().toString(),selectedDateFormat2,""
+//                    )
+//                }
             },
             cal.get(Calendar.YEAR),
             cal.get(Calendar.MONTH),

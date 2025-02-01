@@ -17,9 +17,9 @@ import javax.inject.Inject
 @HiltViewModel
 class WalletViewModel @Inject constructor(private val mainRepository: MainRepository) : ViewModel()  {
     val progressBarStatus = MutableLiveData<Boolean>()
-    val walletListResponse = MutableLiveData<VendorWalletActivity>()
-    val walletData = MutableLiveData<VendorWalletActivity>()
-    val walletListfilterResponse = MutableLiveData<WalletFilterLIstREsponse>()
+    val walletListResponse = MutableLiveData<WalletFilterListResponse>()
+//    val walletData = MutableLiveData<VendorWalletActivity>()
+    val walletListfilterResponse = MutableLiveData<WalletFilterListResponse>()
     val walletDownload = MutableLiveData<ProfileResponse>()
     val TransactionReportResponse = MutableLiveData<TransactionReportResponse>()
     val AddwalletResponse = MutableLiveData<Addmoneywallet>()
@@ -28,14 +28,14 @@ class WalletViewModel @Inject constructor(private val mainRepository: MainReposi
     val bank_account_listResponse= MutableLiveData<BankAccountListResponse>()
     var razorpayStatusResponse= MutableLiveData<Razorpay_status_Response> ()
 
-    fun WalletListApi(
+    fun walletListApi(
         header: String,date : String,transaction_type : String
     ) {
         progressBarStatus.value = true
         viewModelScope.launch {
 
             val response =
-                mainRepository.WalletList(header,date,transaction_type)
+                mainRepository.walletList(header,date,transaction_type)
             if (response.isSuccessful) {
                 progressBarStatus.value = false
                 walletListResponse.postValue(response.body())
@@ -45,40 +45,40 @@ class WalletViewModel @Inject constructor(private val mainRepository: MainReposi
             }
         }
     }
-    fun vendor_wallet_list(
-        header: String,date : String,transaction_type : String
-    ) {
-        progressBarStatus.value = true
-        viewModelScope.launch {
-
-            val response =
-                mainRepository.vendor_wallet_list(header,date,transaction_type)
-            if (response.isSuccessful) {
-                progressBarStatus.value = false
-                walletData.postValue(response.body())
-            } else {
-                progressBarStatus.value = false
-                Log.d("TAG", response.body().toString())
-            }
-        }
-    }
-    fun individual_payment_list(
-        header: String,date : String,transaction_type : String
-    ) {
-        progressBarStatus.value = true
-        viewModelScope.launch {
-
-            val response =
-                mainRepository.individual_payment_list(header,date,transaction_type)
-            if (response.isSuccessful) {
-                progressBarStatus.value = false
-                walletData.postValue(response.body())
-            } else {
-                progressBarStatus.value = false
-                Log.d("TAG", response.body().toString())
-            }
-        }
-    }
+//    fun vendor_wallet_list(
+//        header: String,date : String,transaction_type : String
+//    ) {
+//        progressBarStatus.value = true
+//        viewModelScope.launch {
+//
+//            val response =
+//                mainRepository.vendor_wallet_list(header,date,transaction_type)
+//            if (response.isSuccessful) {
+//                progressBarStatus.value = false
+//                walletData.postValue(response.body())
+//            } else {
+//                progressBarStatus.value = false
+//                Log.d("TAG", response.body().toString())
+//            }
+//        }
+//    }
+//    fun individual_payment_list(
+//        header: String,date : String,transaction_type : String
+//    ) {
+//        progressBarStatus.value = true
+//        viewModelScope.launch {
+//
+//            val response =
+//                mainRepository.individual_payment_list(header,date,transaction_type)
+//            if (response.isSuccessful) {
+//                progressBarStatus.value = false
+//                walletData.postValue(response.body())
+//            } else {
+//                progressBarStatus.value = false
+//                Log.d("TAG", response.body().toString())
+//            }
+//        }
+//    }
 
     fun payment_status_check(token: String,
                              transaction_id: String

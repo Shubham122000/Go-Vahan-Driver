@@ -42,22 +42,22 @@ class InvoiceViewModel @Inject constructor(private val mainRepository: MainRepos
             }
         }
     }
-    fun loader_driver_invoice_url(
-        token: String,booking_id:String,type:String
-    ) {
-        progressBarStatus.value = true
-        viewModelScope.launch {
-            val response =
-                mainRepository.loader_driver_invoice_url(token,booking_id,type)
-            if (response.isSuccessful) {
-                progressBarStatus.value = false
-                Invoiceurldownload.postValue(response.body())
-            } else {
-                progressBarStatus.value = false
-                Log.d("TAG", response.body().toString())
-            }
-        }
-    }
+//    fun loader_driver_invoice_url(
+//        token: String,booking_id:String,type:String
+//    ) {
+//        progressBarStatus.value = true
+//        viewModelScope.launch {
+//            val response =
+//                mainRepository.loader_driver_invoice_url(token,booking_id,type)
+//            if (response.isSuccessful) {
+//                progressBarStatus.value = false
+//                Invoiceurldownload.postValue(response.body())
+//            } else {
+//                progressBarStatus.value = false
+//                Log.d("TAG", response.body().toString())
+//            }
+//        }
+//    }
 
 
     fun CompletedtripdetailsAPI(

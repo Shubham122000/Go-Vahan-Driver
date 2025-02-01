@@ -900,15 +900,15 @@ class MainRepositoryImpl @Inject constructor(private val apiService: ApiService)
 
 
 
-    override suspend fun WalletList(header: String,date : String,transaction_type : String): Response<VendorWalletActivity> {
-        return apiService.Mywalletlist(header,date,transaction_type)
+    override suspend fun walletList(header: String,date : String,transaction_type : String): Response<WalletFilterListResponse> {
+        return apiService.walletList(header)
     }
-    override suspend fun vendor_wallet_list(header: String,date : String,transaction_type : String): Response<VendorWalletActivity> {
-        return apiService.vendor_wallet_list(header,date,transaction_type)
-    }
-    override suspend fun individual_payment_list(header: String,date : String,transaction_type : String): Response<VendorWalletActivity> {
-        return apiService.individual_payment_list(header,date,transaction_type)
-    }
+//    override suspend fun vendor_wallet_list(header: String,date : String,transaction_type : String): Response<VendorWalletActivity> {
+//        return apiService.vendor_wallet_list(header,date,transaction_type)
+//    }
+//    override suspend fun individual_payment_list(header: String,date : String,transaction_type : String): Response<VendorWalletActivity> {
+//        return apiService.individual_payment_list(header,date,transaction_type)
+//    }
 
     override suspend fun TransactionReport(header: String): Response<TransactionReportResponse> {
         return apiService.Transactionreport(header)
@@ -982,9 +982,9 @@ class MainRepositoryImpl @Inject constructor(private val apiService: ApiService)
     override suspend fun InvoiceList(header: String,type:String): Response<InvoiceListResponse> {
         return apiService.InvoiceList(header,type)
     }
-    override suspend fun loader_driver_invoice_url(header: String,booking_id:String,type:String): Response<InvoiceurldownloadResponse> {
-        return apiService.loader_driver_invoice_url(header,booking_id,type)
-    }
+//    override suspend fun loader_driver_invoice_url(header: String,booking_id:String,type:String): Response<InvoiceurldownloadResponse> {
+//        return apiService.loader_driver_invoice_url(header,booking_id,type)
+//    }
     override suspend fun getBankAccountsApi(header: String): Response<GetBankAcountResponse> {
         return apiService.getBankAccountsApi(header)
     }
@@ -995,7 +995,7 @@ class MainRepositoryImpl @Inject constructor(private val apiService: ApiService)
         return apiService.bank_account_list_id(header,id)
     }
 
-    override suspend fun Filteredwallet(header: String,date:String,transaction_type:String): Response<WalletFilterLIstREsponse> {
+    override suspend fun Filteredwallet(header: String,date:String,transaction_type:String): Response<WalletFilterListResponse> {
         return apiService.walletfiltered(header,date,transaction_type)
     }
     override suspend fun LoaderinvoiceSummery(header: String,invoice_numbers:String): Response<InvoiceSummeryResponse> {

@@ -11,9 +11,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.govahanpartner.com.R
 import com.govahanpartner.com.customclick.wallet_customclick
 import com.govahanpartner.com.databinding.RowWalletListBinding
-import com.govahanpartner.com.model.WalletFilterLIstData
+import com.govahanpartner.com.model.WalletFilterListData
 
-class TRansactionwalletfilterAdapter (val context : Context, var wallet_customclick: wallet_customclick, val list: List<WalletFilterLIstData>) :
+class TRansactionwalletfilterAdapter (val context : Context, var wallet_customclick: wallet_customclick, val list: List<WalletFilterListData>) :
     RecyclerView.Adapter<TRansactionwalletfilterAdapter.ViewHolder>() {
     private var listener: OnItemClickListener? = null
 
@@ -33,8 +33,8 @@ class TRansactionwalletfilterAdapter (val context : Context, var wallet_customcl
         try {
 
             holder.binding.tvAmount.setTextColor(Color.parseColor("#000000"))
-            holder.binding.tvAmount.text = "+₹${data.amount}"
-            holder.binding.tvDate.text = data.create_at
+            holder.binding.tvAmount.text = "+₹${data.paymentDetails?.amount}"
+            holder.binding.tvDate.text = data.paymentDetails?.createdAt
 //            holder.binding.transactionId.text=data.transaction_id
 //            if (data.credit == "credit") {
                 holder.binding.tvDetail.text =

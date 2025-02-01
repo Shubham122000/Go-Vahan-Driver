@@ -268,16 +268,16 @@ interface MainRepository {
     suspend fun vendor_upcooming_booking_loder(header: String): Response<TripHistoryResponse>
     suspend fun vendor_driver_loadertrip_list(header: String,driver_id:String,type: String): Response<TripListResponse>
     suspend fun vendor_upcooming_booking_passengers(header: String): Response<TripHistoryResponse>
-     suspend fun WalletList(header: String,date : String,transaction_type : String): Response<VendorWalletActivity>
-    suspend fun vendor_wallet_list(header: String,date : String,transaction_type : String): Response<VendorWalletActivity>
-    suspend fun individual_payment_list(header: String,date : String,transaction_type : String): Response<VendorWalletActivity>
+     suspend fun walletList(header: String,date : String,transaction_type : String): Response<WalletFilterListResponse>
+//    suspend fun vendor_wallet_list(header: String,date : String,transaction_type : String): Response<VendorWalletActivity>
+//    suspend fun individual_payment_list(header: String,date : String,transaction_type : String): Response<VendorWalletActivity>
     suspend fun loader_trip_delete(header: String,id:String): Response<DriverProfile>
     suspend fun vendor_driver_delete(header: String,id:String): Response<DriverProfile>
     suspend fun my_wallet_payment(header: String,type:String,transaction_id:String,amount: String): Response<DriverProfile>
     suspend fun add_bank_account(header: String,account_no:RequestBody,name:RequestBody,ifsc:RequestBody,bank_name:RequestBody,account_branch:RequestBody,upi_id:RequestBody,image: MultipartBody.Part): Response<DriverProfile>
     suspend fun createBookingDocument(header: String,booking_id:RequestBody,pod:MultipartBody.Part?,signature:MultipartBody.Part?,builty:MultipartBody.Part?): Response<DriverProfile>
     suspend fun getBankAccountsApi(header: String): Response<GetBankAcountResponse>
-    suspend fun loader_driver_invoice_url(header: String,booking_id:String,type:String): Response<InvoiceurldownloadResponse>
+//    suspend fun loader_driver_invoice_url(header: String,booking_id:String,type:String): Response<InvoiceurldownloadResponse>
     suspend fun my_driver_wallet_list_donload(header: String): Response<ProfileResponse>
     suspend fun LoaderDriverTripCancel(header: String,booking_id: String,reason_id:String,reason:String): Response<LoaderDriverTripCancelResponse>
     suspend fun passenger_driver_trip_cancelApi(header: String,booking_id: String,reason_id:String,reason:String): Response<LoaderDriverTripCancelResponse>
@@ -292,7 +292,7 @@ interface MainRepository {
     suspend fun purchase_plan_from_walletApi_to_passenger(header: String,amount:String,truck_id:String,transaction_type:String,validity: String): Response<Addmoneywallet>
 
     suspend fun CapacityApi(token: String): Response<LoaodCarryingResponse>
-    suspend fun Filteredwallet(header: String,date:String,transaction_type:String): Response<WalletFilterLIstREsponse>
+    suspend fun Filteredwallet(header: String,date:String,transaction_type:String): Response<WalletFilterListResponse>
     suspend fun CompletedTripHistoryPassenger(header: String): Response<TripHistoryResponse>
     suspend fun VisitingCard(header: String): Response<VisitingCardUrlResponse>
     suspend fun OngoinTripHistoryPassenger(header: String): Response<TripHistoryResponse>

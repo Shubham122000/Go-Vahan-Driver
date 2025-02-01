@@ -925,29 +925,29 @@ interface ApiService {
         @Part image: MultipartBody.Part
     ): Response<DriverUpdateProfileResponse>
 
-    @FormUrlEncoded
-    @POST("my_driver_wallet_list")
-    suspend fun Mywalletlist(
+//    @FormUrlEncoded
+    @POST("driver_wallet_list")
+    suspend fun walletList(
         @Header("Authorization") authorization: String,
-        @Field("date") date : String,
-        @Field("transaction_type") transaction_type : String
-    ): Response<VendorWalletActivity>
+//        @Field("date") date : String,
+//        @Field("transaction_type") transaction_type : String
+    ): Response<WalletFilterListResponse>
 
-    @FormUrlEncoded
-    @POST("vendor_wallet_list")
-    suspend fun vendor_wallet_list(
-        @Header("Authorization") authorization: String,
-        @Field("date") date : String,
-        @Field("transaction_type") transaction_type : String
-    ): Response<VendorWalletActivity>
+//    @FormUrlEncoded
+//    @POST("vendor_wallet_list")
+//    suspend fun vendor_wallet_list(
+//        @Header("Authorization") authorization: String,
+//        @Field("date") date : String,
+//        @Field("transaction_type") transaction_type : String
+//    ): Response<WalletFilterListResponse>
 
-    @FormUrlEncoded
-    @POST("individual_payment_list")
-    suspend fun individual_payment_list(
-        @Header("Authorization") authorization: String,
-        @Field("date") date : String,
-        @Field("transaction_type") transaction_type : String
-    ): Response<VendorWalletActivity>
+//    @FormUrlEncoded
+//    @POST("individual_payment_list")
+//    suspend fun individual_payment_list(
+//        @Header("Authorization") authorization: String,
+//        @Field("date") date : String,
+//        @Field("transaction_type") transaction_type : String
+//    ): Response<VendorWalletActivity>
 
     @GET("loder_transaction_report")
     suspend fun Transactionreport(
@@ -1088,13 +1088,13 @@ interface ApiService {
         @Field("type") type: String,
     ): Response<InvoiceListResponse>
 
-    @FormUrlEncoded
-    @POST("loader_driver_invoice_url")
-    suspend fun loader_driver_invoiceinvoice_url(
-        @Header("Authorization") authorization: String,
-        @Field("booking_id") booking_id: String,
-        @Field("type") type: String,
-    ): Response<InvoiceurldownloadResponse>
+//    @FormUrlEncoded
+//    @POST("loader_driver_invoice_url")
+//    suspend fun loader_driver_invoiceinvoice_url(
+//        @Header("Authorization") authorization: String,
+//        @Field("booking_id") booking_id: String,
+//        @Field("type") type: String,
+//    ): Response<InvoiceurldownloadResponse>
 
     @GET("getBankAccounts")
     suspend fun getBankAccountsApi(
@@ -1119,7 +1119,7 @@ interface ApiService {
         @Header("Authorization") authorization: String,
         @Field("date") date:String,
         @Field("transaction_type") transaction_type:String,
-    ): Response<WalletFilterLIstREsponse>
+    ): Response<WalletFilterListResponse>
 
     @FormUrlEncoded
     @POST("completed_driver_trip_history_loader_details")
