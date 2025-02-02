@@ -125,6 +125,40 @@
                 android:layout_weight="1"
                 android:gravity="center"
                 android:elevation="@dimen/_2sdp"
+                android:id="@+id/ll_adddriver"
+                android:orientation="vertical"
+                android:background="@drawable/edt_round_corner"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                >
+
+                <ImageView
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_centerHorizontal="true"
+                    android:src="@drawable/add_driver"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:text="Add Driver"
+                    android:fontFamily="@font/roboto_regular"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:textSize="@dimen/_10sdp" />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:elevation="@dimen/_2sdp"
                 android:id="@+id/ll_tripbook"
                 android:orientation="vertical"
                 android:layout_marginLeft="@dimen/_10sdp"
@@ -436,53 +470,20 @@
 
 
         </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/_110sdp"
-                android:orientation="horizontal"
-                android:layout_marginHorizontal="@dimen/_15sdp"
-                android:weightSum="3">
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="@dimen/_110sdp"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:layout_marginHorizontal="@dimen/_15sdp"-->
+<!--                android:weightSum="3">-->
 
 
 
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:elevation="@dimen/_2sdp"
-                    android:id="@+id/ll_adddriver"
-                    android:orientation="vertical"
-                    android:background="@drawable/edt_round_corner"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_marginBottom="@dimen/_10sdp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center"
-                    >
-
-                    <ImageView
-                        android:layout_width="@dimen/_50sdp"
-                        android:layout_height="@dimen/_40sdp"
-                        android:layout_centerHorizontal="true"
-                        android:src="@drawable/add_driver"
-                        />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:text="Add Driver"
-                        android:fontFamily="@font/roboto_regular"
-                        android:textColor="@color/black"
-                        android:layout_gravity="center"
-                        android:gravity="center"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:textSize="@dimen/_10sdp" />
-
-                </LinearLayout>
+<!--                -->
 
 
 
-            </LinearLayout>
+<!--            </LinearLayout>-->
 
         </LinearLayout>
 

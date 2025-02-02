@@ -300,14 +300,8 @@ interface MainRepository {
     suspend fun cnacel_booking_passengers(header: String): Response<TripHistoryResponse>
     suspend fun AddTrip(
         token: String,
-        tip_task: String,
-        load_caring: String,
         from_trip: String,
         to_trip: String,
-//        vehicle_type: String,
-//        vehicle_numbers: String,
-//        no_tyers: String,
-//        body_type: String,
         assign_driver: String,
         total_distance: String,
         freight_amount: String,
@@ -720,6 +714,7 @@ interface MainRepository {
         countryCode: RequestBody,
         mobile: RequestBody,
         email: RequestBody,
+        vehicleId: RequestBody,
         Password: RequestBody,
         Image: MultipartBody.Part,
         pdfFile:MultipartBody.Part,

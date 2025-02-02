@@ -672,14 +672,8 @@ class TypeOfTruckViewModel @Inject constructor(private val mainRepository: MainR
 
     fun AddTripApi(
         token: String,
-        tip_task: String,
-        load_caring: String,
         from_trip: String,
         to_trip: String,
-//        vehicle_type: String,
-//        vehicle_numbers: String,
-//        no_tyers: String,
-//        body_type: String,
         assign_driver: String,
         total_distance: String,
         freight_amount: String,
@@ -700,14 +694,8 @@ class TypeOfTruckViewModel @Inject constructor(private val mainRepository: MainR
             val response =
                 mainRepository.AddTrip(
                     token,
-                    tip_task,
-                    load_caring,
                     from_trip,
                     to_trip,
-//                    vehicle_type,
-//                    vehicle_numbers,
-//                    no_tyers,
-//                    body_type,
                     assign_driver,
                     total_distance,
                     freight_amount,

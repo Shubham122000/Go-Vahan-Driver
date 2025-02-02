@@ -9,6 +9,8 @@ import com.govahanpartner.com.model.AddDriverResponse
 import com.govahanpartner.com.model.DriverListResponse
 import com.govahanpartner.com.model.DriverProfile
 import com.govahanpartner.com.model.DriverUpdateProfileResponse
+import com.govahanpartner.com.model.VehicleNumberListData
+import com.govahanpartner.com.model.VehicleNumberListMOdelCLass
 import com.govahanpartner.com.network.MainRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -27,7 +29,9 @@ class AddDriverViewModel @Inject constructor(private val mainRepository: MainRep
     val DriverProfileResponse = MutableLiveData<DriverProfile>()
     val DriverProfileUpdateResponse = MutableLiveData<DriverUpdateProfileResponse>()
     val DriverlistResponse = MutableLiveData<DriverListResponse>()
-
+    var VehiclenumberResponse = MutableLiveData<VehicleNumberListMOdelCLass>()
+    val _progressBarVisibility = MutableLiveData<Int>()
+    var VehiclenumberData = MutableLiveData<ArrayList<VehicleNumberListData>>()
 
     fun AddDriverApi(
         token:String,
@@ -37,6 +41,7 @@ class AddDriverViewModel @Inject constructor(private val mainRepository: MainRep
         countryCode: String,
         mobile:String,
         email:String,
+        vehicleId:String,
         address:String,
         Image: MultipartBody.Part?,
         pdfFile: MultipartBody.Part?,
@@ -50,6 +55,7 @@ class AddDriverViewModel @Inject constructor(private val mainRepository: MainRep
         val countryCode: RequestBody = countryCode.toRequestBody("text/plain".toMediaTypeOrNull())
         val mobile: RequestBody = mobile.toRequestBody("text/plain".toMediaTypeOrNull())
         val email: RequestBody = email.toRequestBody("text/plain".toMediaTypeOrNull())
+        val vehicleId: RequestBody = vehicleId.toRequestBody("text/plain".toMediaTypeOrNull())
         val address: RequestBody = address.toRequestBody("text/plain".toMediaTypeOrNull())
         val vendorid: RequestBody = vendorid.toRequestBody("text/plain".toMediaTypeOrNull())
 //        val serviceid: RequestBody = serviceid.toRequestBody("text/plain".toMediaTypeOrNull())
@@ -64,6 +70,7 @@ class AddDriverViewModel @Inject constructor(private val mainRepository: MainRep
                 countryCode,
                 mobile,
                 email,
+                vehicleId,
                 address,
                 Image!!,
                 pdfFile!!,
@@ -143,7 +150,25 @@ class AddDriverViewModel @Inject constructor(private val mainRepository: MainRep
             }
         }
     }
+    fun VehicleNumberLIst(token :String): MutableLiveData<VehicleNumberListMOdelCLass> {
+        if (VehiclenumberResponse == null) {
+            VehiclenumberResponse = MutableLiveData()
+        }
+        viewModelScope.launch {
+            try {
+                val response = mainRepository.get_loder_vehicleno(token)
 
+                if (response.isSuccessful) {
+                    progressBarStatus.value = false
+                    VehiclenumberResponse.postValue(response.body())
+                }
+            }catch (e:Exception) {
+                _progressBarVisibility.postValue(0)
+                e.printStackTrace()
+            }
+        }
+        return VehiclenumberResponse
+    }
     fun DriverProfileUpdateAPI(
         token:String,
         id:String,

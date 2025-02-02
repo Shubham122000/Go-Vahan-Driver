@@ -467,13 +467,14 @@ class MainRepositoryImpl @Inject constructor(private val apiService: ApiService)
         countryCode: RequestBody,
         mobile: RequestBody,
         email: RequestBody,
+        vehicleId: RequestBody,
         Password: RequestBody,
         Image: MultipartBody.Part,
         pdfFile:MultipartBody.Part,
         vendorid:RequestBody,
 //        serviceid:RequestBody,
 
-        ): Response<AddDriverResponse>  = apiService.adddriver(token,drivername,driverexperience,Licence,countryCode,mobile,email,
+        ): Response<AddDriverResponse>  = apiService.adddriver(token,drivername,driverexperience,Licence,countryCode,mobile,email,vehicleId,
     Password,Image,pdfFile,vendorid/*,serviceid*/)
 
     override suspend fun driverSendOtpApi(mobile: String): Response<RegisterResponseModel> =
@@ -637,14 +638,8 @@ class MainRepositoryImpl @Inject constructor(private val apiService: ApiService)
 
     override suspend fun AddTrip(
         token: String,
-        tip_task: String,
-        load_caring: String,
         from_trip: String,
         to_trip: String,
-//        vehicle_type: String,
-//        vehicle_numbers: String,
-//        no_tyers: String,
-//        body_type: String,
         assign_driver: String,
         total_distance: String,
         freight_amount: String,
@@ -658,7 +653,7 @@ class MainRepositoryImpl @Inject constructor(private val apiService: ApiService)
         fuel_charge: String,
         toll_tax: String,
         driver_fee: String,
-    ): Response<AddTripDriverMOdelClass> = apiService.AddTrip(token,tip_task,load_caring,from_trip,to_trip,
+    ): Response<AddTripDriverMOdelClass> = apiService.AddTrip(token,from_trip,to_trip,
     /*vehicle_type,vehicle_numbers,no_tyers,body_type,*/assign_driver,
         total_distance,freight_amount,pickup_lat,
         pickup_long,dropup_lat,dropup_long,vehicle_id,booking_date_from,

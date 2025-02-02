@@ -106,20 +106,23 @@ class AddTripVActivity : BaseActivity() {
             Selectdate()
         }
 //        driver1=binding.driverassign.selectedItem.toString()
-        if (userPref.getRole().equals("2")){
+        if (userPref.getRole().equals("2")|| userPref.getRole().equals("3")){
             binding.driverassign.visibility=View.GONE
-            binding.tvdriverassign.visibility=View.VISIBLE
+            binding.textDriver.visibility=View.GONE
+            binding.idView.visibility=View.GONE
+            binding.tvdriverassign.visibility=View.GONE
             binding.llDrivercharge.visibility=View.GONE
+            binding.driverAssignedView.visibility=View.GONE
             binding.tvdriverassign.text=userPref.getName()
 //            assigndriver=userPref.getName().toString()
         }
-        else{
-            binding.driverassign.visibility=View.VISIBLE
-            binding.tvdriverassign.visibility=View.GONE
-            binding.llDrivercharge.visibility=View.VISIBLE
-
-//            assigndriver=binding.driverassign.selectedItem.toString()
-        }
+//        else{
+//            binding.driverassign.visibility=View.VISIBLE
+//            binding.tvdriverassign.visibility=View.GONE
+//            binding.llDrivercharge.visibility=View.VISIBLE
+//
+////            assigndriver=binding.driverassign.selectedItem.toString()
+//        }
         viewModel.progressBarStatus.observe(this) {
             if (it) {
                 showProgressDialog()
@@ -155,7 +158,7 @@ class AddTripVActivity : BaseActivity() {
                 AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                     selectedVehicleNumber = vehicle_id[p2]
-                    binding.etEnterloadcarring.text= Capacity[p2]
+//                    binding.etEnterloadcarring.text= Capacity[p2]
 //                    if (binding.spinnerVehiclenumber.selectedItem.equals("SELECT")) {
 //                        toast("Please select vehicle number.")
 //                    } else {
@@ -359,12 +362,12 @@ class AddTripVActivity : BaseActivity() {
         }
         binding.btnAddthistrip.setOnClickListener {
 
-            if (binding.etTriptask.text.toString().isEmpty()){
-                toast("Please enter trip Task.")
-            }else if(binding.etEnterloadcarring.text.toString().isEmpty()){
-                toast("Please enter Load carring.")
-            }
-            else if (binding.etFrom.text.toString().isEmpty()){
+//            if (binding.etTriptask.text.toString().isEmpty()){
+//                toast("Please enter trip Task.")
+//            }else if(binding.etEnterloadcarring.text.toString().isEmpty()){
+//                toast("Please enter Load carring.")
+//            }
+            if (binding.etFrom.text.toString().isEmpty()){
                 toast("Please enter from location.")
             }else if (binding.etTo.text.toString().isEmpty()){
                 toast("Please enter to location.")
@@ -377,8 +380,9 @@ class AddTripVActivity : BaseActivity() {
             }
             else{
 
-                if (userPref.getRole().equals("2")) {
+                if (userPref.getRole().equals("2")|| userPref.getRole().equals("3")){
                     assigndriver=userPref.getuserid().toString()
+
 
                 }else{
                     assigndriver=selecteddriverId
@@ -412,14 +416,8 @@ class AddTripVActivity : BaseActivity() {
 //                )
                 viewModel.AddTripApi(
                     "Bearer " + userPref.getToken().toString(),
-                    binding.etTriptask.text.toString(),
-                    binding.etEnterloadcarring.text.toString(),
                     binding.etFrom.text.toString(),
                     binding.etTo.text.toString(),
-//                    vehicletype,
-//                    binding.spinnerVehiclenumber.text.toString(),
-//                    binding.spinnerNooftyres.text.toString(),
-//                    bodytype,
                     assigndriver,
                     distanceString.toString(),
                     taxadd.toString(),

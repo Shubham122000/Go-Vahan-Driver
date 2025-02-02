@@ -200,14 +200,8 @@ class AddTripLoaderDriver : BaseActivity() {
                 freightamount = fuelcharge.toInt() + tollcharge.toInt() + driverfee.toInt()
                 viewModel.AddTripApi(
                     "Bearer " + userPref.getToken().toString(),
-                    binding.etTriptask.text.toString(),
-                    loadcarry,
                     binding.etFrom.text.toString(),
                     binding.etTo.text.toString(),
-//                    vehicletype,
-//                    binding.spinnerVehiclenumber.text.toString(),
-//                    binding.spinnerNooftyres.text.toString(),
-//                    bodytype,
                     driver,
                     distanceString.toString(),
                     taxadd.toString(),

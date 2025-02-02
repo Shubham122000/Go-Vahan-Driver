@@ -454,6 +454,7 @@ interface ApiService {
         @Part("country_code") countryCode: RequestBody,
         @Part("mobile") mobile: RequestBody,
         @Part("email") email: RequestBody,
+        @Part("vehicle_id") vehicleId: RequestBody,
         @Part("password") password: RequestBody,
         @Part profile_image: MultipartBody.Part,
         @Part id_proof: MultipartBody.Part,
@@ -1189,14 +1190,8 @@ interface ApiService {
     @POST("add_loader_trip")
     suspend fun AddTrip(
         @Header("Authorization") authorization: String,
-        @Field("tip_task") tip_task: String,
-        @Field("load_caring") load_caring: String,
         @Field("from_trip") from_trip: String,
         @Field("to_trip") to_trip: String,
-//        @Field("vehicle_type") vehicle_type: String,
-//        @Field("vehicle_numbers") vehicle_numbers: String,
-//        @Field("no_tyers") no_tyers: String,
-//        @Field("body_type") body_type: String,
         @Field("assign_driver") assign_driver: String,
         @Field("total_distance") total_distance: String,
         @Field("freight_amount") freight_amount: String,

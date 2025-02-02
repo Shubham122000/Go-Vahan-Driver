@@ -103,53 +103,54 @@ class WalletActivity : BaseActivity(),wallet_customclick, PopupMenu.OnMenuItemCl
                 "Bearer "+userPref.getToken().toString(),"",transactionType
         )
 
-//        if (userPref.getRole().equals("3")){
-//            binding.btnMoneyTrans.visibility=View.GONE
-//            binding.payoutrequest.text="Move to vendor"
-//
+        if (userPref.getRole().equals("3")){
+            binding.btnMoneyTrans.visibility=View.GONE
+            binding.btnAddMoney.visibility=View.GONE
+            binding.payoutrequest.text="Move to vendor"
 //            viewModel.WalletListApi(
 //                "Bearer "+userPref.getToken().toString(),"",""
 //            )
-//         } else if (userPref.getRole().equals("2")){
-//            binding.btnMoneyTrans.visibility=View.VISIBLE
-//            binding.payoutrequest.text="Payout Request"
+         } else if (userPref.getRole().equals("2")){
+            binding.btnMoneyTrans.visibility=View.VISIBLE
+            binding.payoutrequest.text="Payout Request"
 //            viewModel.individual_payment_list(
 //                "Bearer "+userPref.getToken().toString(),"",""
 //            )
-//        }else if (userPref.getRole().equals("4")){
-//            binding.btnMoneyTrans.visibility=View.VISIBLE
-//            binding.payoutrequest.text="Payout Request"
+        }else if (userPref.getRole().equals("4")){
+            binding.btnMoneyTrans.visibility=View.VISIBLE
+            binding.btnAddMoney.visibility=View.GONE
+            binding.payoutrequest.text="Payout Request"
 //            viewModel.vendor_wallet_list(
 //                "Bearer "+userPref.getToken().toString(),"",""
 //            )
-//        }
-        viewModel.bank_account_listResponse.observe(this){
-            if (it.status==1){
-                if (userPref.getRole().equals("3")){
-                    binding.btnMoneyTrans.visibility=View.GONE
-                    binding.payoutrequest.text="Move to vendor"
-                    viewModel.walletListApi(
-                        "Bearer "+userPref.getToken().toString(),selectedDateFormat2,transactionType
-                    )
-                    }else if (userPref.getRole().equals("2")){
-                    binding.btnMoneyTrans.visibility=View.VISIBLE
-                    binding.payoutrequest.text="Payout Request"
-//                    viewModel.individual_payment_list(
-//                        "Bearer "+userPref.getToken().toString(),"",""
-//                    )
-
-                     }else if (userPref.getRole().equals("4")){
-                    binding.btnMoneyTrans.visibility=View.VISIBLE
-                    binding.payoutrequest.text="Payout Request"
-
-//                    viewModel.vendor_wallet_list(
-//                        "Bearer "+userPref.getToken().toString(),"",""
-//                    )
-                }
-            }else{
-                toast(it.message)
-            }
         }
+//        viewModel.bank_account_listResponse.observe(this){
+//            if (it.status==1){
+//                if (userPref.getRole().equals("3")){
+//                    binding.btnMoneyTrans.visibility=View.GONE
+//                    binding.payoutrequest.text="Move to vendor"
+//                    viewModel.walletListApi(
+//                        "Bearer "+userPref.getToken().toString(),selectedDateFormat2,transactionType
+//                    )
+//                    }else if (userPref.getRole().equals("2")){
+//                    binding.btnMoneyTrans.visibility=View.VISIBLE
+//                    binding.payoutrequest.text="Payout Request"
+////                    viewModel.individual_payment_list(
+////                        "Bearer "+userPref.getToken().toString(),"",""
+////                    )
+//
+//                     }else if (userPref.getRole().equals("4")){
+//                    binding.btnMoneyTrans.visibility=View.VISIBLE
+//                    binding.payoutrequest.text="Payout Request"
+//
+////                    viewModel.vendor_wallet_list(
+////                        "Bearer "+userPref.getToken().toString(),"",""
+////                    )
+//                }
+//            }else{
+//                toast(it.message)
+//            }
+//        }
 //        binding.btnDownload.setOnClickListener {
 //            transactionid
 //        }
@@ -167,7 +168,6 @@ class WalletActivity : BaseActivity(),wallet_customclick, PopupMenu.OnMenuItemCl
         }
 
         binding.ivNext.setOnClickListener(View.OnClickListener() {
-
                 c.add(Calendar.DATE, 1)
                 formattedDate = df.format(c.time)
                 Log.v("NEXT DATE : ", formattedDate)
@@ -295,7 +295,23 @@ class WalletActivity : BaseActivity(),wallet_customclick, PopupMenu.OnMenuItemCl
         }
         binding.payoutrequest.setOnClickListener {
             flag="payout"
-            AddMoney()
+            if (userPref.getRole() == "4"){
+                viewModel.addMoney(
+                    "Bearer " + userPref.user.apiToken,
+                    "2",
+                    "",
+                    binding.tvBalance.text.toString()
+                )
+            }else{
+                viewModel.addMoney(
+                    "Bearer " + userPref.user.apiToken,
+                    "3",
+                    "",
+                    binding.tvBalance.text.toString()
+                )
+            }
+
+//            AddMoney()
         }
 
     }
@@ -376,19 +392,20 @@ class WalletActivity : BaseActivity(),wallet_customclick, PopupMenu.OnMenuItemCl
         }else {
             if (flag.equals("addmoney")){
                 startPayment(amountofuser)
-            } else{
-//               if(userPref.getRole().equals("3")){
-                   viewModel.addMoney(
-                       "Bearer " + userPref.user.apiToken,
-                       "2",
-                       "",
-                       bindingDialog.edtText.text.toString()
-                   )
-//               }else{
-//                   viewModel.withdrawapi("Bearer " + userPref.getToken().toString(),bindingDialog.edtText.text.toString())
-//
-//               }
             }
+//            else{
+////               if(userPref.getRole().equals("3")){
+//                   viewModel.addMoney(
+//                       "Bearer " + userPref.user.apiToken,
+//                       "2",
+//                       "",
+//                       bindingDialog.edtText.text.toString()
+//                   )
+////               }else{
+////                   viewModel.withdrawapi("Bearer " + userPref.getToken().toString(),bindingDialog.edtText.text.toString())
+////
+////               }
+//            }
         }
     }
 

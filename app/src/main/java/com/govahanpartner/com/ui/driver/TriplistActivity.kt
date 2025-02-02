@@ -39,16 +39,16 @@ class TriplistActivity : BaseActivity(),tripdelete, deleteVehicle,tripclick {
         }
 
         binding.pulltorefresh.setOnRefreshListener {
-            if (userPref.getRole().toString().equals("3")){
-                viewModel.driver_loadertrip_list(
-                    "Bearer "+ userPref.getToken().toString(),"1"
-                )
-
-            }else{
+//            if (userPref.getRole().toString().equals("3")){
+//                viewModel.driver_loadertrip_list(
+//                    "Bearer "+ userPref.getToken().toString(),"1"
+//                )
+//
+//            }else{
                 viewModel.TriplistApi(
                     "Bearer "+ userPref.getToken().toString(),
                 )
-            }
+//            }
             binding.pulltorefresh.isRefreshing=false
         }
         viewModel.progressBarStatus.observe(this) {
@@ -58,16 +58,16 @@ class TriplistActivity : BaseActivity(),tripdelete, deleteVehicle,tripclick {
                 hideProgressDialog()
             }
         }
-        if (userPref.getRole().equals("3")){
-            viewModel.driver_loadertrip_list(
-                "Bearer "+ userPref.getToken().toString(),"1"
-            )
-
-        }else{
+//        if (userPref.getRole().equals("3")){
+//            viewModel.driver_loadertrip_list(
+//                "Bearer "+ userPref.getToken().toString(),"1"
+//            )
+//
+//        }else{
             viewModel.TriplistApi(
                 "Bearer "+ userPref.getToken().toString(),
             )
-        }
+//        }
 
         viewModel.TriplistResponse.observe(this) {
             if (it?.error == false) {
@@ -84,16 +84,16 @@ class TriplistActivity : BaseActivity(),tripdelete, deleteVehicle,tripclick {
 
         viewModel.DeleteTRipComplete.observe(this) {
             if (it?.error == false) {
-                if (userPref.getRole().equals("3")){
-                    viewModel.driver_loadertrip_list(
-                        "Bearer "+ userPref.getToken().toString(),"1"
-                    )
-
-                }else{
+//                if (userPref.getRole().equals("3")){
+//                    viewModel.driver_loadertrip_list(
+//                        "Bearer "+ userPref.getToken().toString(),"1"
+//                    )
+//
+//                }else{
                     viewModel.TriplistApi(
                         "Bearer "+ userPref.getToken().toString(),
                     )
-                }
+//                }
 
             } else {
             }

@@ -85,45 +85,46 @@ class VendorLoaderVehicleActivity : BaseActivity() {
 
 
         if (userPref.getRole().equals("3") ){
-            binding.llAdddriver.visibility = View.INVISIBLE
+            binding.llAdddriver.visibility = View.GONE
             binding.llTruckdocument.visibility=View.INVISIBLE
 
         }
         else if (userPref.getRole().equals("2")) {
-            binding.llAdddriver.visibility = View.INVISIBLE
+            binding.llAdddriver.visibility = View.GONE
             binding.llTruckdocument.visibility=View.VISIBLE
 
         }else if (userPref.getRole().equals("4")) {
             binding.llAdddriver.visibility = View.VISIBLE
             binding.llTruckdocument.visibility=View.VISIBLE
+            binding.llAddtrip.visibility=View.GONE
         }
-        if (LoginActivity.role.equals("3") ){
-            binding.llAdddriver.visibility = View.INVISIBLE
-            binding.llTruckdocument.visibility=View.INVISIBLE
-
-        }
-        else if (LoginActivity.role.equals("2")) {
-            binding.llAdddriver.visibility = View.INVISIBLE
-            binding.llTruckdocument.visibility=View.VISIBLE
-
-        }else if (LoginActivity.role.equals("4")) {
-            binding.llAdddriver.visibility = View.VISIBLE
-            binding.llTruckdocument.visibility=View.VISIBLE
-        }
+//        if (LoginActivity.role.equals("3") ){
+//            binding.llAdddriver.visibility = View.INVISIBLE
+//            binding.llTruckdocument.visibility=View.INVISIBLE
+//
+//        }
+//        else if (LoginActivity.role.equals("2")) {
+//            binding.llAdddriver.visibility = View.INVISIBLE
+//            binding.llTruckdocument.visibility=View.VISIBLE
+//
+//        }else if (LoginActivity.role.equals("4")) {
+//            binding.llAdddriver.visibility = View.VISIBLE
+//            binding.llTruckdocument.visibility=View.VISIBLE
+//        }
         binding.llAddtrip.setOnClickListener {
 
-            if (userPref.getRole().equals("3")){
-                val intent = Intent(this, AddTripLoaderDriver::class.java)
-                startActivity(intent)
-            }
-            else if (userPref.getRole().equals("2")){
+//            if (userPref.getRole().equals("3")){
+//                val intent = Intent(this, AddTripLoaderDriver::class.java)
+//                startActivity(intent)
+//            }
+//            else if (userPref.getRole().equals("2")){
+//                val intent = Intent(this, AddTripVActivity::class.java)
+//                startActivity(intent)
+//            }
+//            else if (userPref.getRole().equals("4")){
                 val intent = Intent(this, AddTripVActivity::class.java)
                 startActivity(intent)
-            }
-            else if (userPref.getRole().equals("4")){
-                val intent = Intent(this, AddTripVActivity::class.java)
-                startActivity(intent)
-            }
+//            }
 
         }
         binding.loaderTripHistory.setOnClickListener {

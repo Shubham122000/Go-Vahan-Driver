@@ -20,6 +20,8 @@ import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.util.Log
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
@@ -41,6 +43,7 @@ import com.govahanpartner.com.R
 import com.govahanpartner.com.databinding.ActivityAddDriverBinding
 
 import com.govahanpartner.com.base.BaseActivity
+import com.govahanpartner.com.model.VehicleNumberListData
 import com.govahanpartner.com.permission.RequestPermission
 import com.govahanpartner.com.utils.CommonUtils
 import com.govahanpartner.com.utils.toast
@@ -83,7 +86,10 @@ class AddDriverActivity : BaseActivity() {
     private var CAMERA_ID_FRONT: Int = 2
     lateinit var image: Uri
     private lateinit var pickSingleMediaLauncher: ActivityResultLauncher<Intent>
-
+    var vehicle_number: ArrayList<String> = ArrayList()
+    var vehiclenumber :ArrayList<VehicleNumberListData> = ArrayList()
+    var vehicle_id: ArrayList<String> = ArrayList()
+    var selectedVehicleNumber=""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
        // setContentView(R.layout.activity_add_driver)
@@ -219,6 +225,51 @@ class AddDriverActivity : BaseActivity() {
                     binding.edtConfirmpassword.setSelection(binding.edtConfirmpassword.text.length)
                 }
                 isVisible2 = true
+            }
+        }
+
+        viewModel.VehicleNumberLIst(
+            "Bearer "+userPref.getToken().toString(),
+        ).observe(this) {
+
+            if (it!!.error == false) {
+                vehiclenumber.clear()
+                vehicle_number.clear()
+                it.result?.data?.let { it1 -> vehiclenumber.addAll(it1) }
+                viewModel.VehiclenumberData.value = it.result?.data
+
+                for (i in 0 until it.result?.data!!.size) {
+                    it.result?.data?.get(i)?.vehicleNumber?.let { it1 -> vehicle_number.add(it1) }
+                    vehicle_id.add(it.result?.data?.get(i)?.id.toString())
+//                    Capacity.add(it.result?.data?.get(i)?.capacity.toString())
+                }
+                val spinnerArrayAdapter: ArrayAdapter<String> = ArrayAdapter<String>(
+                    this,
+                    android.R.layout.simple_spinner_dropdown_item,
+                    vehicle_number
+                )
+                spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                binding.spinnerVehiclenumber.adapter = spinnerArrayAdapter
+//                    viewModel.get_loader_vehicleno_details(
+//                        "Bearer " + userPref.getToken().toString(), selectedVehicleNumber
+//                    )
+            }
+        }
+        binding.spinnerVehiclenumber.onItemSelectedListener = object :
+            AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                selectedVehicleNumber = vehicle_id[p2]
+//                    binding.etEnterloadcarring.text= Capacity[p2]
+//                    if (binding.spinnerVehiclenumber.selectedItem.equals("SELECT")) {
+//                        toast("Please select vehicle number.")
+//                    } else {
+//                        viewModel.get_loader_vehicleno_details(
+//                            "Bearer " + userPref.getToken().toString(), selectedVehicleNumber
+//                        )
+//
+//                    }
+            }
+            override fun onNothingSelected(p0: AdapterView<*>?) {
             }
         }
     }
@@ -377,6 +428,7 @@ class AddDriverActivity : BaseActivity() {
                 binding.ccp.selectedCountryCode.toString(),
                 binding.edtMobile.text.toString(),
                 binding.edtUsername.text.toString(),
+                selectedVehicleNumber,
                 binding.edtPassword.text.toString(),
                 imagePrats,
                 pdfFile,
