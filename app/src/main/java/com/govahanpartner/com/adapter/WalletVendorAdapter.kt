@@ -74,7 +74,7 @@ class WalletVendorAdapter (val context : Context, var wallet_customclick: wallet
             val dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
             val timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss")
 
-            holder.binding.tvDate.text = "${localDate.format(dateFormatter)}"
+            holder.binding.tvDate.text = "${localDate.format(dateFormatter)} ${localTime.format(timeFormatter)}"
 
 //            val formattedDate =  // e.g., "2025-01-30"
 //            val formattedTime = localTime.format(timeFormatter // e.g., "19:26:26"
