@@ -63,19 +63,14 @@ class CancelTripAdapter (val context : Context, val list: List<TripHistoryRespon
             intent.putExtra("booking", data)
             intent.putExtra("flag","CancelLoader")
             context.startActivity(intent)
-
-
         })
-        }
-        else{
+        } else{
             holder.binding.linearItem.setOnClickListener(View.OnClickListener {
                 val intent = Intent(context, BookingDetailsActivity::class.java)
                 intent.putExtra("orderType", "4")
                 intent.putExtra("booking", data)
                 intent.putExtra("flag","CancelPassenger")
                 context.startActivity(intent)
-
-
             })
         }
 

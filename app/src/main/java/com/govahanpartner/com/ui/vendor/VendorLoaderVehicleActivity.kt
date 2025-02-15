@@ -86,11 +86,13 @@ class VendorLoaderVehicleActivity : BaseActivity() {
 
         if (userPref.getRole().equals("3") ){
             binding.llAdddriver.visibility = View.GONE
+            binding.llTruckrepo.visibility = View.INVISIBLE
             binding.llTruckdocument.visibility=View.INVISIBLE
 
         }
         else if (userPref.getRole().equals("2")) {
             binding.llAdddriver.visibility = View.GONE
+            binding.llTruckrepo.visibility = View.VISIBLE
             binding.llTruckdocument.visibility=View.VISIBLE
 
         }else if (userPref.getRole().equals("4")) {

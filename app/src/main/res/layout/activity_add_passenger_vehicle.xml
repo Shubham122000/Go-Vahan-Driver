@@ -304,26 +304,44 @@
                     <!--                        android:layout_marginEnd="@dimen/_10sdp"-->
                     <!--                        android:background="@color/lightgray" />-->
 
-<!--                    <TextView-->
-<!--                        android:layout_width="wrap_content"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:layout_marginStart="@dimen/_10sdp"-->
-<!--                        android:layout_marginTop="@dimen/_10sdp"-->
-<!--                        android:layout_weight="1"-->
-<!--                        android:fontFamily="@font/roboto_regular"-->
-<!--                        android:imeOptions="actionNext"-->
-<!--                        android:singleLine="true"-->
-<!--                        android:text="@string/capacity"-->
-<!--                        android:textColor="@color/gray"-->
-<!--                        android:textSize="@dimen/_11sdp" />-->
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/roboto_regular"
+                        android:imeOptions="actionNext"
+                        android:singleLine="true"
+                        android:text="@string/capacity"
+                        android:textColor="@color/gray"
+                        android:textSize="@dimen/_11sdp" />
 
-<!--                    <LinearLayout-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="@dimen/_35sdp"-->
-<!--                        android:layout_gravity="center"-->
-<!--                        android:gravity="center"-->
-<!--                        android:orientation="horizontal">-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_35sdp"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:orientation="horizontal">
 
+                        <EditText
+                            android:id="@+id/et_capacity"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_35sdp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:background="@android:color/transparent"
+                            android:fontFamily="@font/roboto_regular"
+                            android:gravity="center_vertical"
+                            android:hint="Enter Capacity (in Tons)"
+                            android:imeOptions="actionNext"
+                            android:inputType="number"
+                            android:singleLine="true"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12sdp"
+                            app:hintAnimationEnabled="false"
+                            app:hintEnabled="false" />
 <!--                        <Spinner-->
 <!--                            android:id="@+id/spinner_loadcarring"-->
 <!--                            android:layout_width="match_parent"-->
@@ -334,14 +352,14 @@
 <!--                            android:fontFamily="@font/roboto_regular"-->
 <!--                            android:gravity="center" />-->
 
-<!--                    </LinearLayout>-->
+                    </LinearLayout>
 
-<!--                    <View-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="@dimen/_1sdp"-->
-<!--                        android:layout_marginStart="@dimen/_10sdp"-->
-<!--                        android:layout_marginEnd="@dimen/_10sdp"-->
-<!--                        android:background="@color/lightgray" />-->
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:background="@color/lightgray" />
 
 <!--                    <TextView-->
 <!--                        android:layout_width="wrap_content"-->
@@ -531,7 +549,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_centerInParent="true"
                                 android:scaleType="centerCrop"
-                                android:src="@drawable/vehicle_image" />
+                                android:src="@drawable/front" />
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
@@ -568,7 +586,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
                                 android:scaleType="centerCrop"
-                                android:src="@drawable/vehicle_image" />
+                                android:src="@drawable/left" />
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
@@ -621,7 +639,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_centerInParent="true"
                                 android:scaleType="centerCrop"
-                                android:src="@drawable/vehicle_image" />
+                                android:src="@drawable/right" />
 
                             <LinearLayout
                                 android:layout_width="wrap_content"
@@ -659,7 +677,7 @@
                                 android:layout_height="match_parent"
                                 android:layout_centerInParent="true"
                                 android:scaleType="centerCrop"
-                                android:src="@drawable/vehicle_image" />
+                                android:src="@drawable/back" />
 
                             <LinearLayout
                                 android:layout_width="wrap_content"

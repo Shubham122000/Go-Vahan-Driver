@@ -334,6 +334,8 @@ class TypeOfTruckViewModel @Inject constructor(private val mainRepository: MainR
         color: String,
         no_of_tyres: String,
         body_type: String,
+        isFromPassenger: String,
+        seat: String,
         images1: MultipartBody.Part,
         images2: MultipartBody.Part,
         images3: MultipartBody.Part,
@@ -368,6 +370,8 @@ class TypeOfTruckViewModel @Inject constructor(private val mainRepository: MainR
         val height: RequestBody = height.toRequestBody("text/plain".toMediaTypeOrNull())
         val no_of_tyres: RequestBody = no_of_tyres.toRequestBody("text/plain".toMediaTypeOrNull())
         val body_type: RequestBody = body_type.toRequestBody("text/plain".toMediaTypeOrNull())
+        val isFromPassenger: RequestBody = isFromPassenger.toRequestBody("text/plain".toMediaTypeOrNull())
+        val seat: RequestBody = seat.toRequestBody("text/plain".toMediaTypeOrNull())
         val exp_date_1: RequestBody = exp_date_1.toRequestBody("text/plain".toMediaTypeOrNull())
         val exp_date_2: RequestBody = exp_date_2.toRequestBody("text/plain".toMediaTypeOrNull())
         val exp_date_3: RequestBody = exp_date_3.toRequestBody("text/plain".toMediaTypeOrNull())
@@ -397,6 +401,7 @@ class TypeOfTruckViewModel @Inject constructor(private val mainRepository: MainR
                     color,
                     no_of_tyres,
                     body_type,
+                    isFromPassenger,seat,
                     images1, images2, images3, images4, doc1, doc2, doc3, doc4, doc5,doc6, exp_date_1, exp_date_2, exp_date_3, exp_date_4,exp_date_5, other_exp_date, /*doc_name_1, doc_name_2, doc_name_3, doc_name_4, doc_name_5,*/  other_doc_name
                 )
             if (response.isSuccessful) {

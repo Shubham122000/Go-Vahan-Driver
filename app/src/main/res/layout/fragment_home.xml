@@ -32,7 +32,6 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/_140sdp"
             android:layout_marginTop="@dimen/_10sdp"
-            android:layout_marginBottom="@dimen/_10sdp"
             android:orientation="horizontal"
             android:layout_gravity="center"
             android:gravity="center"
@@ -111,42 +110,42 @@
 
         </LinearLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_1sdp"
-            android:visibility="gone"
-            android:background="@color/grey_lite"/>
+<!--        <View-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="@dimen/_1sdp"-->
+<!--            android:visibility="gone"-->
+<!--            android:background="@color/grey_lite"/>-->
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="@dimen/_10sdp"
-                    android:layout_marginHorizontal="@dimen/_40sdp"
-                    android:background="@drawable/edt_round_corner_yellow"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-
-
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/addDrivingLicence"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_gravity="center"
-                        android:background="@drawable/edt_round_corner_yellow"
-                        android:fontFamily="@font/roboto_medium"
-                        android:text="@string/addDrivingLicence"
-                        android:textAllCaps="false"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/_14sdp" />
-
-                </LinearLayout>
+<!--                <LinearLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginVertical="@dimen/_10sdp"-->
+<!--                    android:layout_marginHorizontal="@dimen/_40sdp"-->
+<!--                    android:background="@drawable/edt_round_corner_yellow"-->
+<!--                    android:gravity="center"-->
+<!--                    android:orientation="horizontal">-->
 
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_1sdp"
-                    android:background="@color/grey_lite"/>
+
+<!--                    <androidx.appcompat.widget.AppCompatButton-->
+<!--                        android:id="@+id/addDrivingLicence"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="@dimen/_30sdp"-->
+<!--                        android:layout_gravity="center"-->
+<!--                        android:background="@drawable/edt_round_corner_yellow"-->
+<!--                        android:fontFamily="@font/roboto_medium"-->
+<!--                        android:text="@string/addDrivingLicence"-->
+<!--                        android:textAllCaps="false"-->
+<!--                        android:textColor="@color/white"-->
+<!--                        android:textSize="@dimen/_14sdp" />-->
+
+<!--                </LinearLayout>-->
+
+
+<!--                <View-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="@dimen/_1sdp"-->
+<!--                    android:background="@color/grey_lite"/>-->
 
 
         <androidx.appcompat.widget.AppCompatButton

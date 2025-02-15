@@ -75,30 +75,34 @@ class PassengerVehicleActivity : BaseActivity() {
             startActivity(intent)
         }
         if (userPref.getRole().equals("3") ){
-            binding.llAdddriver.visibility=View.INVISIBLE
+            binding.llAdddriver.visibility = View.GONE
+            binding.llRepository.visibility = View.INVISIBLE
             binding.llTruckdocument.visibility=View.INVISIBLE
+
         }
         else if (userPref.getRole().equals("2")) {
-            binding.llAdddriver.visibility = View.INVISIBLE
-            binding.llTruckdocument.visibility=View.VISIBLE
-        }
-        else if (userPref.getRole().equals("4")) {
-            binding.llAdddriver.visibility = View.VISIBLE
-            binding.llTruckdocument.visibility=View.VISIBLE
-        }
-        if (LoginActivity.role.equals("3") ){
-            binding.llAdddriver.visibility = View.INVISIBLE
-            binding.llTruckdocument.visibility=View.INVISIBLE
-
-        }
-        else if (LoginActivity.role.equals("2")) {
-            binding.llAdddriver.visibility = View.INVISIBLE
+            binding.llAdddriver.visibility = View.GONE
+            binding.llRepository.visibility = View.VISIBLE
             binding.llTruckdocument.visibility=View.VISIBLE
 
-        }else if (LoginActivity.role.equals("4")) {
+        }else if (userPref.getRole().equals("4")) {
             binding.llAdddriver.visibility = View.VISIBLE
             binding.llTruckdocument.visibility=View.VISIBLE
+            binding.llAddtrip.visibility=View.GONE
         }
+//        if (LoginActivity.role.equals("3") ){
+//            binding.llAdddriver.visibility = View.INVISIBLE
+//            binding.llTruckdocument.visibility=View.INVISIBLE
+//
+//        }
+//        else if (LoginActivity.role.equals("2")) {
+//            binding.llAdddriver.visibility = View.INVISIBLE
+//            binding.llTruckdocument.visibility=View.VISIBLE
+//
+//        }else if (LoginActivity.role.equals("4")) {
+//            binding.llAdddriver.visibility = View.VISIBLE
+//            binding.llTruckdocument.visibility=View.VISIBLE
+//        }
         binding.invoice.setOnClickListener {
             val intent = Intent(this, Loader_invoice_List::class.java)
             intent.putExtra("flag","passenger")

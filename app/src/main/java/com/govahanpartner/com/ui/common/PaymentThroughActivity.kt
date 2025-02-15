@@ -83,17 +83,6 @@ class PaymentThroughActivity : BaseActivity(), PaymentResultWithDataListener {
                     val intent = Intent(this, DashboardActivity::class.java)
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
                     this.startActivity(intent)
-//                if (flag.equals("passenger")) {
-//                    val intent = Intent(this, DashboardActivity::class.java)
-//                    intent.putExtra("FromLoader","FromPassenger")
-//                    startActivity(intent)
-//                    finish()
-//                } else{
-//                        val intent = Intent(this, TruckRepositoryActivity::class.java)
-//                        intent.putExtra("FromLoader","FromLoader")
-//                        startActivity(intent)
-//                        finish()
-//                }
             } else {
 
             }
@@ -125,23 +114,23 @@ class PaymentThroughActivity : BaseActivity(), PaymentResultWithDataListener {
                 hideProgressDialog()
             }
         }
-        viewModel.ChecksumResponse.observe(this) {
-            if (it.success == true) {
-                phonepayurl = it.data.instrumentResponse.redirectInfo.url
-//                handleUPIIntent(phonepayurl)
-                transactionId = it.data.merchantTransactionId
-
-                startActivity(
-                    Intent(applicationContext, WebViewActivity::class.java)
-                        .putExtra("phonepay", phonepayurl.toString())
-                )
-
-// To Initiate Payment.
-//                startActivityForResult(intent, B2B_PG_REQUEST_CODE);
-            } else {
-                toast(it.message)
-            }
-        }
+//        viewModel.ChecksumResponse.observe(this) {
+//            if (it.success == true) {
+//                phonepayurl = it.data.instrumentResponse.redirectInfo.url
+////                handleUPIIntent(phonepayurl)
+//                transactionId = it.data.merchantTransactionId
+//
+//                startActivity(
+//                    Intent(applicationContext, WebViewActivity::class.java)
+//                        .putExtra("phonepay", phonepayurl.toString())
+//                )
+//
+//// To Initiate Payment.
+////                startActivityForResult(intent, B2B_PG_REQUEST_CODE);
+//            } else {
+//                toast(it.message)
+//            }
+//        }
         viewModel1.AddwalletResponse.observe(this) {
             if (it.error == false) {
                 val intent = Intent(this, DashboardActivity::class.java)
@@ -175,116 +164,47 @@ class PaymentThroughActivity : BaseActivity(), PaymentResultWithDataListener {
                 toast(it.message!!)
             }
         }
-        binding.walletButton.setOnClickListener {
-            if (fromScreen=="loader") {
-                if (buysubscription.equals("buysubscription")){
-                    viewModel1.buySubscriptionWalletApi("Bearer " + userPref.user.apiToken.toString(),plantype,"2")
-                }
-                else{
-                viewModel1.purchase_plan_from_walletApi_to_truck(
-                    "Bearer " + userPref.user.apiToken,
-                    paymentprice.toString(),
-                    vehicle_id1,
-                    "2",plantype
-                )
-                }
-            }
-            else if (fromScreen=="passenger") {
-                if (buysubscription.equals("buysubscription")){
-                    viewModel1.buySubscriptionWalletApi("Bearer " + userPref.user.apiToken.toString(),plantype,"1")
-                }
-                else {
-                    viewModel1.purchase_plan_from_walletApi_to_passenger(
-                        "Bearer " + userPref.user.apiToken,
-                        paymentprice.toString(),
-                        vehicle_id1,
-                        "2", plantype
-                    )
-                }
-            }else{
-                viewModel1.purchase_plan_from_walletApi(
-                    "Bearer " + userPref.user.apiToken,
-                    paymentprice.toString(),
-                    vehicle_id1,
-                    "2"
-                )
-            }
-        }
-
-        binding.onlineButton.setOnClickListener {
-            flag1 = ""
-            startPayment(finalPamountInt.toString())
-//            viewModel.checkupApi(
-//                "Bearer " + userPref.user.apiToken,
-//                finalPamountInt.toString(),
-//                userPref.getMobile().toString(),
-//                userPref.getuserid().toString()
-//            )
-        }
-    }
-//    override fun onStart() {
-//        super.onStart()
-//        if (flag1.equals("1")) {
-//        } else {
-//            viewModel.paymentcheckApi("Bearer " + userPref.user.apiToken, transactionId)
-//            viewModel.Paymentsuccessmsgresponse.observe(this) {
-//                if (it.code == "PAYMENT_SUCCESS") {
-//                    toast(it.message)
-//                    if (flag.equals("passenger")) {
-//                        if (buysubscription.equals("buysubscription")) {
-//                            viewModel1.buySubscriptionOnlineApi("Bearer " + userPref.user.apiToken,plantype,"1",transactionId)
-//                        }
-//                        else {
-//                            viewModel.paymentsSubscriptionPassenger(
-//                                "Bearer " + userPref.user.apiToken,
-//                                vehicle_id1, "2", paymentprice.toString(), "2", transactionId, plantype,
-//                                currentdate, "2"
-//                            )
-//                        }
-//                    } else {
-//                        if (buysubscription.equals("buysubscription")) {
-//                            viewModel1.buySubscriptionOnlineApi("Bearer " + userPref.user.apiToken,plantype,"2",transactionId)
-//                        }
-//                        else {
-//                            viewModel.PaymentSubscriptionPlan(
-//                                "Bearer " + userPref.user.apiToken,
-//                                vehicle_id1, "2", paymentprice.toString(), "2", transactionId.toString(),
-//                                plantype, currentdate, "2"
-//                            )
-//                        }
-//                    }
-//
-//                } else {
-//                    toast(it.message)
-//                    if (flag.equals("passenger")) {
-//                        if (buysubscription.equals("buysubscription")) {
-//                            viewModel1.buySubscriptionOnlineApi("Bearer " + userPref.user.apiToken,plantype,"1",transactionId)
-//                        }
-//                        else {
-//                            viewModel.paymentsSubscriptionPassenger(
-//                                "Bearer " + userPref.user.apiToken,
-//                                vehicle_id1, "2", paymentprice.toString(), "2", transactionId, plantype,
-//                                currentdate, "3"
-//                            )
-//                        }
-//                    } else {
-//                        if (buysubscription.equals("buysubscription")) {
-//                            viewModel1.buySubscriptionOnlineApi("Bearer " + userPref.user.apiToken,plantype,"2",transactionId)
-//                        }
-//                        else {
-//                            viewModel.PaymentSubscriptionPlan(
-//                                "Bearer " + userPref.user.apiToken,
-//                                vehicle_id1, "2", paymentprice.toString(), "2", transactionId.toString(),
-//                                plantype, currentdate, "3"
-//                            )
-//                        }
-//                    }
-//
+//        binding.walletButton.setOnClickListener {
+//            if (fromScreen=="loader") {
+//                if (buysubscription.equals("buysubscription")){
+//                    viewModel1.buySubscriptionWalletApi("Bearer " + userPref.user.apiToken.toString(),plantype,"2")
+//                }
+//                else{
+//                viewModel1.purchase_plan_from_walletApi_to_truck(
+//                    "Bearer " + userPref.user.apiToken,
+//                    paymentprice.toString(),
+//                    vehicle_id1,
+//                    "2",plantype
+//                )
 //                }
 //            }
+//            else if (fromScreen=="passenger") {
+//                if (buysubscription.equals("buysubscription")){
+//                    viewModel1.buySubscriptionWalletApi("Bearer " + userPref.user.apiToken.toString(),plantype,"1")
+//                }
+//                else {
+//                    viewModel1.purchase_plan_from_walletApi_to_passenger(
+//                        "Bearer " + userPref.user.apiToken,
+//                        paymentprice.toString(),
+//                        vehicle_id1,
+//                        "2", plantype
+//                    )
+//                }
+//            }else{
+//                viewModel1.purchase_plan_from_walletApi(
+//                    "Bearer " + userPref.user.apiToken,
+//                    paymentprice.toString(),
+//                    vehicle_id1,
+//                    "2"
+//                )
+//            }
 //        }
-//
-//    }
+
+//        binding.onlineButton.setOnClickListener {
+            flag1 = ""
+            startPayment(finalPamountInt.toString())
+//        }
+    }
 
     private fun startPayment(amountofuser:String) {
         /*

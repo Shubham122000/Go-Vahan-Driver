@@ -58,6 +58,8 @@ interface ApiService {
         @Part("color") color: RequestBody,
         @Part("no_of_tyres") no_of_tyres: RequestBody,
         @Part("body_type") body_type: RequestBody,
+        @Part("is_from_passenger") isFromPassenger: RequestBody,
+        @Part("seat") seat: RequestBody,
         @Part images1: MultipartBody.Part,
         @Part images2: MultipartBody.Part,
         @Part images3: MultipartBody.Part,

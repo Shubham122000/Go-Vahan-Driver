@@ -67,6 +67,8 @@ interface MainRepository {
         color: RequestBody,
         no_of_tyres: RequestBody,
         body_type: RequestBody,
+        isFromPassenger: RequestBody,
+        seat: RequestBody,
         images1: MultipartBody.Part,
         images2: MultipartBody.Part,
         images3: MultipartBody.Part,

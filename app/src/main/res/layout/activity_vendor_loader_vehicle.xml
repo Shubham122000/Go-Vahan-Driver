@@ -87,11 +87,11 @@
             android:weightSum="3">
 
             <LinearLayout
+                android:id="@+id/ll_addtrip"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:elevation="@dimen/_2sdp"
-                android:id="@+id/ll_addtrip"
                 android:orientation="vertical"
                 android:background="@drawable/edt_round_corner"
                 android:layout_marginTop="@dimen/_10sdp"
@@ -121,11 +121,11 @@
 
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/ll_adddriver"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:elevation="@dimen/_2sdp"
-                android:id="@+id/ll_adddriver"
                 android:orientation="vertical"
                 android:background="@drawable/edt_round_corner"
                 android:layout_marginTop="@dimen/_10sdp"
@@ -155,11 +155,11 @@
 
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/ll_tripbook"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:elevation="@dimen/_2sdp"
-                android:id="@+id/ll_tripbook"
                 android:orientation="vertical"
                 android:layout_marginLeft="@dimen/_10sdp"
                 android:background="@drawable/edt_round_corner"
@@ -191,11 +191,11 @@
 
             </LinearLayout>
             <LinearLayout
+                android:id="@+id/ll_upcoming"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:elevation="@dimen/_2sdp"
-                android:id="@+id/ll_upcoming"
                 android:orientation="vertical"
                 android:background="@drawable/edt_round_corner"
                 android:layout_marginTop="@dimen/_10sdp"
@@ -275,22 +275,20 @@
 
 
             </LinearLayout>
-
             <LinearLayout
+                android:id="@+id/invoice"
                 android:layout_width="0dp"
                 android:layout_weight="1"
-                android:id="@+id/ll_truckrepo"
                 android:gravity="center"
                 android:elevation="@dimen/_2sdp"
                 android:orientation="vertical"
-                android:background="@drawable/edt_round_corner"
-                android:layout_marginLeft="@dimen/_10sdp"
                 android:layout_marginRight="@dimen/_10sdp"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:background="@drawable/edt_round_corner"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginBottom="@dimen/_10sdp"
                 android:layout_height="match_parent"
-                android:layout_gravity="center"
-                >
+                android:layout_gravity="center">
 
                 <ImageView
                     android:layout_width="@dimen/_50sdp"
@@ -303,9 +301,10 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
                     android:gravity="center"
-                    android:text="Truck Repository"
+                    android:layout_centerHorizontal="true"
+                    android:text="Invoice List"
+                    android:layout_marginHorizontal="@dimen/_10sdp"
                     android:fontFamily="@font/roboto_regular"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_10sdp" />
@@ -313,6 +312,8 @@
 
 
             </LinearLayout>
+
+
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -397,19 +398,20 @@
 
             </LinearLayout>
             <LinearLayout
-                android:id="@+id/invoice"
                 android:layout_width="0dp"
                 android:layout_weight="1"
+                android:id="@+id/ll_truckrepo"
                 android:gravity="center"
                 android:elevation="@dimen/_2sdp"
                 android:orientation="vertical"
-                android:layout_marginRight="@dimen/_10sdp"
-                android:layout_marginLeft="@dimen/_10sdp"
                 android:background="@drawable/edt_round_corner"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:layout_marginRight="@dimen/_10sdp"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:layout_marginBottom="@dimen/_10sdp"
                 android:layout_height="match_parent"
-                android:layout_gravity="center">
+                android:layout_gravity="center"
+                >
 
                 <ImageView
                     android:layout_width="@dimen/_50sdp"
@@ -422,10 +424,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
                     android:layout_centerHorizontal="true"
-                    android:text="Invoice List"
-                    android:layout_marginHorizontal="@dimen/_10sdp"
+                    android:gravity="center"
+                    android:text="Truck Repository"
                     android:fontFamily="@font/roboto_regular"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_10sdp" />

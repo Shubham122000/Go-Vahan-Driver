@@ -191,18 +191,18 @@ class HomeFragment : BaseFragment() {
             }
         }
 
-        if (userPref.getdriver_license().toString() == "null"){
-            binding.addDrivingLicence.visibility = View.VISIBLE
-        }else{
-            binding.addDrivingLicence.visibility = View.GONE
-        }
-
-            binding.addDrivingLicence.setOnClickListener {
-            if (userPref.getdriver_license().isNullOrEmpty()){
-                val intent = Intent(requireContext(), AddDrivingLicenseActivity::class.java)
-                startActivity(intent)
-            }
-        }
+//        if (userPref.getdriver_license().toString() == "null"){
+//            binding.addDrivingLicence.visibility = View.VISIBLE
+//        }else{
+//            binding.addDrivingLicence.visibility = View.GONE
+//        }
+//
+//            binding.addDrivingLicence.setOnClickListener {
+//            if (userPref.getdriver_license().isNullOrEmpty()){
+//                val intent = Intent(requireContext(), AddDrivingLicenseActivity::class.java)
+//                startActivity(intent)
+//            }
+//        }
 
 
 

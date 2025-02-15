@@ -108,8 +108,9 @@ class AddPassengerVehicleActivity : BaseActivity() {
     private val GALLERY_LICENSE_BACK = 7
     private var CAMERA_LICENSE_BACK: Int = 8
     var selectedTruckTypeId = ""
-    var selectedBodyId = ""
-    var selectedHightId = ""
+    var selectedTruckTypeName = ""
+    var selectedBodyId = "0"
+    var selectedHightId = "0"
     var selectedWheelsId = ""
     var selectedColorId = ""
     var selectedYearId = ""
@@ -453,6 +454,7 @@ class AddPassengerVehicleActivity : BaseActivity() {
             object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                     selectedTruckTypeId = id_type[p2]
+                    selectedTruckTypeName = nametype[p2]
                 }
 
                 override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -516,107 +518,195 @@ class AddPassengerVehicleActivity : BaseActivity() {
         }
         binding.btnSubmit.setOnClickListener {
 
-            if (userPref.getRole().equals("2")) {
-                if (binding.etTruckownername.text.isNullOrEmpty()) {
-                    toast("Please enter Username.")
-                } else if (binding.etVehivalnumber.text.toString().isNullOrEmpty()) {
-                    toast("Please enter Vehical Number")
-                } else {
-                    viewModel.indi_add_passenger_vehicle(
-                        "Bearer " + userPref.getToken().toString(),
-                        userPref.getid().toString(),
-                        binding.etTruckownername.text.toString(),
-                        binding.spinnerTrucktype.selectedItem.toString(),
-                        binding.spinnerYearofmodel.selectedItem.toString(),
-                        binding.etVehivalnumber.text.toString(),
-                        selectedTruckTypeId,
-                        selectedCapacityId,
-                        selectedHightId,
-                        selectedColorId,
-                        selectedWheelsId,
-                        selectedBodyId,
-                        binding.spinnerSeat.selectedItem.toString(),
-                        imagetruck1!!,
-                        imagetruck2!!,
-                        imagetruck3!!,
-                        imagetruck4!!,
-                        pdfFile!!,pdfFile1!!,pdfFile2!!,pdfFile3!!,pdfFile4!!,pdfFile5!!,
-                        binding.tvDate.text.toString(),
-                        binding.date1.text.toString(),
-                        binding.date2.text.toString(),
-                        binding.date3.text.toString(),
-                        binding.date4.text.toString(),
-                        binding.date5.text.toString(),
-                        "Rc-book",
-                        "Pollution-Document",
-                        "Fitness-Papers",
-                        "Insurance-Document",
-                        "RTO Documents",
-                        "Others",
-                    )
-                    viewModel.AddloaderResponse.observe(this) {
-                        if (it?.error == false) {
-                            Toast.makeText(this, "Vehical added Successfully...", Toast.LENGTH_LONG)
-                                .show()
-                            finish()
-                            vehicleid = it.result?.id.toString()
-                        } else {
-                            snackbar(it?.message!!)
-                        }
-                    }
-                }
+//            if (userPref.getRole().equals("2")) {
+//                if (binding.etTruckownername.text.isNullOrEmpty()) {
+//                    toast("Please enter Username.")
+//                } else if (binding.etVehivalnumber.text.toString().isNullOrEmpty()) {
+//                    toast("Please enter Vehical Number")
+//                } else {
+//                    viewModel.indi_add_passenger_vehicle(
+//                        "Bearer " + userPref.getToken().toString(),
+//                        userPref.getid().toString(),
+//                        binding.etTruckownername.text.toString(),
+//                        binding.spinnerTrucktype.selectedItem.toString(),
+//                        binding.spinnerYearofmodel.selectedItem.toString(),
+//                        binding.etVehivalnumber.text.toString(),
+//                        selectedTruckTypeId,
+//                        selectedCapacityId,
+//                        binding.etCapacity.text.toString(),
+//                        selectedHightId,
+//                        selectedColorId,
+//                        selectedWheelsId,
+//                        selectedBodyId,
+//                        "2",
+//                        binding.spinnerSeat.selectedItem.toString(),
+//                        imagetruck1!!,
+//                        imagetruck2!!,
+//                        imagetruck3!!,
+//                        imagetruck4!!,
+//                        pdfFile!!,pdfFile1!!,pdfFile2!!,pdfFile3!!,pdfFile4!!,pdfFile5!!,
+//                        binding.tvDate.text.toString(),
+//                        binding.date1.text.toString(),
+//                        binding.date2.text.toString(),
+//                        binding.date3.text.toString(),
+//                        binding.date4.text.toString(),
+//                        binding.date5.text.toString(),
+//                        "Rc-book",
+//                        "Pollution-Document",
+//                        "Fitness-Papers",
+//                        "Insurance-Document",
+//                        "RTO Documents",
+//                        "Others",
+//                    )
+//                    viewModel.AddloaderResponse.observe(this) {
+//                        if (it?.error == false) {
+//                            Toast.makeText(this, "Vehical added Successfully...", Toast.LENGTH_LONG)
+//                                .show()
+//                            finish()
+//                            vehicleid = it.result?.id.toString()
+//                        } else {
+//                            snackbar(it?.message!!)
+//                        }
+//                    }
+//                }
+//            } else {
+//                if (binding.etTruckownername.text.isNullOrEmpty()) {
+//                    toast("Please enter Username.")
+//                } else if (binding.etVehivalnumber.text.toString().isNullOrEmpty()) {
+//                    toast("Please enter Vehical Number")
+//                } else {
+//                    viewModel.Addpassengervehical(
+//                        "Bearer " + userPref.getToken().toString(),
+//                        userPref.getid().toString(),
+//                        binding.etTruckownername.text.toString(),
+////                    binding.etTruckname.text.toString(),
+//                        binding.spinnerTrucktype.selectedItem.toString(),
+//                        binding.spinnerYearofmodel.selectedItem.toString(),
+//                        binding.etVehivalnumber.text.toString(),
+//                        selectedTruckTypeId,
+//                        selectedCapacityId,
+//                        binding.etCapacity.text.toString(),
+//                        selectedHightId,
+//                        selectedColorId,
+//                        selectedWheelsId,
+//                        selectedBodyId,
+//                        "2",
+//                        binding.spinnerSeat.selectedItem.toString(),
+//                        imagetruck1!!,
+//                        imagetruck2!!,
+//                        imagetruck3!!,
+//                        imagetruck4!!,
+//                        pdfFile!!,pdfFile1!!,pdfFile2!!,pdfFile3!!,pdfFile4!!,pdfFile5!!,
+//                        binding.tvDate.text.toString(),
+//                        binding.date1.text.toString(),
+//                        binding.date2.text.toString(),
+//                        binding.date3.text.toString(),
+//                        binding.date4.text.toString(),
+//                        binding.date5.text.toString(),
+//                        "Rc-book",
+//                        "Pollution-Document",
+//                        "Fitness-Papers",
+//                        "Insurance-Document",
+//                        "RTO Documents",
+//                        "Others",
+//                    )
+//                    viewModel.AddloaderResponse.observe(this) {
+//                        if (it?.error == false) {
+//                            Toast.makeText(this, "Vehical added Successfully...", Toast.LENGTH_LONG)
+//                                .show()
+//                            finish()
+//                            vehicleid = it.result?.id.toString()
+//                        } else {
+//                            snackbar(it?.message!!)
+//                        }
+//                    }
+//                }
+//            }
+            if (binding.etTruckownername.text.isNullOrEmpty()) {
+                toast("Please enter username.")
+            }else if (selectedTruckTypeId == "-1") {
+                toast("Please select vehical name.")
+            } else if (binding.etVehivalnumber.text.toString().isNullOrEmpty()) {
+                toast("Please enter vehical number.")
+            }else if (selectedYearId == "-1") {
+                toast("Please select year.")
+            } else if (binding.etCapacity.text.toString().isNullOrEmpty()) {
+                toast("Please enter capacity.")
+            }else if (selectedHightId == "-1") {
+                toast("Please select height.")
+            }else if (selectedWheelsId == "-1") {
+                toast("Please select no. of tyres.")
+            }else if (selectedBodyId == "-1") {
+                toast("Please select body type.")
+            }else if (selectedBodyId == "-1") {
+                toast("Please select body type.")
+            }else if (imagetruck1 == null){
+                toast("Please select first image.")
+            }else if (imagetruck2 == null){
+                toast("Please select second image.")
+            }else if (imagetruck3 == null){
+                toast("Please select third image.")
+            }else if (imagetruck4 == null){
+                toast("Please select fourth image.")
+            }else if (pdfFile == null){
+                toast("Please select rc-document.")
+            }else if (binding.tvDate.text.toString().isNullOrEmpty()) {
+                toast("Please select expiry date of rc-book document.")
+            }else if (pdfFile1 == null){
+                toast("Please select insurance document.")
+            }else if (binding.date1.text.toString().isNullOrEmpty()) {
+                toast("Please select expiry date of insurance document.")
+            }else if (pdfFile2 == null){
+                toast("Please select pollution document.")
+            }else if (binding.date2.text.toString().isNullOrEmpty()) {
+                toast("Please select expiry date of pollution document.")
+            }else if (pdfFile3 == null){
+                toast("Please select fitness document.")
+            }else if (binding.date3.text.toString().isNullOrEmpty()) {
+                toast("Please select expiry date of fitness document.")
+            }else if (pdfFile4 == null){
+                toast("Please select rto document.")
+            }else if (binding.date4.text.toString().isNullOrEmpty()) {
+                toast("Please select expiry date of RTO document.")
+            }else if (pdfFile5 == null){
+                toast("Please select other document.")
+            }else if (binding.date5.text.toString().isNullOrEmpty()) {
+                toast("Please select expiry date of other document.")
             } else {
-                if (binding.etTruckownername.text.isNullOrEmpty()) {
-                    toast("Please enter Username.")
-                } else if (binding.etVehivalnumber.text.toString().isNullOrEmpty()) {
-                    toast("Please enter Vehical Number")
-                } else {
-                    viewModel.Addpassengervehical(
-                        "Bearer " + userPref.getToken().toString(),
-                        userPref.getid().toString(),
-                        binding.etTruckownername.text.toString(),
-//                    binding.etTruckname.text.toString(),
-                        binding.spinnerTrucktype.selectedItem.toString(),
-                        binding.spinnerYearofmodel.selectedItem.toString(),
-                        binding.etVehivalnumber.text.toString(),
-                        selectedTruckTypeId,
-                        selectedCapacityId,
-                        selectedHightId,
-                        selectedColorId,
-                        selectedWheelsId,
-                        selectedBodyId,
-                        binding.spinnerSeat.selectedItem.toString(),
-                        imagetruck1!!,
-                        imagetruck2!!,
-                        imagetruck3!!,
-                        imagetruck4!!,
-                        pdfFile!!,pdfFile1!!,pdfFile2!!,pdfFile3!!,pdfFile4!!,pdfFile5!!,
-                        binding.tvDate.text.toString(),
-                        binding.date1.text.toString(),
-                        binding.date2.text.toString(),
-                        binding.date3.text.toString(),
-                        binding.date4.text.toString(),
-                        binding.date5.text.toString(),
-                        "Rc-book",
-                        "Pollution-Document",
-                        "Fitness-Papers",
-                        "Insurance-Document",
-                        "RTO Documents",
-                        "Others",
-                    )
-                    viewModel.AddloaderResponse.observe(this) {
-                        if (it?.error == false) {
-                            Toast.makeText(this, "Vehical added Successfully...", Toast.LENGTH_LONG)
-                                .show()
-                            finish()
-                            vehicleid = it.result?.id.toString()
-                        } else {
-                            snackbar(it?.message!!)
-                        }
-                    }
-                }
+                viewModel.Addpassengervehical(
+                    "Bearer " + userPref.getToken().toString(),
+                    userPref.getid().toString(),
+                    binding.etTruckownername.text.toString(),
+                    selectedTruckTypeName,
+                    selectedYearId,
+                    binding.etVehivalnumber.text.toString(),
+                    selectedTruckTypeId,
+                    binding.etCapacity.text.toString(),
+                    selectedHightId,
+                    "white",
+                    selectedWheelsId,
+                    selectedBodyId,
+                    "2",
+                    binding.spinnerSeat.selectedItem.toString(),
+                    imagetruck1!!,
+                    imagetruck2!!,
+                    imagetruck3!!,
+                    imagetruck4!!,
+                    pdfFile!!,pdfFile1!!,pdfFile2!!,pdfFile3!!,pdfFile4!!,pdfFile5!!,
+                    binding.tvDate.text.toString(),
+                    binding.date1.text.toString(),
+                    binding.date2.text.toString(),
+                    binding.date3.text.toString(),
+                    binding.date4.text.toString(),
+                    binding.date5.text.toString(),
+                    /* "Rc-book",
+                     "Pollution-Document",
+                     "Fitness-Papers",
+                     "Insurance-Document",
+                     "RTO Documents",*/
+                    "Others",
+                )
             }
-
 
         }
 //    binding.spinnerBadytype.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {

@@ -415,7 +415,8 @@ class AddTripPassengerViewModels @Inject constructor(private val mainRepository:
         color: String,
         no_of_tyres: String,
         body_type: String,
-        seat:String,
+        isFromPassenger: String,
+        seat: String,
         images1: MultipartBody.Part,
         images2: MultipartBody.Part,
         images3: MultipartBody.Part,
@@ -432,11 +433,11 @@ class AddTripPassengerViewModels @Inject constructor(private val mainRepository:
         exp_date_4: String,
         exp_date_5: String,
         other_exp_date: String,
-        doc_name_1: String,
+       /* doc_name_1: String,
         doc_name_2: String,
         doc_name_3: String,
         doc_name_4: String,
-        doc_name_5: String,
+        doc_name_5: String,*/
         other_doc_name: String,
     ) {
         val driver_id: RequestBody = driver_id.toRequestBody("text/plain".toMediaTypeOrNull())
@@ -450,6 +451,7 @@ class AddTripPassengerViewModels @Inject constructor(private val mainRepository:
         val height: RequestBody = height.toRequestBody("text/plain".toMediaTypeOrNull())
         val no_of_tyres: RequestBody = no_of_tyres.toRequestBody("text/plain".toMediaTypeOrNull())
         val body_type: RequestBody = body_type.toRequestBody("text/plain".toMediaTypeOrNull())
+        val isFromPassenger: RequestBody = isFromPassenger.toRequestBody("text/plain".toMediaTypeOrNull())
         val seat: RequestBody = seat.toRequestBody("text/plain".toMediaTypeOrNull())
         val exp_date_1: RequestBody = exp_date_1.toRequestBody("text/plain".toMediaTypeOrNull())
         val exp_date_2: RequestBody = exp_date_2.toRequestBody("text/plain".toMediaTypeOrNull())
@@ -457,18 +459,18 @@ class AddTripPassengerViewModels @Inject constructor(private val mainRepository:
         val exp_date_4: RequestBody = exp_date_4.toRequestBody("text/plain".toMediaTypeOrNull())
         val exp_date_5: RequestBody = exp_date_5.toRequestBody("text/plain".toMediaTypeOrNull())
         val other_exp_date: RequestBody = other_exp_date.toRequestBody("text/plain".toMediaTypeOrNull())
-        val doc_name_1: RequestBody = doc_name_1.toRequestBody("text/plain".toMediaTypeOrNull())
-        val doc_name_2: RequestBody = doc_name_2.toRequestBody("text/plain".toMediaTypeOrNull())
-        val doc_name_3: RequestBody = doc_name_3.toRequestBody("text/plain".toMediaTypeOrNull())
-        val doc_name_4: RequestBody = doc_name_4.toRequestBody("text/plain".toMediaTypeOrNull())
-        val doc_name_5: RequestBody = doc_name_5.toRequestBody("text/plain".toMediaTypeOrNull())
+//        val doc_name_1: RequestBody = doc_name_1.toRequestBody("text/plain".toMediaTypeOrNull())
+//        val doc_name_2: RequestBody = doc_name_2.toRequestBody("text/plain".toMediaTypeOrNull())
+//        val doc_name_3: RequestBody = doc_name_3.toRequestBody("text/plain".toMediaTypeOrNull())
+//        val doc_name_4: RequestBody = doc_name_4.toRequestBody("text/plain".toMediaTypeOrNull())
+//        val doc_name_5: RequestBody = doc_name_5.toRequestBody("text/plain".toMediaTypeOrNull())
         val other_doc_name: RequestBody = other_doc_name.toRequestBody("text/plain".toMediaTypeOrNull())
 
         progressBarStatus.value = true
         viewModelScope.launch {
 
             val response =
-                mainRepository.addpassengervehical(
+                mainRepository.addloadervehical(
                     token,
                     driver_id,
                     vehicle_owner_name,
@@ -476,12 +478,14 @@ class AddTripPassengerViewModels @Inject constructor(private val mainRepository:
                     year_of_model,
                     vehicle_number,
                     vehicle_type,
+//                    vehicle_category,
                     capacity,
                     height,
                     color,
                     no_of_tyres,
                     body_type,
-                    seat,images1, images2, images3, images4, doc1, doc2, doc3, doc4, doc5, doc6, exp_date_1, exp_date_2, exp_date_3, exp_date_4, exp_date_5, other_exp_date, doc_name_1, doc_name_2, doc_name_3, doc_name_4, doc_name_5, other_doc_name
+                    isFromPassenger,seat,
+                    images1, images2, images3, images4, doc1, doc2, doc3, doc4, doc5,doc6, exp_date_1, exp_date_2, exp_date_3, exp_date_4,exp_date_5, other_exp_date, /*doc_name_1, doc_name_2, doc_name_3, doc_name_4, doc_name_5,*/  other_doc_name
                 )
             if (response.isSuccessful) {
                 progressBarStatus.value = false
