@@ -109,18 +109,18 @@ class PassengerVehicleActivity : BaseActivity() {
             startActivity(intent)
         }
             binding.llAddtrip.setOnClickListener {
-            if (userPref.getRole().equals("3")){
-                val intent = Intent(this, AddTripPassengerDriver::class.java)
-                startActivity(intent)
-            }
-            else if (userPref.getRole().equals("2")){
+//            if (userPref.getRole().equals("3")){
+//                val intent = Intent(this, AddTripPassengerDriver::class.java)
+//                startActivity(intent)
+//            }
+//            else if (userPref.getRole().equals("2")){
+//                val intent = Intent(this,AddTripPActivity ::class.java)
+//                startActivity(intent)
+//            }
+//            else if (userPref.getRole().equals("4")){
                 val intent = Intent(this,AddTripPActivity ::class.java)
                 startActivity(intent)
-            }
-            else if (userPref.getRole().equals("4")){
-                val intent = Intent(this,AddTripPActivity ::class.java)
-                startActivity(intent)
-            }
+//            }
         }
         binding.passengerTripHistory.setOnClickListener {
             val intent = Intent(this, PassengerTripHistory::class.java)

@@ -273,18 +273,18 @@ class AddTripVActivity : BaseActivity() {
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                if (binding.drivercharge.text.equals("")){
-                    binding.totalamount.text=""
-                }
+//                if (binding.drivercharge.text.equals("")){
+//                    binding.totalamount.text=""
+//                }
             }
 
             override fun afterTextChanged(p0: Editable?) {
-                if (binding.drivercharge.text.equals("")){
-                    binding.totalamount.text=""
-                }else{
+//                if (binding.drivercharge.text.equals("")){
+//                    binding.totalamount.text=""
+//                }else{
                     fuelcharge=binding.etFuelcharge.text.toString()
                     tollcharge=binding.etToll.text.toString()
-                    driverfee=binding.drivercharge.text.toString()
+//                    driverfee=binding.drivercharge.text.toString()
 
                     if (driverfee.equals("")){
                         freightamount= fuelcharge.toInt() + tollcharge.toInt()
@@ -302,7 +302,7 @@ class AddTripVActivity : BaseActivity() {
                         binding.totalamount.text="₹${taxadd.toString()}"
                     }
 
-                }
+//                }
 
             }
         })
@@ -387,12 +387,12 @@ class AddTripVActivity : BaseActivity() {
                 }else{
                     assigndriver=selecteddriverId
                 }
-                if(binding.drivercharge.text.toString().equals("")){
-                    driverfee1="0"
-                }else{
-                    driverfee1= binding.drivercharge.text.toString()
-
-                }
+//                if(binding.drivercharge.text.toString().equals("")){
+//                    driverfee1="0"
+//                }else{
+//                    driverfee1= binding.drivercharge.text.toString()
+//
+//                }
 //                viewModel.AddTripVendor(
 //                    "Bearer "+userPref.getToken().toString(),
 //                    binding.etTriptask.text.toString(),

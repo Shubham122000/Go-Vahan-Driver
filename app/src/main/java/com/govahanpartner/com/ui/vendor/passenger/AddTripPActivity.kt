@@ -101,17 +101,17 @@ class AddTripPActivity : BaseActivity() {
             finish()
         })
 
-        if (userPref.getRole().equals("2")){
-            binding.driverassign.visibility=View.GONE
-            binding.tvdriverassign.visibility=View.VISIBLE
-            binding.llDrivercharge.visibility=View.GONE
-            binding.tvdriverassign.text=userPref.getName()
-        }
-        else{
-            binding.llDrivercharge.visibility=View.VISIBLE
-            binding.driverassign.visibility=View.VISIBLE
-            binding.tvdriverassign.visibility=View.GONE
-        }
+//        if (userPref.getRole().equals("2")){
+//            binding.driverassign.visibility=View.GONE
+//            binding.tvdriverassign.visibility=View.VISIBLE
+//            binding.llDrivercharge.visibility=View.GONE
+//            binding.tvdriverassign.text=userPref.getName()
+//        }
+//        else{
+//            binding.llDrivercharge.visibility=View.VISIBLE
+//            binding.driverassign.visibility=View.VISIBLE
+//            binding.tvdriverassign.visibility=View.GONE
+//        }
 
         binding.lltextdate.setOnClickListener {
             Selectdate()
@@ -137,14 +137,14 @@ class AddTripPActivity : BaseActivity() {
         }
 
 
-        binding.driverassign.onItemSelectedListener = object :
-            AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                selecteddriverId=id_driver[p2]
-            }
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-            }
-        }
+//        binding.driverassign.onItemSelectedListener = object :
+//            AdapterView.OnItemSelectedListener {
+//            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+//                selecteddriverId=id_driver[p2]
+//            }
+//            override fun onNothingSelected(p0: AdapterView<*>?) {
+//            }
+//        }
         binding.spinnerVehiclenumber.onItemSelectedListener = object :
             AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
@@ -188,11 +188,11 @@ class AddTripPActivity : BaseActivity() {
 
        viewModel.VehicleDataResponse.observe(this) {
            if (it!!.status == 1) {
-               binding.spinnerVehiclename.text=it.data[0].vehicle_name
-               binding.spinnerVehicletype.text=it.data[0].v_type
+//               binding.spinnerVehiclename.text=it.data[0].vehicle_name
+//               binding.spinnerVehicletype.text=it.data[0].v_type
                tyres=it.data[0].no_tyres.toString()
-               binding.spinnerNooftyres.text= it.data[0].no_of_tyers.toString()
-               binding.etEnterloadcarring.text= it.data[0].seat.toString()
+//               binding.spinnerNooftyres.text= it.data[0].no_of_tyers.toString()
+//               binding.etEnterloadcarring.text= it.data[0].seat.toString()
                vehicletype=it.data[0].vehicle_type.toString()
            }else{
 
@@ -219,7 +219,7 @@ class AddTripPActivity : BaseActivity() {
                     driver
                 )
                 spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                binding.driverassign.adapter = spinnerArrayAdapter
+//                binding.driverassign.adapter = spinnerArrayAdapter
             } else {
                 //toast(it.message)
                 snackbar(it?.message!!)
@@ -239,9 +239,7 @@ class AddTripPActivity : BaseActivity() {
         }
         binding.btnAddthistrip.setOnClickListener {
 
-            if (binding.etTriptask.text.toString().isEmpty()){
-                toast("Please enter trip Task.")
-            }else if (binding.etFrom.text.toString().isEmpty()){
+           if (binding.etFrom.text.toString().isEmpty()){
                 toast("Please enter from location.")
             }else if (binding.etTo.text.toString().isEmpty()){
                 toast("Please enter to location.")
@@ -258,25 +256,41 @@ class AddTripPActivity : BaseActivity() {
                 else{
                     assigndriver=selecteddriverId
                 }
-                if(binding.drivercharge.text.toString().equals("")){
-                    driverfee1="0"
-                }else{
-                    driverfee1= binding.drivercharge.text.toString()
-                }
+//                if(binding.drivercharge.text.toString().equals("")){
+//                    driverfee1="0"
+//                }else{
+//                    driverfee1= binding.drivercharge.text.toString()
+//                }
                 fuelcharge=binding.etFuelcharge.text.toString()
                 tollcharge=binding.etToll.text.toString()
 //                driverfee=binding.drivercharge.text.toString()
                 freightamount=fuelcharge.toInt() + tollcharge.toInt() +driverfee1.toInt()
 
-                viewModel1.add_passenger_vendor_trip(
-                    "Bearer "+userPref.getToken().toString(),
-                    binding.etTriptask.text.toString(),
-                    binding.etEnterloadcarring.text.toString(),
+//                viewModel1.add_passenger_vendor_trip(
+//                    "Bearer "+userPref.getToken().toString(),
+//                    binding.etTriptask.text.toString(),
+//                    binding.etEnterloadcarring.text.toString(),
+//                    binding.etFrom.text.toString(),
+//                    binding.etTo.text.toString(),vehicletype,
+//                    binding.spinnerVehiclenumber.selectedItem.toString(),
+//                    tyres,
+//                    "1",
+//                    assigndriver,
+//                    distanceString.toString(),
+//                    taxadd.toString(),
+//                    pickupLatitude.toString(),
+//                    pickupLongitude.toString(),
+//                    dropLatitude.toString(),
+//                    dropLongitude.toString(),
+//                    vehicleId,
+//                    binding.tvDate.text.toString(),
+//                    binding.spinnerTimeslots.selectedItem.toString(),
+//                    binding.etFuelcharge.text.toString(),binding.etToll.text.toString(),driverfee1
+//                )
+                viewModel.AddTripApi(
+                    "Bearer " + userPref.getToken().toString(),
                     binding.etFrom.text.toString(),
-                    binding.etTo.text.toString(),vehicletype,
-                    binding.spinnerVehiclenumber.selectedItem.toString(),
-                    tyres,
-                    "1",
+                    binding.etTo.text.toString(),
                     assigndriver,
                     distanceString.toString(),
                     taxadd.toString(),
@@ -284,10 +298,14 @@ class AddTripPActivity : BaseActivity() {
                     pickupLongitude.toString(),
                     dropLatitude.toString(),
                     dropLongitude.toString(),
-                    vehicleId,
+                    binding.spinnerVehiclenumber.selectedItem.toString(),
                     binding.tvDate.text.toString(),
                     binding.spinnerTimeslots.selectedItem.toString(),
-                    binding.etFuelcharge.text.toString(),binding.etToll.text.toString(),driverfee1
+                    binding.etFuelcharge.text.toString(),
+                    binding.etToll.text.toString(),
+                    "",
+                    "2"
+//                    binding.drivercharge.text.toString()
                 )
             }
         }
@@ -299,18 +317,18 @@ class AddTripPActivity : BaseActivity() {
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                if (binding.drivercharge.text.equals("")){
-                    binding.totalamount.text=""
-                }
+//                if (binding.drivercharge.text.equals("")){
+//                    binding.totalamount.text=""
+//                }
             }
 
             override fun afterTextChanged(p0: Editable?) {
-                if (binding.drivercharge.text.equals("")){
-                    binding.totalamount.text=""
-                }else{
+//                if (binding.drivercharge.text.equals("")){
+//                    binding.totalamount.text=""
+//                }else{
                     fuelcharge=binding.etFuelcharge.text.toString()
                     tollcharge=binding.etToll.text.toString()
-                    driverfee=binding.drivercharge.text.toString()
+//                    driverfee=binding.drivercharge.text.toString()
 
                     if (driverfee.equals("")){
                         freightamount= fuelcharge.toInt() + tollcharge.toInt()
@@ -328,54 +346,54 @@ class AddTripPActivity : BaseActivity() {
                         binding.totalamount.text="₹${taxadd.toString()}"
                     }
 
-                }
+//                }
 
             }
         })
 
-        binding.drivercharge.addTextChangedListener(object : TextWatcher {
-
-
-
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-            }
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                if (binding.drivercharge.text.equals("")){
-                    binding.totalamount.text=""
-                }
-            }
-
-            override fun afterTextChanged(p0: Editable?) {
-                if (binding.drivercharge.text.equals("")){
-                    binding.totalamount.text=""
-                }else{
-                    fuelcharge=binding.etFuelcharge.text.toString()
-                    tollcharge=binding.etToll.text.toString()
-                    driverfee=binding.drivercharge.text.toString()
-
-                    if (driverfee.equals("")){
-                        freightamount= fuelcharge.toInt() + tollcharge.toInt()
-                        tax=freightamount.toDouble()*5
-                        tax2=tax/100
-                        binding.tax.text="₹${tax2.toString()}"
-                        taxadd=tax2+freightamount
-                        binding.totalamount.text="₹${taxadd.toString()}"
-                    }else{
-                        freightamount=fuelcharge.toInt() + tollcharge.toInt() +driverfee.toInt()
-                        tax=freightamount.toDouble()*5
-                        tax2=tax/100
-                        binding.tax.text="₹${tax2.toString()}"
-                        taxadd=tax2+freightamount
-                        binding.totalamount.text="₹${taxadd.toString()}"
-                    }
-//                    totalamount=freightamount.toString()
-//                    binding.totalamount.text="₹${totalamount}"
-                }
-
-            }
-        })
+//        binding.drivercharge.addTextChangedListener(object : TextWatcher {
+//
+//
+//
+//            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+//
+//            }
+//
+//            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+//                if (binding.drivercharge.text.equals("")){
+//                    binding.totalamount.text=""
+//                }
+//            }
+//
+//            override fun afterTextChanged(p0: Editable?) {
+//                if (binding.drivercharge.text.equals("")){
+//                    binding.totalamount.text=""
+//                }else{
+//                    fuelcharge=binding.etFuelcharge.text.toString()
+//                    tollcharge=binding.etToll.text.toString()
+//                    driverfee=binding.drivercharge.text.toString()
+//
+//                    if (driverfee.equals("")){
+//                        freightamount= fuelcharge.toInt() + tollcharge.toInt()
+//                        tax=freightamount.toDouble()*5
+//                        tax2=tax/100
+//                        binding.tax.text="₹${tax2.toString()}"
+//                        taxadd=tax2+freightamount
+//                        binding.totalamount.text="₹${taxadd.toString()}"
+//                    }else{
+//                        freightamount=fuelcharge.toInt() + tollcharge.toInt() +driverfee.toInt()
+//                        tax=freightamount.toDouble()*5
+//                        tax2=tax/100
+//                        binding.tax.text="₹${tax2.toString()}"
+//                        taxadd=tax2+freightamount
+//                        binding.totalamount.text="₹${taxadd.toString()}"
+//                    }
+////                    totalamount=freightamount.toString()
+////                    binding.totalamount.text="₹${totalamount}"
+//                }
+//
+//            }
+//        })
 
     }
     private fun placesAPiCall(requestCode: Int) {

@@ -91,17 +91,17 @@ class AddTripPassengerDriver : BaseActivity() {
         binding.etFrom.setOnClickListener {
             placesAPiCall(AUTOCOMPLETE_FROM_REQUEST_CODE)
         }
-        viewModel.AddTripResponse.observe(this) {
-            if (it?.status == 1) {
-                toast(it.message)
-                finish()
-            } else {
-                //toast(it.message)
-                snackbar(it?.message!!)
-//                val intent = Intent(this, VendorsSubscriptionPlanActivity::class.java).putExtra("buysubscription","buysubscription").putExtra("flag1","passenger")
-//                startActivity(intent)
-            }
-        }
+//        viewModel.AddTripResponse.observe(this) {
+//            if (it?.status == 1) {
+//                toast(it.message)
+//                finish()
+//            } else {
+//                //toast(it.message)
+//                snackbar(it?.message!!)
+////                val intent = Intent(this, VendorsSubscriptionPlanActivity::class.java).putExtra("buysubscription","buysubscription").putExtra("flag1","passenger")
+////                startActivity(intent)
+//            }
+//        }
         binding.etTo.setOnClickListener {
             placesAPiCall(AUTOCOMPLETE_TO_REQUEST_CODE)
         }
@@ -149,29 +149,29 @@ class AddTripPassengerDriver : BaseActivity() {
                 tollcharge=binding.etToll.text.toString()
                 driverfee=binding.drivercharge.text.toString()
                 freightamount=fuelcharge.toInt() + tollcharge.toInt() +driverfee.toInt()
-                viewModel.AddTripApi(
-                    "Bearer "+userPref.getToken().toString(),
-                    binding.etTriptask.text.toString(),
-                    binding.etFrom.text.toString(),
-                    binding.etTo.text.toString(),
-                    vehicletype,
-                    binding.spinnerVehiclenumber.text.toString() ,
-                    binding.spinnerNooftyres.text.toString(),
-                   "",
-                    driver,
-                    distanceString.toString(),
-                    taxadd.toString(),
-                    pickupLatitude.toString(),
-                    pickupLongitude.toString(),
-                    dropLatitude.toString(),
-                    dropLongitude.toString(),
-                    vehicle_number,
-                    binding.tvDate.text.toString(),
-                    binding.spinnerTimeslots.selectedItem.toString(),
-                    binding.etFuelcharge.text.toString(),
-                    binding.etToll.text.toString(),
-                    binding.drivercharge.text.toString()
-                )
+//                viewModel.AddTripApi(
+//                    "Bearer "+userPref.getToken().toString(),
+//                    binding.etTriptask.text.toString(),
+//                    binding.etFrom.text.toString(),
+//                    binding.etTo.text.toString(),
+//                    vehicletype,
+//                    binding.spinnerVehiclenumber.text.toString() ,
+//                    binding.spinnerNooftyres.text.toString(),
+//                   "",
+//                    driver,
+//                    distanceString.toString(),
+//                    taxadd.toString(),
+//                    pickupLatitude.toString(),
+//                    pickupLongitude.toString(),
+//                    dropLatitude.toString(),
+//                    dropLongitude.toString(),
+//                    vehicle_number,
+//                    binding.tvDate.text.toString(),
+//                    binding.spinnerTimeslots.selectedItem.toString(),
+//                    binding.etFuelcharge.text.toString(),
+//                    binding.etToll.text.toString(),
+//                    binding.drivercharge.text.toString()
+//                )
             }
         }
         binding.drivercharge.addTextChangedListener(object : TextWatcher {

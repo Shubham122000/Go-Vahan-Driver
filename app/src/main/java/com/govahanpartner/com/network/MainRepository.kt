@@ -317,7 +317,7 @@ interface MainRepository {
         fuel_charge: String,
         toll_tax: String,
         driver_fee: String,
-
+        isFromPassenger: String,
     ): Response<AddTripDriverMOdelClass>
 
    suspend fun AddTripVendor(

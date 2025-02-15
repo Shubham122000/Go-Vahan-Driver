@@ -714,6 +714,7 @@ class TypeOfTruckViewModel @Inject constructor(private val mainRepository: MainR
                     fuel_charge,
                     toll_tax,
                     driver_fee,
+                    "1"
                 )
             if (response.isSuccessful) {
                 progressBarStatus.value = false
