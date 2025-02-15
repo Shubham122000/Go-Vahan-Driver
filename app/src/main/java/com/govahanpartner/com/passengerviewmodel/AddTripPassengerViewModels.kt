@@ -46,8 +46,8 @@ class AddTripPassengerViewModels @Inject constructor(private val mainRepository:
     var AddloaderResponse = MutableLiveData<AddloaderResponse>()
     var Loaderimage = MutableLiveData<Loaderimage>()
     var AddVehicalfinalResponse = MutableLiveData<AddVehicalfinalResponse>()
-    var VehiclenumberResponse = MutableLiveData<VehicleNumberPassengerLIst>()
-    var VehiclenumberData = MutableLiveData<ArrayList<VehicleNumberData>>()
+    var VehiclenumberResponse = MutableLiveData<VehicleNumberListMOdelCLass>()
+    var VehiclenumberData = MutableLiveData<ArrayList<VehicleNumberListData>>()
     var addpassengerLoaderResponse = MutableLiveData<ArrayList<VehicleNumberData>>()
     var AddTripDriverMOdelClass = MutableLiveData<AddTripDriverMOdelClass>()
 
@@ -72,13 +72,13 @@ class AddTripPassengerViewModels @Inject constructor(private val mainRepository:
         return YearResponse
     }
 
-    fun VehicleNumberLIst(token :String): MutableLiveData<VehicleNumberPassengerLIst> {
+    fun VehicleNumberLIst(token :String): MutableLiveData<VehicleNumberListMOdelCLass> {
         if (VehiclenumberResponse == null) {
             VehiclenumberResponse = MutableLiveData()
         }
         viewModelScope.launch {
             try {
-                val response = mainRepository.get_passenger_vehicleno(token)
+                val response = mainRepository.get_loder_vehicleno(token)
 
                 if (response.isSuccessful) {
                     progressBarStatus.value = false

@@ -46,12 +46,13 @@ class AddTripPActivity : BaseActivity() {
     var datePicker: DatePickerDialog? = null
     var truckdata : ArrayList<TypeofTruckResponseData> = ArrayList()
     var wheels : ArrayList<vehicalwheelsResponseData> = ArrayList()
-    var vehiclenumber :ArrayList<VehicleNumberData> = ArrayList()
+    var vehiclenumber :ArrayList<VehicleNumberListData> = ArrayList()
     var vehicle_no: ArrayList<String> = ArrayList()
     var vehicle_id: ArrayList<String> = ArrayList()
     var nametype :ArrayList<String> = ArrayList()
     var vehicalwheel :ArrayList<String> = ArrayList()
-    var Capacity : ArrayList<LoadCarryingData> = ArrayList()
+    var Capacity : java.util.ArrayList<String> = java.util.ArrayList()
+//    var Capacity : ArrayList<LoadCarryingData> = ArrayList()
     var id_type :ArrayList<String> = ArrayList()
     var id_wheels :ArrayList<String> = ArrayList()
     var Bodydata : ArrayList<BodyTypeData> = ArrayList()
@@ -167,14 +168,25 @@ class AddTripPActivity : BaseActivity() {
             "Bearer "+userPref.getToken().toString(),
         ).observe(this) {
 
-            if (it!!.status == 1) {
+//            if (it!!.status == 1) {
+//                vehiclenumber.clear()
+//                vehicle_no.clear()
+//                vehiclenumber.addAll(it!!.data)
+//                viewModel.VehiclenumberData.value = it.data
+//                for (i in 0 until it.data.size) {
+//                    vehicle_no.add(it.data[i].vehicle_no)
+//                    id_vehicle.add(it.data[i].id.toString())
+//                }
+            if (it!!.error == false) {
                 vehiclenumber.clear()
                 vehicle_no.clear()
-                vehiclenumber.addAll(it!!.data)
-                viewModel.VehiclenumberData.value = it.data
-                for (i in 0 until it.data.size) {
-                    vehicle_no.add(it.data[i].vehicle_no)
-                    id_vehicle.add(it.data[i].id.toString())
+                it.result?.data?.let { it1 -> vehiclenumber.addAll(it1) }
+                viewModel.VehiclenumberData.value = it.result?.data
+
+                for (i in 0 until it.result?.data!!.size) {
+                    it.result?.data?.get(i)?.vehicleNumber?.let { it1 -> vehicle_no.add(it1) }
+                    vehicle_id.add(it.result?.data?.get(i)?.id.toString())
+                    Capacity.add(it.result?.data?.get(i)?.capacity.toString())
                 }
                 val spinnerArrayAdapter: ArrayAdapter<String> = ArrayAdapter<String>(
                     this,
