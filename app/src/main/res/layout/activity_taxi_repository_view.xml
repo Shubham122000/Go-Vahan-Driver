@@ -448,7 +448,7 @@
                             android:layout_height="match_parent"
                             android:layout_centerInParent="true"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/vehicle_image" />
+                            android:src="@drawable/front" />
 
 
 
@@ -469,7 +469,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/vehicle_image" />
+                            android:src="@drawable/left" />
 
 
                     </RelativeLayout>
@@ -488,7 +488,6 @@
                     android:layout_marginEnd="@dimen/_10sdp"
                     android:layout_marginBottom="@dimen/_20sdp"
                     android:gravity="center"
-                    android:visibility="gone"
                     android:orientation="horizontal"
                     android:weightSum="1">
 
@@ -507,7 +506,7 @@
                             android:layout_height="match_parent"
                             android:layout_centerInParent="true"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/vehicle_image" />
+                            android:src="@drawable/right" />
 
 
 
@@ -529,7 +528,7 @@
                             android:layout_height="match_parent"
                             android:layout_centerInParent="true"
                             android:scaleType="centerCrop"
-                            android:src="@drawable/vehicle_image" />
+                            android:src="@drawable/back" />
 
                     </RelativeLayout>
 

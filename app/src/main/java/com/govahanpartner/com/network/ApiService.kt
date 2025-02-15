@@ -561,9 +561,11 @@ interface ApiService {
         @Field("transaction_id") transaction_id: String
     ): Response<Razorpay_status_Response>
 
+    @FormUrlEncoded
     @POST("vehicle_repository_list")
     suspend fun LoaderTruckRepositoryList(
         @Header("Authorization") authorization: String,
+        @Field("is_from_passenger") isFromPassenger: String
     ): Response<LoaderTruckRepositoryListResponse>
 
     @GET("passengers_truck_repository_list")

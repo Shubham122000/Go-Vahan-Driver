@@ -40,25 +40,30 @@ class TruckRepositoryActivity : BaseActivity(), tripdelete, loadervehiclelist, d
         if (intent != null) {
             flag = intent.getStringExtra("FromLoader").toString()
         }
+        binding.titleName.text = "Vehicle Repository"
         if (flag == "FromLoader") {
             viewModel.TruckrepositoryListApi(
-                "Bearer " + userPref.getToken().toString()
+                "Bearer " + userPref.getToken().toString(),"0"
             )
-            binding.titleName.text = "Truck Repository"
         } else {
-            viewModel.TruckrepositoryPassengerListApi(
-                "Bearer " + userPref.getToken().toString()
+            viewModel.TruckrepositoryListApi(
+                "Bearer " + userPref.getToken().toString(),"1"
             )
-            binding.titleName.text = "Taxi Repository"
         }
         binding.ivBack.setOnClickListener{
             onBackPressed()
         }
         viewModel.TruckrepositoryDelete.observe(this) {
             if (it?.error == false) {
-                viewModel.TruckrepositoryListApi(
-                    "Bearer " + userPref.getToken().toString()
-                )
+                if (flag == "FromLoader") {
+                    viewModel.TruckrepositoryListApi(
+                        "Bearer " + userPref.getToken().toString(),"0"
+                    )
+                } else {
+                    viewModel.TruckrepositoryListApi(
+                        "Bearer " + userPref.getToken().toString(),"1"
+                    )
+                }
                 binding.titleName.text = "Truck Repository"
             } else {
                 //toast(it.message)
@@ -68,23 +73,27 @@ class TruckRepositoryActivity : BaseActivity(), tripdelete, loadervehiclelist, d
         binding.pulltorefresh.setOnRefreshListener {
             if (flag == "FromLoader") {
                 viewModel.TruckrepositoryListApi(
-                    "Bearer " + userPref.getToken().toString()
+                    "Bearer " + userPref.getToken().toString(),"0"
                 )
-                binding.titleName.text = "Truck Repository"
             } else {
-                viewModel.TruckrepositoryPassengerListApi(
-                    "Bearer " + userPref.getToken().toString()
+                viewModel.TruckrepositoryListApi(
+                    "Bearer " + userPref.getToken().toString(),"1"
                 )
-                binding.titleName.text = "Taxi Repository"
             }
             binding.pulltorefresh.isRefreshing = false
             }
 
            viewModel.TruckrepositorymodelClass.observe(this) {
             if (it?.error == false) {
-                    viewModel.TruckrepositoryPassengerListApi(
-                        "Bearer " + userPref.getToken().toString()
+                if (flag == "FromLoader") {
+                    viewModel.TruckrepositoryListApi(
+                        "Bearer " + userPref.getToken().toString(),"0"
                     )
+                } else {
+                    viewModel.TruckrepositoryListApi(
+                        "Bearer " + userPref.getToken().toString(),"1"
+                    )
+                }
                     binding.titleName.text = "Taxi Repository"
             } else {
                 //toast(it.message)

@@ -438,7 +438,8 @@ interface MainRepository {
     ): Response<BannerResponse>
 
     suspend fun Loadertruckrepositorylist(
-        token: String
+        token: String,
+        isFromPassenger: String
     ): Response<LoaderTruckRepositoryListResponse>
     suspend fun PrivacyPolicy(header: String): Response<PrivacyPolicy>
 

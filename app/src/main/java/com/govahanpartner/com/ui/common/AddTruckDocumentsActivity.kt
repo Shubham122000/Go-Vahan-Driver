@@ -752,7 +752,7 @@ class AddTruckDocumentsActivity : BaseActivity() {
                         "white",
                         selectedWheelsId,
                         selectedBodyId,
-                        "1",
+                        "0",
                         "",
                         imagetruck1!!,
                         imagetruck2!!,

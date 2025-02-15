@@ -73,16 +73,27 @@ class TaxiRepositoryViewActivity : BaseActivity() /*, click*/ {
 //                        Glide.with(this@TaxiRepositoryViewActivity).load(it.result?.images[i])
 //                    }
 //                }
-//                binding.seat.text=it.data.seat.toString()
-                if (it.result?.documentStatus == 1){
-                    if (it.result?.status==1){
-                        binding.btn.visibility= View.VISIBLE
-                        binding.btn.text="Proceed Payment"
-                    } else{
-                        binding.btn.visibility= View.GONE
+                if (it.result?.bodyType == null) {
+                    binding.seat.text = it.result?.seat.toString()
+                }
+                if (it.result?.documentStatus == 1) {
+                    if (it.result?.paymentDetails?.status == 0) {
+                        binding.btn.text = "Payment Pending"
+                        binding.btn.visibility = View.VISIBLE
+                    } else if (it.result?.paymentDetails?.status == 1 && it.result?.paymentDetails?.isSubscriptionValid == "Valid") {
+                        binding.btn.text = "Completed"
+                        binding.btn.visibility = View.GONE
+//                        holder.binding.status.setTextColor(Color.GREEN)
+                    } else if (it.result?.paymentDetails?.isSubscriptionValid == "Expired"){
+                        binding.btn.text = "Renew Plan"
+                        binding.btn.visibility = View.VISIBLE
+//                        binding.btn.setTextColor(Color.RED)
                     }
                 }else{
-                    binding.btn.visibility= View.GONE
+                    if (it.result?.paymentDetails?.status == 0) {
+                        binding.btn.text = "Under reviewed"
+                        binding.btn.visibility = View.GONE
+                    }
                 }
 
             } else {
@@ -90,13 +101,13 @@ class TaxiRepositoryViewActivity : BaseActivity() /*, click*/ {
             }
         }
 
-        viewModel.passengers_truck_repository_list_details(
+        viewModel.getVehicleDetails(
             "Bearer "+ userPref.getToken().toString(),
             vehicle_id
         )
-        viewModel.passengers_truck_repository_image_list(
-            "Bearer "+ userPref.getToken().toString(),vehicle_id
-        )
+//        viewModel.passengers_truck_repository_image_list(
+//            "Bearer "+ userPref.getToken().toString(),vehicle_id
+//        )
         viewModel.truckImagesResponse.observe(this) {
             if (it?.status == 1) {
                 if (it.data.image3!=null || it.data.image4!=null){
@@ -130,9 +141,9 @@ class TaxiRepositoryViewActivity : BaseActivity() /*, click*/ {
                 snackbar(it?.message!!)
             }
         }
-        viewModel.passengers_truck_repository_doc_list(
-            "Bearer "+ userPref.getToken().toString(),vehicle_id
-        )
+//        viewModel.passengers_truck_repository_doc_list(
+//            "Bearer "+ userPref.getToken().toString(),vehicle_id
+//        )
 //        viewModel.truckDocumentsResponse.observe(this) {
 //            if (it?.status == 1) {
 //                Listdata1.clear()

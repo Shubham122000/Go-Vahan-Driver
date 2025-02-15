@@ -250,11 +250,15 @@ class PaymentThroughActivity : BaseActivity(), PaymentResultWithDataListener {
                 viewModel1.buySubscriptionOnlineApi("Bearer " + userPref.user.apiToken,plantype,"1",transactionId)
             }
             else {
-                viewModel.paymentsSubscriptionPassenger(
+                viewModel.PaymentSubscriptionPlan(
                     "Bearer " + userPref.user.apiToken,
-                    vehicle_id1, "2", paymentprice.toString(), "2", p1?.paymentId.toString(), plantype,
-                    currentdate, "2"
+                    vehicle_id1, "2",  "2", p1?.paymentId.toString(), currentdate, "2"
                 )
+//                viewModel.paymentsSubscriptionPassenger(
+//                    "Bearer " + userPref.user.apiToken,
+//                    vehicle_id1, "2", paymentprice.toString(), "2", p1?.paymentId.toString(), plantype,
+//                    currentdate, "2"
+//                )
             }
         } else {
             if (buysubscription.equals("buysubscription")) {

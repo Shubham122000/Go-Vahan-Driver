@@ -616,8 +616,9 @@ class MainRepositoryImpl @Inject constructor(private val apiService: ApiService)
 //    ): Response<SubscriptionPlan> = apiService.subscription_plan_passengers(token)
 
     override suspend fun Loadertruckrepositorylist(
-        token: String
-    ): Response<LoaderTruckRepositoryListResponse> = apiService.LoaderTruckRepositoryList(token)
+        token: String,
+        isFromPassenger: String
+    ): Response<LoaderTruckRepositoryListResponse> = apiService.LoaderTruckRepositoryList(token,isFromPassenger)
 
     override suspend fun Loadertruckrepositorypassengerlist(
         token: String

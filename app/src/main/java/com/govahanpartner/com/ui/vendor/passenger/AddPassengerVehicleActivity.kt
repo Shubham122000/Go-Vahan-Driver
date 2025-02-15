@@ -686,7 +686,7 @@ class AddPassengerVehicleActivity : BaseActivity() {
                     "white",
                     selectedWheelsId,
                     selectedBodyId,
-                    "2",
+                    "1",
                     binding.spinnerSeat.selectedItem.toString(),
                     imagetruck1!!,
                     imagetruck2!!,

@@ -24,13 +24,14 @@ class TruckRepositoryViewModel @Inject constructor(private val mainRepository: M
     val progressBarStatus = MutableLiveData<Boolean>()
 
     fun TruckrepositoryListApi(
-        token:String
+        token:String,
+        isFromPassenger: String
     ){
         progressBarStatus.value = true
         viewModelScope.launch {
 
             val response =
-                mainRepository.Loadertruckrepositorylist(token)
+                mainRepository.Loadertruckrepositorylist(token,isFromPassenger)
             if (response.isSuccessful) {
                 progressBarStatus.value = false
                 TruckrepositoryList.postValue(response.body())
