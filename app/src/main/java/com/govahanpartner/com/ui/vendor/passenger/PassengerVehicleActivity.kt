@@ -148,8 +148,6 @@ class PassengerVehicleActivity : BaseActivity() {
             intent.putExtra("FromLoader","FromPassenger")
             startActivity(intent)
         }
-
-
                 /*listData.addAll(it.data)
                 authorizedFranchiseAdapter = AuthorizedFranchiseAdapter(listData)
                 binding.rvAuthorizedFranchise.apply {
@@ -158,7 +156,6 @@ class PassengerVehicleActivity : BaseActivity() {
                 }*/
 
             }
-
     override fun onResume() {
         super.onResume()
     }
