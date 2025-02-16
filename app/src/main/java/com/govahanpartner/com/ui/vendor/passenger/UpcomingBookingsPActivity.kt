@@ -41,17 +41,26 @@ class UpcomingBookingsPActivity : BaseActivity() {
                 hideProgressDialog()
             }
         }
-        if (userPref.getRole().equals("3")){
-        viewModel.UpComingsTripHistoryApi(
-            "Bearer "+ userPref.getToken().toString(),
-        )}
-        else if(userPref.getRole().equals("2")){
-                viewModel.UpComingsTripHistoryApi(
-                    "Bearer "+ userPref.getToken().toString(),
-                )
-        }
-        else{
-            viewModel.vendor_upcooming_booking_passengers("Bearer "+ userPref.getToken().toString())
+//        if (userPref.getRole().equals("3")){
+//        viewModel.UpComingsTripHistoryApi(
+//            "Bearer "+ userPref.getToken().toString(),
+//        )} else if(userPref.getRole().equals("2")){
+//                viewModel.UpComingsTripHistoryApi(
+//                    "Bearer "+ userPref.getToken().toString(),
+//                )
+//        } else{
+//            viewModel.vendor_upcooming_booking_passengers("Bearer "+ userPref.getToken().toString())
+//        }
+
+        if (userPref.getRole() == "2" || userPref.getRole() == "3") {
+            viewModel.UpComingsTripHistoryApi(
+                "Bearer "+ userPref.getToken().toString(),
+                "1","2","1"
+            )
+        }else{
+            viewModel.UpComingsTripHistoryApi(
+                "Bearer "+ userPref.getToken().toString(),"0","2","1"
+            )
         }
 
         viewModel.TripHistoryResponse.observe(this) {
@@ -70,17 +79,15 @@ class UpcomingBookingsPActivity : BaseActivity() {
 
     override fun onResume() {
         super.onResume()
-        if (userPref.getRole().equals("3")){
+        if (userPref.getRole() == "2" || userPref.getRole() == "3") {
             viewModel.UpComingsTripHistoryApi(
                 "Bearer "+ userPref.getToken().toString(),
-            )}
-        else if(userPref.getRole().equals("2")){
-            viewModel.UpComingsTripHistoryApi(
-                "Bearer "+ userPref.getToken().toString(),
+                "1","2","1"
             )
-        }
-        else{
-            viewModel.vendor_upcooming_booking_passengers("Bearer "+ userPref.getToken().toString())
+        }else{
+            viewModel.UpComingsTripHistoryApi(
+                "Bearer "+ userPref.getToken().toString(),"0","2","1"
+            )
         }
     }
 }

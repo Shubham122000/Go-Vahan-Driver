@@ -453,7 +453,7 @@ interface MainRepository {
     suspend fun Rating(header: String): Response<RatingResponse>
     suspend fun Aboutus(header: String): Response<AboutUs>
 
-    suspend fun TripList(header: String): Response<TripListResponse>
+    suspend fun TripList(header: String,isFromPassenger: String): Response<TripListResponse>
     suspend fun PassengerTripList(header: String): Response<TripListResponse>
     suspend fun self_driver_trip(header: String): Response<AddTripDriverMOdelClass>
     suspend fun self_driver_passenger_trip(header: String): Response<AddTripDriverMOdelClass>

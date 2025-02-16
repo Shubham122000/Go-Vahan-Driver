@@ -21,13 +21,13 @@ class TripHistoryPassengerViewModel @Inject constructor(private val mainReposito
     val progressBarStatus = MutableLiveData<Boolean>()
 
     fun UpComingsTripHistoryApi(
-        token: String,
+        token: String, hitFromDriver :String, forPassenger :String, bookingStatus :String
     ) {
         progressBarStatus.value = true
         viewModelScope.launch {
 
             val response =
-                mainRepository.UpcomingsPassengerTripHistory(token)
+                mainRepository.UpcomingsTripHistory(token, hitFromDriver, forPassenger, bookingStatus)
             if (response.isSuccessful) {
                 progressBarStatus.value = false
                 TripHistoryResponse.postValue(response.body())

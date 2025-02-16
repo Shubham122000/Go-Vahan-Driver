@@ -46,7 +46,7 @@ class TriplistActivity : BaseActivity(),tripdelete, deleteVehicle,tripclick {
 //
 //            }else{
                 viewModel.TriplistApi(
-                    "Bearer "+ userPref.getToken().toString(),
+                    "Bearer "+ userPref.getToken().toString(),"1"
                 )
 //            }
             binding.pulltorefresh.isRefreshing=false
@@ -65,7 +65,7 @@ class TriplistActivity : BaseActivity(),tripdelete, deleteVehicle,tripclick {
 //
 //        }else{
             viewModel.TriplistApi(
-                "Bearer "+ userPref.getToken().toString(),
+                "Bearer "+ userPref.getToken().toString(),"1"
             )
 //        }
 
@@ -91,7 +91,7 @@ class TriplistActivity : BaseActivity(),tripdelete, deleteVehicle,tripclick {
 //
 //                }else{
                     viewModel.TriplistApi(
-                        "Bearer "+ userPref.getToken().toString(),
+                        "Bearer "+ userPref.getToken().toString(),"1"
                     )
 //                }
 

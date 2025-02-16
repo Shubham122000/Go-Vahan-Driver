@@ -152,12 +152,12 @@ class AddTripPActivity : BaseActivity() {
 //                vehicleId=id_vehicle[p2]
                 vehicleId = id_vehicle[p2]
 
-                if (binding.spinnerVehiclenumber.selectedItem.equals("Select")){
+//                if (binding.spinnerVehiclenumber.selectedItem.equals("Select")){
+//
+//                }else{
+//                    viewModel.get_passenger_vehicleno_details("Bearer "+userPref.getToken().toString(),vehicleId)
 
-                }else{
-                    viewModel.get_passenger_vehicleno_details("Bearer "+userPref.getToken().toString(),vehicleId)
-
-                }
+//                }
 
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -185,7 +185,7 @@ class AddTripPActivity : BaseActivity() {
 
                 for (i in 0 until it.result?.data!!.size) {
                     it.result?.data?.get(i)?.vehicleNumber?.let { it1 -> vehicle_no.add(it1) }
-                    vehicle_id.add(it.result?.data?.get(i)?.id.toString())
+                    id_vehicle.add(it.result?.data?.get(i)?.id.toString())
                     Capacity.add(it.result?.data?.get(i)?.capacity.toString())
                 }
                 val spinnerArrayAdapter: ArrayAdapter<String> = ArrayAdapter<String>(
@@ -262,12 +262,13 @@ class AddTripPActivity : BaseActivity() {
             } else if (binding.etToll.text.toString().isEmpty()){
                 toast("Please enter Toll tax.")
             } else{
-                if (userPref.getRole().equals("2")){
-                    assigndriver=userPref.getuserid().toString()
-                }
-                else{
-                    assigndriver=selecteddriverId
-                }
+               if (userPref.getRole().equals("2")|| userPref.getRole().equals("3")){
+                   assigndriver=userPref.getuserid().toString()
+
+
+               }else{
+                   assigndriver=selecteddriverId
+               }
 //                if(binding.drivercharge.text.toString().equals("")){
 //                    driverfee1="0"
 //                }else{
@@ -276,7 +277,7 @@ class AddTripPActivity : BaseActivity() {
                 fuelcharge=binding.etFuelcharge.text.toString()
                 tollcharge=binding.etToll.text.toString()
 //                driverfee=binding.drivercharge.text.toString()
-                freightamount=fuelcharge.toInt() + tollcharge.toInt() +driverfee1.toInt()
+                freightamount=fuelcharge.toInt() + tollcharge.toInt() /*+driverfee1.toInt()*/
 
 //                viewModel1.add_passenger_vendor_trip(
 //                    "Bearer "+userPref.getToken().toString(),
@@ -310,7 +311,7 @@ class AddTripPActivity : BaseActivity() {
                     pickupLongitude.toString(),
                     dropLatitude.toString(),
                     dropLongitude.toString(),
-                    binding.spinnerVehiclenumber.selectedItem.toString(),
+                    vehicleId,
                     binding.tvDate.text.toString(),
                     binding.spinnerTimeslots.selectedItem.toString(),
                     binding.etFuelcharge.text.toString(),
@@ -406,7 +407,16 @@ class AddTripPActivity : BaseActivity() {
 //
 //            }
 //        })
-
+        viewModel.AddTripResponse.observe(this) {
+            if (it?.error == false) {
+                toast("Trip Successfully Added")
+                finish()
+            } else {
+                snackbar(it?.message!!)
+//                val intent = Intent(this, VendorsSubscriptionPlanActivity::class.java).putExtra("buysubscription","buysubscription").putExtra("flag1","loader")
+//                startActivity(intent)
+            }
+        }
     }
     private fun placesAPiCall(requestCode: Int) {
         val fields = listOf(

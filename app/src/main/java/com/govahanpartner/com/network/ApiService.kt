@@ -1053,9 +1053,11 @@ interface ApiService {
         @Field("validity") validity:String,
     ): Response<Addmoneywallet>
 
+    @FormUrlEncoded
     @POST("loader_trip_list")
     suspend fun LoaderTripList(
         @Header("Authorization") authorization: String,
+        @Field("is_from_passenger") isFromPassenger: String,
     ): Response<TripListResponse>
     @FormUrlEncoded
     @POST("vendor_driver_loadertrip_list")

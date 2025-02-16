@@ -961,8 +961,8 @@ class MainRepositoryImpl @Inject constructor(private val apiService: ApiService)
         return apiService.purchase_plan_from_walletApi_to_passenger(header,amount, truck_id ,transaction_type,validity)
     }
 
-    override suspend fun TripList(header: String): Response<TripListResponse> {
-        return apiService.LoaderTripList(header)
+    override suspend fun TripList(header: String,isFromPassenger: String): Response<TripListResponse> {
+        return apiService.LoaderTripList(header,isFromPassenger)
     }
     override suspend fun vendor_driver_loadertrip_list(header: String,driver_id:String,type:String): Response<TripListResponse> {
         return apiService.vendor_driver_loadertrip_list(header,driver_id,type)

@@ -306,13 +306,14 @@ class TripHistoryViewModel @Inject constructor(private val mainRepository: MainR
 
 
     fun TriplistApi(
-        token: String
+        token: String,
+        isFromPassenger: String
     ) {
         progressBarStatus.value = true
         viewModelScope.launch {
 
             val response =
-                mainRepository.TripList(token)
+                mainRepository.TripList(token,isFromPassenger)
             if (response.isSuccessful) {
                 progressBarStatus.value = false
                 TriplistResponse.postValue(response.body())

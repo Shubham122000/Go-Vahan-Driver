@@ -33,28 +33,35 @@ class PassengerTripList : BaseActivity() ,tripdelete,deleteVehicle,tripclick{
         binding.ivBack.setOnClickListener {
             finish()
         }
-        if (userPref.getRole().equals("3")){
-            viewModel.driver_loadertrip_list(
-                "Bearer "+ userPref.getToken().toString(),"2"
-            )
+//        if (userPref.getRole().equals("3")){
+//            viewModel.driver_loadertrip_list(
+//                "Bearer "+ userPref.getToken().toString(),"2"
+//            )
+//
+//        }else{
+//            viewModel.PassengerTriplistApi(
+//                "Bearer "+ userPref.getToken().toString(),
+//            )
+//        }
 
-        }else{
-            viewModel.PassengerTriplistApi(
-                "Bearer "+ userPref.getToken().toString(),
-            )
-        }
+        viewModel.TriplistApi(
+            "Bearer "+ userPref.getToken().toString(),"2"
+        )
 
         binding.pulltorefresh.setOnRefreshListener {
-            if (userPref.getRole().equals("3")){
-                viewModel.driver_loadertrip_list(
-                    "Bearer "+ userPref.getToken().toString(),"2"
-                )
-
-            }else{
-                viewModel.PassengerTriplistApi(
-                    "Bearer "+ userPref.getToken().toString(),
-                )
-            }
+//            if (userPref.getRole().equals("3")){
+//                viewModel.driver_loadertrip_list(
+//                    "Bearer "+ userPref.getToken().toString(),"2"
+//                )
+//
+//            }else{
+//                viewModel.PassengerTriplistApi(
+//                    "Bearer "+ userPref.getToken().toString(),
+//                )
+//            }
+            viewModel.TriplistApi(
+                "Bearer "+ userPref.getToken().toString(),"2"
+            )
             binding.pulltorefresh.isRefreshing=false
         }
         viewModel.TriplistResponse.observe(this) {
@@ -75,16 +82,19 @@ class PassengerTripList : BaseActivity() ,tripdelete,deleteVehicle,tripclick{
         }
         viewModel.DeleteTRipComplete.observe(this) {
             if (it?.error == false) {
-                if (userPref.getRole().equals("3")){
-                    viewModel.driver_loadertrip_list(
-                        "Bearer "+ userPref.getToken().toString(),"2"
-                    )
-
-                }else{
-                    viewModel.PassengerTriplistApi(
-                        "Bearer "+ userPref.getToken().toString(),
-                    )
-                }
+//                if (userPref.getRole().equals("3")){
+//                    viewModel.driver_loadertrip_list(
+//                        "Bearer "+ userPref.getToken().toString(),"2"
+//                    )
+//
+//                }else{
+//                    viewModel.PassengerTriplistApi(
+//                        "Bearer "+ userPref.getToken().toString(),
+//                    )
+//                }
+                viewModel.TriplistApi(
+                    "Bearer "+ userPref.getToken().toString(),"2"
+                )
 
             } else {
             }
