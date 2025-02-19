@@ -163,22 +163,22 @@ class EditProfileVendorActivity : BaseActivity() {
             "Bearer " + userPref.getToken().toString(),
         )
         viewModel.getProfileResponse.observe(this) {
-            if (it?.status == 1) {
-                binding.etName.setText(it.data?.name.toString())
-                binding.edtPhonenumber.setText(it.data?.mobileNumber.toString())
-                binding.etEmail.setText(it.data?.email.toString())
-                if (it.data?.address == null){
+            if (it?.error == false) {
+                binding.etName.setText(it.result?.user?.name.toString())
+                binding.edtPhonenumber.setText(it.result?.user?.mobileNumber.toString())
+                binding.etEmail.setText(it.result?.user?.email.toString())
+                if (it.result?.user?.address == null){
                     binding.etAddress.setText(" ")
                     toast("abc")
                 }else{
-                    binding.etAddress.setText(it.data?.address.toString())
+                    binding.etAddress.setText(it.result?.user?.address.toString())
                     toast("abcd")
                 }
 
-                if (it.data?.profileImage == null) {
+                if (it.result?.user?.profileImage == null) {
                     flag = false
                 } else {
-                    Glide.with(this).load(it.data?.profileImage).into(binding.ivDriver)
+                    Glide.with(this).load(it.result?.user?.profileImage).into(binding.ivDriver)
                     flag = true
                 }
             } else {

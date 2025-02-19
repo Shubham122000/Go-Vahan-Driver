@@ -90,12 +90,12 @@ class DashboardActivity : BaseActivity(), NavigationView.OnNavigationItemSelecte
             "Bearer " + userPref.getToken().toString(),
         )
         viewModel.getProfileResponse.observe(this) {
-            if (it?.status == 1) {
-                binding.header.tvUserName.text = it.data?.name.toString()
-                binding.header.tvEmail.text = it.data?.email
-                Glide.with(this).load(it.data?.profileImage).placeholder(R.drawable.profile)
+            if (it?.error == false) {
+                binding.header.tvUserName.text = it.result?.user?.name.toString()
+                binding.header.tvEmail.text = it.result?.user?.email
+                Glide.with(this).load(it.result?.user?.profileImage).placeholder(R.drawable.profile)
                     .into(binding.header.imgUser)
-                Glide.with(this).load(it.data?.profileImage).placeholder(R.drawable.profile)
+                Glide.with(this).load(it.result?.user?.profileImage).placeholder(R.drawable.profile)
                     .into(binding.drawerToolbar.profilePic)
             } else {
 //                toast(.message)

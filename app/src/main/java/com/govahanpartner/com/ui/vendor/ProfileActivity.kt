@@ -49,20 +49,20 @@ class ProfileActivity : BaseActivity() {
             "Bearer "+ userPref.getToken().toString(),
         )
         viewModel.getProfileResponse.observe(this) {
-            if (it?.status == 1) {
+            if (it?.error == false) {
 
-                binding.tvFullname.text = it.data?.name.toString()
-                binding.tvEmail.text = it.data?.email.toString()
-                binding.tvPhone.text = it.data?.mobileNumber.toString()
+                binding.tvFullname.text = it.result?.user?.name.toString()
+                binding.tvEmail.text = it.result?.user?.email.toString()
+                binding.tvPhone.text = it.result?.user?.mobileNumber.toString()
 
-                if (it.data?.address==null){
+                if (it.result?.user?.address==null){
                     binding.tvAddress.text = " "
                 }else{
 
-                    binding.tvAddress.text = it.data?.address.toString()
+                    binding.tvAddress.text = it.result?.user?.address.toString()
                 }
 
-                Glide.with(this).load(it.data?.profileImage).into(binding.ivDriver)
+                Glide.with(this).load(it.result?.user?.profileImage).into(binding.ivDriver)
             } else {
 //                toast(.message)
             }

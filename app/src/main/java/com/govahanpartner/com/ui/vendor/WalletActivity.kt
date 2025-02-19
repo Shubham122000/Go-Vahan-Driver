@@ -268,8 +268,8 @@ class WalletActivity : BaseActivity(),wallet_customclick, PopupMenu.OnMenuItemCl
             }
         }
         viewModel.walletDownload.observe(this){
-            if (it?.status == 1) {
-                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(it.url)))
+            if (it?.error == false) {
+//                startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(it.url)))
                 toast("Invoice Downloaded successfully!")
             } else {
                 toast(it.message)
