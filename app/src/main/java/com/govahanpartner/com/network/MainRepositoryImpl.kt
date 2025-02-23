@@ -590,8 +590,9 @@ class MainRepositoryImpl @Inject constructor(private val apiService: ApiService)
 
   override suspend fun get_loder_vehicleno(
         token: String,
+        isFromPassenger: String
     ): Response<VehicleNumberListMOdelCLass> =
-        apiService.get_loder_vehicleno(token)
+        apiService.get_loder_vehicleno(token,isFromPassenger)
 
     override suspend fun driverList(
         token: String,

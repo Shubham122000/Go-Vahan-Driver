@@ -256,13 +256,13 @@ class TypeOfTruckViewModel @Inject constructor(private val mainRepository: MainR
         return VehicleListResponse
     }
 
-    fun VehicleNumberLIst(token :String): MutableLiveData<VehicleNumberListMOdelCLass> {
+    fun VehicleNumberLIst(token :String,isFromPassenger: String): MutableLiveData<VehicleNumberListMOdelCLass> {
         if (VehiclenumberResponse == null) {
             VehiclenumberResponse = MutableLiveData()
         }
         viewModelScope.launch {
             try {
-                val response = mainRepository.get_loder_vehicleno(token)
+                val response = mainRepository.get_loder_vehicleno(token,isFromPassenger)
 
                 if (response.isSuccessful) {
                     progressBarStatus.value = false

@@ -496,9 +496,11 @@ interface ApiService {
         @Header("Authorization") authorization: String,
     ): Response<VehicleNumberPassengerLIst>
 
-    @GET("get_connected_vehicle_number")
+    @FormUrlEncoded
+    @POST("get_connected_vehicle_number")
     suspend fun get_loder_vehicleno(
         @Header("Authorization") authorization: String,
+        @Field("is_from_passenger") isFromPassenger: String
     ): Response<VehicleNumberListMOdelCLass>
 
     @GET("get_driver_profile")

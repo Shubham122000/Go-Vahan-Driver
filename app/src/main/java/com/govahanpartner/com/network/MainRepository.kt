@@ -651,6 +651,7 @@ interface MainRepository {
 
     suspend fun get_loder_vehicleno(
         token: String,
+        isFromPassenger: String
     ): Response<VehicleNumberListMOdelCLass>
     suspend fun loderfarecalculator(
         token: String,
