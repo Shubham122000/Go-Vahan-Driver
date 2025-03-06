@@ -138,7 +138,8 @@ class SubscriptionPlanViewModel @Inject constructor(private val mainRepository: 
         subscribe: String,
         payment_mode: String,
         transaction_id: String,
-        payment_crdated: String,status:String
+        payment_crdated: String,
+        status:String
 
         ){
         progressBarStatus.value = true

@@ -252,7 +252,7 @@ class PaymentThroughActivity : BaseActivity(), PaymentResultWithDataListener {
             else {
                 viewModel.PaymentSubscriptionPlan(
                     "Bearer " + userPref.user.apiToken,
-                    vehicle_id1, "2",  "2", p1?.paymentId.toString(), currentdate, "2"
+                    vehicle_id1, planId,  "2", p1?.paymentId.toString(), currentdate, "2"
                 )
 //                viewModel.paymentsSubscriptionPassenger(
 //                    "Bearer " + userPref.user.apiToken,
@@ -267,7 +267,7 @@ class PaymentThroughActivity : BaseActivity(), PaymentResultWithDataListener {
             else {
                 viewModel.PaymentSubscriptionPlan(
                     "Bearer " + userPref.user.apiToken,
-                    vehicle_id1, "2",  "2", p1?.paymentId.toString(), currentdate, "2"
+                    vehicle_id1, planId,  "2", p1?.paymentId.toString(), currentdate, "2"
                 )
             }
         }
@@ -275,28 +275,28 @@ class PaymentThroughActivity : BaseActivity(), PaymentResultWithDataListener {
 
     override fun onPaymentError(p0: Int, p1: String?, p2: PaymentData?) {
         Toast.makeText(this@PaymentThroughActivity, "Error in payment: ", Toast.LENGTH_LONG).show()
-        if (flag.equals("passenger")) {
-            if (buysubscription.equals("buysubscription")) {
-                viewModel1.buySubscriptionOnlineApi("Bearer " + userPref.user.apiToken,plantype,"1",transactionId)
-            }
-            else {
-                viewModel.paymentsSubscriptionPassenger(
-                    "Bearer " + userPref.user.apiToken,
-                    vehicle_id1, "2", paymentprice.toString(), "2", transactionId, plantype,
-                    currentdate, "3"
-                )
-            }
-        } else {
-            if (buysubscription.equals("buysubscription")) {
-                viewModel1.buySubscriptionOnlineApi("Bearer " + userPref.user.apiToken,plantype,"2",transactionId)
-            }
-            else {
-                viewModel.PaymentSubscriptionPlan(
-                    "Bearer " + userPref.user.apiToken,
-                    vehicle_id1, "2" , "2", transactionId.toString(), currentdate, "3"
-                )
-            }
-        }
+//        if (flag.equals("passenger")) {
+//            if (buysubscription.equals("buysubscription")) {
+//                viewModel1.buySubscriptionOnlineApi("Bearer " + userPref.user.apiToken,plantype,"1",transactionId)
+//            }
+//            else {
+//                viewModel.paymentsSubscriptionPassenger(
+//                    "Bearer " + userPref.user.apiToken,
+//                    vehicle_id1,planId, paymentprice.toString(), "2", transactionId, plantype,
+//                    currentdate, "3"
+//                )
+//            }
+//        } else {
+//            if (buysubscription.equals("buysubscription")) {
+//                viewModel1.buySubscriptionOnlineApi("Bearer " + userPref.user.apiToken,plantype,"2",transactionId)
+//            }
+//            else {
+//                viewModel.PaymentSubscriptionPlan(
+//                    "Bearer " + userPref.user.apiToken,
+//                    vehicle_id1, planId , "2", transactionId.toString(), currentdate, "3"
+//                )
+//            }
+//        }
 
     }
 

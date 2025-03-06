@@ -22,7 +22,6 @@ import java.text.SimpleDateFormat
 
 @AndroidEntryPoint
 class VendorsSubscriptionPlanActivity : BaseActivity(),SubscriptionPLanClick{
-
     private lateinit var binding : ActivityVendorsSubscriptionPlanBinding
     private val viewModel: SubscriptionPlanViewModel by viewModels()
     var Listdata:ArrayList<SubscriptionPlanData> = ArrayList()
