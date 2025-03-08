@@ -124,7 +124,6 @@ class PaymentThroughActivity : BaseActivity(), PaymentResultWithDataListener {
 //                    Intent(applicationContext, WebViewActivity::class.java)
 //                        .putExtra("phonepay", phonepayurl.toString())
 //                )
-//
 //// To Initiate Payment.
 ////                startActivityForResult(intent, B2B_PG_REQUEST_CODE);
 //            } else {
@@ -252,7 +251,7 @@ class PaymentThroughActivity : BaseActivity(), PaymentResultWithDataListener {
             else {
                 viewModel.PaymentSubscriptionPlan(
                     "Bearer " + userPref.user.apiToken,
-                    vehicle_id1, planId,  "2", p1?.paymentId.toString(), currentdate, "2"
+                    vehicle_id1, planid,  "2", p1?.paymentId.toString(), currentdate, "2"
                 )
 //                viewModel.paymentsSubscriptionPassenger(
 //                    "Bearer " + userPref.user.apiToken,
@@ -267,7 +266,7 @@ class PaymentThroughActivity : BaseActivity(), PaymentResultWithDataListener {
             else {
                 viewModel.PaymentSubscriptionPlan(
                     "Bearer " + userPref.user.apiToken,
-                    vehicle_id1, planId,  "2", p1?.paymentId.toString(), currentdate, "2"
+                    vehicle_id1, planid,  "2", p1?.paymentId.toString(), currentdate, "2"
                 )
             }
         }

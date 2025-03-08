@@ -160,12 +160,13 @@ class TripDetailsActivity : BaseActivity(),Canceldata {
 //                                binding.tvHeight.text =it.data?.height.toString()
 //                            }
                             if (booking.paymentDetails.get(0)?.paymentMode == 1) {
-                                binding.tvPaymentmode.text = "Cash"
-                            } else if (booking.paymentDetails.get(0)?.paymentMode == 2) {
                                 binding.tvPaymentmode.text = "Online"
-                            } else if (booking.paymentDetails.get(0)?.paymentMode == 3) {
+                            } else if (booking.paymentDetails.get(0)?.paymentMode == 2) {
                                 binding.tvPaymentmode.text = "Wallet"
                             }
+//                            else if (booking.paymentDetails.get(0)?.paymentMode == 3) {
+//                                binding.tvPaymentmode.text = "Wallet"
+//                            }
                             etfromlat = booking.tripDetails?.pickupLat?.toDouble()!!
                             etfromlong = booking.tripDetails?.pickupLong?.toDouble()!!
                             ettolat = booking.tripDetails?.dropupLat?.toDouble()!!

@@ -716,12 +716,12 @@
                    android:weightSum="1">
 
                    <TextView
+                       android:id="@+id/finalAmount"
                        android:layout_width="match_parent"
                        android:layout_height="wrap_content"
                        android:fontFamily="@font/roboto_bold"
                        android:singleLine="true"
                        android:layout_weight="1"
-
                        android:text="Pending Amount"
                        android:textColor="@color/gray"
                        android:textSize="@dimen/_13sdp" />

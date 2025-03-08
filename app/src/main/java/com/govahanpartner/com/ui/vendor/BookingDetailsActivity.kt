@@ -302,6 +302,7 @@ class BookingDetailsActivity : BaseActivity() {
                         Glide.with(this).load(booking.tripDetails?.user?.image).placeholder(R.drawable.image_placeholder).into(binding.imgUser)
                         if (Bookingstatus == "4"){
                             binding.tvStatus.text = "Completed"
+                            binding.finalAmount.text = "Paid Amount"
                             binding.ivNavigation.visibility = View.GONE
                         }else if (Bookingstatus == "2"){
                             binding.tvStatus.text = "Ongoing"
@@ -314,15 +315,16 @@ class BookingDetailsActivity : BaseActivity() {
                         binding.tvDriverphone.text = booking.tripDetails?.driver?.mobileNumber.toString()
                         binding.tvLicno.text = booking.tripDetails?.driver?.licenceNumber.toString()
                         binding.tvWheeler.text = "${booking.tripDetails?.vehicle?.wheels?.wheel.toString()}"+" Wheelers"
-                        if (booking.paymentDetails.get(0).paymentMode?.equals("1") == true){
-                            binding.tvPaymentmode.text ="Cash"
+                    if (booking.paymentDetails.isNotEmpty()) {
+                        if (booking.paymentDetails.get(0).paymentMode == 1) {
+                            binding.tvPaymentmode.text = "Online"
+                        } else if (booking.paymentDetails.get(0).paymentMode == 2) {
+                            binding.tvPaymentmode.text = "Wallet"
                         }
-                        else if (booking.paymentDetails.get(0).paymentMode?.equals("2") == true){
-                            binding.tvPaymentmode.text ="Online"
-                        }
-                        else if (booking.paymentDetails.get(0).paymentMode?.equals("3") == true){
-                            binding.tvPaymentmode.text ="Wallet"
-                        }
+                    }
+//                        else if (booking.paymentDetails.get(0).paymentMode?.equals("3") == true){
+//                            binding.tvPaymentmode.text ="Wallet"
+//                        }
                         binding.tvType.text = booking.tripDetails?.vehicle?.bodyType?.name.toString()
                         var picLatitude = booking.tripDetails?.pickupLat?.toDouble()
                         var picLongitude = booking.tripDetails?.pickupLong?.toDouble()
