@@ -13,6 +13,7 @@ import com.govahanpartner.com.R
 import com.govahanpartner.com.databinding.RowWalletListBinding
 import com.govahanpartner.com.customclick.wallet_customclick
 import com.govahanpartner.com.model.WalletFilterListData
+import com.govahanpartner.com.utils.DateFormat
 import com.prefers.UserPref
 import java.time.Instant
 import java.time.ZoneId
@@ -63,18 +64,19 @@ class WalletVendorAdapter (val context : Context, var wallet_customclick: wallet
 
             }
 
-            // Convert ISO string to Instant
-            val instant = Instant.parse(data.createdAt)
+//            // Convert ISO string to Instant
+//            val instant = Instant.parse(data.createdAt)
+//
+//            // Convert Instant to LocalDate and LocalTime
+//            val localDate = instant.atZone(ZoneId.systemDefault()).toLocalDate() // Extract Date
+//            val localTime = instant.atZone(ZoneId.systemDefault()).toLocalTime() // Extract Time
+//
+//            // Format Date and Time separately
+//            val dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
+//            val timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss")
 
-            // Convert Instant to LocalDate and LocalTime
-            val localDate = instant.atZone(ZoneId.systemDefault()).toLocalDate() // Extract Date
-            val localTime = instant.atZone(ZoneId.systemDefault()).toLocalTime() // Extract Time
-
-            // Format Date and Time separately
-            val dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-            val timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss")
-
-            holder.binding.tvDate.text = "${localDate.format(dateFormatter)} ${localTime.format(timeFormatter)}"
+//            holder.binding.tvDate.text = "${localDate.format(dateFormatter)} ${localTime.format(timeFormatter)}"
+            holder.binding.tvDate.text = data.createdAt?.let { DateFormat.convertDate(it) }
 
 //            val formattedDate =  // e.g., "2025-01-30"
 //            val formattedTime = localTime.format(timeFormatter // e.g., "19:26:26"
