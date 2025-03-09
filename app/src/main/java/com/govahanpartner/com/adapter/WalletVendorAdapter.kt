@@ -64,73 +64,8 @@ class WalletVendorAdapter (val context : Context, var wallet_customclick: wallet
 
             }
 
-//            // Convert ISO string to Instant
-//            val instant = Instant.parse(data.createdAt)
-//
-//            // Convert Instant to LocalDate and LocalTime
-//            val localDate = instant.atZone(ZoneId.systemDefault()).toLocalDate() // Extract Date
-//            val localTime = instant.atZone(ZoneId.systemDefault()).toLocalTime() // Extract Time
-//
-//            // Format Date and Time separately
-//            val dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd")
-//            val timeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss")
-
-//            holder.binding.tvDate.text = "${localDate.format(dateFormatter)} ${localTime.format(timeFormatter)}"
             holder.binding.tvDate.text = data.createdAt?.let { DateFormat.convertDate(it) }
-
-//            val formattedDate =  // e.g., "2025-01-30"
-//            val formattedTime = localTime.format(timeFormatter // e.g., "19:26:26"
-
-
-//            holder.binding.tvDate.text = data.transaction_date
-//            if (data.transaction_id== null){
-//                holder.binding.transactionId.text="Subscription."
-//            }
-//            else{
                 holder.binding.transactionId.text=data.transactionId
-//            }
-
-//            if (data.referal_type==1){
-//                if (data.transaction_type.equals("1")){
-//                    holder.binding.tvAmount.setTextColor(Color.parseColor("#3CB878"))
-//                    holder.binding.tvAmount.text = "+₹${data.amount}"
-//                    holder.binding.tvDetail.text = "Amount added by refferal code."
-//                }
-//            }
-//            else if(data.referal_type==2){
-//                    holder.binding.tvAmount.setTextColor(Color.parseColor("#FF0000"))
-//                    holder.binding.tvAmount.text = "-₹${data.amount}"
-//                    holder.binding.tvDetail.text = "Refund amount deducted."
-//            }
-//            else{
-//                if (data.transaction_type.equals("1")){
-//                    holder.binding.tvAmount.setTextColor(Color.parseColor("#3CB878"))
-//                    holder.binding.tvAmount.text = "+₹${data.amount}"
-//                    if(data.custom_key_one==null){
-//                        holder.binding.tvDetail.text = "Amount added to wallet"
-//                    }else{
-//                        if (data.driver_name==null){
-//                            holder.binding.tvDetail.text = "Amount pay by user"
-//                        }
-//                        else{
-//                            holder.binding.tvDetail.text = "Amount pay by ${data.driver_name}driver."
-//                        }
-//                    }
-//                }
-//                else{
-//                    holder.binding.tvAmount.setTextColor(Color.parseColor("#FF0000"))
-//                    holder.binding.tvAmount.text = "-₹${data.amount}"
-//                    if (data.custom_key==1){
-//                        holder.binding.tvDetail.text = "Amount move to vendor."
-//                    }
-//                    else{
-//                        holder.binding.tvDetail.text = "Subscription purchased."
-//                    }
-//                }
-//            }
-//             if (data.transaction_id.equals("withdraw")){
-//                holder.binding.tvDetail.text = "Withdraw amount."
-//            }
         }catch (e:Exception){
             e.printStackTrace()
         }
