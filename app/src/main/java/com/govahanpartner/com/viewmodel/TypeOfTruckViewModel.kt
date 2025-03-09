@@ -691,6 +691,7 @@ class TypeOfTruckViewModel @Inject constructor(private val mainRepository: MainR
         booking_time: String,
         fuel_charge: String,
         toll_tax: String,
+        tax: String,
         driver_fee: String,
     ) {
         progressBarStatus.value = true
@@ -713,6 +714,7 @@ class TypeOfTruckViewModel @Inject constructor(private val mainRepository: MainR
                     booking_time,
                     fuel_charge,
                     toll_tax,
+                    tax,
                     driver_fee,
                     "1"
                 )

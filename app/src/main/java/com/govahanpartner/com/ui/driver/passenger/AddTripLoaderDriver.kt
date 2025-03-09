@@ -160,14 +160,14 @@ class AddTripLoaderDriver : BaseActivity() {
                     tollcharge = binding.etToll.text.toString()
                     driverfee = binding.drivercharge.text.toString()
                     if (driverfee.equals("")) {
-                        freightamount = fuelcharge.toInt() + tollcharge.toInt()
+                        freightamount = fuelcharge.toInt() + tollcharge.toInt() + tax2.toInt()
                         tax = freightamount.toDouble() * 5
                         tax2 = tax / 100
                         binding.tax.text = "₹$tax2"
                         taxadd = tax2 + freightamount
                         binding.totalamount.text = "₹$taxadd"
                     } else {
-                        freightamount = fuelcharge.toInt() + tollcharge.toInt() + driverfee.toInt()
+                        freightamount = fuelcharge.toInt() + tollcharge.toInt() + driverfee.toInt() + taxadd.toInt()
                         tax = freightamount.toDouble() * 5
                         tax2 = tax / 100
                         binding.tax.text = "₹$tax2"
@@ -214,6 +214,7 @@ class AddTripLoaderDriver : BaseActivity() {
                     binding.spinnerTimeslots.selectedItem.toString(),
                     binding.etFuelcharge.text.toString(),
                     binding.etToll.text.toString(),
+                    tax2.toString(),
                     binding.drivercharge.text.toString()
                 )
             }

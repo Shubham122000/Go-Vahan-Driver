@@ -357,6 +357,7 @@ class AddTripPassengerViewModels @Inject constructor(private val mainRepository:
         booking_time: String,
         fuel_charge: String,
         toll_tax: String,
+        tax: String,
         driver_fee: String,
         isFromPassenger: String
     ) {
@@ -380,6 +381,7 @@ class AddTripPassengerViewModels @Inject constructor(private val mainRepository:
                     booking_time,
                     fuel_charge,
                     toll_tax,
+                    tax,
                     driver_fee,
                     isFromPassenger
                 )

@@ -1212,6 +1212,7 @@ interface ApiService {
         @Field("booking_time") booking_time: String,
         @Field("fuel_charge") fuel_charge: String,
         @Field("toll_tax") toll_tax: String,
+        @Field("tax") tax: String,
         @Field("driver_fee")  driver_fee: String,
         @Field("is_from_passenger")  isFromPassenger: String,
     ): Response<AddTripDriverMOdelClass>

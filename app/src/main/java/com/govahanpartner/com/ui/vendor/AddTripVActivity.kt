@@ -111,7 +111,6 @@ class AddTripVActivity : BaseActivity() {
             binding.textDriver.visibility=View.GONE
             binding.idView.visibility=View.GONE
             binding.tvdriverassign.visibility=View.GONE
-            binding.llDrivercharge.visibility=View.GONE
             binding.driverAssignedView.visibility=View.GONE
             binding.tvdriverassign.text=userPref.getName()
 //            assigndriver=userPref.getName().toString()
@@ -383,17 +382,15 @@ class AddTripVActivity : BaseActivity() {
 
                 if (userPref.getRole().equals("2")|| userPref.getRole().equals("3")){
                     assigndriver=userPref.getuserid().toString()
-
-
                 }else{
                     assigndriver=selecteddriverId
                 }
-//                if(binding.drivercharge.text.toString().equals("")){
-//                    driverfee1="0"
-//                }else{
-//                    driverfee1= binding.drivercharge.text.toString()
-//
-//                }
+                if(binding.drivercharge.text.toString().equals("")){
+                    driverfee1="0"
+                }else{
+                    driverfee1= binding.drivercharge.text.toString()
+
+                }
 //                viewModel.AddTripVendor(
 //                    "Bearer "+userPref.getToken().toString(),
 //                    binding.etTriptask.text.toString(),
@@ -431,6 +428,7 @@ class AddTripVActivity : BaseActivity() {
                     binding.spinnerTimeslots.selectedItem.toString(),
                     binding.etFuelcharge.text.toString(),
                     binding.etToll.text.toString(),
+                    tax2.toString(),
                     binding.drivercharge.text.toString()
                 )
             }

@@ -316,6 +316,7 @@ interface MainRepository {
         booking_time: String,
         fuel_charge: String,
         toll_tax: String,
+        tax: String,
         driver_fee: String,
         isFromPassenger: String,
     ): Response<AddTripDriverMOdelClass>

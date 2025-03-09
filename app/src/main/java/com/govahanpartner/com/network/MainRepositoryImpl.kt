@@ -657,13 +657,14 @@ class MainRepositoryImpl @Inject constructor(private val apiService: ApiService)
         booking_time: String,
         fuel_charge: String,
         toll_tax: String,
+        tax: String,
         driver_fee: String,
         isFromPassenger: String,
     ): Response<AddTripDriverMOdelClass> = apiService.AddTrip(token,from_trip,to_trip,
     /*vehicle_type,vehicle_numbers,no_tyers,body_type,*/assign_driver,
         total_distance,freight_amount,pickup_lat,
         pickup_long,dropup_lat,dropup_long,vehicle_id,booking_date_from,
-        booking_time,fuel_charge,toll_tax,driver_fee,isFromPassenger)
+        booking_time,fuel_charge,toll_tax,tax,driver_fee,isFromPassenger)
    override suspend fun AddTripVendor(
         token: String,
         tip_task: String,

@@ -21,7 +21,6 @@ import com.govahanpartner.com.viewmodel.InvoiceViewModel
 import com.govahanpartner.com.viewmodel.TripHistoryViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
-
 @AndroidEntryPoint
 class BookingDetailsActivity : BaseActivity() {
     private lateinit var binding : ActivityBookingDetailsBinding

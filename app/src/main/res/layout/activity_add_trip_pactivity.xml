@@ -845,53 +845,53 @@
                         android:layout_marginStart="@dimen/_10sdp"
                         android:layout_marginEnd="@dimen/_10sdp"
                         />
-<!--                    <LinearLayout-->
-<!--                        android:id="@+id/ll_drivercharge"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="wrap_content"-->
-<!--                        android:orientation="vertical">-->
-<!--                        <TextView-->
-<!--                            android:layout_width="wrap_content"-->
-<!--                            android:layout_height="wrap_content"-->
-<!--                            android:layout_marginStart="@dimen/_10sdp"-->
-<!--                            android:layout_marginTop="@dimen/_10sdp"-->
-<!--                            android:layout_weight="1"-->
-<!--                            android:fontFamily="@font/roboto_regular"-->
-<!--                            android:text="Driver Charge"-->
-<!--                            android:textColor="@color/gray"-->
-<!--                            android:textSize="@dimen/_11sdp" />-->
+                    <LinearLayout
+                        android:id="@+id/ll_drivercharge"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/roboto_regular"
+                            android:text="Driver Charge"
+                            android:textColor="@color/gray"
+                            android:textSize="@dimen/_11sdp" />
 
 
-<!--                        <EditText-->
-<!--                            android:id="@+id/drivercharge"-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="@dimen/_35sdp"-->
-<!--                            android:layout_gravity="center_vertical"-->
-<!--                            android:layout_marginStart="@dimen/_10sdp"-->
-<!--                            android:layout_marginEnd="@dimen/_10sdp"-->
-<!--                            android:layout_weight="1"-->
-<!--                            android:background="@android:color/transparent"-->
-<!--                            android:fontFamily="@font/roboto_regular"-->
-<!--                            android:textColor="@color/black"-->
-<!--                            android:inputType="number"-->
-<!--                            android:maxLength="5"-->
-<!--                            android:gravity="center_vertical"-->
-<!--                            android:hint="@string/pricehint"-->
-<!--                            android:imeOptions="actionNext"-->
-<!--                            android:singleLine="true"-->
-<!--                            android:textSize="@dimen/_12sdp"-->
-<!--                            app:hintAnimationEnabled="false"-->
-<!--                            app:hintEnabled="false" />-->
+                        <EditText
+                            android:id="@+id/drivercharge"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_35sdp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:layout_weight="1"
+                            android:background="@android:color/transparent"
+                            android:fontFamily="@font/roboto_regular"
+                            android:textColor="@color/black"
+                            android:inputType="number"
+                            android:maxLength="5"
+                            android:gravity="center_vertical"
+                            android:hint="@string/pricehint"
+                            android:imeOptions="actionNext"
+                            android:singleLine="true"
+                            android:textSize="@dimen/_12sdp"
+                            app:hintAnimationEnabled="false"
+                            app:hintEnabled="false" />
 
 
-<!--                        <View-->
-<!--                            android:layout_width="match_parent"-->
-<!--                            android:layout_height="@dimen/_1sdp"-->
-<!--                            android:background="@color/lightgray"-->
-<!--                            android:layout_marginStart="@dimen/_10sdp"-->
-<!--                            android:layout_marginEnd="@dimen/_10sdp"-->
-<!--                            />-->
-<!--                    </LinearLayout>-->
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/_1sdp"
+                            android:background="@color/lightgray"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            />
+                    </LinearLayout>
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
