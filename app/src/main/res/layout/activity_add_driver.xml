@@ -390,7 +390,7 @@
                             android:background="@color/grey_lite" />-->
 
                         <EditText
-                            android:id="@+id/edtUsername"
+                            android:id="@+id/etEmail"
                             android:layout_width="0dp"
                             android:layout_height="@dimen/_40sdp"
                             android:layout_gravity="center_vertical"

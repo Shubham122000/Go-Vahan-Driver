@@ -94,6 +94,7 @@ class Utils @Inject constructor(@ApplicationContext val context: Context) {
     }
 
 
+
     fun getFormattedDate(incomingDate: String): String {
         val fmt = SimpleDateFormat("yyyy-MM-dd")
         var date: Date? = null

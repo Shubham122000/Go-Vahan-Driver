@@ -14,6 +14,7 @@ import com.govahanpartner.com.R
 import com.govahanpartner.com.databinding.RowUpcomingBookingsBinding
 import com.govahanpartner.com.model.TripHistoryResponseData
 import com.govahanpartner.com.ui.common.TripDetailsActivity
+import com.govahanpartner.com.utils.convertTimestampToTime
 
 
 class UpcomingBookingsAdapter (val context : Context,var userPref: UserPref, val list: ArrayList<TripHistoryResponseData>,var flag: String) : RecyclerView.Adapter<UpcomingBookingsAdapter.ViewHolder>() {
@@ -33,7 +34,9 @@ class UpcomingBookingsAdapter (val context : Context,var userPref: UserPref, val
         val data = list[position]
         try {
             holder.binding.tvDate.text = data.tripDetails?.bookingDateFrom
-            holder.binding.tvTime.text = data.bookingTime
+
+            holder.binding.tvTime.text = data.bookingTime?.toLong()
+                ?.let { convertTimestampToTime(it) }
             holder.binding.tvUsername.text = data.tripDetails?.user?.name
             holder.binding.tvStart.text = data.tripDetails?.fromTrip
             holder.binding.tvStop.text = data.tripDetails?.toTrip

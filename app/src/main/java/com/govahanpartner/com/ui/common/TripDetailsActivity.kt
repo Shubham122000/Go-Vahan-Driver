@@ -153,7 +153,7 @@ class TripDetailsActivity : BaseActivity(),Canceldata {
                                     }
                                 }
                             }
-                            Glide.with(this).load(booking.tripDetails?.vehicle?.vehicleImage).placeholder(R.drawable.image_placeholder).into(binding.imgUser)
+                            Glide.with(this).load(booking.tripDetails?.driver?.profileImage).placeholder(R.drawable.image_placeholder).into(binding.imgUser)
 //                            if (it.data.height==null){
 //                                binding.tvHeight.text =""
 //                            }else{

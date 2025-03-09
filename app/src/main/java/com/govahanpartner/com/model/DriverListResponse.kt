@@ -24,6 +24,7 @@ data class DriverListResponseData(
     @SerializedName("country_code"  ) var countryCode  : String? = null,
     @SerializedName("status"        ) var status       : Int?    = null,
     @SerializedName("created_at"    ) var createdAt    : String? = null,
+    @SerializedName("vehicle_number"    ) var vehicleNumber    : String? = null,
     @SerializedName("is_approved"             ) var is_approved           : Int? = null,
     @SerializedName("profile_image"     ) var profileImage    : String? = null,
     @SerializedName("licence_number"    ) var licenceNumber   : String? = null,

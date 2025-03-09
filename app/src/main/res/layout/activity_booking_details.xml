@@ -592,7 +592,6 @@
                     android:fontFamily="@font/roboto_regular"
                     android:singleLine="true"
                     android:layout_marginEnd="@dimen/_5sdp"
-
                     android:textColor="@color/black"
                     android:textSize="@dimen/_12sdp" />
 
@@ -956,59 +955,59 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/_14sdp" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:layout_marginHorizontal="@dimen/_5sdp"
-                android:text="How do you get to pay the 90%?"
-                android:textSize="@dimen/_14sdp"/>
-            <RadioGroup
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <RadioButton
-                    android:id="@+id/cash"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Cash"/>
-                <RadioButton
-                    android:id="@+id/online"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/_20sdp"
-                    android:text="Online"/>
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="@dimen/_10sdp"-->
+<!--                android:layout_marginHorizontal="@dimen/_5sdp"-->
+<!--                android:text="How do you get to pay the 90%?"-->
+<!--                android:textSize="@dimen/_14sdp"/>-->
+<!--            <RadioGroup-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal">-->
+<!--                <RadioButton-->
+<!--                    android:id="@+id/cash"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Cash"/>-->
+<!--                <RadioButton-->
+<!--                    android:id="@+id/online"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginLeft="@dimen/_20sdp"-->
+<!--                    android:text="Online"/>-->
 
-            </RadioGroup>
-            <LinearLayout
-                android:id="@+id/cashsubmit"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:orientation="vertical">
+<!--            </RadioGroup>-->
+<!--            <LinearLayout-->
+<!--                android:id="@+id/cashsubmit"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:visibility="gone"-->
+<!--                android:orientation="vertical">-->
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/edt_round_corner"
-                android:gravity="center">
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:background="@drawable/edt_round_corner"-->
+<!--                android:gravity="center">-->
 
-<!--                <EditText-->
-<!--                    android:id="@+id/ed_cash"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="@dimen/_40sdp"-->
-<!--                    android:layout_gravity="center_vertical"-->
-<!--                    android:layout_marginStart="@dimen/_10sdp"-->
-<!--                    android:background="@android:color/transparent"-->
-<!--                    android:fontFamily="@font/roboto_medium"-->
-<!--                    android:gravity="center_vertical"-->
-<!--                    android:hint="Enter amount"-->
-<!--                    android:inputType="numberDecimal"-->
-<!--                    android:singleLine="true"-->
-<!--                    app:hintAnimationEnabled="false"-->
-<!--                    app:hintEnabled="false" />-->
+<!--&lt;!&ndash;                <EditText&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:id="@+id/ed_cash"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_height="@dimen/_40sdp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_gravity="center_vertical"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:layout_marginStart="@dimen/_10sdp"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:background="@android:color/transparent"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:fontFamily="@font/roboto_medium"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:gravity="center_vertical"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:hint="Enter amount"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:inputType="numberDecimal"&ndash;&gt;-->
+<!--&lt;!&ndash;                    android:singleLine="true"&ndash;&gt;-->
+<!--&lt;!&ndash;                    app:hintAnimationEnabled="false"&ndash;&gt;-->
+<!--&lt;!&ndash;                    app:hintEnabled="false" />&ndash;&gt;-->
 
-            </LinearLayout>
+<!--            </LinearLayout>-->
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/cashsubit"
@@ -1019,11 +1018,12 @@
                 android:background="@drawable/edt_round_corner_yellow"
                 android:fontFamily="@font/roboto_medium"
                 android:text="Paid &amp; Complete"
+                android:visibility="gone"
                 android:textAllCaps="false"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_14sdp" />
-            </LinearLayout>
+<!--            </LinearLayout>-->
             <LinearLayout
                 android:id="@+id/onlinesubmit"
                 android:layout_width="match_parent"

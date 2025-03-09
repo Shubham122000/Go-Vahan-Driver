@@ -241,7 +241,7 @@ class AddTripVActivity : BaseActivity() {
                     binding.driverassign.adapter = spinnerArrayAdapter
                 }
                 else {
-                    snackbar(it?.message!!)
+//                    snackbar(it?.message!!)
                 }
             }
 
@@ -355,7 +355,7 @@ class AddTripVActivity : BaseActivity() {
                 toast("Trip Added Successfully")
                 finish()
             } else {
-                snackbar(it?.message!!)
+//                snackbar(it?.message!!)
 //                val intent = Intent(this, VendorsSubscriptionPlanActivity::class.java).putExtra("buysubscription","buysubscription").putExtra("flag1","loader")
 //                startActivity(intent)
             }

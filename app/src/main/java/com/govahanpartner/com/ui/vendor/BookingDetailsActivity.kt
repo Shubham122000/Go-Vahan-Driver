@@ -28,7 +28,7 @@ class BookingDetailsActivity : BaseActivity() {
     lateinit var booking : TripHistoryResponseData
     lateinit var flag :String
     lateinit var invoicenumber :String
-    lateinit var Bookingstatus :String
+    var Bookingstatus :Int? = 0
     var flag1=""
     var amount=""
     var pendingAmount=""
@@ -62,28 +62,28 @@ class BookingDetailsActivity : BaseActivity() {
         viewModel1.getBankAccountsApi(
             "Bearer "+ userPref.getToken().toString(),
         )
-        binding.cash.setOnClickListener {
-         if (binding.cash.isChecked){
-             binding.cashsubmit.visibility=View.VISIBLE
-             binding.onlinesubmit.visibility=View.GONE
-           }
-        }
-        viewModel1.getBankAccounts.observe(this) {
-            if (it?.status == 1) {
-                toast(it.message)
-                Glide.with(this).load(it.data[0].image).placeholder(R.drawable.image_placeholder).into(binding.qrscan)
-                Log.d("TAG", "onCreate: "+it.data[0].image)
-                binding.upiid.text="UPI Id :  ${it.data[0].upi_id}"
-            } else {
-                toast(it.message)
-            }
-        }
-        binding.online.setOnClickListener {
-         if (binding.online.isChecked){
-             binding.onlinesubmit.visibility=View.VISIBLE
-             binding.cashsubmit.visibility=View.GONE
-         }
-        }
+//        binding.cash.setOnClickListener {
+//         if (binding.cash.isChecked){
+//             binding.cashsubmit.visibility=View.VISIBLE
+//             binding.onlinesubmit.visibility=View.GONE
+//           }
+//        }
+//        viewModel1.getBankAccounts.observe(this) {
+//            if (it?.status == 1) {
+//                toast(it.message)
+//                Glide.with(this).load(it.data[0].image).placeholder(R.drawable.image_placeholder).into(binding.qrscan)
+//                Log.d("TAG", "onCreate: "+it.data[0].image)
+//                binding.upiid.text="UPI Id :  ${it.data[0].upi_id}"
+//            } else {
+//                toast(it.message)
+//            }
+//        }
+//        binding.online.setOnClickListener {
+//         if (binding.online.isChecked){
+//             binding.onlinesubmit.visibility=View.VISIBLE
+//             binding.cashsubmit.visibility=View.GONE
+//         }
+//        }
 //        binding.ridecomplete.setOnClickListener {
 //            if (flag == "OngoingLoader") {
 //                viewModel1.RideCompletedApi(
@@ -180,43 +180,43 @@ class BookingDetailsActivity : BaseActivity() {
                 }
             }
         }
-        binding.onlineamount.setOnClickListener {
-//            if (binding.edCash.text.toString().isEmpty()){
-//                amount=binding.edOnline.text.toString()
-//            }else {
-//                amount=binding.edCash.text.toString()
+//        binding.onlineamount.setOnClickListener {
+////            if (binding.edCash.text.toString().isEmpty()){
+////                amount=binding.edOnline.text.toString()
+////            }else {
+////                amount=binding.edCash.text.toString()
+////            }
+//            if (flag == "OngoingLoader") {
+//                viewModel1.checkTripPaymentsApi(
+//                    "Bearer " + userPref.getToken().toString(), pendingAmount,
+//                    booking.bookingId.toString()
+//                )
+//                viewModel1.CheckTripPayment.observe(this) {
+//                    if (it?.status == 1) {
+//                        val intent = Intent(this, DashboardActivity::class.java)
+//                        startActivity(intent)
+//                        finishAffinity()
+//                    } else {
+////                        binding.ridecomplete.visibility = View.GONE
+//                        toast(it.message)
+//                    }
+//                }
+//            }else{
+//                viewModel1.passenger_Payments_checkApi(
+//                    "Bearer " + userPref.getToken().toString(), amount,
+//                    booking.bookingId.toString()
+//                )
+//                viewModel1.CheckTripPayment2.observe(this) {
+//                    if (it?.status == 1) {
+//                        val intent = Intent(this, DashboardActivity::class.java)
+//                        startActivity(intent)
+//                        finishAffinity()
+//                    } else {
+//                        toast(it.message)
+//                    }
+//                }
 //            }
-            if (flag == "OngoingLoader") {
-                viewModel1.checkTripPaymentsApi(
-                    "Bearer " + userPref.getToken().toString(), pendingAmount,
-                    booking.bookingId.toString()
-                )
-                viewModel1.CheckTripPayment.observe(this) {
-                    if (it?.status == 1) {
-                        val intent = Intent(this, DashboardActivity::class.java)
-                        startActivity(intent)
-                        finishAffinity()
-                    } else {
-//                        binding.ridecomplete.visibility = View.GONE
-                        toast(it.message)
-                    }
-                }
-            }else{
-                viewModel1.passenger_Payments_checkApi(
-                    "Bearer " + userPref.getToken().toString(), amount,
-                    booking.bookingId.toString()
-                )
-                viewModel1.CheckTripPayment2.observe(this) {
-                    if (it?.status == 1) {
-                        val intent = Intent(this, DashboardActivity::class.java)
-                        startActivity(intent)
-                        finishAffinity()
-                    } else {
-                        toast(it.message)
-                    }
-                }
-            }
-        }
+//        }
         if (flag == "CancelLoader"){
             binding.uploaddocument.visibility=View.GONE
 
@@ -297,16 +297,16 @@ class BookingDetailsActivity : BaseActivity() {
                         binding.tvPending.text =  "₹${booking.tripDetails?.remainingAmount.toString()}"
                         pendingAmount = booking.tripDetails?.remainingAmount.toString()
                         invoicenumber = booking.paymentDetails.get(0).invoice.toString()
-                        Bookingstatus = booking.tripDetails?.tripStatus.toString()
-                        Glide.with(this).load(booking.tripDetails?.user?.image).placeholder(R.drawable.image_placeholder).into(binding.imgUser)
-                        if (Bookingstatus == "4"){
+                        Bookingstatus = booking.status
+                        Glide.with(this).load(booking.tripDetails?.driver?.profileImage).placeholder(R.drawable.image_placeholder).into(binding.imgUser)
+                        if (Bookingstatus == 4){
                             binding.tvStatus.text = "Completed"
                             binding.finalAmount.text = "Paid Amount"
                             binding.ivNavigation.visibility = View.GONE
-                        }else if (Bookingstatus == "2"){
+                        }else if (Bookingstatus == 2){
                             binding.tvStatus.text = "Ongoing"
                             binding.ivNavigation.visibility = View.VISIBLE
-                        }else{
+                        }else if (Bookingstatus == 3){
                             binding.tvStatus.text = "Cancelled"
                             binding.ivNavigation.visibility = View.GONE
                         }
@@ -346,6 +346,7 @@ class BookingDetailsActivity : BaseActivity() {
                             binding.challan.isChecked = true
                             binding.signature.isChecked = true
                             binding.BTN.visibility = View.GONE
+                            binding.cashsubit.visibility=View.VISIBLE
                         }
 //                    }
                 }catch (e:Exception){

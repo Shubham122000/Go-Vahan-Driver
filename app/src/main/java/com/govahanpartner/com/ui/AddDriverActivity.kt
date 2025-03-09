@@ -387,8 +387,10 @@ class AddDriverActivity : BaseActivity() {
             toast("Please enter mobile number.")
         } else if (binding.edtMobile.text.toString().length < 10) {
             toast("Please enter valid mobile number.")
-        } else if (binding.edtUsername.text.toString().isNullOrEmpty()) {
-            toast("Please enter username.")
+        } else if (binding.etEmail.text.toString().isNullOrEmpty()) {
+            snackbar("Please enter email")
+        }else if (!CommonUtils.isValidMail(binding.etEmail.text.toString().trim())) {
+            snackbar("Please enter valid email")
         }else if (binding.edtPassword.text.toString().isNullOrEmpty()) {
             toast("Please enter password.")
         }else if (binding.edtConfirmpassword.text.toString().isNullOrEmpty()) {
@@ -427,7 +429,7 @@ class AddDriverActivity : BaseActivity() {
                 binding.edtlicense.text.toString(),
                 binding.ccp.selectedCountryCode.toString(),
                 binding.edtMobile.text.toString(),
-                binding.edtUsername.text.toString(),
+                binding.etEmail.text.toString(),
                 selectedVehicleNumber,
                 binding.edtPassword.text.toString(),
                 imagePrats,

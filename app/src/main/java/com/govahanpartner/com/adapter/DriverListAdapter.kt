@@ -34,19 +34,15 @@ class DriverListAdapter (val context : Context, var data: ArrayList<DriverListRe
         holder.binding.tvUsername.text = List.name.toString()
         holder.binding.tvPhone.text = List.mobileNumber.toString()
         holder.binding.tvLicno.text = List.licenceNumber.toString()
+        holder.binding.tvVehicleNumber.text = List.vehicleNumber.toString()
         Glide.with(context).load(List.profileImage).into(holder.binding.imgUser)
         holder.binding.emailId.text=List.email
-         if (List.is_approved==0){
+         if (List.status==0){
              holder.binding.status.text="Under Review"
-         }
-         else if (List.is_approved==1){
+         }else{
              holder.binding.status.text="Approved"
          }
-//         else if (List.is_approved==2){
-//             holder.binding.status.text="Approved"
-//         }
 
-//        holder.binding.status.text=List.is_approved
         holder.binding.linearItem.setOnClickListener(View.OnClickListener {
            val intent = Intent(context, DriverDetailActivity::class.java)
           intent.putExtra("orderType", "4")

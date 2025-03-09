@@ -157,6 +157,16 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/_11sdp" />
 
+            <TextView
+                android:id="@+id/tvVehicleNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_3sdp"
+                android:fontFamily="@font/roboto_regular"
+                android:singleLine="true"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_11sdp" />
+
 
         </LinearLayout>
 
