@@ -10,6 +10,9 @@
     <string name="gst_no">GST No.</string>
     <string name="refer_code">Referral Code (Optional)</string>
     <string name="alreadyhaveanaccount">Already have an account? </string>
+    <string name="invite_your_friend_and_family_heading">Invite &amp; Earn</string>
+    <string name="invite_your_friend_and_family">Invite &amp; Earn! 🎉</string>
+    <string name="and_earn_cashback_on_your" translatable="false">Refer your friends and family and get rewards up to ₹500! 💰✨</string>
     <string name="startridecode">Please enter start ride code </string>
     <string name="gstnum">22AAAAA0000A125</string>
     <string name="vehicle_number">Vehicle Number</string>

@@ -28,8 +28,8 @@ class WalletVendorAdapter (val context : Context, var wallet_customclick: wallet
 
     inner  class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
         var binding: RowWalletListBinding = DataBindingUtil.bind(itemView)!!
-
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.row_wallet_list, parent, false)
         return ViewHolder(itemView)    }
@@ -60,7 +60,7 @@ class WalletVendorAdapter (val context : Context, var wallet_customclick: wallet
                     holder.binding.tvAmount.setTextColor(ContextCompat.getColor(context, R.color.light_red))
                 }
             }else{
-                holder.binding.tvDetail.text = "Received requested amount."
+                holder.binding.tvDetail.text = "Referral amount credited."
 
             }
 

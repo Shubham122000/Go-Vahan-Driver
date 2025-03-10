@@ -33,7 +33,7 @@
                 android:layout_toRightOf="@+id/ivBack"
                 android:fontFamily="@font/roboto_regular"
                 android:gravity="center"
-                android:text="Refer &amp; Earn"
+                android:text="@string/and_earn_cashback_on_your"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_14sdp" />
 
@@ -56,7 +56,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="Invite Yout Friend &amp; Family"
+                android:text="@string/invite_your_friend_and_family"
                 android:textSize="@dimen/_15sdp"
                 android:textColor="@color/white"
                 android:layout_marginTop="@dimen/_10sdp"
@@ -69,7 +69,7 @@
                 android:layout_gravity="center"
                 android:fontFamily="@font/roboto_medium"
                 android:gravity="center"
-                android:text="And Earn 10% Cash Back On Your"
+                android:text="@string/and_earn_cashback_on_your"
                 android:textColor="@color/white"
                 android:textSize="@dimen/_15sdp" />
             <TextView
