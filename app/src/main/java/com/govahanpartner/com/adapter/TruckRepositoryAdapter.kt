@@ -78,7 +78,7 @@ class TruckRepositoryAdapter(
         holder.binding.tvTruckname.text = data.vehicleName
         holder.binding.tvOwnername.text = data.user?.name
         holder.binding.validity.text = data.subscription_end
-        Glide.with(context).load(data.vehicleImage).into(holder.binding.ivVehicle)
+        Glide.with(context).load(data.mainImage).into(holder.binding.ivVehicle)
         holder.binding.delete.setOnClickListener {
             deletevehicle.tripdelete(data.id)
         }
@@ -86,7 +86,7 @@ class TruckRepositoryAdapter(
             loadervehiclelist.loadervehiclelist(data?.id.toString())
         }
         holder.binding.edit.setOnClickListener {
-            loadervehicleedit.loadervehicleedit(data.id.toString())
+            loadervehicleedit.loadervehicleedit(data)
         }
     }
     override fun getItemCount(): Int {

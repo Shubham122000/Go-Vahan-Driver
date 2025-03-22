@@ -153,15 +153,13 @@ class TruckRepositoryActivity : BaseActivity(), tripdelete, loadervehiclelist, d
         }
     }
 
-    override fun loadervehicleedit(id: String?) {
+    override fun loadervehicleedit(vehicle: Vehicles?) {
         if (flag == "FromLoader") {
-            val intent =
-                Intent(this, EditTruckDocumentsActivity::class.java).putExtra("vehicle_id", id)
-                startActivity(intent)
+            val intent = Intent(this, EditTruckDocumentsActivity::class.java).putExtra("vehicle", vehicle)
+            startActivity(intent)
 
         } else {
-            val intent =
-                Intent(this, EditTaxiDocumentsActivity::class.java).putExtra("vehicle_id", id)
+            val intent = Intent(this, EditTaxiDocumentsActivity::class.java).putExtra("vehicle", vehicle)
             startActivity(intent)
 
         }

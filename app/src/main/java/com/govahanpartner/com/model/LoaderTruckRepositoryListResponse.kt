@@ -42,35 +42,46 @@ data class Vehicles (
     @SerializedName("capacity"               ) var capacity             : String?    = null,
     @SerializedName("created_at"             ) var createdAt            : String?    = null,
     @SerializedName("updated_at"             ) var updatedAt            : String?    = null,
-    @SerializedName("payment_mode"             ) var payment_mode: String?    = null,
-    @SerializedName("subscription_start"             ) var subscription_start: String?    = null,
-    @SerializedName("subscription_end"             ) var subscription_end            : String?    = null,
+    @SerializedName("payment_mode"           ) var payment_mode: String?    = null,
+    @SerializedName("subscription_start"     ) var subscription_start: String?    = null,
+    @SerializedName("subscription_end"       ) var subscription_end            : String?    = null,
     @SerializedName("payment_status"         ) var paymentStatus        : Int?       = null,
-    @SerializedName("vehicle_image"          ) var vehicleImage         : String?    = null,
+    @SerializedName("main_image"             ) var mainImage         : String?    = null,
     @SerializedName("is_subscription_valid"  ) var isSubscriptionValid  : String?    = null,
     @SerializedName("user"                   ) var user                 : User?      = User(),
     @SerializedName("category"               ) var category             : Category?  = Category(),
     @SerializedName("wheels"                 ) var wheels               : Wheels?    = Wheels(),
-    @SerializedName("model_year"             ) var modelYear            : ModelYear? = ModelYear()
+    @SerializedName("model_year"             ) var modelYear            : ModelYear? = ModelYear(),
+    @SerializedName("vehicle_images"         ) var vehicleImages        : VehicleImages?              = VehicleImages(),
+    @SerializedName("vehicle_documents"      ) var vehicleDocuments     : ArrayList<VehicleDocuments> = arrayListOf(),
 
-): Serializable, Parcelable
+):  Parcelable
 @Parcelize
 data class ModelYear (
     @SerializedName("id"   ) var id   : Int?    = null,
     @SerializedName("year" ) var year : String? = null
-): Serializable, Parcelable
+): Parcelable
 @Parcelize
 data class Wheels (
     @SerializedName("id"    ) var id    : Int? = null,
     @SerializedName("wheel" ) var wheel : Int? = null
-): Serializable, Parcelable
+): Parcelable
 @Parcelize
 data class Category (
 
     @SerializedName("id"     ) var id    : Int?    = null,
     @SerializedName("v_type" ) var vType : String? = null
 
-): Serializable, Parcelable
+): Parcelable
+@Parcelize
+data class VehicleDocuments (
+
+    @SerializedName("doc_type"        ) var docType       : Int?    = null,
+    @SerializedName("file_url"        ) var fileUrl       : String? = null,
+    @SerializedName("doc_expiry_date" ) var docExpiryDate : String? = null,
+    @SerializedName("other_doc_name"  ) var otherDocName  : String? = null
+
+): Parcelable
 @Parcelize
 data class User (
     @SerializedName("id"   ) var id   : Int?    = null,
@@ -78,7 +89,17 @@ data class User (
     @SerializedName("email" ) var email : String? = null,
     @SerializedName("mobile_number" ) var mobileNumber : String? = null,
     @SerializedName("image" ) var image : String? = null
-): Serializable, Parcelable
+):Parcelable
+
+@Parcelize
+data class VehicleImages (
+
+    @SerializedName("image_1" ) var image1 : String? = null,
+    @SerializedName("image_2" ) var image2 : String? = null,
+    @SerializedName("image_3" ) var image3 : String? = null,
+    @SerializedName("image_4" ) var image4 : String? = null
+
+): Parcelable
 
 //data class LoaderTruckRepositoryListResponseData(
 //    @SerializedName("vehicle_id"    ) var vehicleId    : Int?    = null,

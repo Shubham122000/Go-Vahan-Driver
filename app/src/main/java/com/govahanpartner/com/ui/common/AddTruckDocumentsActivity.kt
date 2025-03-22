@@ -651,43 +651,6 @@ class AddTruckDocumentsActivity : BaseActivity() {
         }
 
         binding.btnSubmit.setOnClickListener {
-//            if (userPref.getRole().equals("2")) {
-//                if (binding.etTruckownername.text.isNullOrEmpty()) {
-//                    toast("Please enter Username.")
-//                } else if (binding.etVehivalnumber.text.toString().isNullOrEmpty()) {
-//                    toast("Please enter Vehical Number")
-//                } else {
-//                    viewModel.indi_add_loader_vehicle(
-//                        "Bearer " + userPref.getToken().toString(),
-//                        binding.etTruckownername.text.toString(),
-//                        selectedTruckTypeId,
-//                        selectedYearId,
-//                        binding.etVehivalnumber.text.toString(),
-//                        selectedTruckTypeId,
-//                        binding.etCapacity.text.toString(),
-//                        selectedHightId,
-//                        selectedWheelsId,
-//                        selectedBodyId,
-//                        imagetruck1!!,
-//                        imagetruck2!!,
-//                        imagetruck3!!,
-//                        imagetruck4!!,
-//                        pdfFile!!,pdfFile1!!,pdfFile2!!,pdfFile3!!,pdfFile4!!,pdfFile5!!,
-//                        binding.tvDate.text.toString(),
-//                        binding.date1.text.toString(),
-//                        binding.date2.text.toString(),
-//                        binding.date3.text.toString(),
-//                        binding.date4.text.toString(),
-//                        binding.date5.text.toString(),
-//                        "Rc-book",
-//                                "Pollution-Document",
-//                                "Fitness-Papers",
-//                                "Insurance-Document",
-//                                "RTO Documents",
-//                                "Others",
-//                    )
-//                }
-//            } else {
                 if (binding.etTruckownername.text.isNullOrEmpty()) {
                     toast("Please enter username.")
                 }else if (selectedTruckTypeId == "-1") {
@@ -765,15 +728,9 @@ class AddTruckDocumentsActivity : BaseActivity() {
                         binding.date3.text.toString(),
                         binding.date4.text.toString(),
                         binding.date5.text.toString(),
-                       /* "Rc-book",
-                        "Pollution-Document",
-                        "Fitness-Papers",
-                        "Insurance-Document",
-                        "RTO Documents",*/
                         "Others",
                     )
                 }
-//            }
         }
 
 
@@ -960,7 +917,6 @@ class AddTruckDocumentsActivity : BaseActivity() {
         } else if (flagforpdf == "sixthone") {
             pdfIntent.addCategory(Intent.CATEGORY_OPENABLE)
             startActivityForResult(pdfIntent, pickPdf5)
-
         }
     }
     private fun captureImage() {

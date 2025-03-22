@@ -6,6 +6,7 @@ import android.app.DatePickerDialog
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.database.Cursor
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
@@ -38,6 +39,7 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
+import okhttp3.RequestBody.Companion.toRequestBody
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -51,36 +53,15 @@ class EditTruckDocumentsActivity : BaseActivity() {
     private lateinit var binding : ActivityEditTruckDocumentsBinding
     private val viewModel: TruckRepositoryViewModel by viewModels()
     var Listdata:ArrayList<TruckImagesData> = ArrayList()
-    private val viewModel1 : TypeOfTruckViewModel by viewModels()
-    private val viewModel2 : AddTripPassengerViewModels by viewModels()
-    var truckdata : ArrayList<TypeofTruckResponseData> = ArrayList()
-    var nametype :ArrayList<String> = ArrayList()
-    var Bodydata : ArrayList<BodyTypeData> = ArrayList()
-    var Hightdata : ArrayList<hightResponseData> = ArrayList()
     var wheels : ArrayList<vehicalwheelsResponseData> = ArrayList()
-    var colordata : ArrayList<ColorResponseData> = ArrayList()
-    var yeardata : ArrayList<YearResponseData> = ArrayList()
-    var Bodytype :ArrayList<String> = ArrayList()
-    var Highttype :ArrayList<String> = ArrayList()
-    var vehicalwheel :ArrayList<String> = ArrayList()
-    var colors :ArrayList<String> = ArrayList()
     var year :ArrayList<String> = ArrayList()
-    var id_body :ArrayList<String> = ArrayList()
-    var id_hight :ArrayList<String> = ArrayList()
-    var id_wheels :ArrayList<String> = ArrayList()
-    var id_color :ArrayList<String> = ArrayList()
-    var id_year :ArrayList<String> = ArrayList()
     lateinit var adapter : TruckImagesAdapter
     lateinit var adapter1 : TruckDocumentsAdapter
-    var vehicle_id=""
-    var selectedTruckTypeId=""
-    var selectedBodyId=""
-    var selectedHightId=""
-    var selectedWheelsId=""
-    var selectedColorId=""
-    var selectedYearId=""
+    var vehicle :Vehicles? = null
     val CAMERA_PERM_CODE_ID_Front = 101
     var imageFile: File? = null
+    private var file: File? = null
+    private var mUri: Uri? = null
     var imagePath = ""
     var photoURI: Uri? = null
     lateinit var imageprats: MultipartBody.Part
@@ -89,28 +70,16 @@ class EditTruckDocumentsActivity : BaseActivity() {
     lateinit var image: Uri
     var flag: String = ""
     var flagforpdf: String = ""
-    var id1=""
-    var id2=""
-    var id3=""
-    var id4=""
     var datePicker: DatePickerDialog? = null
     var datepickerflag=""
-    //    private lateinit var dionrealog: Dialog
     var imagetruck1: MultipartBody.Part? = null
     var imagetruck2: MultipartBody.Part? = null
     var imagetruck3: MultipartBody.Part? = null
     var imagetruck4: MultipartBody.Part? = null
 
     val CAMERA_PERM_CODE_ID_BACK = 102
-
-    //    var imageFile: File? = null
-//    var imagePath = ""
-//    var photoURI: Uri? = null
-//    lateinit var imageparts: MultipartBody.Part
     private val GALLERY_ID_BACK = 3
     private var CAMERA_ID_BACK: Int = 4
-    //    lateinit var image: Uri
-//    var requestImage: String = ""
     val CAMERA_PERM_CODE_LICENSE_BACK = 104
     val CAMERA_PERM_CODE_LICENSE_FRONT = 103
     private val GALLERY_LICENSE_FRONT = 5
@@ -119,20 +88,19 @@ class EditTruckDocumentsActivity : BaseActivity() {
     private val GALLERY_LICENSE_BACK = 7
     private var CAMERA_LICENSE_BACK: Int = 8
 
-    var Capacity : ArrayList<LoadCarryingData> = ArrayList()
-    var Capacitytype :ArrayList<String> = ArrayList()
-    var id_Capacity :ArrayList<String> = ArrayList()
     //For Pdf Upload
     var pdfFile: MultipartBody.Part? = null
     var pdfFile1: MultipartBody.Part? = null
     var pdfFile2: MultipartBody.Part? = null
     var pdfFile3: MultipartBody.Part? = null
     var pdfFile4: MultipartBody.Part? = null
+    var pdfFile5: MultipartBody.Part? = null
     private val pickPdf = 9
     private val pickPdf1 = 10
     private val pickPdf2 = 11
     private val pickPdf3 = 12
     private val pickPdf4 = 13
+    private val pickPdf5 = 14
 
     val FILE_BROWSER_CACHE_DIR = "doc"
 
@@ -142,8 +110,8 @@ class EditTruckDocumentsActivity : BaseActivity() {
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_edit_truck_documents)
 
-        if (intent!=null){
-            vehicle_id= intent.getStringExtra("vehicle_id").toString()
+        if (intent!= null){
+            vehicle = intent.getParcelableExtra<Vehicles>("vehicle")
         }
         binding.ivBack.setOnClickListener(View.OnClickListener {
             finish()
@@ -175,40 +143,25 @@ class EditTruckDocumentsActivity : BaseActivity() {
                 hideProgressDialog()
             }
         }
-        viewModel1.progressBarStatus.observe(this) {
-            if (it) {
-                showProgressDialog()
-            } else {
-                hideProgressDialog()
-            }
-        }
-//        viewModel.loader_truck_repository_image_list_details(
-//            "Bearer "+ userPref.getToken().toString(),vehicle_id
-//        )
+//        viewModel1.progressBarStatus.observe(this) {
+//            if (it) {
+//                showProgressDialog()
+//            } else {
+//                hideProgressDialog()
+//            }
+//        }
+                    Glide.with(this).load(vehicle?.vehicleImages?.image1).placeholder(R.drawable.image_placeholder).into(binding.ivTruck1)
+                    Glide.with(this).load(vehicle?.vehicleImages?.image2).placeholder(R.drawable.image_placeholder).into(binding.ivTruck2)
+                    Glide.with(this).load(vehicle?.vehicleImages?.image3).placeholder(R.drawable.image_placeholder).into(binding.ivTruck3)
+                    Glide.with(this).load(vehicle?.vehicleImages?.image4).placeholder(R.drawable.image_placeholder).into(binding.ivTruck4)
 
-        viewModel.truckImagesResponse.observe(this) {
-            if (it?.status == 1) {
-
-                    Glide.with(this).load(it.data.image1).placeholder(R.drawable.image_placeholder).into(binding.ivTruck1)
-                    Glide.with(this).load(it.data.image2).placeholder(R.drawable.image_placeholder).into(binding.ivTruck2)
-                    Glide.with(this).load(it.data.image3).placeholder(R.drawable.image_placeholder).into(binding.ivTruck3)
-                    Glide.with(this).load(it.data.image4).placeholder(R.drawable.image_placeholder).into(binding.ivTruck4)
-                     id1=it.data.id1.toString()
-                     id2=it.data.id2.toString()
-                     id3=it.data.id3.toString()
-                     id4=it.data.id4.toString()
-            } else {
-                snackbar(it?.message!!)
-            }
-        }
-
-        viewModel2.progressBarStatus.observe(this) {
-            if (it) {
-                showProgressDialog()
-            } else {
-                hideProgressDialog()
-            }
-        }
+//        viewModel2.progressBarStatus.observe(this) {
+//            if (it) {
+//                showProgressDialog()
+//            } else {
+//                hideProgressDialog()
+//            }
+//        }
         binding.tvRcbook.setOnClickListener {
 
             flagforpdf = "firstone"
@@ -305,84 +258,126 @@ class EditTruckDocumentsActivity : BaseActivity() {
         }
 
 
+        binding.btnSubmit.setOnClickListener {
+            if (imagetruck1 == null) {
+                val requestFile = "".toRequestBody("image/*".toMediaTypeOrNull())
+                imagetruck1 = MultipartBody.Part.createFormData("image_1", "", requestFile)
+            }else if (imagetruck2 == null) {
+                val requestFile = "".toRequestBody("image/*".toMediaTypeOrNull())
+                imagetruck2 = MultipartBody.Part.createFormData("image_2", "", requestFile)
+            }else if (imagetruck3 == null) {
+                val requestFile = "".toRequestBody("image/*".toMediaTypeOrNull())
+                imagetruck3 = MultipartBody.Part.createFormData("image_3", "", requestFile)
+            }else if (imagetruck4 == null) {
+                val requestFile = "".toRequestBody("image/*".toMediaTypeOrNull())
+                imagetruck4 = MultipartBody.Part.createFormData("image_4", "", requestFile)
+            }
+                viewModel.editVehicle(
+                    "Bearer " + userPref.getToken().toString(),
+//                    userPref.getid().toString(),
+//                    binding.etTruckownername.text.toString(),
+//                    selectedTruckTypeName,
+//                    selectedYearId,
+//                    binding.etVehicalNumber.text.toString(),
+//                    selectedTruckTypeId,
+//                    binding.etCapacity.text.toString(),
+//                    selectedHightId,
+//                    "white",
+//                    selectedWheelsId,
+//                    selectedBodyId,
+//                    "0",
+                    "",
+                    imagetruck1!!,
+                    imagetruck2!!,
+                    imagetruck3!!,
+                    imagetruck4!!,
+                    pdfFile!!,pdfFile1!!,pdfFile2!!,pdfFile3!!,pdfFile4!!,
+                    pdfFile5!!,
+                    binding.tvDate.text.toString(),
+                    binding.date1.text.toString(),
+                    binding.date2.text.toString(),
+                    binding.date3.text.toString(),
+                    binding.date4.text.toString(),
+                    binding.date5.text.toString(),
+                    "Others",
+                )
+        }
+
+
 
 
         binding.llRcbook.setOnClickListener {
-            viewModel2.loader_vehicle_doc_update(
-                "Bearer "+userPref.getToken().toString(),
-                vehicle_id,
-                "Rc-book",binding.tvDate.text.toString(),
-                pdfFile
-            )
+//            viewModel2.loader_vehicle_doc_update(
+//                "Bearer "+userPref.getToken().toString(),
+//                vehicle?.id.toString(),
+//                "Rc-book",binding.tvDate.text.toString(),
+//                pdfFile
+//            )
         }
 
 
 
 
         binding.llPollutiondoc.setOnClickListener {
-            viewModel2.loader_vehicle_doc_update(
-                "Bearer "+userPref.getToken().toString(),
-                vehicle_id,
-                "Pollution-Document",binding.date2.text.toString(),
-                pdfFile2
-            )
+//            viewModel2.loader_vehicle_doc_update(
+//                "Bearer "+userPref.getToken().toString(),
+//                vehicle?.id.toString(),
+//                "Pollution-Document",binding.date2.text.toString(),
+//                pdfFile2
+//            )
 
         }
         binding.lyFitnessdoc.setOnClickListener {
-            viewModel2.loader_vehicle_doc_update(
-                "Bearer "+userPref.getToken().toString(),
-                vehicle_id,
-                "Fitness-Papers",binding.date3.text.toString(),
-                pdfFile3
-            )
+//            viewModel2.loader_vehicle_doc_update(
+//                "Bearer "+userPref.getToken().toString(),
+//                vehicle?.id.toString(),
+//                "Fitness-Papers",binding.date3.text.toString(),
+//                pdfFile3
+//            )
         }
         binding.lyInsurancedoc.setOnClickListener {
-            viewModel2.loader_vehicle_doc_update(
-                "Bearer "+userPref.getToken().toString(),
-                vehicle_id,
-                "Insurance-Document",binding.date1.text.toString(),
-                pdfFile1
-            )
+//            viewModel2.loader_vehicle_doc_update(
+//                "Bearer "+userPref.getToken().toString(),
+//                vehicle?.id.toString(),
+//                "Insurance-Document",binding.date1.text.toString(),
+//                pdfFile1
+//            )
         }
         binding.lyRtodoc.setOnClickListener {
-            viewModel2.loader_vehicle_doc_update(
-                "Bearer "+userPref.getToken().toString(),
-                vehicle_id,
-                "RTO Documents",binding.date4.text.toString(),
-                pdfFile4
-            )
+//            viewModel2.loader_vehicle_doc_update(
+//                "Bearer "+userPref.getToken().toString(),
+//                vehicle?.id.toString(),
+//                "RTO Documents",binding.date4.text.toString(),
+//                pdfFile4
+//            )
 
         }
 
 
-        viewModel1.Loaderimage.observe(this){
-            if (it!!.status == 1) {
-                Toast.makeText(this, it.message.toString(), Toast.LENGTH_SHORT).show()
-            }else{
-                Toast.makeText(this, it.message.toString(), Toast.LENGTH_SHORT).show()
-            }
-        }
-        viewModel2.Loaderimage.observe(this){
-            if (it!!.status == 1) {
-                Toast.makeText(this, it.message.toString(), Toast.LENGTH_SHORT).show()
-            }else{
-                Toast.makeText(this, it.message.toString(), Toast.LENGTH_SHORT).show()
-            }
-        }
+//        viewModel1.Loaderimage.observe(this){
+//            if (it!!.status == 1) {
+//                Toast.makeText(this, it.message.toString(), Toast.LENGTH_SHORT).show()
+//            }else{
+//                Toast.makeText(this, it.message.toString(), Toast.LENGTH_SHORT).show()
+//            }
+//        }
+//        viewModel2.Loaderimage.observe(this){
+//            if (it!!.status == 1) {
+//                Toast.makeText(this, it.message.toString(), Toast.LENGTH_SHORT).show()
+//            }else{
+//                Toast.makeText(this, it.message.toString(), Toast.LENGTH_SHORT).show()
+//            }
+//        }
 
-
-
-
-
-        viewModel1.AddloaderResponse.observe(this) {
-            if (it?.error == false) {
-                Toast.makeText(this, "Vehicle Updated Successfully...", Toast.LENGTH_LONG).show()
-                finish()
-            } else {
-                //toast(it.message)
-                snackbar(it?.message!!)
-            }
-        }
+//        viewModel1.AddloaderResponse.observe(this) {
+//            if (it?.error == false) {
+//                Toast.makeText(this, "Vehicle Updated Successfully...", Toast.LENGTH_LONG).show()
+//                finish()
+//            } else {
+//                //toast(it.message)
+//                snackbar(it?.message!!)
+//            }
+//        }
     }
     private fun selectImage() {
         // on below line we are creating a new bottom sheet dialog.
@@ -396,30 +391,32 @@ class EditTruckDocumentsActivity : BaseActivity() {
 
         val CameraButton = view.findViewById<TextView>(R.id.camera_open)
         CameraButton.setOnClickListener {
-            val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-
-            if (takePictureIntent.resolveActivity(this.getPackageManager()) != null) {
-                try {
-                    imageFile = createImageFile()!!
-                } catch (ex: IOException) {
-                }
-                if (imageFile != null) {
-                    photoURI = FileProvider.getUriForFile(this, "com.govahanpartner.com.fileprovider.unique", imageFile!!
-                    )
-                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
-                    if (flag == "firstone") {
-                        startActivityForResult(takePictureIntent, CAMERA_ID_FRONT)
-                    } else if (flag == "secondone") {
-                        startActivityForResult(takePictureIntent, CAMERA_ID_BACK)
-                    } else if (flag == "thirdone") {
-                        startActivityForResult(takePictureIntent, CAMERA_LICENSE_FRONT)
-                    } else if (flag == "fourthone") {
-                        startActivityForResult(takePictureIntent, CAMERA_LICENSE_BACK)
-                    }
-
-                    dialog.dismiss()
-                }
-            }
+//            val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+//
+//            if (takePictureIntent.resolveActivity(this.getPackageManager()) != null) {
+//                try {
+//                    imageFile = createImageFile()!!
+//                } catch (ex: IOException) {
+//                }
+//                if (imageFile != null) {
+//                    photoURI = FileProvider.getUriForFile(this, "com.govahanpartner.com.fileprovider.unique", imageFile!!
+//                    )
+//                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
+//                    if (flag == "firstone") {
+//                        startActivityForResult(takePictureIntent, CAMERA_ID_FRONT)
+//                    } else if (flag == "secondone") {
+//                        startActivityForResult(takePictureIntent, CAMERA_ID_BACK)
+//                    } else if (flag == "thirdone") {
+//                        startActivityForResult(takePictureIntent, CAMERA_LICENSE_FRONT)
+//                    } else if (flag == "fourthone") {
+//                        startActivityForResult(takePictureIntent, CAMERA_LICENSE_BACK)
+//                    }
+//
+//                    dialog.dismiss()
+//                }
+//            }
+            captureImage()
+            dialog.dismiss()
         }
 
         val GalleryButton = view.findViewById<TextView>(R.id.gallery_open)
@@ -452,6 +449,54 @@ class EditTruckDocumentsActivity : BaseActivity() {
         // a show method to display a dialog.
         dialog.show()
     }
+    private fun captureImage() {
+
+        if (ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.CAMERA
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE),
+                0
+            )
+        } else {
+            val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            if (takePictureIntent.resolveActivity(packageManager) != null) {
+                // Create the File where the photo should go
+                try {
+                    file = createImageFile()
+                    // Continue only if the File was successfully created
+                    if (file != null) {
+                        mUri = FileProvider.getUriForFile(
+                            this,
+                            "com.govahanpartner.com.fileprovider.unique",
+                            file!!
+                        )
+                        takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, mUri)
+
+                        if (flag == "firstone") {
+                            startActivityForResult(takePictureIntent, CAMERA_ID_FRONT)
+                        } else if (flag == "secondone") {
+                            startActivityForResult(takePictureIntent, CAMERA_ID_BACK)
+                        } else if (flag == "thirdone") {
+                            startActivityForResult(takePictureIntent, CAMERA_LICENSE_FRONT)
+                        } else if (flag == "fourthone") {
+                            startActivityForResult(takePictureIntent, CAMERA_LICENSE_BACK)
+                        }                    }
+                } catch (ex: Exception) {
+                    // Error occurred while creating the File
+//                    displayMessage(baseContext, ex.message.toString())
+                }
+
+            } else {
+//                displayMessage(baseContext, "Null")
+            }
+        }
+
+    }
+
     @Throws(IOException::class)
     private fun createImageFile(): File? {
         val timeStamp = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
@@ -479,11 +524,340 @@ class EditTruckDocumentsActivity : BaseActivity() {
         cursor.close()
         return res
     }
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//        super.onActivityResult(requestCode, resultCode, data)
-//        if (resultCode == Activity.RESULT_CANCELED) {
-//            return
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+////        super.onActivityResult(requestCode, resultCode, data)
+////        if (resultCode == Activity.RESULT_CANCELED) {
+////            return
+////        }
+//        if (requestCode == GALLERY_ID_FRONT) {
+//            if (resultCode == RESULT_OK) {
+//                if (data != null) {
+//                    image = data.data!!
+//                    val path = getPathFromURI(image)
+//
+//                    if (path != null) {
+//                        imageFile = File(path)
+//                        Glide.with(this).load(imageFile).into(binding.ivTruck1)
+//                        //   images.add(imageFile!!.absolutePath.toString())
+//                    }
+//                    //   images.add(path.toString())
+//                    val requestFile: RequestBody =
+//                        imageFile!!.asRequestBody("image/*".toMediaTypeOrNull())
+//
+//                    imagetruck1 =MultipartBody.Part.createFormData(
+//                        "image",
+//                        imageFile?.name,
+//                        requestFile
+//                    )
+//
+//                }
+////                viewModel1.loader_vehicle_img_update(
+////                    "Bearer "+userPref.getToken().toString(),
+////                    vehicle?.id.toString(),
+////                    imagetruck1,vehicle?.id.toString()
+////                )
+//
+//
+//            }
+//        } else if (requestCode == CAMERA_ID_FRONT) {
+//            if (resultCode == RESULT_OK) {
+//
+//                try {
+//
+//                    imageFile = File(imagePath)
+//                    Glide.with(this).load(imageFile).into(binding.ivTruck1)
+//                    //   images.add(imageFile!!.absolutePath.toString())
+//                    val requestGalleryImageFile: RequestBody =
+//                        imageFile!!.asRequestBody("image/*".toMediaTypeOrNull())
+//
+//                    imagetruck1 =
+//                        MultipartBody.Part.createFormData(
+//                            "image",
+//                            imageFile?.name,
+//                            requestGalleryImageFile
+//                        )
+////                    viewModel1.loader_vehicle_img_update(
+////                        "Bearer "+userPref.getToken().toString(),
+////                        vehicle?.id.toString(),
+////                        imagetruck1,vehicle?.id.toString()
+////                    )
+//
+//                } catch (e: java.lang.Exception) {
+//                }
+//
+//            }
+//        } else if (requestCode == GALLERY_ID_BACK) {
+//            if (resultCode == RESULT_OK) {
+//                if (data != null) {
+//                    image = data.data!!
+//                    val path = getPathFromURI(image)
+//
+//                    if (path != null) {
+//                        imageFile = File(path)
+//                        Glide.with(this).load(imageFile).into(binding.ivTruck2)
+//                        //  images.add(imageFile!!.absolutePath.toString())
+//
+//                    }
+//                    var requestGalleryImageFile: RequestBody =
+//                        imageFile!!.asRequestBody("image/*".toMediaTypeOrNull())
+//
+//                    imagetruck2 =
+//                        MultipartBody.Part.createFormData(
+//                            "image",
+//                            imageFile?.name,
+//                            requestGalleryImageFile
+//                        )
+////                    viewModel1.loader_vehicle_img_update(
+////                        "Bearer "+userPref.getToken().toString(),
+////                        vehicle?.id.toString(),
+////                        imagetruck2,vehicle?.id.toString()
+////                    )
+//
+////                    USER_IMAGE_UPLOADED = true
+////                    if(USER_IMAGE_UPLOADED) {
+////                        uploadUserImageApi()
+////                    }
+//                }
+//            }
+//        } else if (requestCode == CAMERA_ID_BACK) {
+//            if (resultCode == RESULT_OK) {
+//
+//                try {
+//
+//                    imageFile = File(imagePath)
+//                    Glide.with(this).load(imageFile).into(binding.ivTruck2)
+//                    //  images.add(imageFile!!.absolutePath.toString())
+////                        ProfileImage.setImageURI(Uri.fromFile(imageFile))
+//                    var requestGalleryImageFile: RequestBody =
+//                        imageFile!!.asRequestBody("image/*".toMediaTypeOrNull())
+//
+//                    imagetruck2 =
+//                        MultipartBody.Part.createFormData(
+//                            "image",
+//                            imageFile!!.name,
+//                            requestGalleryImageFile
+//                        )
+////                    viewModel1.loader_vehicle_img_update(
+////                        "Bearer "+userPref.getToken().toString(),
+////                        vehicle?.id.toString(),
+////                        imagetruck2,vehicle?.id.toString()
+////                    )
+////                    USER_IMAGE_UPLOADED = true
+////                    if(USER_IMAGE_UPLOADED) {
+////                        uploadUserImageApi()
+////                    }
+//                } catch (e: java.lang.Exception) {
+//                }
+//            }
+//        } else if (requestCode == GALLERY_LICENSE_FRONT) {
+//            if (resultCode == RESULT_OK) {
+//                if (data != null) {
+//                    image = data.data!!
+//                    val path = getPathFromURI(image)
+//
+//                    if (path != null) {
+//                        imageFile = File(path)
+//                        Glide.with(this).load(imageFile).into(binding.ivTruck3)
+//                    }
+//                    var requestGalleryImageFile: RequestBody =
+//                        imageFile!!.asRequestBody("image/*".toMediaTypeOrNull())
+//
+//                    imagetruck3 =
+//                        MultipartBody.Part.createFormData(
+//                            "image",
+//                            imageFile!!.name,
+//                            requestGalleryImageFile
+//                        )
+//
+//
+////                    viewModel1.loader_vehicle_img_update(
+////                        "Bearer "+userPref.getToken().toString(),
+////                        vehicle?.id.toString(),
+////                        imagetruck3,vehicle?.id.toString()
+////                    )
+////                    USER_IMAGE_UPLOADED = true
+////                    if(USER_IMAGE_UPLOADED) {
+////                        uploadUserImageApi()
+////                    }
+//                }
+//            }
+//        } else if (requestCode == CAMERA_LICENSE_FRONT) {
+//            if (resultCode == RESULT_OK) {
+//                try {
+//                    imageFile = File(imagePath)
+//                    Glide.with(this).load(imageFile).into(binding.ivTruck3)
+////                        ProfileImage.setImageURI(Uri.fromFile(imageFile))
+//                    var requestGalleryImageFile: RequestBody =
+//                        imageFile!!.asRequestBody("image/*".toMediaTypeOrNull())
+//
+//                    imagetruck3 =
+//                        MultipartBody.Part.createFormData(
+//                            "image",
+//                            imageFile!!.name,
+//                            requestGalleryImageFile
+//                        )
+////                    viewModel1.loader_vehicle_img_update(
+////                        "Bearer "+userPref.getToken().toString(),
+////                        vehicle?.id.toString(),
+////                        imagetruck3,vehicle?.id.toString()
+////                    )
+//
+////                    USER_IMAGE_UPLOADED = true
+////                    if(USER_IMAGE_UPLOADED) {
+////                        uploadUserImageApi()
+////                    }
+//                } catch (e: java.lang.Exception) {
+//                }
+//            }
+//        } else if (requestCode == GALLERY_LICENSE_BACK) {
+//            if (resultCode == RESULT_OK) {
+//                if (data != null) {
+//                    image = data.data!!
+//                    val path = getPathFromURI(image)
+//
+//                    if (path != null) {
+//                        imageFile = File(path)
+//                        Glide.with(this).load(imageFile).into(binding.ivTruck4)
+//
+//                    }
+//                    var requestGalleryImageFile: RequestBody =
+//                        imageFile!!.asRequestBody("image/*".toMediaTypeOrNull())
+//
+//                    imagetruck4 =
+//                        MultipartBody.Part.createFormData(
+//                            "image",
+//                            imageFile?.name,
+//                            requestGalleryImageFile
+//                        )
+////                    viewModel1.loader_vehicle_img_update(
+////                        "Bearer "+userPref.getToken().toString(),
+////                        vehicle?.id.toString(),
+////                        imagetruck4,vehicle?.id.toString()
+////                    )
+////                    USER_IMAGE_UPLOADED = true
+////                    if(USER_IMAGE_UPLOADED) {
+////                        uploadUserImageApi()
+////                    }
+//                }
+//            }
+//        } else if (requestCode == CAMERA_LICENSE_BACK) {
+//            if (resultCode == RESULT_OK) {
+//
+//                try {
+//                    imageFile = File(imagePath)
+//                    Glide.with(this).load(imageFile).into(binding.ivTruck4)
+////                        ProfileImage.setImageURI(Uri.fromFile(imageFile))
+//                    var requestGalleryImageFile: RequestBody =
+//                        imageFile!!.asRequestBody("image/*".toMediaTypeOrNull())
+//
+//                    imagetruck4 =
+//                        MultipartBody.Part.createFormData(
+//                            "image",
+//                            imageFile!!.name,
+//                            requestGalleryImageFile
+//                        )
+////                    viewModel1.loader_vehicle_img_update(
+////                        "Bearer "+userPref.getToken().toString(),
+////                        vehicle?.id.toString(),
+////                        imagetruck4,vehicle?.id.toString()
+////                    )
+////                    USER_IMAGE_UPLOADED = true
+////                    if(USER_IMAGE_UPLOADED) {
+////                        uploadUserImageApi()
+////                    }
+//                } catch (e: java.lang.Exception) {
+//                }
+//            }
+//        }else  if (requestCode == pickPdf) {
+//
+//            val fileUris = data?.data
+//            var path= writeFileContent(fileUris!!)
+//            var fileSelected= File(path)
+//
+//            binding.tvRcbook.text = fileSelected.absolutePath
+//
+//            val requestFile: RequestBody = RequestBody.create(
+//                "multipart/form-data".toMediaTypeOrNull(),
+//                fileSelected)
+//            pdfFile = MultipartBody.Part.createFormData("doc_1", fileSelected.name, requestFile)
+//            //  viewModel.onUpdateCv(pdfFile)
+//
+//
+//        }else  if (requestCode == pickPdf1) {
+//
+//            val fileUris = data?.data
+//            var path= writeFileContent(fileUris!!)
+//            var fileSelected= File(path)
+//            binding.tvInsurancedoc.text = fileSelected.absolutePath
+//            val requestFile: RequestBody = RequestBody.create(
+//                "multipart/form-data".toMediaTypeOrNull(),
+//                fileSelected)
+//            pdfFile1 = MultipartBody.Part.createFormData("doc_2", fileSelected.name, requestFile)
+//            //  viewModel.onUpdateCv(pdfFile)
+//
+//
+//        }else  if (requestCode == pickPdf2) {
+//
+//            val fileUris = data?.data
+//            var path= writeFileContent(fileUris!!)
+//            var fileSelected= File(path)
+//
+//            binding.tvPollutiondoc.text = fileSelected.absolutePath
+//
+//            val requestFile: RequestBody = RequestBody.create(
+//                "multipart/form-data".toMediaTypeOrNull(),
+//                fileSelected)
+//            pdfFile2 = MultipartBody.Part.createFormData("doc_3", fileSelected.name, requestFile)
+//            //  viewModel.onUpdateCv(pdfFile)
+//
+//        }else  if (requestCode == pickPdf3) {
+//
+//            val fileUris = data?.data
+//            var path= writeFileContent(fileUris!!)
+//            var fileSelected= File(path)
+//
+//            binding.tvFitnessdoc.text = fileSelected.absolutePath
+//
+//            val requestFile: RequestBody = RequestBody.create(
+//                "multipart/form-data".toMediaTypeOrNull(),
+//                fileSelected)
+//            pdfFile3 = MultipartBody.Part.createFormData("doc_4", fileSelected.name, requestFile)
+//            //  viewModel.onUpdateCv(pdfFile)
+//
+//
+//        }else  if (requestCode == pickPdf4) {
+//
+//            val fileUris = data?.data
+//            var path= writeFileContent(fileUris!!)
+//            var fileSelected= File(path)
+//
+//            binding.tvRtodoc.text = fileSelected.absolutePath
+//
+//            val requestFile: RequestBody = RequestBody.create(
+//                "multipart/form-data".toMediaTypeOrNull(),
+//                fileSelected)
+//            pdfFile4 = MultipartBody.Part.createFormData("doc_5", fileSelected.name, requestFile)
+//            //  viewModel.onUpdateCv(pdfFile)
+//        }else  if (requestCode == pickPdf5) {
+//
+//            val fileUris = data?.data
+//            var path= writeFileContent(fileUris!!)
+//            var fileSelected= File(path)
+//
+//            binding.tvOther.text = fileSelected.absolutePath
+//
+//            val requestFile: RequestBody = RequestBody.create(
+//                "multipart/form-data".toMediaTypeOrNull(),
+//                fileSelected)
+//            pdfFile4 = MultipartBody.Part.createFormData("doc_6", fileSelected.name, requestFile)
+//            //  viewModel.onUpdateCv(pdfFile)
 //        }
+//
+//
+//    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == GALLERY_ID_FRONT) {
             if (resultCode == RESULT_OK) {
                 if (data != null) {
@@ -498,49 +872,38 @@ class EditTruckDocumentsActivity : BaseActivity() {
                     //   images.add(path.toString())
                     val requestFile: RequestBody =
                         imageFile!!.asRequestBody("image/*".toMediaTypeOrNull())
-
-                    imagetruck1 =MultipartBody.Part.createFormData(
-                        "image",
+                    imagetruck1 = MultipartBody.Part.createFormData(
+                        "image_1",
                         imageFile?.name,
                         requestFile
                     )
-
                 }
-                viewModel1.loader_vehicle_img_update(
-                    "Bearer "+userPref.getToken().toString(),
-                    vehicle_id,
-                    imagetruck1,id1
-                )
+//                viewModel.LoaderimageAPI(
+//                    "Bearer " + userPref.getToken().toString(),
+//                    vehicleid,
+//                    imagetruck1
+//                )
 
 
             }
         } else if (requestCode == CAMERA_ID_FRONT) {
-            if (resultCode == RESULT_OK) {
+            val myBitmap = BitmapFactory.decodeFile(file!!.absolutePath)
+            binding.ivTruck1.setImageBitmap(myBitmap)
+//                 mPhotoFile = File(getPath(photoURICamera!!))
+            val requestFile: RequestBody =
+                file!!.asRequestBody("image/*".toMediaTypeOrNull())
 
-                try {
-
-                    imageFile = File(imagePath)
-                    Glide.with(this).load(imageFile).into(binding.ivTruck1)
-                    //   images.add(imageFile!!.absolutePath.toString())
-                    val requestGalleryImageFile: RequestBody =
-                        imageFile!!.asRequestBody("image/*".toMediaTypeOrNull())
-
-                    imagetruck1 =
-                        MultipartBody.Part.createFormData(
-                            "image",
-                            imageFile?.name,
-                            requestGalleryImageFile
-                        )
-                    viewModel1.loader_vehicle_img_update(
-                        "Bearer "+userPref.getToken().toString(),
-                        vehicle_id,
-                        imagetruck1,id1
-                    )
-
-                } catch (e: java.lang.Exception) {
-                }
-
-            }
+            imagetruck1 =
+                MultipartBody.Part.createFormData(
+                    "image_1",
+                    file!!.name,
+                    requestFile
+                )
+//            viewModel.LoaderimageAPI(
+//                "Bearer " + userPref.getToken().toString(),
+//                vehicleid,
+//                imagetruck1
+//            )
         } else if (requestCode == GALLERY_ID_BACK) {
             if (resultCode == RESULT_OK) {
                 if (data != null) {
@@ -558,15 +921,15 @@ class EditTruckDocumentsActivity : BaseActivity() {
 
                     imagetruck2 =
                         MultipartBody.Part.createFormData(
-                            "image",
+                            "image_2",
                             imageFile?.name,
                             requestGalleryImageFile
                         )
-                    viewModel1.loader_vehicle_img_update(
-                        "Bearer "+userPref.getToken().toString(),
-                        vehicle_id,
-                        imagetruck2,id2
-                    )
+//                    viewModel.LoaderimageAPI(
+//                        "Bearer " + userPref.getToken().toString(),
+//                        vehicleid,
+//                        imagetruck2
+//                    )
 
 //                    USER_IMAGE_UPLOADED = true
 //                    if(USER_IMAGE_UPLOADED) {
@@ -575,35 +938,24 @@ class EditTruckDocumentsActivity : BaseActivity() {
                 }
             }
         } else if (requestCode == CAMERA_ID_BACK) {
-            if (resultCode == RESULT_OK) {
+            val myBitmap = BitmapFactory.decodeFile(file!!.absolutePath)
+            binding.ivTruck2.setImageBitmap(myBitmap)
+//                 mPhotoFile = File(getPath(photoURICamera!!))
+            val requestFile: RequestBody =
+                file!!.asRequestBody("image/*".toMediaTypeOrNull())
 
-                try {
+            imagetruck2 =
+                MultipartBody.Part.createFormData(
+                    "image_2",
+                    file!!.name,
+                    requestFile
+                )
+//            viewModel.LoaderimageAPI(
+//                "Bearer " + userPref.getToken().toString(),
+//                vehicleid,
+//                imagetruck2
+//            )
 
-                    imageFile = File(imagePath)
-                    Glide.with(this).load(imageFile).into(binding.ivTruck2)
-                    //  images.add(imageFile!!.absolutePath.toString())
-//                        ProfileImage.setImageURI(Uri.fromFile(imageFile))
-                    var requestGalleryImageFile: RequestBody =
-                        imageFile!!.asRequestBody("image/*".toMediaTypeOrNull())
-
-                    imagetruck2 =
-                        MultipartBody.Part.createFormData(
-                            "image",
-                            imageFile!!.name,
-                            requestGalleryImageFile
-                        )
-                    viewModel1.loader_vehicle_img_update(
-                        "Bearer "+userPref.getToken().toString(),
-                        vehicle_id,
-                        imagetruck2,id2
-                    )
-//                    USER_IMAGE_UPLOADED = true
-//                    if(USER_IMAGE_UPLOADED) {
-//                        uploadUserImageApi()
-//                    }
-                } catch (e: java.lang.Exception) {
-                }
-            }
         } else if (requestCode == GALLERY_LICENSE_FRONT) {
             if (resultCode == RESULT_OK) {
                 if (data != null) {
@@ -619,17 +971,18 @@ class EditTruckDocumentsActivity : BaseActivity() {
 
                     imagetruck3 =
                         MultipartBody.Part.createFormData(
-                            "image",
+                            "image_3",
                             imageFile!!.name,
                             requestGalleryImageFile
                         )
-
-
-                    viewModel1.loader_vehicle_img_update(
-                        "Bearer "+userPref.getToken().toString(),
-                        vehicle_id,
-                        imagetruck3,id3
-                    )
+//                    if (vehicleid.isNullOrEmpty()) {
+//                        toast("Please ")
+//                    }
+//                    viewModel.LoaderimageAPI(
+//                        "Bearer " + userPref.getToken().toString(),
+//                        vehicleid,
+//                        imagetruck3
+//                    )
 //                    USER_IMAGE_UPLOADED = true
 //                    if(USER_IMAGE_UPLOADED) {
 //                        uploadUserImageApi()
@@ -637,33 +990,25 @@ class EditTruckDocumentsActivity : BaseActivity() {
                 }
             }
         } else if (requestCode == CAMERA_LICENSE_FRONT) {
-            if (resultCode == RESULT_OK) {
-                try {
-                    imageFile = File(imagePath)
-                    Glide.with(this).load(imageFile).into(binding.ivTruck3)
-//                        ProfileImage.setImageURI(Uri.fromFile(imageFile))
-                    var requestGalleryImageFile: RequestBody =
-                        imageFile!!.asRequestBody("image/*".toMediaTypeOrNull())
+            val myBitmap = BitmapFactory.decodeFile(file!!.absolutePath)
+            binding.ivTruck3.setImageBitmap(myBitmap)
+//                 mPhotoFile = File(getPath(photoURICamera!!))
+            val requestFile: RequestBody =
+                file!!.asRequestBody("image/*".toMediaTypeOrNull())
 
-                    imagetruck3 =
-                        MultipartBody.Part.createFormData(
-                            "image",
-                            imageFile!!.name,
-                            requestGalleryImageFile
-                        )
-                    viewModel1.loader_vehicle_img_update(
-                        "Bearer "+userPref.getToken().toString(),
-                        vehicle_id,
-                        imagetruck3,id3
-                    )
+            imagetruck3 =
+                MultipartBody.Part.createFormData(
+                    "image_3",
+                    file!!.name,
+                    requestFile
+                )
+//            viewModel.LoaderimageAPI(
+//                "Bearer " + userPref.getToken().toString(),
+//                vehicleid,
+//                imagetruck3
+//            )
 
-//                    USER_IMAGE_UPLOADED = true
-//                    if(USER_IMAGE_UPLOADED) {
-//                        uploadUserImageApi()
-//                    }
-                } catch (e: java.lang.Exception) {
-                }
-            }
+
         } else if (requestCode == GALLERY_LICENSE_BACK) {
             if (resultCode == RESULT_OK) {
                 if (data != null) {
@@ -680,15 +1025,15 @@ class EditTruckDocumentsActivity : BaseActivity() {
 
                     imagetruck4 =
                         MultipartBody.Part.createFormData(
-                            "image",
+                            "image_4",
                             imageFile?.name,
                             requestGalleryImageFile
                         )
-                    viewModel1.loader_vehicle_img_update(
-                        "Bearer "+userPref.getToken().toString(),
-                        vehicle_id,
-                        imagetruck4,id4
-                    )
+//                    viewModel.LoaderimageAPI(
+//                        "Bearer " + userPref.getToken().toString(),
+//                        vehicleid,
+//                        imagetruck4
+//                    )
 //                    USER_IMAGE_UPLOADED = true
 //                    if(USER_IMAGE_UPLOADED) {
 //                        uploadUserImageApi()
@@ -696,106 +1041,312 @@ class EditTruckDocumentsActivity : BaseActivity() {
                 }
             }
         } else if (requestCode == CAMERA_LICENSE_BACK) {
+            val myBitmap = BitmapFactory.decodeFile(file!!.absolutePath)
+            binding.ivTruck4.setImageBitmap(myBitmap)
+//                 mPhotoFile = File(getPath(photoURICamera!!))
+            val requestFile: RequestBody =
+                file!!.asRequestBody("image/*".toMediaTypeOrNull())
+
+            imagetruck4 =
+                MultipartBody.Part.createFormData(
+                    "image_4",
+                    file!!.name,
+                    requestFile
+                )
+//            viewModel.LoaderimageAPI(
+//                "Bearer " + userPref.getToken().toString(),
+//                vehicleid,
+//                imagetruck4
+//            )
+
+        } else if (requestCode == pickPdf) {
             if (resultCode == RESULT_OK) {
 
-                try {
-                    imageFile = File(imagePath)
-                    Glide.with(this).load(imageFile).into(binding.ivTruck4)
-//                        ProfileImage.setImageURI(Uri.fromFile(imageFile))
-                    var requestGalleryImageFile: RequestBody =
-                        imageFile!!.asRequestBody("image/*".toMediaTypeOrNull())
+                if (data != null) {
+                    image = data.data!!
+                    val path = getPathFromURI(image)
+                    var path1 = writeFileContent(image!!)
+                    var fileSelected = File(path1)
+                    binding.tvRcbook.text = fileSelected.name
+                    if (path != null) {
+                        fileSelected = File(path)
+                    }
+                    if (fileSelected!!.endsWith(".jpg") || fileSelected!!.endsWith(".jpeg")|| fileSelected!!.endsWith(".png") ||
+                        fileSelected!!.endsWith(".webp") || fileSelected!!.endsWith(".svg")) {
 
-                    imagetruck4 =
-                        MultipartBody.Part.createFormData(
-                            "image",
-                            imageFile!!.name,
+                        if (path != null) {
+                            fileSelected = File(path)
+//                            Glide.with(this).load(imageFile).into(binding.ivTruck4)
+//                            binding.tvRcbook.text = imageFile!!.name
+                        }
+                        var requestGalleryImageFile: RequestBody =
+                            fileSelected!!.asRequestBody("image/*".toMediaTypeOrNull())
+
+                        pdfFile =
+                            MultipartBody.Part.createFormData(
+                                "doc_1",
+                                fileSelected?.name,
+                                requestGalleryImageFile
+                            )
+
+//                        binding.tvRcbook.text = imageFile?.name
+
+                    } else {
+                        /*       image = data.data!!
+                               val path = getPathFromURI(image)*/
+                        var requestGalleryImageFile: RequestBody =
+                            fileSelected!!.asRequestBody("multipart/form-data".toMediaTypeOrNull())
+
+                        pdfFile = MultipartBody.Part.createFormData(
+                            "doc_1",
+                            fileSelected?.name,
                             requestGalleryImageFile
                         )
-                    viewModel1.loader_vehicle_img_update(
-                        "Bearer "+userPref.getToken().toString(),
-                        vehicle_id,
-                        imagetruck4,id4
-                    )
-//                    USER_IMAGE_UPLOADED = true
-//                    if(USER_IMAGE_UPLOADED) {
-//                        uploadUserImageApi()
-//                    }
-                } catch (e: java.lang.Exception) {
+                    }
                 }
-            }
-        }else  if (requestCode == pickPdf) {
 
-            val fileUris = data?.data
-            var path= writeFileContent(fileUris!!)
-            var fileSelected= File(path)
 
-            binding.tvRcbook.text = fileSelected.absolutePath
-
-            val requestFile: RequestBody = RequestBody.create(
-                "multipart/form-data".toMediaTypeOrNull(),
-                fileSelected)
+                /*        val fileUris = data?.data
+            //            Glide.with(this).load(R.drawable.ic_baseline_picture_as_pdf_24).into(binding.ivPict)
+                        var path = writeFileContent(fileUris!!)
+                        var fileSelected = File(path)
+                        binding.tvRcbook.text = fileSelected.name
+                        val requestFile: RequestBody = fileSelected
+                            .asRequestBody(*//* "multipart/form-data".toMediaTypeOrNull()*//*"multipart/form-data".toMediaTypeOrNull())
             pdfFile = MultipartBody.Part.createFormData("doc", fileSelected.name, requestFile)
-            //  viewModel.onUpdateCv(pdfFile)
+*/
 
-
-        }else  if (requestCode == pickPdf1) {
-
-            val fileUris = data?.data
-            var path= writeFileContent(fileUris!!)
-            var fileSelected= File(path)
-            binding.tvInsurancedoc.text = fileSelected.absolutePath
-            val requestFile: RequestBody = RequestBody.create(
-                "multipart/form-data".toMediaTypeOrNull(),
-                fileSelected)
-            pdfFile1 = MultipartBody.Part.createFormData("doc", fileSelected.name, requestFile)
-            //  viewModel.onUpdateCv(pdfFile)
-
-
-        }else  if (requestCode == pickPdf3) {
-
-            val fileUris = data?.data
-            var path= writeFileContent(fileUris!!)
-            var fileSelected= File(path)
-
-            binding.tvFitnessdoc.text = fileSelected.absolutePath
-
-            val requestFile: RequestBody = RequestBody.create(
-                "multipart/form-data".toMediaTypeOrNull(),
-                fileSelected)
-            pdfFile3 = MultipartBody.Part.createFormData("doc", fileSelected.name, requestFile)
-            //  viewModel.onUpdateCv(pdfFile)
-
-
-        }else  if (requestCode == pickPdf4) {
-
-            val fileUris = data?.data
-            var path= writeFileContent(fileUris!!)
-            var fileSelected= File(path)
-
-            binding.tvRtodoc.text = fileSelected.absolutePath
-
-            val requestFile: RequestBody = RequestBody.create(
-                "multipart/form-data".toMediaTypeOrNull(),
-                fileSelected)
-            pdfFile4 = MultipartBody.Part.createFormData("doc", fileSelected.name, requestFile)
-            //  viewModel.onUpdateCv(pdfFile)
+            }
 
 
         }
-        else  if (requestCode == pickPdf2) {
+        else if (requestCode == pickPdf1) {
+            if (resultCode == RESULT_OK) {
 
-            val fileUris = data?.data
-            var path= writeFileContent(fileUris!!)
-            var fileSelected= File(path)
+                if (data != null) {
+                    image = data.data!!
+                    val path = getPathFromURI(image)
+                    var path1 = writeFileContent(image!!)
+                    var fileSelected = File(path1)
+                    binding.tvInsurancedoc.text = fileSelected.name
+                    if (path != null) {
+                        fileSelected = File(path)
+                    }
+                    if (fileSelected!!.endsWith(".jpg") || fileSelected!!.endsWith(".jpeg") || fileSelected!!.endsWith(
+                            ".png"
+                        ) ||
+                        fileSelected!!.endsWith(".webp") || fileSelected!!.endsWith(".svg")
+                    ) {
 
-            binding.tvPollutiondoc.text = fileSelected.absolutePath
+//                        binding.tvInsurancedoc.text = imageFile?.absolutePath
+                        var requestGalleryImageFile: RequestBody =
+                            fileSelected!!.asRequestBody("multipart/form-data".toMediaTypeOrNull())
 
-            val requestFile: RequestBody = RequestBody.create(
-                "multipart/form-data".toMediaTypeOrNull(),
-                fileSelected)
-            pdfFile2 = MultipartBody.Part.createFormData("doc", fileSelected.name, requestFile)
+                        pdfFile1 = MultipartBody.Part.createFormData(
+                            "doc_2",
+                            fileSelected?.name,
+                            requestGalleryImageFile
+                        )
+                    } else {
+                        /*       image = data.data!!
+                               val path = getPathFromURI(image)*/
+
+
+                        var requestGalleryImageFile: RequestBody =
+                            fileSelected!!.asRequestBody("multipart/form-data".toMediaTypeOrNull())
+
+                        pdfFile1 = MultipartBody.Part.createFormData(
+                            "doc_2",
+                            fileSelected?.name,
+                            requestGalleryImageFile
+                        )
+                    }
+                }
+
+
+            }
+        }else if (requestCode == pickPdf3) {
+            if (resultCode == RESULT_OK) {
+                if (data != null) {
+                    image = data.data!!
+                    val path = getPathFromURI(image)
+                    var path1 = writeFileContent(image!!)
+                    var fileSelected = File(path1)
+                    binding.tvFitnessdoc.text = fileSelected.name
+                    if (path != null) {
+                        fileSelected = File(path)
+                    }
+                    if (fileSelected!!.endsWith(".jpg") || fileSelected!!.endsWith(".jpeg") || fileSelected!!.endsWith(
+                            ".png"
+                        ) ||
+                        fileSelected!!.endsWith(".webp") || fileSelected!!.endsWith(".svg")) {
+
+//                        binding.tvFitnessdoc.text = imageFile?.absolutePath
+                        var requestGalleryImageFile: RequestBody =
+                            fileSelected!!.asRequestBody("multipart/form-data".toMediaTypeOrNull())
+
+                        pdfFile3 = MultipartBody.Part.createFormData(
+                            "doc_4",
+                            fileSelected?.name,
+                            requestGalleryImageFile
+                        )
+                    } else {
+                        /*       image = data.data!!
+                               val path = getPathFromURI(image)*/
+
+
+                        var requestGalleryImageFile: RequestBody =
+                            fileSelected!!.asRequestBody("multipart/form-data".toMediaTypeOrNull())
+
+                        pdfFile3 =
+
+                            MultipartBody.Part.createFormData(
+                                "doc_4",
+                                fileSelected?.name,
+                                requestGalleryImageFile
+                            )
+                    }
+                }
+            }
+//            val fileUris = data?.data
+//            var path = writeFileContent(fileUris!!)
+//            var fileSelected = File(path)
+//
+//            binding.tvFitnessdoc.text = fileSelected.absolutePath
+//
+//            val requestFile: RequestBody = fileSelected
+//                .asRequestBody("multipart/form-data".toMediaTypeOrNull())
+//            pdfFile3 = MultipartBody.Part.createFormData("doc", fileSelected.name, requestFile)
+//            //  viewModel.onUpdateCv(pdfFile)
+
+        } else if (requestCode == pickPdf4) {
+            if (resultCode == RESULT_OK) {
+                if (data != null) {
+                    image = data.data!!
+                    val path = getPathFromURI(image)
+                    var path1 = writeFileContent(image!!)
+                    var fileSelected = File(path1)
+                    binding.tvRtodoc.text = fileSelected.name
+                    if (path != null) {
+                        fileSelected = File(path)
+                    }
+                    if (fileSelected!!.endsWith(".jpg") || fileSelected!!.endsWith(".jpeg") || fileSelected!!.endsWith(
+                            ".png"
+                        ) ||
+                        fileSelected!!.endsWith(".webp") || fileSelected!!.endsWith(".svg")) {
+
+//                        binding.tvRtodoc.text = imageFile?.absolutePath
+                        var requestGalleryImageFile: RequestBody =
+                            fileSelected!!.asRequestBody("multipart/form-data".toMediaTypeOrNull())
+
+                        pdfFile4 = MultipartBody.Part.createFormData(
+                            "doc_5",
+                            fileSelected?.name,
+                            requestGalleryImageFile
+                        )
+                    } else {
+                        /*       image = data.data!!
+                               val path = getPathFromURI(image)*/
+
+
+                        var requestGalleryImageFile: RequestBody =
+                            fileSelected!!.asRequestBody("multipart/form-data".toMediaTypeOrNull())
+
+                        pdfFile4 =
+                            MultipartBody.Part.createFormData(
+                                "doc_5",
+                                fileSelected?.name,
+                                requestGalleryImageFile
+                            )
+                    }
+                }
+            }
+//            val fileUris = data?.data
+//            var path = writeFileContent(fileUris!!)
+//            var fileSelected = File(path)
+//
+//            binding.tvRtodoc.text = fileSelected.absolutePath
+//
+//            val requestFile: RequestBody = fileSelected
+//                .asRequestBody("multipart/form-data".toMediaTypeOrNull())
+//            pdfFile4 = MultipartBody.Part.createFormData("doc", fileSelected.name, requestFile)
             //  viewModel.onUpdateCv(pdfFile)
 
+        } else if (requestCode == pickPdf2) {
+            if (resultCode == RESULT_OK) {
+                if (data != null) {
+                    image = data.data!!
+                    var path1 = writeFileContent(image!!)
+                    var fileSelected = File(path1)
+                    binding.tvPollutiondoc.text = fileSelected.name
+
+                    if (fileSelected!!.endsWith(".jpg") || fileSelected!!.endsWith(".jpeg") || fileSelected!!.endsWith(
+                            ".png"
+                        ) ||
+                        fileSelected!!.endsWith(".webp") || fileSelected!!.endsWith(".svg")) {
+//                        binding.tvPollutiondoc.text = imageFile?.absolutePath
+                        var requestGalleryImageFile: RequestBody =
+                            fileSelected!!.asRequestBody("multipart/form-data".toMediaTypeOrNull())
+
+                        pdfFile2 = MultipartBody.Part.createFormData(
+                            "doc_3",
+                            fileSelected?.name,
+                            requestGalleryImageFile
+                        )
+                    } else {
+                        /*       image = data.data!!
+                               val path = getPathFromURI(image)*/
+
+
+                        var requestGalleryImageFile: RequestBody =
+                            fileSelected!!.asRequestBody("multipart/form-data".toMediaTypeOrNull())
+
+                        pdfFile2 =
+                            MultipartBody.Part.createFormData(
+                                "doc_3",
+                                fileSelected?.name,
+                                requestGalleryImageFile
+                            )
+                    }
+                }
+            }
+        }else if (requestCode == pickPdf5) {
+            if (resultCode == RESULT_OK) {
+                if (data != null) {
+                    image = data.data!!
+                    var path1 = writeFileContent(image!!)
+                    var fileSelected = File(path1)
+                    binding.tvOtherdoc.text = fileSelected.name
+
+                    if (fileSelected!!.endsWith(".jpg") || fileSelected!!.endsWith(".jpeg") || fileSelected!!.endsWith(
+                            ".png"
+                        ) ||
+                        fileSelected!!.endsWith(".webp") || fileSelected!!.endsWith(".svg")) {
+//                        binding.tvPollutiondoc.text = imageFile?.absolutePath
+                        var requestGalleryImageFile: RequestBody =
+                            fileSelected!!.asRequestBody("multipart/form-data".toMediaTypeOrNull())
+
+                        pdfFile5 = MultipartBody.Part.createFormData(
+                            "doc_6",
+                            fileSelected?.name,
+                            requestGalleryImageFile
+                        )
+                    } else {
+                        /*       image = data.data!!
+                               val path = getPathFromURI(image)*/
+
+
+                        var requestGalleryImageFile: RequestBody =
+                            fileSelected!!.asRequestBody("multipart/form-data".toMediaTypeOrNull())
+                        pdfFile5 =
+                            MultipartBody.Part.createFormData(
+                                "doc_6",
+                                fileSelected?.name,
+                                requestGalleryImageFile
+                            )
+                    }
+                }
+            }
         }
 
     }
@@ -848,16 +1399,23 @@ class EditTruckDocumentsActivity : BaseActivity() {
         val pdfIntent = Intent(Intent.ACTION_GET_CONTENT)
         pdfIntent.type = "*/*"
         if (flagforpdf == "firstone"){
+            pdfIntent.addCategory(Intent.CATEGORY_OPENABLE)
             startActivityForResult(pdfIntent, pickPdf)
         }else if (flagforpdf == "secondone"){
+            pdfIntent.addCategory(Intent.CATEGORY_OPENABLE)
             startActivityForResult(pdfIntent, pickPdf1)
         }else if (flagforpdf == "thirdone"){
+            pdfIntent.addCategory(Intent.CATEGORY_OPENABLE)
             startActivityForResult(pdfIntent, pickPdf2)
         }else if (flagforpdf == "fourthone"){
+            pdfIntent.addCategory(Intent.CATEGORY_OPENABLE)
             startActivityForResult(pdfIntent, pickPdf3)
         }else if (flagforpdf == "fifthone"){
+            pdfIntent.addCategory(Intent.CATEGORY_OPENABLE)
             startActivityForResult(pdfIntent, pickPdf4)
-
+        } else if (flagforpdf == "sixthone") {
+            pdfIntent.addCategory(Intent.CATEGORY_OPENABLE)
+            startActivityForResult(pdfIntent, pickPdf5)
         }
     }
     fun Selectdate(){

@@ -2,6 +2,7 @@ package com.govahanpartner.com.customclick
 
 import com.govahanpartner.com.model.InvoiceListResponseData
 import com.govahanpartner.com.model.TripListResponseData
+import com.govahanpartner.com.model.Vehicles
 
 interface wallet_customclick {
 
@@ -35,6 +36,6 @@ interface loadervehiclelist {
 }
 interface loadervehicleedit {
 
-    fun loadervehicleedit(id: String?)
+    fun loadervehicleedit(vehicle: Vehicles?)
 
 }

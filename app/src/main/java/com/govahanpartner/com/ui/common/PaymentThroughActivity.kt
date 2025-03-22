@@ -213,7 +213,7 @@ class PaymentThroughActivity : BaseActivity(), PaymentResultWithDataListener {
         amount = (amountofuser.toFloat()).toInt()
         finalPamountInt = amount
         val co = Checkout()
-        co.setKeyID("rzp_test_fWTippdyDGtkYn")
+        co.setKeyID("rzp_test_QNyuILzZPkmQ63")
         try {
             var options = JSONObject()
             options.put("name", userPref.user.name)

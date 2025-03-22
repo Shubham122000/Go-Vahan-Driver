@@ -82,6 +82,65 @@ class MainRepositoryImpl @Inject constructor(private val apiService: ApiService)
         images3,
         images4, doc1, doc2, doc3, doc4, doc5,doc6, exp_date_1, exp_date_2, exp_date_3, exp_date_4,exp_date_5, other_exp_date, /*doc_name_1, doc_name_2, doc_name_3, doc_name_4,doc_name_5,*/ other_doc_name
     )
+
+    override suspend fun editVehicle(
+        token: String,
+//        driver_id: RequestBody,
+//        vehicle_owner_name: RequestBody,
+//        vehicle_name: RequestBody,
+//        year_of_model: RequestBody,
+//        vehicle_number: RequestBody,
+//        vehicle_type: RequestBody,
+////        vehicle_category: String,
+//        capacity: RequestBody,
+//        height: RequestBody,
+//        color: RequestBody,
+//        no_of_tyres: RequestBody,
+//        body_type: RequestBody,
+//        isFromPassenger: RequestBody,
+//        seat: RequestBody,
+        images1: MultipartBody.Part?,
+        images2: MultipartBody.Part?,
+        images3: MultipartBody.Part?,
+        images4: MultipartBody.Part?,
+        doc1: MultipartBody.Part?,
+        doc2: MultipartBody.Part?,
+        doc3: MultipartBody.Part?,
+        doc4: MultipartBody.Part?,
+        doc5: MultipartBody.Part?,
+        doc6: MultipartBody.Part?,
+        exp_date_1: RequestBody,
+        exp_date_2: RequestBody,
+        exp_date_3: RequestBody,
+        exp_date_4: RequestBody,
+        exp_date_5: RequestBody,
+        other_exp_date: RequestBody,
+        other_doc_name: RequestBody,
+    ): Response<AddloaderResponse> = apiService.editVehicle(
+        token,
+//        driver_id,
+//        vehicle_owner_name,
+//        vehicle_name,
+//        year_of_model,
+//        vehicle_number,
+//        vehicle_type,
+//        vehicle_category,
+//        capacity,
+//        height,
+//        color,
+//        no_of_tyres,
+//        body_type,
+//        isFromPassenger,
+//        seat,
+        images1,
+        images2,
+        images3,
+        images4, doc1, doc2, doc3, doc4, doc5,doc6, exp_date_1, exp_date_2, exp_date_3, exp_date_4,exp_date_5, other_exp_date, other_doc_name
+    )
+
+
+
+
     override suspend fun indi_add_loader_vehicle(
         token: String,
         vehicle_owner_name: RequestBody,

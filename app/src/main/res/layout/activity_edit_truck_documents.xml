@@ -318,7 +318,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_35sdp"
                         android:orientation="horizontal">
-
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Expiry Date:-"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:layout_gravity="center_vertical"/>
 
                         <TextView
                             android:id="@+id/tv_date"
@@ -364,6 +369,7 @@
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
                                 android:padding="@dimen/_5sdp"
+                                android:visibility="gone"
                                 android:layout_gravity="center"
                                 android:layout_marginStart="10dp"
                                 android:layout_marginEnd="@dimen/_5sdp"
@@ -429,7 +435,12 @@
                             android:layout_weight="1"
                             android:orientation="horizontal">
 
-
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Expiry Date:-"
+                                android:layout_marginLeft="@dimen/_10sdp"
+                                android:layout_gravity="center_vertical"/>
                             <TextView
                                 android:id="@+id/date1"
                                 android:layout_width="wrap_content"
@@ -472,6 +483,7 @@
                                     android:layout_height="40dp"
                                     android:padding="@dimen/_5sdp"
                                     android:layout_gravity="center"
+                                    android:visibility="gone"
                                     android:layout_marginStart="10dp"
                                     android:layout_marginEnd="@dimen/_5sdp"
                                     android:src="@drawable/ic_upload_doc" />
@@ -540,7 +552,12 @@
                         android:layout_weight="1"
                         android:orientation="horizontal">
 
-
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Expiry Date:-"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:layout_gravity="center_vertical"/>
                         <TextView
                             android:id="@+id/date2"
                             android:layout_width="wrap_content"
@@ -583,6 +600,7 @@
                                 android:layout_height="40dp"
                                 android:padding="@dimen/_5sdp"
                                 android:layout_gravity="center"
+                                android:visibility="gone"
                                 android:layout_marginStart="10dp"
                                 android:layout_marginEnd="@dimen/_5sdp"
                                 android:src="@drawable/ic_upload_doc" />
@@ -651,7 +669,12 @@
                         android:layout_weight="1"
                         android:orientation="horizontal">
 
-
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Expiry Date:-"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:layout_gravity="center_vertical"/>
                         <TextView
                             android:id="@+id/date3"
                             android:layout_width="wrap_content"
@@ -690,7 +713,7 @@
 
                             <ImageView
                                 android:id="@+id/ly_fitnessdoc"
-
+                                android:visibility="gone"
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
                                 android:padding="@dimen/_5sdp"
@@ -759,7 +782,12 @@
                         android:layout_weight="1"
                         android:orientation="horizontal">
 
-
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Expiry Date:-"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:layout_gravity="center_vertical"/>
                         <TextView
                             android:id="@+id/date4"
                             android:layout_width="wrap_content"
@@ -801,6 +829,7 @@
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
                                 android:padding="@dimen/_5sdp"
+                                android:visibility="gone"
                                 android:layout_gravity="center"
                                 android:layout_marginStart="10dp"
                                 android:layout_marginEnd="@dimen/_5sdp"
@@ -821,21 +850,138 @@
 
 
                 </LinearLayout>
-
                 <LinearLayout
+                    android:id="@+id/llpdf6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_otherdoc"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="@dimen/_40sdp"
+                        android:layout_height="@dimen/_35sdp"
+                        android:layout_gravity="center_vertical"
                         android:layout_marginStart="@dimen/_10sdp"
-                        android:layout_marginTop="@dimen/_20sdp"
                         android:layout_marginEnd="@dimen/_10sdp"
-                        android:background="@drawable/edt_round_corner_yellow"
-                        android:gravity="center"
+                        android:layout_weight="1"
+                        android:background="@android:color/transparent"
+                        android:fontFamily="@font/roboto_regular"
+                        android:gravity="center_vertical"
+                        android:hint="Others"
+                        android:singleLine="true"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/black"
+                        android:textSize="@dimen/_12sdp" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:background="@color/lightgray" />
+
+                    <LinearLayout
+                        android:id="@+id/lltextdate5"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_35sdp"
                         android:orientation="horizontal">
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Expiry Date:-"
+                            android:layout_marginLeft="@dimen/_10sdp"
+                            android:layout_gravity="center_vertical"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                >
+                                <TextView
+                                    android:id="@+id/date5"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="@dimen/_35sdp"
+                                    android:layout_gravity="center_vertical"
+                                    android:layout_marginStart="@dimen/_10sdp"
+                                    android:layout_marginEnd="@dimen/_10sdp"
+                                    android:background="@android:color/transparent"
+                                    android:fontFamily="@font/roboto_regular"
+                                    android:textColor="@color/black"
+                                    android:gravity="center_vertical"
+                                    android:hint="@string/datehint"
+                                    android:imeOptions="actionNext"
+                                    android:singleLine="true"
+                                    android:textSize="@dimen/_12sdp"
+                                    app:hintAnimationEnabled="false"
+                                    app:hintEnabled="false"
+                                    tools:ignore="NestedWeights" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+
+                        <ImageView
+                            android:id="@+id/cal6"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="@dimen/_16sdp"
+                            android:src="@drawable/select_date" />
+
+
+                        <!--                        <LinearLayout-->
+                        <!--                            android:layout_width="match_parent"-->
+                        <!--                            android:layout_height="match_parent"-->
+                        <!--                            android:background="@android:color/transparent"-->
+                        <!--                            android:gravity="end"-->
+                        <!--                            android:orientation="horizontal">-->
+
+                        <!--                            <ImageView-->
+                        <!--                                android:id="@+id/ly_otherdoc"-->
+                        <!--                                android:layout_width="40dp"-->
+                        <!--                                android:layout_height="40dp"-->
+                        <!--                                android:padding="@dimen/_5sdp"-->
+                        <!--                                android:layout_gravity="center"-->
+                        <!--                                android:layout_marginStart="10dp"-->
+                        <!--                                android:layout_marginEnd="@dimen/_5sdp"-->
+                        <!--                                android:src="@drawable/ic_upload_doc" />-->
+
+
+                        <!--                        </LinearLayout>-->
 
 
                     </LinearLayout>
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_40sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:background="@drawable/edt_round_corner_yellow"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btn_submit"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/edt_round_corner_yellow"
+                        android:fontFamily="@font/roboto_medium"
+                        android:text="@string/update"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_14sdp" />
+
+                </LinearLayout>
 
 
             </LinearLayout>
