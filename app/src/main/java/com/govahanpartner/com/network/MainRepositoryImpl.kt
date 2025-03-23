@@ -85,7 +85,7 @@ class MainRepositoryImpl @Inject constructor(private val apiService: ApiService)
 
     override suspend fun editVehicle(
         token: String,
-//        driver_id: RequestBody,
+        vehicleId: RequestBody,
 //        vehicle_owner_name: RequestBody,
 //        vehicle_name: RequestBody,
 //        year_of_model: RequestBody,
@@ -118,7 +118,7 @@ class MainRepositoryImpl @Inject constructor(private val apiService: ApiService)
         other_doc_name: RequestBody,
     ): Response<AddloaderResponse> = apiService.editVehicle(
         token,
-//        driver_id,
+        vehicleId,
 //        vehicle_owner_name,
 //        vehicle_name,
 //        year_of_model,

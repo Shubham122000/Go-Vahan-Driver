@@ -222,7 +222,7 @@ class TruckRepositoryViewModel @Inject constructor(private val mainRepository: M
 
     fun editVehicle(
         token: String,
-//        driver_id: String,
+        vehicleId: String,
 //        vehicle_owner_name: String,
 //        vehicle_name: String,
 //        year_of_model: String,
@@ -254,6 +254,7 @@ class TruckRepositoryViewModel @Inject constructor(private val mainRepository: M
         other_exp_date: String,
         other_doc_name: String,
     ) {
+        val vehicleId: RequestBody = vehicleId.toRequestBody("text/plain".toMediaTypeOrNull())
 //        val driver_id: RequestBody = driver_id.toRequestBody("text/plain".toMediaTypeOrNull())
 //        val vehicle_owner_name: RequestBody = vehicle_owner_name.toRequestBody("text/plain".toMediaTypeOrNull())
 //        val vehicle_name: RequestBody = vehicle_name.toRequestBody("text/plain".toMediaTypeOrNull())
@@ -279,7 +280,7 @@ class TruckRepositoryViewModel @Inject constructor(private val mainRepository: M
             val response =
                 mainRepository.editVehicle(
                     token,
-//                    driver_id,
+                    vehicleId,
 //                    vehicle_owner_name,
 //                    vehicle_name,
 //                    year_of_model,

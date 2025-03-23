@@ -83,6 +83,7 @@ interface ApiService {
     @POST("edit_vehicle")
     suspend fun editVehicle(
         @Header("Authorization") authorization: String,
+        @Part("vehicle_id") vehicleId: RequestBody,
 //        @Part("driver_id") driver_id: RequestBody,
 //        @Part("vehicle_owner_name") vehicle_owner_name: RequestBody,
 //        @Part("vehicle_name") vehicle_name: RequestBody,

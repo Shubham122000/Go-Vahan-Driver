@@ -183,7 +183,7 @@ interface MainRepository {
 
     suspend fun editVehicle(
         token: String,
-//        driver_id: RequestBody,
+        vehicleId: RequestBody,
 //        vehicle_owner_name: RequestBody,
 //        vehicle_name: RequestBody,
 //        year_of_model: RequestBody,

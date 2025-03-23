@@ -42,16 +42,6 @@ class TruckRepositoryAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         val data = list[position]
-        Log.d("TAG", "onBindViewHolder: " + data.status)
-//        if (data.payment_status.equals("1")) {
-//            holder.binding.status.text = "Payment Pending"
-//        } else if (data.payment_status.equals("0")) {
-//            holder.binding.status.text = "Under reviewed"
-//
-//        } else if (data.payment_status.equals("2")) {
-//            holder.binding.status.text = "Completed"
-//        }
-
         if (data.documentStatus == 1) {
             if (data.paymentStatus == 0) {
                 holder.binding.status.text = "Payment Pending"
@@ -63,7 +53,7 @@ class TruckRepositoryAdapter(
                     holder.binding.status.setTextColor(Color.RED)
             }
         }else{
-            if (data.paymentStatus == 0) {
+            if (data.documentStatus == 0) {
                 holder.binding.status.text = "Under reviewed"
             }
         }

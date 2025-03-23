@@ -274,7 +274,7 @@ class EditTruckDocumentsActivity : BaseActivity() {
             }
                 viewModel.editVehicle(
                     "Bearer " + userPref.getToken().toString(),
-//                    userPref.getid().toString(),
+                    vehicle?.id.toString(),
 //                    binding.etTruckownername.text.toString(),
 //                    selectedTruckTypeName,
 //                    selectedYearId,
@@ -287,12 +287,16 @@ class EditTruckDocumentsActivity : BaseActivity() {
 //                    selectedBodyId,
 //                    "0",
                     "",
-                    imagetruck1!!,
-                    imagetruck2!!,
-                    imagetruck3!!,
-                    imagetruck4!!,
-                    pdfFile!!,pdfFile1!!,pdfFile2!!,pdfFile3!!,pdfFile4!!,
-                    pdfFile5!!,
+                    imagetruck1,
+                    imagetruck2,
+                    imagetruck3,
+                    imagetruck4,
+                    pdfFile,
+                    pdfFile1,
+                    pdfFile2,
+                    pdfFile3,
+                    pdfFile4,
+                    pdfFile5,
                     binding.tvDate.text.toString(),
                     binding.date1.text.toString(),
                     binding.date2.text.toString(),
@@ -369,15 +373,15 @@ class EditTruckDocumentsActivity : BaseActivity() {
 //            }
 //        }
 
-//        viewModel1.AddloaderResponse.observe(this) {
-//            if (it?.error == false) {
-//                Toast.makeText(this, "Vehicle Updated Successfully...", Toast.LENGTH_LONG).show()
-//                finish()
-//            } else {
-//                //toast(it.message)
-//                snackbar(it?.message!!)
-//            }
-//        }
+        viewModel.addloaderResponse.observe(this) {
+            if (it?.error == false) {
+                Toast.makeText(this, "Vehicle Updated Successfully...", Toast.LENGTH_LONG).show()
+                finish()
+            } else {
+                //toast(it.message)
+                snackbar(it?.message!!)
+            }
+        }
     }
     private fun selectImage() {
         // on below line we are creating a new bottom sheet dialog.
