@@ -1,15 +1,16 @@
 package com.govahanpartner.com.model
 
+import com.google.gson.annotations.SerializedName
+
 data class TransactionReportResponse(
-    val message: String,
-    val status: Int,
-    val data: ArrayList<TransactionReportResponseData>,
+    @SerializedName("error"       ) var error      : Boolean?          = null,
+    @SerializedName("status_code" ) var statusCode : Int?              = null,
+    @SerializedName("message"     ) var message    : String?           = null,
+    @SerializedName("result"      ) var result     : ArrayList<TransactionReportResponseData> = arrayListOf()
 )
 data class TransactionReportResponseData(
-    val booking_date: Any,
-    val created_at: String,
-    val fare: String,
-    val name: String,
-    val transaction_id: String
-
+    @SerializedName("id"         ) var id        : Int?    = null,
+    @SerializedName("amount"     ) var amount    : Int?    = null,
+    @SerializedName("status"     ) var status    : Int?    = null,
+    @SerializedName("created_at" ) var createdAt : String? = null
 )

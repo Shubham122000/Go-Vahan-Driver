@@ -307,9 +307,6 @@ class EditTruckDocumentsActivity : BaseActivity() {
                 )
         }
 
-
-
-
         binding.llRcbook.setOnClickListener {
 //            viewModel2.loader_vehicle_doc_update(
 //                "Bearer "+userPref.getToken().toString(),

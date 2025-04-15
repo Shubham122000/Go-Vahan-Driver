@@ -989,7 +989,7 @@ interface ApiService {
 //        @Field("transaction_type") transaction_type : String
 //    ): Response<VendorWalletActivity>
 
-    @GET("loder_transaction_report")
+    @GET("payout_requests")
     suspend fun Transactionreport(
         @Header("Authorization") authorization: String
     ): Response<TransactionReportResponse>

@@ -23,14 +23,21 @@ class TransactionAdapter (val context: Context, val list : ArrayList<Transaction
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val data = list[position]
-        holder.binding.tvAmount.text = "₹${data.fare.toString()}"
-        if (userPref.getName().equals(data.name)){
-            holder.binding.tvDetail.text= "Subscription purchased."
+        holder.binding.tvAmount.text = "₹${data.amount.toString()}"
+        holder.binding.tvDetail.text = "You have sent payout request."
+//        if (userPref.getName().equals(data.name)){
+//            holder.binding.tvDetail.text= "Subscription purchased."
+//        }else{
+//            holder.binding.tvDetail.text = "You have received Rs.${data.fare} form ${data.name}"
+//        }
+        holder.binding.tvDate.text=DateFormat.TimeFormat(data.createdAt)
+        if (data.status == 1){
+            holder.binding.transactionId.text= "Pending"
+        }else if (data.status == 2){
+            holder.binding.transactionId.text= "Approved"
         }else{
-            holder.binding.tvDetail.text = "You have received Rs.${data.fare} form ${data.name}"
+            holder.binding.transactionId.text= "Rejected"
         }
-        holder.binding.tvDate.text=DateFormat.TimeFormat(data.created_at)
-        holder.binding.transactionId.text= data.transaction_id
     }
 
     override fun getItemCount(): Int {

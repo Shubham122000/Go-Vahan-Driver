@@ -48,9 +48,9 @@ class TransactionReportActivity : BaseActivity() {
         }
 
         viewModel.TransactionReportResponse.observe(this) {
-            if (it?.status == 1) {
+            if (it?.error == false) {
                 Listdata.clear()
-                Listdata.addAll(it.data)
+                Listdata.addAll(it.result)
                 binding.rvReport.layoutManager = LinearLayoutManager(this)
                 adapter = TransactionAdapter(this, Listdata,userPref1)
                 binding.rvReport.adapter =adapter

@@ -1,6 +1,8 @@
 package com.govahanpartner.com.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 import java.io.Serializable
 
 data class TripListDetailsModelClass(
@@ -50,6 +52,7 @@ data class TripListDetailsData(
     @SerializedName("vehicle") var vehicle: Vehicle? = Vehicle()
 ) : Serializable
 
+@Parcelize
 data class Vehicle(
     @SerializedName("id") var id: Int? = null,
     @SerializedName("vehicle_name") var vehicleName: String? = null,
@@ -65,7 +68,7 @@ data class Vehicle(
     @SerializedName("no_of_tyres") var noOfTyres: Int? = null,
     @SerializedName("seat") var seat: String? = null,
     @SerializedName("capacity") var capacity: String? = null,
-) : Serializable
+) : Serializable , Parcelable
 
 data class ForTripBodyType(
 
