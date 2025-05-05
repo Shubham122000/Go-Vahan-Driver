@@ -15,6 +15,6 @@
     <files-path
         name="files"
         path="."/>
-        <external-path name="my_images" path="Android/data/com.govahanpartner.com/files/Pictures" />
+        <external-path name="my_images" path="Android/data/com.gvpartner.com/files/Pictures" />
 
 </paths>

@@ -19,6 +19,9 @@
         },
         {
           "current_key": "AIzaSyB8gMYBE08u7mjopfMksTONnpHQ926uV1Q"
+        },
+        {
+          "current_key": "AIzaSyCCJnkmuJhaZ1jVplJ9gFAvj0qHBh_m1Mk"
         }
       ],
       "services": {
@@ -41,6 +44,34 @@
         },
         {
           "current_key": "AIzaSyB8gMYBE08u7mjopfMksTONnpHQ926uV1Q"
+        },
+        {
+          "current_key": "AIzaSyCCJnkmuJhaZ1jVplJ9gFAvj0qHBh_m1Mk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:549847634409:android:ec9e7ba793250f86d33b78",
+        "android_client_info": {
+          "package_name": "com.gvpartner.com"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2MWQwIVWgDTdufxfj1sGfZmspK2bNCyE"
+        },
+        {
+          "current_key": "AIzaSyB8gMYBE08u7mjopfMksTONnpHQ926uV1Q"
+        },
+        {
+          "current_key": "AIzaSyCCJnkmuJhaZ1jVplJ9gFAvj0qHBh_m1Mk"
         }
       ],
       "services": {
