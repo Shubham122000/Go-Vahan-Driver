@@ -11,8 +11,15 @@ import com.gvpartner.com.model.DownloadPdfResponse
 import com.gvpartner.com.model.VisitingCardUrlResponse
 import com.gvpartner.com.network.MainRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.io.IOException
+import java.net.HttpURLConnection
+import java.net.URL
 import javax.inject.Inject
+import kotlin.coroutines.cancellation.CancellationException
 
 @HiltViewModel
 class HomeViewmodel @Inject constructor(private val mainRepository: MainRepository) : ViewModel() {
@@ -62,20 +69,68 @@ class HomeViewmodel @Inject constructor(private val mainRepository: MainReposito
         }
     }
 
+//    fun VisitingCardPdf(
+//        token: String,
+//    ) {
+//        progressBarStatus.value = true
+//        viewModelScope.launch {
+//            val response =
+//                mainRepository.VisitingPdf(token)
+//            if (response.isSuccessful) {
+//                progressBarStatus.value = false
+//                VisitingPdfResponse.postValue(response.body())
+//            } else {
+//                progressBarStatus.value = false
+//                Log.d("TAG", response.body().toString())
+//            }
+//        }
+//    }
+//fun VisitingCardPdf(token: String) {
+//    progressBarStatus.value = true
+//
+//    viewModelScope.launch {
+//        try {
+//            val response = withContext(Dispatchers.IO) {
+//                mainRepository.VisitingPdf(token)
+//            }
+//
+//            if (response.isSuccessful) {
+//                response.body()?.let {
+//                    VisitingPdfResponse.postValue(it)
+//                    Log.d("PDF", "Response Success: $it")
+//                } ?: run {
+//                    Log.e("PDF", "Response Body is null")
+//                }
+//            } else {
+//                Log.e("PDF", "Response Failed: ${response.code()} - ${response.errorBody()?.string()}")
+//            }
+//        } catch (e: Exception) {
+//            Log.e("PDF", "Exception occurred: ${e.message}", e)
+//        } finally {
+//            progressBarStatus.postValue(false)
+//        }
+//    }
+//}
+
     fun VisitingCardPdf(
         token: String,
     ) {
         progressBarStatus.value = true
-        viewModelScope.launch {
-            val response =
-                mainRepository.VisitingPdf(token)
-            if (response.isSuccessful) {
-                progressBarStatus.value = false
-                VisitingPdfResponse.postValue(response.body())
-            } else {
-                progressBarStatus.value = false
-                Log.d("TAG", response.body().toString())
+        viewModelScope.launch(Dispatchers.IO) {
+            try {
+                val response =
+                    mainRepository.VisitingPdf(token)
+                if (response.isSuccessful) {
+                    VisitingPdfResponse.postValue(response.body())
+                } else {
+                    Log.d("PDF", response.body().toString())
+                }
+            }catch (e:Exception){
+                Log.e("PDF", "Exception occurred: ${e.message}", e)
             }
         }
+        progressBarStatus.value = false
     }
+
+
 }
